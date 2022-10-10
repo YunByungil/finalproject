@@ -8,21 +8,6 @@
 <title>콤보</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
-<style>
-.product_container{
-	max-width:1100px;
-	margin:auto;
-}
-
-.product_list_name{
-	font-size:30px;
-}
-
-.product_list_price{
-	font-size:20px;
-}
-
-</style>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>

@@ -73,5 +73,47 @@
 
 /**product*/
 
+.product_container{
+	max-width:1100px;
+	margin:auto;
+}
+
+.product_list_name{
+	font-size:30px;
+}
+
+.product_list_price{
+	font-size:20px;
+}
+.product_space{
+	width:1100px;
+    display: flex;
+    flex:2;
+    justify-content: center;
+    align-items: center;
+   	margin:auto;
+}
+.product_img{
+	flex:1;
+
+}
+.product_select{
+	flex:1;
+
+}
+
+.product_count{
+	display:flex;
+	
+}
+
+.product_right_price{
+	float:right;
+}
+
+.product_info{
+	max-width:1100px;
+ 	margin:auto;
+}
 
 
