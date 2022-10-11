@@ -50,6 +50,7 @@
    <bean id="joaPayController" class="joa.controller.JoaPayController"></bean>
    <bean id="joaStoreController" class="joa.controller.JoaStoreController"></bean>
    <bean id="joaTheaterController" class="joa.controller.JoaTheaterController"></bean>
+   <bean id="adminStoreController" class="joa.controller.AdminStoreController"></bean>
    
    <!-- daos -->
    <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean> 
