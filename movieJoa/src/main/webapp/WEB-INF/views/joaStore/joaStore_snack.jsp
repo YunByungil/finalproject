@@ -16,13 +16,14 @@
 			<a href="joaStorePopcorn.do">팝콘</a>
 			<a href="joaStoreSnack.do">스낵</a>
 			<a href="joaStoreDrink.do">음료</a>
-	</div>
+	</div>	
+	<hr color="#dcdcdc">	
 	<div class="store_spaceMaker"></div>
-	<hr color="#dcdcdc">
 	<div class="store_container">
-	<div class="left">
-		<div class="snack"><h1>스낵<span class="material-symbols-outlined">add_circle</span></h1></div>
-	</div></div>
+		<div class="left">
+			<div class="snack"><h1>스낵<span class="material-symbols-outlined">add_circle</span></h1></div>
+		</div>
+	</div>
 <c:import url="../footer.jsp"></c:import>
 </body>
 </html>

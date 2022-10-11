@@ -36,4 +36,14 @@ public class JoaStoreController {
 		return "joaStore/joaStore_product";
 	}
 
+	@RequestMapping("joaStoreCart.do")
+	public String joaStoreCart() {
+		return "joaStore/joaStore_cart";
+	}
+	
+	@RequestMapping("joaStorePay.do")
+	public String joaStorePay() {
+		return "joaStore/joaStore_pay";
+	}
+
 }

@@ -17,8 +17,8 @@
 			<a href="joaStoreSnack.do">스낵</a>
 			<a href="joaStoreDrink.do">음료</a>
 	</div>
+	<hr color="#dcdcdc"/>
 	<div class="store_spaceMaker"></div>
-	<hr color="#dcdcdc">
 	<div class="store_container">
 	<div class="left">
 		<div class="popcorn"><h1>팝콘<span class="material-symbols-outlined">add_circle</span></h1></div>

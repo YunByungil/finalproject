@@ -11,22 +11,22 @@ function openLogin(){
 <header>
 	<div class="nav">
 		<div class="logo">
-			<a href="index.do"><h1>MJOA</h1></a>
+			<a href="index.do"><h1>MJOA manage</h1></a>
 		</div>
 		<div class="nav_menu">
-			<a href="#"><span class="material-symbols-outlined">lock</span>로그인</a>
+			<a href="#"><span class="material-symbols-outlined">person</span>로그인</a>
 			<a href="memberJoin.do"><span class="material-symbols-outlined">person_add</span>회원가입</a>
-			<a href="myPage.do"><span class="material-symbols-outlined">account_circle</span>마이페이지</a>
+			<a href="myPage.do"><span class="material-symbols-outlined">person</span>마이페이지</a>
 			<a href="helpDest.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>
 		</div>		
 	</div>
-	<hr size="1px" color="#dcdcdc">
+	<hr size="1px" color="#c0c0c0">
 	<div class="category">
 		<div class="category_menu">
-			<a href="#">영화</a>
-			<a href="#">극장/예매</a>
-			<a href="joaStore.do">스토어</a>
-			<a href="#">이벤트</a>
+			<a href="#">상영관 관리</a>
+			<a href="#">상영 스케줄 관리</a>
+			<a href="joaStore.do">내 지점 매출 확인</a>
+			<a href="#">질답</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -38,7 +38,7 @@ function openLogin(){
 			<input type="text"><span class="material-symbols-outlined">search</span>
 		</div>
 	</div>
-	<hr size="2px" color="red">
+	<hr size="2px" color="#808080">
 </header>
 </body>
 </html>

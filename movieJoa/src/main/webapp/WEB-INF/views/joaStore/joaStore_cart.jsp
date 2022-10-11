@@ -5,10 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-<c:import url="../header.jsp"></c:import>
 
 </body>
 </html>
