@@ -44,14 +44,7 @@ float:right;
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-	<div class="store_category">
-			<a href="joaStoreCombo.do">콤보</a>
-			<a href="joaStorePopcorn.do">팝콘</a>
-			<a href="joaStoreSnack.do">스낵</a>
-			<a href="joaStoreDrink.do">음료</a>
-	</div>
-	<hr color="#dcdcdc">		
-	<div class="store_spaceMaker"></div>
+<c:import url="joaStore_category.jsp"></c:import>
 	
 	<div class="product_main">
 		<div class="product_container">
