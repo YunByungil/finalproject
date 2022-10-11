@@ -1,0 +1,37 @@
+@charset "UTF-8";
+/*detail*/
+.poster_box{
+	margin-inline:100px;
+	float:left;
+	margin-right:20px;
+	
+}
+.detail_img{
+	margin-top:40px;
+	margin-inline:10px;
+	width:250px;
+	height:350px;
+}
+.table_box{
+float:left;
+margin-top: 40px;
+width:50%;
+margin-bottom:30px;
+}
+.main_table_detail {
+    width: 100%;
+    border-top: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
+    border-spacing: 0;
+    margin-inline: 0px auto;
+    margin-right: 100px;
+}
+.bottom_div{
+    height: 80px;
+    margin-inline: 120px 0 20px;
+    margin-right: 100px;
+    padding-bottom: 3px;
+    border-top: 1px solid #CECCC1;
+    margin-left: 100px;
+    margin-right: 100px;
+}
