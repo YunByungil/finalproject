@@ -2,5 +2,28 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="joa.store">
+  <mapper namespace="admin.movie">
+  <insert id="addMovie" parameterType="joa.adminMovie.model.AdminMovieDTO">
+			insert into
+				movie_test
+			values(
+				movie_test_mov_idx.nextval,
+				#{mov_title},
+				#{mov_director},
+				#{mov_cast},
+				sysdate,
+				sysdate,
+				sysdate,
+				#{mov_country},
+				#{mov_genre},
+				#{mov_running_time},
+				#{mov_rate},
+				#{mov_info},
+				#{mov_poster},
+				0,
+				0,
+				0,
+				0
+				)  	
+	  	</insert>
   </mapper>

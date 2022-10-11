@@ -52,9 +52,19 @@
    <bean id="joaTheaterController" class="joa.controller.JoaTheaterController"></bean>
    
    <!-- daos -->
-   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean>   
+   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean> 
+   <bean id="adminMovieDao" class="joa.adminMovie.model.AdminMovieDAOImple">    
+   		<constructor-arg>
+         <ref bean="sqlSessionTemplate"/>
+     	 </constructor-arg>
+   </bean> 
    
    <!-- services -->
+   <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
+   		<constructor-arg>
+         <ref bean="adminMovieDao"/>
+     	 </constructor-arg>
+   	</bean>
    
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>
@@ -66,6 +76,7 @@
       <property name="suffix" value=".jsp"></property>
       <property name="order" value="1"></property>
    </bean> 
+   
    
    
 </beans>
