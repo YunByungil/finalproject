@@ -2,10 +2,9 @@ package joa.adminStore.model;
 
 import java.util.*;
 
-public interface AdminStoreDAO {
-	
-	public int addProduct(AdminStoreDTO dto);
-	public List<AdminStoreDTO> adminStoreList(Map map);
+public interface AdminStoreService {
+
+	public List<AdminStoreDTO> adminStoreList(int cp, int ls);
 	public AdminStoreDTO adminStoreContent(int idx);
 	public int adminStoreTotalCnt();
 

@@ -70,6 +70,11 @@
          <ref bean="adminMovieDao"/>
      	 </constructor-arg>
    	</bean>
+   <bean id="adminStoreService" class="joa.adminStore.model.AdminStoreServiceImple">
+   		<constructor-arg>
+         <ref bean="adminStoreDao"/>
+     	 </constructor-arg>
+   	</bean>
    
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>

@@ -14,4 +14,21 @@
   				#{pro_info},
   				sysdate)  				
   	</insert>
+   	<select id="adminStoreList" parameterType="Map" resultType="joa.adminStore.model.AdminStoreDTO">
+  		select * from
+		(select rownum as rnum,a.*from
+		(select * from joa_product  order by pro_idx desc)a)b
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+  	</select>
+  	<select id="adminStoreContent" parameterType="Integer" resultType="joa.adminStore.model.AdminStoreDTO">
+  		select 
+  			* 
+  		from 
+  			joa_product
+  		where 
+  			pro_idx=#{pro_idx}
+  	</select>
+  	<select id="adminStoreTotalCnt" resultType="Integer">
+  		select count(*) from joa_product  	
+  	</select>
   </mapper>

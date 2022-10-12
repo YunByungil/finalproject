@@ -26,7 +26,6 @@
 				<td colspan="4" align="center">
 				${pageStr }
 				</td>
-				<td><a href="bbsWrite.do">글쓰기</a></td>
 			</tr>
 		</tfoot>
 		<tbody>
@@ -39,14 +38,13 @@
 		</c:if>
 		<c:forEach var="dto" items="${list }">
 			<tr>
-				<td>${dto.idx }</td>
-				<c:url var="contentUrl" value="bbsContent.do">
-					<c:param name="idx">${dto.idx }</c:param>
+				<td>${dto.pro_idx }</td>
+				<c:url var="contentUrl" value="adminStoreContent.do">
+					<c:param name="idx">${dto.pro_idx }</c:param>
 				</c:url>
-				<td><a href="${contentUrl}">${dto.subject }</a></td>
-				<td>${dto.writer }</td>
-				<td>${dto.writedate }</td>
-				<td>${dto.readnum }</td>
+				<td><a href="${contentUrl}">${dto.pro_name }</a></td>
+				<td>${dto.pro_price }</td>
+				<td>${dto.pro_category }</td>
 			</tr>
 		</c:forEach>
 		</tbody>

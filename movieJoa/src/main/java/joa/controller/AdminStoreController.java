@@ -1,6 +1,7 @@
 package joa.controller;
 
 import java.io.IOException;
+import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -42,11 +43,6 @@ public class AdminStoreController {
 		
 	}
 	
-	@RequestMapping("/adminStore.do")
-	public String adminStore() {
-		return "admin/adminStore/adminStore_store";
-	}
-	
 	@RequestMapping("/adminStoreAdd.do")
 	public String adminStoreAdd() {
 		return "admin/adminStore/adminStore_store_add";
@@ -67,15 +63,44 @@ public class AdminStoreController {
 		return mav;
 	}
 	
-//		@RequestMapping("/addProduct.do")
-//		public String addProduct(MultipartHttpServletRequest req) {
-//			
-//			MultipartFile upload=req.getFile("upload");
-//			copyInto(upload);
-//			
-//			return "admin/adminStore/adminStore_store";
-//			
-//		}
+	@Autowired
+	private AdminStoreService bbsService;
+	
+	@RequestMapping("/adminStore.do")
+	public ModelAndView adminStore(
+			@RequestParam(value="cp",defaultValue = "1")int cp) {
+		
+		int totalCnt=bbsService.adminStoreTotalCnt();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=joa.page.PageModule.makePage("adminStoreList.do", totalCnt, listSize, pageSize, cp);
+		
+		List<AdminStoreDTO> list=bbsService.adminStoreList(cp,listSize);
+		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("pageStr",pageStr);
+		mav.setViewName("admin/adminStore/adminStore_store");
+		return mav;
+	}
+	
+	@RequestMapping("/adminStoreContent.do")
+	public ModelAndView adminStoreContent(
+			@RequestParam(value="idx",defaultValue="0")int idx) {
+		AdminStoreDTO dto=bbsService.adminStoreContent(idx);
+		
+		ModelAndView mav=new ModelAndView();
+		if(dto==null) {
+			mav.addObject("msg","잘못된 접근 또는 삭제된 게시글입니다.");
+			mav.setViewName("admin/adminStore/adminStore_store_msg");
+		}else {
+			mav.addObject("dto",dto);
+			mav.setViewName("admin/adminStore/adminStore_store_content");
+		}
+		return mav;
+	}
+	
+
 }
 
 
