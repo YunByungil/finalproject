@@ -1,5 +1,9 @@
 package joa.adminStore.model;
 
-public class AdminStoreDAO {
+import java.util.*;
+
+public interface AdminStoreDAO {
+	
+	public int addProduct(AdminStoreDTO dto);
 
 }

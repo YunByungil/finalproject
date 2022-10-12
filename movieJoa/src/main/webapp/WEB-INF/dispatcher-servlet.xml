@@ -53,7 +53,11 @@
    <bean id="adminStoreController" class="joa.controller.AdminStoreController"></bean>
    
    <!-- daos -->
-   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean> 
+   <bean id="adminStoreDao" class="joa.adminStore.model.AdminStoreDAOImple">
+   		<constructor-arg>
+         <ref bean="sqlSessionTemplate"/>
+     	 </constructor-arg>  
+   </bean> 
    <bean id="adminMovieDao" class="joa.adminMovie.model.AdminMovieDAOImple">    
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>

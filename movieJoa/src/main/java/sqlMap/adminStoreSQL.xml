@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="joa.adminStore">
+    	<insert id="adminStoreInsert" parameterType="joa.adminStore.model.AdminStoreDTO">
+  		insert into
+  				joa_product
+  		values(joa_product_pro_idx.nextval,
+  				#{pro_name},
+  				#{pro_price},
+  				#{pro_category},
+  				#{pro_filename},
+  				#{pro_info},
+  				sysdate)  				
+  	</insert>
+  </mapper>
