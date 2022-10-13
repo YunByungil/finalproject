@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 window.alert('${msg}');
-window.location.href="${nextPage}";
+window.location.href="/index.do";
 </script>

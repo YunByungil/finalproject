@@ -3,6 +3,8 @@ package joa.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -26,58 +28,146 @@ public class AdminMovieController {
 	@Autowired
 	private AdminMovieService adminMovieService;
 	
-	   
-	   /** 파일 복사 관련 메서드 */
-	   private void copyInto(MultipartFile mov_poster) {
-	      
-	      System.out.println("파일명: " + mov_poster.getOriginalFilename());
-	      
+	  
+	   private void insertPosterImg(MultipartFile mov_poster) {
 	      try {
-	         byte bytes[] = mov_poster.getBytes();
-	         File f = new File("c:/work_space/movieJoa/movieJoa/src/main/webapp/img/movie_poster" + mov_poster.getOriginalFilename());
-	        
-	         FileOutputStream fos = new FileOutputStream(f); 
-	         fos.write(bytes); 
-	         fos.close(); 
-	         
+	         byte realPosterFile[] = mov_poster.getBytes();
+	         File poster = new File("c:/work_space/movieJoa/movieJoa/src/main/webapp/img/movie_poster/" + mov_poster.getOriginalFilename());
+	         FileOutputStream stream = new FileOutputStream(poster); 
+	         stream.write(realPosterFile); 
+	         stream.close(); 
 	      } catch (IOException e) {
 	         e.printStackTrace();
 	      }
 	   }
 	
+		
+	@RequestMapping("/searchMovie.do")
+	public ModelAndView searchMovie(String sc_t, String sc_k) {
+		ModelAndView mav=new ModelAndView();
+		List sc_v = adminMovieService.searchMovie(sc_t,sc_k);
+		return mav;
+	}
+		
+	   
 	@RequestMapping(value="/addMovieForm.do", method=RequestMethod.GET)
-	public String addMovie() {
-		return "admin/adminMovie/adminMovie_addMovie";
+	public ModelAndView addMovie() {
+		ModelAndView mav=new ModelAndView();
+		String[] rateList = new String[5];
+		rateList[0]="등급 선택";rateList[1]="전체";rateList[2]="12세";rateList[3]="15세";rateList[4]="청불";
+		mav.addObject("rateList",rateList);
+		mav.setViewName("admin/adminMovie/adminMovie_addMovie");
+		return mav;
+		
 	}
 	
    @RequestMapping(value="/addMovie.do" ,method=RequestMethod.POST)
-	public ModelAndView addMovie(AdminMovieDTO dto/*, MultipartHttpServletRequest req*/) {
-	   System.out.println(dto);
-      
-		/*
-		 * MultipartFile mov_poster = req.getFile("mov_poster"); copyInto(mov_poster);
-		 * String filename=mov_poster.getOriginalFilename();
-		 */
-	   	
+	public ModelAndView addMovie(AdminMovieDTO dto, MultipartHttpServletRequest req) {
+		
+		 MultipartFile poster = req.getFile("poster");
+		 insertPosterImg(poster);
+		 
+		 String mov_poster=poster.getOriginalFilename();
+		 dto.setMov_poster(mov_poster);
+		 
 	   	int result = adminMovieService.addMovie(dto);
-		String msg=result>0?"영화 등록에 성공하였습니다.":"영화 등록에 실패하였습니다.";
+		String msg=result>0?"영화 정보 등록에 성공하였습니다.":"영화 정보 등록에 실패하였습니다.";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
+		mav.addObject("nextPage","/listMovie.do");
 		mav.setViewName("admin/adminMovie/msg");
 		return mav;
+		
    }
 
-
-
-	
-	@RequestMapping("updateMovie.do")
-	public String updateMovie() {
-		return "admin/adminMovie/adminMovie_updateMovie";
+	@RequestMapping(value="/updateMovieForm.do" ,method=RequestMethod.GET)
+	public ModelAndView updateMovie(
+			@RequestParam(value="mov_idx", defaultValue="0")int mov_idx) {
+			AdminMovieDTO dto= adminMovieService.detailMovie(mov_idx);
+			ModelAndView mav=new ModelAndView();
+			if (dto==null) {
+				mav.addObject("msg","잘못된 접근입니다.");
+				mav.setViewName("admin/adminMovie/msg");
+			}else {
+				String[] rateList = new String[4];
+				rateList[0]="전체";rateList[1]="12세";rateList[2]="15세";rateList[3]="청불";
+				mav.addObject("rateList",rateList);
+				mav.addObject("dto",dto);
+				mav.setViewName("admin/adminMovie/adminMovie_updateMovie");
+			}
+			return mav;
+		
 	}
 	
-	@RequestMapping("movieDetail.do")
-	public String movieDetail() {
-		return "admin/adminMovie/adminMovie_movieDetail";
+	@RequestMapping(value="/updateMovie.do" ,method=RequestMethod.POST)
+	public ModelAndView updateMovie(AdminMovieDTO dto, MultipartHttpServletRequest req) {
+		
+	     MultipartFile poster = req.getFile("poster");
+		 insertPosterImg(poster);
+		 
+		 String mov_poster=poster.getOriginalFilename();
+		 dto.setMov_poster(mov_poster);
+		 System.out.println("update poster name"+mov_poster);
+		 System.out.println(dto);
+		
+		int result = adminMovieService.updateMovie(dto);
+		String msg=result>0?"영화 정보 수정에 성공하였습니다.":"영화 정보 수정에 실패하였습니다.";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg",msg);
+		mav.addObject("nextPage","/index.do");
+		mav.setViewName("admin/adminMovie/msg");
+		return mav;
+	}
+	
+	
+	@RequestMapping("/detailMovie.do")
+	public ModelAndView movieDetail(
+			@RequestParam(value="mov_idx", defaultValue="0")int mov_idx) {
+		AdminMovieDTO dto= adminMovieService.detailMovie(mov_idx);
+		ModelAndView mav=new ModelAndView();
+		if (dto==null) {
+			mav.addObject("msg","잘못된 접근입니다.");
+			mav.setViewName("admin/adminMovie/msg");
+		}else {
+			mav.addObject("dto",dto);
+			mav.setViewName("admin/adminMovie/adminMovie_movieDetail");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("/listMovie.do")
+	public ModelAndView listMovie(
+			@RequestParam(value="cp", defaultValue="1")int cp) {
+		
+		int totalCnt=adminMovieService.adminMovieTotalCnt();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=joa.page.PageModule.makePage("listMovie.do", totalCnt, listSize, pageSize, cp);
+		
+		List<AdminMovieDTO> movieList=adminMovieService.listMovie(cp, listSize);
+		
+		System.out.println("pageStr:"+pageStr);
+		System.out.println("movieList:"+movieList);
+		
+		ModelAndView mav= new ModelAndView();
+		mav.addObject("pageStr",pageStr);
+		mav.addObject("movieList",movieList);
+		mav.setViewName("admin/adminMovie/adminMovie_listMovie");
+		return mav;
+	}
+	
+	@RequestMapping("/deleteMovie.do")
+	public ModelAndView deleteMovie(
+			@RequestParam(value="mov_idx", defaultValue="0")int mov_idx) {
+		int result = adminMovieService.deleteMovie(mov_idx);
+		String msg=result>0?"해당 영화 정보 삭제에 성공했습니다.":"해당 영화 정보 삭제에 실패했습니다.";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg",msg);
+		mav.addObject("nextPage","/listMovie.do");
+		mav.setViewName("admin/adminMovie/msg");
+		return mav;
 	}
 
+	
+	
 }

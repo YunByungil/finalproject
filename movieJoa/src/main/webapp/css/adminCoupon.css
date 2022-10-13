@@ -100,7 +100,7 @@ body, input, button, select, textarea {
 
 /*input*/
 /*text*/
-.input_text_basic, .input_text_title, .input_text_director, .input_text_cast{
+.input_text_basic{
 	height:40px;
 	line-height:40px;
 	padding:0 18px;
@@ -111,35 +111,8 @@ body, input, button, select, textarea {
 	border:1px solid #DDD;
 	background-color: #F8F8F8;
 }
-.input_text_title{
-	width:75%;
-}
-.input_text_basic{
-	width:40%;
-}
-.input_text_director{
-	width:25%;
-}
-.input_text_cast{
-	width:62%;
-}
-.input_text_search{
-	width:60%;
-}
-
-
-/*textarea*/
-textarea {
-	width:75%;
-	line-height:1.5;
-	box-sizing:border-box;
-	padding:13px 18px;
-	border:1px solid #DDD;
-	resize:none;
-	font-size:14px;
-	background-color: #F8F8F8;
-	border-radius:4px;
-	-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;
+.input_text_basic min{
+	width:100px;
 }
 
 /*button*/
@@ -175,90 +148,6 @@ button{
     color: #000000 !important;
     background-color: #ffffff;
 }
-
-/*select*/
-.table_wrap select::-ms-expand {display:none;}
-.table_wrap select {
-	-webkit-appearance: none;
-	appearance: none;
-    background: #fff url(/movieJoa/img/icon/arr_drop.png);
-	border-radius: 4px;
-    -webkit-border-radius: 4px; -moz-border-radius: 4px; -ms-border-radius: 4px; -o-border-radius: 4px;
-    border: 1px solid #DDD;
-    background-repeat: no-repeat;
-    background-position: right 6px top 50%;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 35px 0 18px;
-    font-size: 14px;
-    box-sizing: border-box;
-    vertical-align: middle;
-}
-
-/*date*/
-input[type="date"]::-webkit-datetime-edit-text,
-input[type="date"]::-webkit-datetime-edit-month-field,
-input[type="date"]::-webkit-datetime-edit-day-field,
-input[type="date"]::-webkit-datetime-edit-year-field {color: #888;}
-
-.input_date_box{
-    width: 30%;
-    height: 40px;
-    font-size:14px;
-    text-align: left;
-	line-height:40px;
-	padding:0 18px;
-	border-radius:4px;
-	-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;
-	box-sizing:border-box;
-	border:1px solid #DDD;
-	background-color: #F8F8F8;
- }
- 
-/*file*/
- ::-webkit-file-upload-button {cursor:pointer;}
- .bx_file, .file_item{
-    display: inline-block;
-    padding: 0 0 0 20px;
-}
-.bx_file {
-	position: relative;
-}
-.bx_file label {
-    display: inline-block; 
-    border-radius: 4px; 
-    border: 1px solid #000000; 
-    background-color: #ffffff; 
-    height: 40px; 
-    line-height: 40px; 
-    padding: 0 46px; 
-    font-size: 14px; 
-    color: #000000 !important; 
-    text-align: center; 
-    box-sizing: border-box; 
-    cursor: pointer; 
-}
-.bx_file input[type="file"] {
-    position: absolute;
-    width: 100px;
-    height: 100px;
-    padding: 0;
-    overflow: hidden;
-    border: 0;
-    z-index:-1;
-}
-input[type="file" i] {
-    appearance: none;
-    background-color: initial;
-    align-items: baseline;
-    color: inherit;
-    text-overflow: ellipsis;
-    white-space: pre;
-    text-align: start !important;
-    padding: initial;
-    border: initial;
-    overflow: hidden !important;
-}
 .caution{
 	margin-top: 12px;
 	padding-left: 20px;
@@ -269,4 +158,5 @@ input[type="file" i] {
 .text_c{
 	text-align: center !important;
 }
+
 

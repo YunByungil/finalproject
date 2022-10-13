@@ -1,16 +1,16 @@
 @charset "UTF-8";
 /*detail*/
 .poster_box{
-	margin-inline:100px;
-	float:left;
-	margin-right:20px;
-	
+    margin-inline:100px;
+    float:left;
+    margin-right:20px;
+    
 }
 .detail_img{
-	margin-top:40px;
-	margin-inline:10px;
-	width:250px;
-	height:350px;
+    margin-top:40px;
+    margin-inline:10px;
+    width:250px;
+    height:350px;
 }
 .table_box{
 float:left;
