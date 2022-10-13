@@ -1,9 +1,13 @@
 Manifest-Version: 1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 Built-By: ￪ﾰﾈ￫ﾧﾤ
 =======
 Built-By: Yong
 >>>>>>> movieDoll
+=======
+Built-By: USER
+>>>>>>> origin/yongReal
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 

@@ -80,6 +80,43 @@
          <ref bean="adminStoreDao"/>
      	 </constructor-arg>
    	</bean>
+   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean>
+   
+   <bean id="JoaHelpQuestionDao" class="joa.helpdesk.model.JoaHelpQuestionDAOImple">
+  		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+   </bean>   
+   <bean id="JoaManyHelpDao" class="joa.helpdesk.model.JoaManyHelpDAOImple">
+   <constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg></bean>
+   <bean id="JoaNoticeDao" class="joa.helpdesk.model.JoaNoticeDAOImple">
+   	<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+   </bean>
+   
+   
+   <!-- services -->
+   <bean id="JoaHQService" class="joa.helpdesk.model.JoaHQServiceImple">
+		<constructor-arg>
+			<ref bean="JoaHelpQuestionDao"></ref>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="JoaMHService" class="joa.helpdesk.model.JoaMHServiceImple">
+		<constructor-arg>
+			<ref bean="JoaManyHelpDao"></ref>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="JoaNTService" class="joa.helpdesk.model.JoaNTServiceImple">
+		<constructor-arg>
+			<ref bean="JoaNoticeDao"></ref>
+		</constructor-arg>
+	</bean>
+   
    
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>

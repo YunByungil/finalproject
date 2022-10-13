@@ -17,7 +17,7 @@
 		<div class="event">이벤트</div>
 		<div class="fnb">스토어상품</div>
 		<div class="notice">공지사항</div>
-		<div class="helpDesk">고객센터</div>
+		<div class="helpDesk"><a href="helpDesk.do">고객센터</a></div>
 	</article>
 </section>
 <c:import url="footer.jsp"></c:import>
