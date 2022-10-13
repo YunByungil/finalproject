@@ -1,4 +1,4 @@
-package joa.admin.model;
+package joa.adminTheater.model;
 
 public class TheaterDTO {
 
