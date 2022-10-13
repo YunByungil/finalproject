@@ -35,10 +35,10 @@
 					</c:if>
 					<c:if test="${j!=0 }">
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())!='N' }">
-							<td width="50px" height="50px" onclick="movieSeat('${seats[i][j-1] }');"></td>
+							<td width="50px" bgcolor="red" height="50px" onclick="movieSeat('${seats[i][j-1] }');"></td>
 						</c:if>
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())=='N' }">
-							<td width="50px" bgcolor="red" height="50px" onclick="movieSeat('${seats[i][j-1] }');"></td>
+							<td width="50px" height="50px" onclick="movieSeat('${seats[i][j-1] }');"></td>
 						</c:if>
 					</c:if>
 				</c:forEach>
@@ -59,7 +59,7 @@ function movieSeat(seat) {
 		</c:forEach>
 	</c:forEach>
 	$.ajax({
-		url: "theaterAdd.do?choice_seat="+choice_seat+"&width="+${width}+"&height="+${height}+"&seats_s="+seats_s+"&theater="+$('#theater').val(),
+		url: "theaterAdd.do?choice_seat="+choice_seat+"&width="+${width}+"&height="+${height}+"&seats_s="+seats_s+"&theater="+${theater},
 		type: "get",
 		dataType: "html",
 		success: function(data) {
@@ -79,7 +79,7 @@ function theaterAddSubmit() {
 		</c:forEach>
 	</c:forEach>
 	$.ajax({
-		url: "theaterAddSubmit.do?seats_s="+seats_s+"&theater="+$('#theater').val()+"&width="+${width}+"&height="+${height},
+		url: "theaterAddSubmit.do?seats_s="+seats_s+"&branch="+${theater}+"&width="+${width}+"&height="+${height},
 		type: "get",
 		dataType: "html",
 		success: function(data) {

@@ -15,7 +15,7 @@
 <table>
 	<tr>
 		<th>몇 관인가요</th>
-		<td><input type="text" name="theater"></td>
+		<td><input type="text" id="theater"></td>
 	</tr>
 </table>
 <hr>

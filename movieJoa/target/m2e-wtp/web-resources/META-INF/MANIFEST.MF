@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: ￪ﾰﾈ￫ﾧﾤ
+=======
+Built-By: Yong
+>>>>>>> movieDoll
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 
