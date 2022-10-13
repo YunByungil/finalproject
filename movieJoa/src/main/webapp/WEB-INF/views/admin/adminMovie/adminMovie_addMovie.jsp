@@ -13,7 +13,7 @@
 <c:import url="../../header.jsp"></c:import>
 <div class="mainBox">
 <div class="div_title"><h2 class="title">| 영화 관리 / 영화 등록</h2></div>
-<form name="addMovieForm" action="addMovie.do" method="post"> <!-- enctype="multipart/form-data" --> 
+<form name="addMovieForm" action="addMovie.do" method="post"  enctype="multipart/form-data">
 <div class="table_wrap">
 <table class="main_table">
 <tr>
@@ -28,13 +28,9 @@
 	<th class="th_basic">출연 정보</th>
 	<td class="td_basic"><input type="text" name="mov_cast" class="input_text_cast" placeholder="출연진 정보"></td>
 </tr>
- <tr>
-	<th class="th_basic">개봉일</th>
-	<td class="td_basic"><input type="date" name="mov_release_date"  class="input_date_box"></td>
-</tr>
 <tr>
-	<th class="th_basic">예매 활성 기간</th>
-	<td class="td_basic"><input type="date" name="mov_booking_start_date" class="input_date_box"> - <input type="date" name="mov_booking_end_date" class="input_date_box" ></td>
+	<th class="th_basic">상영 활성 기간</th>
+	<td class="td_basic"><input type="date" name="mov_start_date" class="input_date_box"> - <input type="date" name="mov_end_date" class="input_date_box" ></td>
 </tr> 
 <tr>
 	<th class="th_basic">국가</th>
@@ -50,12 +46,11 @@
 </tr>
 <tr>
 	<th class="th_basic">관람 등급</th>
-	<td class="td_basic"><select name="mov_rate">
-		<option value="">등급 선택</option>
-		<option value="전체">전체</option>
-		<option value="12세">12세</option>
-		<option value="15세">15세</option>
-		<option value="청불">청불</option>
+	<td class="td_basic">
+		<select name="mov_rate">
+			 <c:forEach var="menu" items="${rateList}">
+ 				  <option value="${menu}"> ${menu}</option>
+  			 </c:forEach>
 		</select>
 	</td>
 </tr>
@@ -69,7 +64,7 @@
 </tr>  -->
 <tr>
 	<th class="th_last">포스터</th>
-	<td class="td_last"><input type="text" name="mov_poster"><span class="caution fl_r"> 파일형식 : jpg / jpeg / png / bmp / gif / pdf (5MB X 1개)</span></td>
+	<td class="td_last"><input type="file" name="poster"><span class="caution fl_r"> 파일형식 : jpg / jpeg / png / bmp / gif / pdf (5MB X 1개)</span></td>
 </tr>
 </table>
 </div>

@@ -3,27 +3,63 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="admin.movie">
-  <insert id="addMovie" parameterType="joa.adminMovie.model.AdminMovieDTO">
+  <insert id="addMovie" parameterType="Map">
 			insert into
-				movie_test
+			movie_soni2
 			values(
-				movie_test_mov_idx.nextval,
-				#{mov_title},
-				#{mov_director},
-				#{mov_cast},
-				sysdate,
-				sysdate,
-				sysdate,
-				#{mov_country},
-				#{mov_genre},
-				#{mov_running_time},
-				#{mov_rate},
-				#{mov_info},
-				#{mov_poster},
-				0,
-				0,
-				0,
-				0
-				)  	
-	  	</insert>
-  </mapper>
+			movie_soni2_mov_idx.nextval,
+			#{title},
+			#{director},
+			#{cast},
+			TO_DATE(#{start_date}, 'YYYY-MM-DD'),
+			TO_DATE(#{end_date}, 'YYYY-MM-DD'),
+			#{country},
+			#{genre},
+			#{running_time},
+			#{rate},
+			#{info},
+			#{poster},
+			0,
+			0,
+			0,
+			0
+			) 	
+</insert>
+<select id="detailMovie" parameterType="Integer" resultType="joa.adminMovie.model.AdminMovieDTO">
+ 			select 
+ 			* 
+ 			from 
+ 			movie_soni2
+ 			where 
+ 			mov_idx=#{here}
+</select>
+<update id="updateMovie" parameterType="Map">
+			update movie_soni2 set mov_title=#{title}, 
+			mov_director=#{director}, 
+			mov_cast=#{cast}, 
+			mov_start_date=TO_DATE(#{start_date}, 'YYYY-MM-DD'), 
+			mov_end_date=TO_DATE(#{end_date}, 'YYYY-MM-DD'), 
+			mov_country=#{country}, 
+			mov_genre=#{genre}, 
+			mov_running_time=#{running_time}, 
+			mov_rate=#{rate}, 
+			mov_info=#{info}, 
+			mov_poster=#{poster}
+			where mov_idx=#{idx}
+</update>
+<select id="listMovie" parameterType="Map" resultType="joa.adminMovie.model.AdminMovieDTO">
+			select * from
+			(select rownum as rnum,a.* from
+			(select * from movie_soni2 order by mov_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+</select>
+<select id="adminMovieTotalCnt" resultType="int">
+			select count(*) from movie_soni2
+</select>
+<delete id="deleteMovie" parameterType="Integer">
+			delete from
+			movie_soni2
+			where mov_idx=
+			#{here}
+</delete>
+</mapper>
