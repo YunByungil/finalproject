@@ -25,18 +25,18 @@
 		<hr color="#dcdcdc">
 		<div class="store_container">
 			<div class="left">
-				<div class="combo"><h1>콤보<span class="material-symbols-outlined">add_circle</span></h1></div>
+				<div class="combo"><h1>콤보<a href="joaStoreCombo.do"><span class="material-symbols-outlined">add_circle</span></a></h1></div>
 			</div>
 			<div class="right">
-				<div class="popcorn"><h1>팝콘<span class="material-symbols-outlined">add_circle</span></h1></div>
+				<div class="popcorn"><h1>팝콘<a href="joaStorePopcorn.do"><span class="material-symbols-outlined">add_circle</span></a></h1></div>
 			</div>
 		</div>
 		<div class="store_container">
 			<div class="left">
-				<div class="snack"><h1>스낵<span class="material-symbols-outlined">add_circle</span></h1></div>
+				<div class="snack"><h1>스낵<a href="joaStoreSnack.do"><span class="material-symbols-outlined">add_circle</span></a></h1></div>
 			</div>
 			<div class="right">
-				<div class="drink"><h1>음료<span class="material-symbols-outlined">add_circle</span></h1></div>
+				<div class="drink"><h1>음료<a href="joaStoreDrink.do"><span class="material-symbols-outlined">add_circle</span></a></h1></div>
 			</div>
 		</div>
 	</section>
