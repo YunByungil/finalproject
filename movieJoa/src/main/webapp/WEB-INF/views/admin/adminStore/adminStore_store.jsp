@@ -18,7 +18,7 @@
 				<th>제목</th>
 				<th>작성자</th>
 				<th>작성날짜</th>
-				<th>삭제</th>
+				<th>조회수</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -39,16 +39,12 @@
 		<c:forEach var="dto" items="${list }">
 			<tr>
 				<td>${dto.pro_idx }</td>
-					<c:url var="adminStoreContentUrl" value="adminStoreContent.do">
-						<c:param name="pro_idx">${dto.pro_idx }</c:param>
-					</c:url>
-				<td><a href="${adminStoreContentUrl}">${dto.pro_name }</a></td>
+				<c:url var="contentUrl" value="adminStoreContent.do">
+					<c:param name="idx">${dto.pro_idx }</c:param>
+				</c:url>
+				<td><a href="${contentUrl}">${dto.pro_name }</a></td>
 				<td>${dto.pro_price }</td>
 				<td>${dto.pro_category }</td>
-					<c:url var="adminStoreDeleteUrl" value="adminStoreDelete.do">
-						<c:param name="pro_idx">${dto.pro_idx }</c:param>
-					</c:url>
-				<td><a href="${adminStoreDeleteUrl}"><input type="button" value="삭제"></a></td>
 			</tr>
 		</c:forEach>
 		</tbody>

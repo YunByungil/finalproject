@@ -35,18 +35,6 @@ public class AdminStoreDAOImple implements AdminStoreDAO{
 		int count=sqlMap.selectOne("adminStoreTotalCnt");
 		return count;
 	}
-	
-	@Override
-	public int adminStoreUpdate(AdminStoreDTO dto) {
-		int result=sqlMap.update("adminStoreUpdate", dto);
-		return result;
-	}
-	
-	@Override
-	public int adminStoreDelete(String pro_idx) {
-		int result=sqlMap.delete("adminStoreDelete", pro_idx);
-		return result;
-	}
 
 
 }

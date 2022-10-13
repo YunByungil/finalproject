@@ -86,11 +86,10 @@ public class AdminStoreController {
 	
 	@RequestMapping("/adminStoreContent.do")
 	public ModelAndView adminStoreContent(
-			@RequestParam(value="pro_idx",defaultValue="0")int idx) {
+			@RequestParam(value="idx",defaultValue="0")int idx) {
 		AdminStoreDTO dto=bbsService.adminStoreContent(idx);
 		
 		ModelAndView mav=new ModelAndView();
-		
 		if(dto==null) {
 			mav.addObject("msg","잘못된 접근 또는 삭제된 게시글입니다.");
 			mav.setViewName("admin/adminStore/adminStore_store_msg");
@@ -99,30 +98,6 @@ public class AdminStoreController {
 			mav.setViewName("admin/adminStore/adminStore_store_content");
 		}
 		return mav;
-	}
-	
-	@RequestMapping("/editProduct.do")
-	public ModelAndView editProduct(AdminStoreDTO dto,MultipartHttpServletRequest req) {
-		MultipartFile upload=req.getFile("filename");
-		copyInto(upload);
-		System.out.println(upload.getOriginalFilename());
-		dto.setPro_filename(upload.getOriginalFilename());
-
-		int result=adminStoreDao.adminStoreUpdate(dto);
-		String msg=result>0?"상품정보 수정 성공":"상품정보 수정 실패";
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("msg",msg);
-		mav.setViewName("admin/adminStore/adminStore_store_msg");
-		return mav;
-	}
-	
-	@RequestMapping("/adminStoreDelete.do")
-	public String adminStoreDelete(String pro_idx) {	
-		
-		int result=adminStoreDao.adminStoreDelete(pro_idx);
-		
-		return "admin/adminStore/adminStore_store";
-		
 	}
 	
 
