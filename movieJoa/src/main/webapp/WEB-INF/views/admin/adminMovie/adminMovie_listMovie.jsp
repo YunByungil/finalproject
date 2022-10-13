@@ -74,7 +74,7 @@ function deleteMovie(didx){
 		<c:param name="mov_idx">${dto.mov_idx }</c:param>
 	</c:url>
 	<td class="text_c"><input type="button" value="수정" onclick="location.href='${uLink}'" class="list_s_btn up"><br>
-						<input type="button" value="삭제" onclick="javascript:deleteMovie(${dto.mov_idx });" class="list_s_btn"></td>
+					   <input type="button" value="삭제" onclick="javascript:deleteMovie(${dto.mov_idx });" class="list_s_btn"></td>
 </tr>
 </c:forEach>
 </tbody>
