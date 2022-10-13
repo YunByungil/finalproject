@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+		<mapper resource="sqlMap/adminBookSQL.xml"/>
+		<mapper resource="sqlMap/adminEventSQL.xml"/>
+		<mapper resource="sqlMap/adminMemberSQL.xml"/>
+		<mapper resource="sqlMap/adminMovieSQL.xml"/>
+		<mapper resource="sqlMap/adminRevenueSQL.xml"/>
+		<mapper resource="sqlMap/adminReviewSQL.xml"/>
+		<mapper resource="sqlMap/adminTheaterSQL.xml"/>
+		<mapper resource="sqlMap/joaBookSQL.xml"/>
+		<mapper resource="sqlMap/joaCartSQL.xml"/>
+		<mapper resource="sqlMap/joaEventSQL.xml"/>
+		<mapper resource="sqlMap/joaHelpDeskSQL.xml"/>
+		<mapper resource="sqlMap/joaMovieSQL.xml"/>
+		<mapper resource="sqlMap/joaMypageSQL.xml"/>
+		<mapper resource="sqlMap/joaStoreSQL.xml"/>
+		<mapper resource="sqlMap/joaTheaterSQL.xml"/>
+	</mappers>
+</configuration>
+

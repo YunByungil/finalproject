@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+   <!-- configs -->
+   <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
+   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+      <property name="maxUploadSize">
+         <value>104857600</value>
+      </property>
+   </bean>
+   
+   <!-- mybatis configs -->
+   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+      <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
+      <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+      <property name="username" value="scott"></property>
+      <property name="password" value="1234"></property>
+   </bean>
+   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource"></property>
+   </bean>
+   <bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+      <property name="dataSource" ref="dataSource"></property>
+      <property name="configLocation" value="classpath:/mybatis-config.xml"></property>
+   </bean>
+   <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+      <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean">
+      </constructor-arg>
+   </bean>
+   
+   <!-- controllers -->
+   <bean id="adminBookController" class="joa.controller.AdminBookController"></bean>
+   <bean id="adminEventController" class="joa.controller.AdminEventController"></bean>
+   <bean id="adminMemberController" class="joa.controller.AdminMemberController"></bean>
+   <bean id="adminMovieController" class="joa.controller.AdminMovieController"></bean>
+   <bean id="adminRevenueController" class="joa.controller.AdminRevenueController"></bean>
+   <bean id="adminReviewController" class="joa.controller.AdminReviewController"></bean>
+   <bean id="adminTheaterController" class="joa.controller.AdminTheaterController"></bean>
+   <bean id="indexController" class="joa.controller.IndexController"></bean>
+   <bean id="joaBookController" class="joa.controller.JoaBookController"></bean>
+   <bean id="joaCartController" class="joa.controller.JoaCartController"></bean>
+   <bean id="joaEventController" class="joa.controller.JoaEventController"></bean>
+   <bean id="joaHelpDeskController" class="joa.controller.JoaHelpDeskController"></bean>
+   <bean id="joaLoginController" class="joa.controller.JoaLoginController"></bean>
+   <bean id="joaMemberJoinController" class="joa.controller.JoaMemberJoinController"></bean>   
+   <bean id="joaMovieController" class="joa.controller.JoaMovieController"></bean>
+   <bean id="joaMypageController" class="joa.controller.JoaMypageController"></bean>
+   <bean id="joaPayController" class="joa.controller.JoaPayController"></bean>
+   <bean id="joaStoreController" class="joa.controller.JoaStoreController"></bean>
+   <bean id="joaTheaterController" class="joa.controller.JoaTheaterController"></bean>
+   
+   <!-- daos -->
+   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean>
+   
+   <bean id="JoaHelpQuestionDao" class="joa.helpdesk.model.JoaHelpQuestionDAOImple">
+  		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+   </bean>   
+   <bean id="JoaManyHelpDao" class="joa.helpdesk.model.JoaManyHelpDAOImple">
+   <constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg></bean>
+   <bean id="JoaNoticeDao" class="joa.helpdesk.model.JoaNoticeDAOImple">
+   	<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+   </bean>
+   
+   
+   <!-- services -->
+   <bean id="JoaHQService" class="joa.helpdesk.model.JoaHQServiceImple">
+		<constructor-arg>
+			<ref bean="JoaHelpQuestionDao"></ref>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="JoaMHService" class="joa.helpdesk.model.JoaMHServiceImple">
+		<constructor-arg>
+			<ref bean="JoaManyHelpDao"></ref>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="JoaNTService" class="joa.helpdesk.model.JoaNTServiceImple">
+		<constructor-arg>
+			<ref bean="JoaNoticeDao"></ref>
+		</constructor-arg>
+	</bean>
+   
+   
+   <!-- views -->
+   <bean id="joaDown" class="joa.view.DownloadView"></bean>
+   <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+      <property name="order" value="0"></property>
+   </bean>
+   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+      <property name="prefix" value="/WEB-INF/views/"></property> <!-- this value have property of "prefix" -->
+      <property name="suffix" value=".jsp"></property>
+      <property name="order" value="1"></property>
+   </bean> 
+   
+   
+</beans>
