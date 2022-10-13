@@ -34,5 +34,17 @@ public class AdminStoreServiceImple implements AdminStoreService{
 		int count=adminStoreDao.adminStoreTotalCnt();
 		return count;
 	}
+	
+	@Override
+	public int adminStoreUpdate(AdminStoreDTO dto) {
+		int result=adminStoreDao.adminStoreUpdate(dto);
+		return result;
+	}
+	
+	@Override
+	public int adminStoreDelete(String pro_idx) {
+		int result=adminStoreDao.adminStoreDelete(pro_idx);
+		return result;
+	}
 
 }

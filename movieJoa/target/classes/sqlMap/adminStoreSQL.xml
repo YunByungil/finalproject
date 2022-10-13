@@ -3,16 +3,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.adminStore">
-    	<insert id="adminStoreInsert" parameterType="joa.adminStore.model.AdminStoreDTO">
-  		insert into
-  				joa_product
-  		values(joa_product_pro_idx.nextval,
-  				#{pro_name},
-  				#{pro_price},
-  				#{pro_category},
-  				#{pro_filename},
-  				#{pro_info},
-  				sysdate)  				
+   	<insert id="adminStoreInsert" parameterType="joa.adminStore.model.AdminStoreDTO">
+ 		insert into
+ 				joa_product
+ 		values(joa_product_pro_idx.nextval,
+ 				#{pro_name},
+ 				#{pro_price},
+ 				#{pro_category},
+ 				#{pro_filename},
+ 				#{pro_info},
+ 				sysdate)  				
   	</insert>
    	<select id="adminStoreList" parameterType="Map" resultType="joa.adminStore.model.AdminStoreDTO">
   		select * from
@@ -31,4 +31,22 @@
   	<select id="adminStoreTotalCnt" resultType="Integer">
   		select count(*) from joa_product  	
   	</select>
+	<update id="adminStoreUpdate" parameterType="joa.adminStore.model.AdminStoreDTO">
+		update 
+			joa_product
+		set 
+			pro_name=#{pro_name},
+			pro_price=#{pro_price},
+			pro_category=#{pro_category},
+			pro_info=#{pro_info},
+			pro_filename=#{pro_filename}			 
+		where 
+			pro_idx=#{pro_idx}
+	</update>
+  	<delete id="delProduct" parameterType="joa.adminStore.model.AdminStoreDTO">
+		delete from 
+			joa_product 
+		where 
+			pro_idx=#{pro_idx}
+	</delete>
   </mapper>

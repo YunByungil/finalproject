@@ -8,5 +8,6 @@ public interface AdminStoreDAO {
 	public List<AdminStoreDTO> adminStoreList(Map map);
 	public AdminStoreDTO adminStoreContent(int idx);
 	public int adminStoreTotalCnt();
-
+	public int adminStoreUpdate(AdminStoreDTO dto);
+	public int adminStoreDelete(String pro_idx);
 }
