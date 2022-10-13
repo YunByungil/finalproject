@@ -10,6 +10,7 @@
 		<mapper resource="sqlMap/adminMovieSQL.xml"/>
 		<mapper resource="sqlMap/adminRevenueSQL.xml"/>
 		<mapper resource="sqlMap/adminReviewSQL.xml"/>
+		<mapper resource="sqlMap/adminStoreSQL.xml"/>
 		<mapper resource="sqlMap/adminTheaterSQL.xml"/>
 		<mapper resource="sqlMap/joaBookSQL.xml"/>
 		<mapper resource="sqlMap/joaCartSQL.xml"/>
