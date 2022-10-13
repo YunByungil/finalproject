@@ -1,0 +1,10 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+	<div class="store_category">
+			<a href="joaStoreCombo.do">ÄÞº¸</a>
+			<a href="joaStorePopcorn.do">ÆËÄÜ</a>
+			<a href="joaStoreSnack.do">½º³¼</a>
+			<a href="joaStoreDrink.do">À½·á</a>
+	</div>
+	<hr color="#dcdcdc">		
+	<div class="store_spaceMaker"></div>

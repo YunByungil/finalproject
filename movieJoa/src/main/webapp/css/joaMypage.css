@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+
+.mypage_main{
+	width: 1000px;
+   	margin: 0px auto;
+}
+
+.myInformation{
+	border: 0px; 
+	padding: 50px 50px 0px 50px;
+	margin: 0px auto;
+	height: 320px; 
+	width: 800px;
+	overflow: auto;
+	background-color : #EEEEEE;
+}
+
+.joaMypage_home{
+	position: relative;
+	bottom: 337px;
+  	left: 230px;
+  	margin: 0px auto;
+  	overflow: auto;
+}
+
+.mythreelink{
+	font-size: 13px;
+	position: relative;
+	border: 0px; 
+	padding: 0px;
+	height: 150px; 
+	width: 723px;
+	overflow: auto;
+	background-color : #EEEEEE;
+	
+}
+
+.myfavoritesmovie{
+	position: absolute;
+	bottom: 20px;
+	float: left;
+	left: 70px;
+	border: 0px; 
+	padding: 0px;
+	overflow: auto;
+	background-color : #EEEEEE;
+}
+
+.mywatchingmovie{
+	position: absolute;
+	bottom: 20px;
+	float: left;
+	left: 300px;
+	border: 0px; 
+	padding: 0px;
+	
+	overflow: auto;
+	background-color : #EEEEEE;
+}
+
+.mywrite{
+	position: absolute;
+	bottom: 20px;
+	left: 540px;
+	float: left;
+	border: 0px; 
+	padding: 0px;
+	
+	overflow: auto;
+	
+}
+.myfavoritesmovie_subject{
+	font-size: 16px;
+	font-weight: bold;
+}
+.mywatchingmovie_subject{
+	font-size: 16px;
+	font-weight: bold;
+}
+.mywrite_subject{
+	font-size: 16px;
+	font-weight: bold;
+}

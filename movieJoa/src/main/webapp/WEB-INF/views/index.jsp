@@ -13,12 +13,11 @@
 <c:import url="header.jsp"></c:import>
 <section class="main">
 	<article>
-		<div name="movieChart">영화차트</div>
-		<div name="event">이벤트</div>
-		<div name="fnb">스토어상품</div>
-		<div name="notice">공지사항</div>
-		<div name="helpDesk">고객센터</div>
-		<a href="adminMember.do">관리자(회원확인용)</a>
+		<div class="movieChart">영화차트</div>
+		<div class="event">이벤트</div>
+		<div class="fnb">스토어상품</div>
+		<div class="notice">공지사항</div>
+		<div class="helpDesk">고객센터</div>
 	</article>
 </section>
 <c:import url="footer.jsp"></c:import>
