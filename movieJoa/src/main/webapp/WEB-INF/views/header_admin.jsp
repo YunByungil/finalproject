@@ -14,11 +14,8 @@ function openLogin(){
 			<a href="index.do"><h1>MJOA manage</h1></a>
 		</div>
 		<div class="nav_menu">
-			<a href="#"><span class="material-symbols-outlined">person</span>로그인</a>
-			<a href="memberJoin.do"><span class="material-symbols-outlined">person_add</span>회원가입</a>
-			<a href="myPage.do"><span class="material-symbols-outlined">person</span>마이페이지</a>
-			<a href="helpDest.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>
-		</div>		
+			<a href="index.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
+		</div>	
 	</div>
 	<hr size="1px" color="#c0c0c0">
 	<div class="category">
