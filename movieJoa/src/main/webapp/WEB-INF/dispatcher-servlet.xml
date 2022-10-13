@@ -52,7 +52,12 @@
    <bean id="joaTheaterController" class="joa.controller.JoaTheaterController"></bean>
    
    <!-- daos -->
-   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean>   
+   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean>
+   <bean id="joaMovieDao" class="joa.movie.model.JoaMovieDAOImple">
+   	<constructor-arg>
+   		<ref bean="sqlSessionTemplate"/>
+   	</constructor-arg>
+   </bean>
    
    <!-- services -->
    
