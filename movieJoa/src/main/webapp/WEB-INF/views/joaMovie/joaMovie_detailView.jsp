@@ -42,6 +42,9 @@ a:visited, a{
 	color: black;
 }
 </style>
+<script>
+
+</script>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
