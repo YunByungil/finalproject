@@ -32,23 +32,41 @@ function count(type)  {
 }
 </script>
 <style>
+.product_main{
+	width:1100px;
+	text-align:center;
+ 	margin:auto;
+}
+
 .product_right_price{
 float:right;
+
+
 }
 
 .product_info{
 	max-width:1100px;
  	margin:auto;
 }
+
+.category_product_detail_txtbox{
+margin-top:56px; 
+padding:30px; 
+font-family:'CJONLYONENEW'; 
+font-size:17px; 
+color:#000; 
+line-height:24px; 
+background-color:#fafafa; 
+border:1px solid #e2e2e2}
+
 </style>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-<c:import url="joaStore_category.jsp"></c:import>
-	
+<c:set var="dto" value="${storeProductInfo }"></c:set>
 	<div class="product_main">
 		<div class="product_container">
-		<h1>MJOA콤보</h1>
+		<h1>${dto.pro_name }</h1>
 		<hr color="black" size="2px">
 		</div>
 		<div class="product_space">
@@ -56,7 +74,7 @@ float:right;
 				<img src="/movieJoa/img/joaStore_img/combo1.jpg" alt="콤보" width="430" height="450">
 			</div>
 			<div class="product_select">
-				<b>9,000원</b>
+				<b>${dto.pro_price }</b>
 				<hr color="#dcdcdc"/>
 				<table>
 					<tr>
@@ -70,14 +88,14 @@ float:right;
 					</tr>
 				</table>
 				<hr color="#dcdcdc"/>
-				<span>MJOA콤보<br></span>
+				<span>${dto.pro_price }<br></span>
 				<div class="product_count">
 					<input type='button' onclick='count("minus")' value='-'/>
 					<div id='count'>0</div>
 					<input type='button' onclick='count("plus")' value='+'/>
 				</div>
 				<hr>
-				<span>총 구매금액</span><span class="product_right_price">5,000원</span>
+				<span>총 구매금액</span><span class="product_right_price">${dto.pro_price }</span>
 				<div>
 					<a href="joaStoreCart.do"><input type="button" value="장바구니"></a>
 					<a href="joaStorePay.do"><input type="button" value="구매하기"></a>
@@ -87,6 +105,7 @@ float:right;
 		<hr color="black" size="2px" width="1100px">		
 		<div class="product_info">	
 		</div>
+	<p class='category_product_detail_txtbox'>${dto.pro_info }</p>
 	</div>
 <c:import url="../footer.jsp"></c:import>
 </body>

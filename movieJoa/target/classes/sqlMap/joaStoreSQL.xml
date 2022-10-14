@@ -3,4 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.store">
+   	<select id="storeMainList" parameterType="String" resultType="joa.adminStore.model.AdminStoreDTO">
+  		select * from 
+  			(select * from (select * from joa_product order by pro_idx desc) where pro_category=#{pro_category}) 
+  		WHERE ROWNUM <![CDATA[<=]]> 3; 	
+  	</select>  
+  	<select id="storeCategoryList" parameterType="String" resultType="joa.adminStore.model.AdminStoreDTO">
+		select * from 
+			joa_product 
+		where 
+			pro_category=#{pro_category} 
+		order by 
+			pro_idx desc 				
+  	</select>  
+  	<select id="storeProductInfo" parameterType="Integer" resultType="joa.adminStore.model.AdminStoreDTO">
+		select * from 
+			joa_product 
+		where 
+			pro_idx=#{pro_idx} 				
+  	</select>    	
   </mapper>

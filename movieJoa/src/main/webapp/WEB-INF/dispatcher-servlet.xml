@@ -80,7 +80,11 @@
          <ref bean="adminStoreDao"/>
      	 </constructor-arg>
    	</bean>
-   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple"></bean>
+   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple">
+  		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+   </bean>
    
    <bean id="JoaHelpQuestionDao" class="joa.helpdesk.model.JoaHelpQuestionDAOImple">
   		<constructor-arg>

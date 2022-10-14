@@ -26,13 +26,12 @@ public class AdminStoreController {
 	private AdminStoreDAO adminStoreDao;
 	
 	/**파일 복사 관련 메서드*/
-	public void copyInto(MultipartFile upload) {
+	public void copyInto(File f,MultipartFile upload) {
 	
 		System.out.println("파일명:"+upload.getOriginalFilename());
 		
 		try {
 			byte bytes[]=upload.getBytes(); //원본
-			File f=new File("c:/student_java/upload/"+upload.getOriginalFilename()); //복사대상자 지정
 			FileOutputStream fos = new FileOutputStream(f);
 			fos.write(bytes);; //복사 행위
 			fos.close();
@@ -49,11 +48,14 @@ public class AdminStoreController {
 	}
 	
 	@RequestMapping(value="/addProduct.do",method = RequestMethod.POST)
-	public ModelAndView addProduct(AdminStoreDTO dto,MultipartHttpServletRequest req) {
-		MultipartFile upload=req.getFile("filename");
-		copyInto(upload);
-		System.out.println(upload.getOriginalFilename());
-		dto.setPro_filename(upload.getOriginalFilename());
+	public ModelAndView addProduct(AdminStoreDTO dto,@RequestParam("img")MultipartFile img, HttpServletRequest req) {
+
+		String path=req.getRealPath("/img/joaStore_img");
+		String filename=img.getOriginalFilename();
+		File f=new File(path+filename);		
+		copyInto(f, img);
+		System.out.println(img.getOriginalFilename());
+		dto.setPro_filename(img.getOriginalFilename());
 
 		int result=adminStoreDao.addProduct(dto);
 		String msg=result>0?"상품 등록 성공":"상품 등록 실패";
@@ -73,13 +75,13 @@ public class AdminStoreController {
 		int totalCnt=bbsService.adminStoreTotalCnt();
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=joa.page.PageModule.makePage("adminStoreList.do", totalCnt, listSize, pageSize, cp);
+		String adminStorePageStr=joa.page.PageModule.makePage("adminStoreList.do", totalCnt, listSize, pageSize, cp);
 		
-		List<AdminStoreDTO> list=bbsService.adminStoreList(cp,listSize);
+		List<AdminStoreDTO> adminStoreList=bbsService.adminStoreList(cp,listSize);
 		
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("list",list);
-		mav.addObject("pageStr",pageStr);
+		mav.addObject("adminStoreList",adminStoreList);
+		mav.addObject("adminStorePageStr",adminStorePageStr);
 		mav.setViewName("admin/adminStore/adminStore_store");
 		return mav;
 	}
@@ -98,6 +100,11 @@ public class AdminStoreController {
 			mav.setViewName("admin/adminStore/adminStore_store_content");
 		}
 		return mav;
+	}
+	
+	@RequestMapping("/editProduct.do")
+	public String editProduct() {
+		
 	}
 	
 
