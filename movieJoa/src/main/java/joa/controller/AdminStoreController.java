@@ -103,8 +103,13 @@ public class AdminStoreController {
 	}
 	
 	@RequestMapping("/editProduct.do")
-	public String editProduct() {
-		
+	public ModelAndView empUpdate(AdminStoreDTO dto) {
+		int result=adminStoreDao.productUpdate(dto);
+		String msg=result>0?"정보변경성공(mybatis)":"정보변경실패(mybatis)";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg",msg);
+		mav.setViewName("admin/adminStore/adminStore_store_msg");
+		return mav;		
 	}
 	
 

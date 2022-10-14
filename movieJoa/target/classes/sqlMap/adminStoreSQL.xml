@@ -41,6 +41,6 @@
 				pro_filename=#{pro_filename},
 				pro_info=#{pro_info} 
 			where 
-				idx=#{idx}	
+				pro_idx=#{pro_idx}	
   	</update>  		
   </mapper>
