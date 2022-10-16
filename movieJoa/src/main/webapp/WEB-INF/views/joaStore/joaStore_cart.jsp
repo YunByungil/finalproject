@@ -5,13 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>장바구니</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-<c:import url="joaStore_category.jsp"></c:import>
 	<div class="store_cart_container">
 		<div class="store_cart_title_img">
 			<img src="/movieJoa/img/joaStore_img/store_top_cart.jpg">
@@ -27,26 +26,25 @@
 				<th>구매</th>
 			</thead>
 			<tbody>
+			<c:if test="${empty storeCartList }">
+					<tr>
+						<td colspan="5" align="center">
+							장바구니에 담긴 상품이 없습니다.
+						</td>
+					</tr>
+			</c:if>
+			<c:forEach var="dto" items="${storeCartList }">
 				<tr>
 					<td><input type="checkbox" checked></td>
 					<td><img src="/movieJoa/img/joaStore_img/combo1.jpg" width="100" height="100"></td>
-					<td>MJOA콤보</td>
-					<td>9,000원</td>
-					<td>1</td>
+					<td>${dto.pro_name}</td>
+					<td>${dto.pro_price }</td>
+					<td>${dto.car_count }</td>
 					<td>9,000원</td>
 					<td><input type="button" value="바로구매"></td>
 					<td></td>
 				</tr>
-				<tr>
-					<td><input type="checkbox" checked></td>
-					<td><img src="/movieJoa/img/joaStore_img/combo1.jpg" width="100" height="100"></td>
-					<td>MJOA콤보</td>
-					<td>9,000원</td>
-					<td>1</td>
-					<td>9,000원</td>
-					<td><input type="button" value="바로구매"></td>
-					<td></td>
-				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
 		<div class="store_cart_select_del">

@@ -57,7 +57,12 @@
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
      	 </constructor-arg>  
-   </bean> 
+   </bean>
+   <bean id="joaStoreDao" class="joa.store.model.JoaStoreDAOImple">
+       <constructor-arg>
+       		<ref bean="sqlSessionTemplate"/>
+       </constructor-arg>
+   </bean>  
    <bean id="adminMovieDao" class="joa.adminMovie.model.AdminMovieDAOImple">    
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
@@ -80,9 +85,9 @@
          <ref bean="adminStoreDao"/>
      	 </constructor-arg>
    	</bean>
-   <bean id="JoaStoreDao" class="joa.store.model.JoaStoreDAOImple">
+   <bean id="joaStoreService" class="joa.store.model.JoaStoreServiceImple">
   		<constructor-arg>
-			<ref bean="sqlSessionTemplate"/>
+			<ref bean="joaStoreDao"/>
 		</constructor-arg>
    </bean>
    

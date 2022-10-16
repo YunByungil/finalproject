@@ -1,10 +1,12 @@
 package joa.store.model;
 
-import java.util.List;
+import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import joa.adminStore.model.AdminStoreDTO;
+import joa.store.model.*;
 
 public class JoaStoreDAOImple implements JoaStoreDAO {
 	
@@ -27,6 +29,31 @@ public class JoaStoreDAOImple implements JoaStoreDAO {
 		return dto;
 	}
 	
+	@Override
+	public int storeCartLookup(Map map) {
+		int result=sqlMap.selectOne("storeCartLookup", map);
+		return result;
+	}
+	
+	@Override
+	public int storeCartAdd(JoaStoreCartDTO dto) {
+		int result=sqlMap.insert("storeCartAdd",dto);
+		return result;
+	}
+	
+	@Override
+	public int storeCartUpdate(JoaStoreCartDTO dto) {
+		int result=sqlMap.insert("storeCartUpdate",dto);
+		return result;
+	}
+	
+	@Override
+	public List<JoaStoreDTO> storeCartList(String car_mem_id) {
+		System.out.println("dao:"+car_mem_id);
+		List<JoaStoreDTO> list=sqlMap.selectList("storeCartList",car_mem_id);
+		return list;
+	}
+
 	
 
 }
