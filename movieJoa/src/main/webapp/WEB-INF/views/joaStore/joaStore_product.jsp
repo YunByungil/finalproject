@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
 
 <script>
+
 function count(type)  {
   // 결과를 표시할 element
   const countElement = document.getElementById('count');
@@ -36,6 +37,10 @@ function count(type)  {
 }
 
 function productSubmit(index) {
+	var productCount=document.getElementById('count').innerText;
+	var finalCount = document.getElementById('car_count');
+	finalCount.value = productCount;
+	
 	  if (index == 1) {
 	    document.joaStoreCategory.action='joaStoreCart.do';
 	  }
@@ -50,8 +55,8 @@ function productSubmit(index) {
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-<c:set var="dto" value="${storeProductInfo }"></c:set>
-	<div class="product_main">
+	<div class="store_spaceMaker"></div>
+	<c:set var="dto" value="${storeProductInfo }"></c:set>
 		<div class="product_container">
 		<h1>${dto.pro_name }</h1>
 		<hr color="black" size="2px">
@@ -78,12 +83,11 @@ function productSubmit(index) {
 						</tr>
 					</table>
 					<hr color="#dcdcdc"/>
-					<span>${dto.pro_price }<br></span>
 					<div class="product_count">
 						<input type='button' onclick='count("minus")' value='-'/>
-						<div id='count'>0</div>
-						<input type="hidden" name="car_count" value="0">
+							<span id="count">1</span>
 						<input type='button' onclick='count("plus")' value='+'/>
+						<input type="hidden" name="car_count" id="car_count">
 					</div>
 					<hr>
 					<span>총 구매금액</span><span class="product_right_price">${dto.pro_price }</span>
@@ -94,11 +98,11 @@ function productSubmit(index) {
 				</div>
 			</div>
 		</form>
-		<hr color="black" size="2px" width="1100px">		
-		<div class="product_info">	
+		<hr color="black" size="2px" width="1100px">
+	
+		<div class="product_info">
+			<p class='category_product_detail_txtbox'>${dto.pro_info }</p>
 		</div>
-	<p class='category_product_detail_txtbox'>${dto.pro_info }</p>
-	</div>
 <c:import url="../footer.jsp"></c:import>
 </body>
 </html>

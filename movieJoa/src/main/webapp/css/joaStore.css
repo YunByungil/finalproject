@@ -273,7 +273,8 @@ float:right;
 }
 
 .product_info{
-	max-width:1100px;
+	text-align:center;
+	width:1100px;
  	margin:auto;
  	
 }

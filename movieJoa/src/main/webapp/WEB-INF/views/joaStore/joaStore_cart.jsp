@@ -8,6 +8,39 @@
 <title>장바구니</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
+
+<script>
+function selectAll(selectAll)  {
+		
+	var sum;
+	const checkboxes 
+		= document.getElementsByName('chx');
+	  
+	checkboxes.forEach((checkbox) => {
+	    checkbox.checked = selectAll.checked;
+	    sum=sum+parseInt(checkbox.value);
+	})
+	  
+	totalSum.value=sum;
+}
+
+function itemSum(frm){
+	
+   var sum = 0;
+   var count = frm.chx.length;
+   
+   for(var i=0; i < count; i++ ){
+       if( frm.chx[i].checked == true ){
+	    sum += parseInt(frm.chx[i].value);
+       }
+   }
+   
+   var totalSum = document.getElementById('totalSum');
+   totalSum.value=sum;
+}
+
+</script>
+
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
@@ -16,37 +49,42 @@
 			<img src="/movieJoa/img/joaStore_img/store_top_cart.jpg">
 		</div>
 		<div class="store_spaceMaker"></div>
-		<table class="store_cart_table">
-			<thead>
-				<th><input type="checkbox" checked></th>
-				<th colspan="2">상품명</th>
-				<th>판매금액</th>
-				<th>수량</th>
-				<th>구매금액</th>
-				<th>구매</th>
-			</thead>
-			<tbody>
-			<c:if test="${empty storeCartList }">
+		<form name="form">
+			<table class="store_cart_table">
+				<thead>
+					<th><input type="checkbox" name="selectAllChxbox" onclick="selectAll(this);"></th>
+					<th colspan="2">상품명</th>
+					<th>판매금액</th>
+					<th>수량</th>
+					<th>구매금액</th>
+					<th>구매</th>
+					<th>삭제<th>
+				</thead>
+				<tbody>
+				<c:if test="${empty storeCartList }">
+						<tr>
+							<td colspan="5" align="center">
+								장바구니에 담긴 상품이 없습니다.
+							</td>
+						</tr>
+				</c:if>
+				<c:forEach var="dto" items="${storeCartList }">
+					<input type="hidden" name="car_mem_id" value="${dto.car_mem_id }">
+					<input type="hidden" name="car_pro_idx" value="${dto.car_pro_idx }">
 					<tr>
-						<td colspan="5" align="center">
-							장바구니에 담긴 상품이 없습니다.
-						</td>
+						<td><input type="checkbox" name="chx" value="${dto.pro_price*dto.car_count }" onclick="itemSum(this.form);"></td>
+						<td><img src="/movieJoa/img/joaStore_img/combo1.jpg" width="100" height="100"></td>
+						<td>${dto.pro_name}</td>
+						<td>${dto.pro_price }</td>
+						<td>${dto.car_count }</td>
+						<td>${dto.pro_price*dto.car_count }</td>
+						<td><input type="button" value="바로구매" onclick="cartSubmit(1)"></td>
+						<td><input type="button" value="삭제" onclick="cartSubmit(2)"></td>
 					</tr>
-			</c:if>
-			<c:forEach var="dto" items="${storeCartList }">
-				<tr>
-					<td><input type="checkbox" checked></td>
-					<td><img src="/movieJoa/img/joaStore_img/combo1.jpg" width="100" height="100"></td>
-					<td>${dto.pro_name}</td>
-					<td>${dto.pro_price }</td>
-					<td>${dto.car_count }</td>
-					<td>9,000원</td>
-					<td><input type="button" value="바로구매"></td>
-					<td></td>
-				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
+				</c:forEach>
+				</tbody>
+			</table>
+		</form>
 		<div class="store_cart_select_del">
 			<input type="button" value="선택상품 삭제">
 			<span style="float:right">장바구니에 담긴 상품은 최대 30일까지 보관됩니다.</span>
@@ -64,11 +102,11 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>18,000원</td>
+						<td><input type="text" name="totalSum" id="totalSum" size="20" readonly></td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>
 						<td>0원</td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>
-						<td>18,000원</td>
+						<td><input type="text" name="totalSum" id="totalSum" size="20" readonly></td>
 					</tr>
 				</tbody>
 			</table>

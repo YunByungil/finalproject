@@ -43,15 +43,21 @@ public class JoaStoreDAOImple implements JoaStoreDAO {
 	
 	@Override
 	public int storeCartUpdate(JoaStoreCartDTO dto) {
-		int result=sqlMap.insert("storeCartUpdate",dto);
+		int result=sqlMap.update("storeCartUpdate",dto);
 		return result;
 	}
 	
 	@Override
 	public List<JoaStoreDTO> storeCartList(String car_mem_id) {
-		System.out.println("dao:"+car_mem_id);
 		List<JoaStoreDTO> list=sqlMap.selectList("storeCartList",car_mem_id);
+		System.out.println("test4"+list.size());
 		return list;
+	}
+	
+	@Override
+	public int storeCartDelete(JoaStoreDTO dto) {
+		int result=sqlMap.delete("storeCartDelete", dto);
+		return result;
 	}
 
 	

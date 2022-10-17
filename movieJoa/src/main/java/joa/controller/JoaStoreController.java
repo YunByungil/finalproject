@@ -16,7 +16,6 @@ import joa.adminStore.model.*;
 public class JoaStoreController {
 	
 	@Autowired
-	private JoaStoreDAO joaStoreDao;
 	private JoaStoreService joaStoreService;
 	
 	@RequestMapping("/joaStore.do")
@@ -29,7 +28,7 @@ public class JoaStoreController {
 	
 	@RequestMapping("/joaStoreCategory.do")
 	public ModelAndView joaStoreCombo(String category) {
-		List<AdminStoreDTO> storeCategoryList=joaStoreDao.storeCategoryList(category);
+		List<AdminStoreDTO> storeCategoryList=joaStoreService.storeCategoryList(category);
 		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("category",category);
@@ -41,7 +40,7 @@ public class JoaStoreController {
 	@RequestMapping("/joaStoreProduct.do")
 	public ModelAndView joaStoreProduct(@RequestParam("pro_idx")int pro_idx) {
 		
-		AdminStoreDTO dto=joaStoreDao.storeProductInfo(pro_idx);
+		AdminStoreDTO dto=joaStoreService.storeProductInfo(pro_idx);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("storeProductInfo",dto);
 		mav.setViewName("joaStore/joaStore_product");		
@@ -55,18 +54,17 @@ public class JoaStoreController {
 		System.out.println("pro_idx : "+dto.getCar_pro_idx());
 		
 		int cartItem=joaStoreService.storeCartLookup(dto.getCar_mem_id(),dto.getCar_pro_idx());
-		System.out.println(cartItem);
 		
 		int result;
-		String msg;		
+		String msg;
 		ModelAndView mav=new ModelAndView();		
 		if(cartItem<=0) {
-			result=joaStoreDao.storeCartAdd(dto);
+			result=joaStoreService.storeCartAdd(dto);
 			msg=result>0?"상품을 장바구니에 담았습니다.":"장바구니에 담기 실패";
 			mav.addObject("cartMsg",msg);
 
 		}else if(cartItem>=1){
-			result=joaStoreDao.storeCartUpdate(dto);
+			result=joaStoreService.storeCartUpdate(dto);
 			msg=result>0?"상품을 장바구니에 담았습니다.":"장바구니에 담기 실패";
 			mav.addObject("cartMsg",msg);		
 		}
@@ -78,11 +76,20 @@ public class JoaStoreController {
 	
 	@RequestMapping("/joaStoreCartList.do")
 	public ModelAndView joaStoreCartList(String car_mem_id) {
-		System.out.println(car_mem_id);
-		List<JoaStoreDTO> storeCartList=joaStoreDao.storeCartList(car_mem_id);
-		
+
+		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(car_mem_id);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("storeCartList",storeCartList);
+		mav.setViewName("joaStore/joaStore_cart");
+		return mav;
+	}
+	
+	@RequestMapping("/joaStoreCartDelete.do")
+	public ModelAndView joaStoreCartDelete(JoaStoreDTO dto) {
+		System.out.println(dto.getCar_mem_id());
+		System.out.println(dto.getCar_pro_idx());
+		int result = joaStoreService.storeCartDelete(dto);		
+		ModelAndView mav=new ModelAndView();
 		mav.setViewName("joaStore/joaStore_cart");
 		return mav;
 	}
