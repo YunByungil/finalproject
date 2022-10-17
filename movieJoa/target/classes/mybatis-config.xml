@@ -20,6 +20,7 @@
 		<mapper resource="sqlMap/joaMypageSQL.xml"/>
 		<mapper resource="sqlMap/joaStoreSQL.xml"/>
 		<mapper resource="sqlMap/joaTheaterSQL.xml"/>
+		<mapper resource="sqlMap/joaReviewSQL.xml"/>
 	</mappers>
 </configuration>
 

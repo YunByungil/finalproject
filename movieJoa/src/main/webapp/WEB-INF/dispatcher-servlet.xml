@@ -51,6 +51,7 @@
    <bean id="joaStoreController" class="joa.controller.JoaStoreController"></bean>
    <bean id="joaTheaterController" class="joa.controller.JoaTheaterController"></bean>
    <bean id="adminStoreController" class="joa.controller.AdminStoreController"></bean>
+   <bean id="joaReviewController" class="joa.controller.JoaReviewController"></bean>
    
    <!-- daos -->
    <bean id="adminStoreDao" class="joa.adminStore.model.AdminStoreDAOImple">
@@ -62,8 +63,22 @@
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
      	 </constructor-arg>
-   </bean> 
-   
+   </bean>
+   <bean id="theaterDao" class="joa.adminTheater.model.TheaterDAOImple">
+   		<constructor-arg>
+   		<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
+   <bean id="joaMovieDao" class="joa.movie.model.JoaMovieDAOImple">
+   		<constructor-arg>
+   		<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
+   <bean id="joaReviewDao" class="joa.review.model.JoaReviewDAOImple">
+   		<constructor-arg>
+   		<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
    <!-- services -->
    <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
    		<constructor-arg>

@@ -100,14 +100,14 @@ function show2(){
 		<c:forEach var="list" items="${list }">
 		    <li>
 		        <div class="box-image">
-		            <a href="detailView.do?mov_idx=${list.mov_idx }">
+		            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
 		                <span class="thumb-image">
 		                    <img src="/movieJoa/imgmovie/${list.mov_poster }">
 		                </span>
 		            </a>
 		        </div>
 		        <div class="box-contents">
-		            <a href="detailView.do?mov_idx=${list.mov_idx }">
+		            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
 		                <strong class="title">${list.mov_title }</strong>
 		            </a>
 		            <div class="score">

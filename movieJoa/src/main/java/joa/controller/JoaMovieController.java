@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import joa.movie.model.JoaMovieDAO;
 import joa.movie.model.JoaMovieDTO;
+import joa.review.model.JoaReviewDAO;
+import joa.review.model.JoaReviewDTO;
 
 @Controller
 public class JoaMovieController {
@@ -45,4 +47,5 @@ public class JoaMovieController {
 		mav.setViewName("joaMovie/joaMovie_detailView");
 		return mav;
 	}
+	
 }

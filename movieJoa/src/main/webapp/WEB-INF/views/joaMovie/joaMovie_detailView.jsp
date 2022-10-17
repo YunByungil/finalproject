@@ -41,13 +41,27 @@ dt{
 a:visited, a{
 	color: black;
 }
+#chart li{
+	list-style-type: none;
+	float: left;
+}
 </style>
 <script>
-
+function show(num){
+	const urlParams = new URL(location.href).searchParams;
+	const mov_idx = urlParams.get('mov_idx');
+	if(num==0){
+		location.href='detailView.do?mov_idx='+mov_idx+'&show=0';
+	}else if(num==1){
+		location.href='detailView.do?mov_idx='+mov_idx+'&show=1';
+	}else{
+		location.href='detailView.do?mov_idx='+mov_idx+'&show=2';
+	}
+}
 </script>
 </head>
 <body>
-<c:import url="../header.jsp"></c:import>
+<c:import url="../header.jsp"/>
 <br>
 <div class="sect-base-movie">
 	<c:forEach var="list" items="${list }">
@@ -94,13 +108,24 @@ a:visited, a{
 </div>
 <div id="menu">
 	<ul id="tabMenu">
-		<li class="on"><a title="현재 선택됨" href="/movies/detail-view/?midx=86297#menu">주요정보</a></li>
-		<li><a href="/movies/detail-view/?midx=86297#commentReg">평점/리뷰</a></li>               
-		<li class="last"><a href="/movies/detail-view/show-times.aspx?midx=86297#menu">상영시간표</a></li>
+		<li class="on"><a onclick="show(0)">주요정보</a></li>
+		<li><a onclick="show(1)">평점/리뷰</a></li>               
+		<li class="last"><a onclick="show(2)">상영시간표</a></li>
 	</ul>
 </div>
-<div style="clear:both;"></div>
-<c:import url="JoaMovie_info.jsp"></c:import>
-<c:import url="../footer.jsp"></c:import>
+<div id="show" style="clear:both;">
+	<c:choose>
+		<c:when test="${param.show eq 0 }">
+			<c:import url="joaMovie_info.jsp"/>
+		</c:when>
+		<c:when test="${param.show eq 1 }">
+			<c:import url="/commentList.do"/>
+		</c:when>
+		<c:when test="${param.show eq 2 }">
+			<c:import url="joaMovie_showTime.jsp"/>
+		</c:when>
+	</c:choose>
+</div>
+<c:import url="../footer.jsp"/>
 </body>
 </html>
