@@ -10,33 +10,50 @@
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
 
 <script>
+	
 function selectAll(selectAll)  {
-		
-	var sum;
-	const checkboxes 
-		= document.getElementsByName('chx');
-	  
-	checkboxes.forEach((checkbox) => {
-	    checkbox.checked = selectAll.checked;
-	    sum=sum+parseInt(checkbox.value);
-	})
-	  
-	totalSum.value=sum;
+	
+	var checkBoxes  = document.getElementsByName('chx');
+	var checkValues = new Array(); 
+	var sum = 0;
+	
+	for(var i=0;i<checkBoxes.length;i++){
+	 checkValues[i]=document.getElementsByName('chx')[i].value;
+	 sum += parseInt(checkValues[i]);
+	}
+  
+    checkBoxes.forEach((checkbox) => (checkbox.checked = selectAll.checked));
+	if(selectAll.checked==true){
+		document.getElementById("priceSum").value=sum;
+	}else{
+		document.getElementById("priceSum").value=0; 
+	}
 }
 
-function itemSum(frm){
+function priceSum(){
+		
+	var checkBoxes  = document.getElementsByName('chx');
+	var checkValues = new Array(); 
+	var sum = 0;
 	
-   var sum = 0;
-   var count = frm.chx.length;
-   
-   for(var i=0; i < count; i++ ){
-       if( frm.chx[i].checked == true ){
-	    sum += parseInt(frm.chx[i].value);
-       }
-   }
-   
-   var totalSum = document.getElementById('totalSum');
-   totalSum.value=sum;
+	for(var i=0;i<checkBoxes.length;i++){
+		if(checkBoxes[i].checked==true){
+			checkValues[i]=document.getElementsByName('chx')[i].value;
+			sum += parseInt(checkValues[i]);
+		}
+	} 	
+    
+	document.getElementById("priceSum").value=sum;
+	
+	const chxAll     = document.querySelectorAll('input[name="chx"]');
+	const checked    = document.querySelectorAll('input[name="chx"]:checked');
+	const selectAll  = document.querySelector('input[name="select"]');
+	
+	if(chxAll.length === checked.length)  {
+	  selectAll.checked = true;
+	}else {
+	  selectAll.checked = false;
+	}
 }
 
 </script>
@@ -49,10 +66,10 @@ function itemSum(frm){
 			<img src="/movieJoa/img/joaStore_img/store_top_cart.jpg">
 		</div>
 		<div class="store_spaceMaker"></div>
-		<form name="form">
+		<form name="storeCart">
 			<table class="store_cart_table">
 				<thead>
-					<th><input type="checkbox" name="selectAllChxbox" onclick="selectAll(this);"></th>
+					<th><input type='checkbox' name="select" onclick="selectAll(this);"></th>
 					<th colspan="2">상품명</th>
 					<th>판매금액</th>
 					<th>수량</th>
@@ -72,7 +89,7 @@ function itemSum(frm){
 					<input type="hidden" name="car_mem_id" value="${dto.car_mem_id }">
 					<input type="hidden" name="car_pro_idx" value="${dto.car_pro_idx }">
 					<tr>
-						<td><input type="checkbox" name="chx" value="${dto.pro_price*dto.car_count }" onclick="itemSum(this.form);"></td>
+						<td><input type="checkbox" name="chx" value="${dto.pro_price*dto.car_count }" onclick="priceSum();"></td>
 						<td><img src="/movieJoa/img/joaStore_img/combo1.jpg" width="100" height="100"></td>
 						<td>${dto.pro_name}</td>
 						<td>${dto.pro_price }</td>
@@ -102,7 +119,7 @@ function itemSum(frm){
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="text" name="totalSum" id="totalSum" size="20" readonly></td>
+						<td><input type="text" name="priceSum" id="priceSum" size="20" readonly></td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>
 						<td>0원</td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>

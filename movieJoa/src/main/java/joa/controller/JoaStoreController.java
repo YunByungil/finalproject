@@ -78,6 +78,7 @@ public class JoaStoreController {
 	public ModelAndView joaStoreCartList(String car_mem_id) {
 
 		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(car_mem_id);
+		System.out.println("test: "+storeCartList);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("storeCartList",storeCartList);
 		mav.setViewName("joaStore/joaStore_cart");
