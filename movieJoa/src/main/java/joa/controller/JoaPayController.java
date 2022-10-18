@@ -8,7 +8,7 @@ public class JoaPayController {
 	
 	@RequestMapping("/joaStoreCartBuyNow.do")
 	public String joaStoreCartBuyNow() {
-		return "joaStore/joaStore_pay";
+		return "joaStore/joaStore_pay_kakaoPay";
 	}
 
 }

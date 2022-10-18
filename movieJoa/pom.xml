@@ -170,6 +170,11 @@
 	    <version>3.5.1</version>
 	</dependency>
 	
+	<dependency>
+	  <groupId>kr.co.linkhub</groupId>
+	  <artifactId>kakaocert-sdk</artifactId>
+	  <version>2.52.0</version>
+	</dependency>	
 
   </dependencies>
 </project>

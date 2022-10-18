@@ -8,6 +8,16 @@
 <title>상품구매</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/${VERSION}/kakao.min.js"
+  integrity="${INTEGRITY_VALUE}" crossorigin="anonymous"></script>
+<script>
+  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해야 합니다.
+  Kakao.init('JAVASCRIPT_KEY');
+
+  // SDK 초기화 여부를 판단합니다.
+  console.log(Kakao.isInitialized());
+</script>  
 <style>
 </style>
 </head>
