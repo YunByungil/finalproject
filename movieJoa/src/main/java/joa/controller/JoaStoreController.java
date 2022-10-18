@@ -94,11 +94,5 @@ public class JoaStoreController {
 		mav.setViewName("joaStore/joaStore_cart");
 		return mav;
 	}
-		
-	
-	@RequestMapping("/joaStorePay.do")
-	public String joaStorePay() {
-		return "joaStore/joaStore_pay";
-	}
 
 }

@@ -61,25 +61,22 @@ function productSubmit(index) {
 		<h1>${dto.pro_name }</h1>
 		<hr color="black" size="2px">
 		</div>
-		<form name="joaStoreCategory" action="joaStoreCart.do" method='post'>
+		<form name="joaStoreCategory" method='post'>
 			<input type="hidden" name="car_mem_id" value="jtl3403">	
 			<input type="hidden" name="car_pro_idx" value="${dto.pro_idx }">
 			<div class="product_space">
 				<div class="product_img">
-					<img src="/movieJoa/img/joaStore_img/combo1.jpg" alt="콤보" width="430" height="450">
+					<img src="/movieJoa/img/joaStore_img/${dto.pro_filename }" alt="콤보" width="430" height="450">
 				</div>
 				<div class="product_select">
 					<b>${dto.pro_price }</b>
 					<hr color="#dcdcdc"/>
 					<table>
 						<tr>
-							<td>상품구성</td><td>팝콘(L)1+탄산음료(M)2</td>
+							<td>상품구성</td><td>${dto.pro_name }</td>
 						</tr>
 						<tr>
 							<td>유효기간</td><td>구매일로부터 6개월 이내</td>
-						</tr>
-						<tr>
-							<td>원산지</td><td>옥수수:미국산</td>
 						</tr>
 					</table>
 					<hr color="#dcdcdc"/>

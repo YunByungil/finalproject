@@ -79,8 +79,8 @@ function openLogin(){
 				</li>
 				<li class="menu2"><a href="#">스토어관리</a>
 					<ul class="menu2_s submenu">
-					    <li>상품 목록</li>
-					    <li>상품 등록</li>
+					    <li><a href="adminStore.do">상품 목록</a></li>
+					    <li><a href="adminStoreAdd.do">상품 등록</a></li>
 					</ul>
 				</li>
 				<li class="menu2"><a href="#">회원관리</a>

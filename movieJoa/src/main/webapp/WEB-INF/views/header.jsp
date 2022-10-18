@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 <style>
     ul, ol, li { list-style:none; margin:0; padding:0; }
@@ -50,10 +50,22 @@ function openLogin(){
 				</li>
 				<li class="menu3"><a href="joaStore.do">스토어</a>
 					<ul class="menu3_s submenu">
-					    <li>콤보</li>
-					    <li>팝콘</li>
-					    <li>음료</li>
-					    <li>스낵</li>
+						<c:url var="comboUrl" value="joaStoreCategory.do">
+							<c:param name="category">콤보</c:param>
+						</c:url>
+						<c:url var="popcornUrl" value="joaStoreCategory.do">
+							<c:param name="category">팝콘</c:param>
+						</c:url>
+						<c:url var="snackUrl" value="joaStoreCategory.do">
+							<c:param name="category">스낵</c:param>
+						</c:url>
+						<c:url var="drinkUrl" value="joaStoreCategory.do">
+							<c:param name="category">음료</c:param>
+						</c:url>
+					    <li><a href="${comboUrl }">콤보</a></li>
+					    <li><a href="${popcornUrl }">팝콘</a></li>
+					    <li><a href="${snackUrl }">스낵</a></li>
+					    <li><a href="${drinkUrl }">음료</a></li>
 					</ul>
 				</li>
 				<li class="menu4"><a href="#">이벤트</a>

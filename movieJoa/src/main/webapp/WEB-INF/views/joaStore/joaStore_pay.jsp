@@ -8,16 +8,35 @@
 <title>상품구매</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
-
-<script src="https://t1.kakaocdn.net/kakao_js_sdk/${VERSION}/kakao.min.js"
-  integrity="${INTEGRITY_VALUE}" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해야 합니다.
-  Kakao.init('JAVASCRIPT_KEY');
+$(document).ready(function(){ 
+	$("#iamportPayment").click(function(){ 
+    	payment(); //버튼 클릭하면 호출 
+    }); 
+})
 
-  // SDK 초기화 여부를 판단합니다.
-  console.log(Kakao.isInitialized());
-</script>  
+function payment(data) {
+    IMP.init('imp80406606');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
+    IMP.request_pay({// param
+        pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
+        pay_method: "card", //지불 방법
+        merchant_uid: "123", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name: "도서", //결제창에 노출될 상품명
+        amount: 13700, //금액
+        buyer_email : "testiamport@naver.com", 
+        buyer_name : "",
+        buyer_tel : "01012341234"
+    }, function (rsp) { // callback
+        if (rsp.success) {
+            alert("완료 -> imp_uid : "+rsp.imp_uid+" / merchant_uid(orderKey) : " +rsp.merchant_uid);
+        } else {
+            alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+        }
+    });
+}
+</script>
 <style>
 </style>
 </head>
@@ -91,12 +110,11 @@
 				<table class="store_pay_payments_system_table">
 					<tr>
 						<td><input type="radio">신용카드</td>
-						<td><input type="radio">카카오페이</td>
+						<td><input id="iamportPayment" type="button" value="카카오페이"></td>	
 					</tr>
 				</table>			
 			</div>
-			<div class="store_pay_payments_final">
-				<input type="button" value="결제하기">			
+			<div class="store_pay_payments_final">	
 			</div>
 		</div>
 	</div>
