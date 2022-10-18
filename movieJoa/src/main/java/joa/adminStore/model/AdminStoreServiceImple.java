@@ -24,6 +24,12 @@ public class AdminStoreServiceImple implements AdminStoreService{
 	}
 
 	@Override
+	public List<AdminStoreDTO> storeCategoryList(AdminStoreDTO dto) {
+		List<AdminStoreDTO> list=adminStoreDao.storeCategoryList(dto);
+		return list;
+	}
+
+	@Override
 	public AdminStoreDTO adminStoreContent(int idx) {
 		AdminStoreDTO dto=adminStoreDao.adminStoreContent(idx);
 		return dto;

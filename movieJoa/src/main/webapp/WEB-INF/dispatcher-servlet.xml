@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans.xsd">
    
    <!-- configs -->
    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"></bean>
@@ -59,7 +60,12 @@
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
      	 </constructor-arg>  
-   </bean> 
+   </bean>
+   <bean id="joaStoreDao" class="joa.store.model.JoaStoreDAOImple">
+       <constructor-arg>
+       		<ref bean="sqlSessionTemplate"/>
+       </constructor-arg>
+   </bean>  
    <bean id="adminMovieDao" class="joa.adminMovie.model.AdminMovieDAOImple">    
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
@@ -122,6 +128,48 @@
          <ref bean="joa_EventDao"/>
      	 </constructor-arg>
    	</bean>
+   <bean id="joaStoreService" class="joa.store.model.JoaStoreServiceImple">
+  		<constructor-arg>
+			<ref bean="joaStoreDao"/>
+		</constructor-arg>
+   </bean>
+   
+   <bean id="JoaHelpQuestionDao" class="joa.helpdesk.model.JoaHelpQuestionDAOImple">
+  		<constructor-arg>
+			<ref bean="sqlSessionTemplate"/>
+		</constructor-arg>
+   </bean>   
+   <bean id="JoaManyHelpDao" class="joa.helpdesk.model.JoaManyHelpDAOImple">
+   <constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg></bean>
+   <bean id="JoaNoticeDao" class="joa.helpdesk.model.JoaNoticeDAOImple">
+   	<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+   </bean>
+   
+   
+   <!-- services -->
+   <bean id="JoaHQService" class="joa.helpdesk.model.JoaHQServiceImple">
+		<constructor-arg>
+			<ref bean="JoaHelpQuestionDao"></ref>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="JoaMHService" class="joa.helpdesk.model.JoaMHServiceImple">
+		<constructor-arg>
+			<ref bean="JoaManyHelpDao"></ref>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="JoaNTService" class="joa.helpdesk.model.JoaNTServiceImple">
+		<constructor-arg>
+			<ref bean="JoaNoticeDao"></ref>
+		</constructor-arg>
+	</bean>
+   
+>>>>>>> origin/master_galmae
    
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>
@@ -132,8 +180,7 @@
       <property name="prefix" value="/WEB-INF/views/"></property> <!-- this value have property of "prefix" -->
       <property name="suffix" value=".jsp"></property>
       <property name="order" value="1"></property>
-   </bean> 
-   
-   
+   </bean>    
+  
    
 </beans>

@@ -14,31 +14,32 @@
 	<table width="550" border="1" cellspacing="0">
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>제목</th>
-				<th>작성자</th>
-				<th>작성날짜</th>
-				<th>조회수</th>
+				<th>상품번호</th>
+				<th>상품이미지</th>
+				<th>상품명</th>
+				<th>가격</th>
+				<th>카테고리</th>
 			</tr>
 		</thead>
 		<tfoot>
 			<tr>
 				<td colspan="4" align="center">
-				${pageStr }
+				${adminStorePageStr }
 				</td>
 			</tr>
 		</tfoot>
 		<tbody>
-		<c:if test="${empty list }">
+		<c:if test="${empty adminStoreList }">
 			<tr>
 				<td colspan="5" align="center">
 					등록된 상품이 없습니다.
 				</td>
 			</tr>
 		</c:if>
-		<c:forEach var="dto" items="${list }">
+		<c:forEach var="dto" items="${adminStoreList }">
 			<tr>
 				<td>${dto.pro_idx }</td>
+				<td><img src="/movieJoa/img/joaStore_img/${dto.pro_filename }" width="200" height="200"></td>
 				<c:url var="contentUrl" value="adminStoreContent.do">
 					<c:param name="idx">${dto.pro_idx }</c:param>
 				</c:url>
