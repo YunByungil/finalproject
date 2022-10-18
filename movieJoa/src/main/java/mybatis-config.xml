@@ -4,6 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<mappers>
+		<mapper resource="sqlMap/adminMovieSQL.xml"/>
 		<mapper resource="sqlMap/adminBookSQL.xml"/>
 		<mapper resource="sqlMap/adminEventSQL.xml"/>
 		<mapper resource="sqlMap/adminMemberSQL.xml"/>
@@ -20,6 +21,9 @@
 		<mapper resource="sqlMap/joaMypageSQL.xml"/>
 		<mapper resource="sqlMap/joaStoreSQL.xml"/>
 		<mapper resource="sqlMap/joaTheaterSQL.xml"/>
+		<mapper resource="sqlMap/joaReviewSQL.xml"/>
+		<mapper resource="sqlMap/adminCouponSQL.xml"/>
+		<mapper resource="sqlMap/adminOwncouSQL.xml"/>
 	</mappers>
 </configuration>
 

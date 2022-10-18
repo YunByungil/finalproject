@@ -27,10 +27,10 @@
 <tr>
 	<th class="th_basic">상품종류</th>
 	<td class="td_basic"><select name="pro_category">
-		<option value="combo">콤보</option>
-		<option value="popcorn">팝콘</option>
-		<option value="drink">음료</option>
-		<option value="snack">스낵</option>
+		<option value="콤보">콤보</option>
+		<option value="팝콘">팝콘</option>
+		<option value="음료">음료</option>
+		<option value="스낵">스낵</option>
 		</select>
 	</td>
 </tr>
@@ -40,7 +40,7 @@
 </tr>
 <tr>
 	<th class="th_last">사진</th>
-	<td class="td_last"><input type="file" name="filename"><span class="caution fl_r"> 파일형식 : jpg / jpeg / png / bmp / gif / pdf (5MB X 1개)</span></td>
+	<td class="td_last"><input type="file" name="img"><span class="caution fl_r"> 파일형식 : jpg / jpeg / png / bmp / gif / pdf (5MB X 1개)</span></td>
 </tr>
 </table>
 </div>

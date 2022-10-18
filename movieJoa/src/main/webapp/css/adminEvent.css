@@ -1,0 +1,307 @@
+@charset "UTF-8";
+
+.eve_img_box{
+    margin-inline:100px;
+    float:left;
+    margin-right:20px;
+}
+.eve_detail_img{
+    margin-top:40px;
+    margin-inline:10px;
+    width:250px;
+    height:350px;
+}
+.eve_table_box{
+float:left;
+margin-top: 40px;
+width:50%;
+margin-bottom:30px;
+}
+.eve_main_table_detail {
+    width: 100%;
+    border-top: 1px solid #BBBBBB;
+    border-bottom: 1px solid #BBBBBB;
+    border-spacing: 0;
+    margin-inline: 0px auto;
+    margin-right: 100px;
+}
+.eve_bottom_div {
+    height: 80px;
+    margin-inline: 120px 0 20px;
+    margin-right: 100px;
+    padding-bottom: 3px;
+    border-top: 1px solid #CECCC1;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+input, select, button {vertical-align:middle; appearance:none; -webkit-appearance:none; -moz-appearance:none;}
+
+/*font*/
+::-webkit-input-placeholder, ::-moz-placeholder, :-ms-input-placeholder, :-moz-placeholder {color:#666;}
+body, input, button, select, textarea {
+    font-family:'SUIT-Medium';
+}
+
+/*main_layout*/
+.mainBox{
+	display:block;
+	width:1100px;
+	margin:auto;
+}
+.div_title{
+	height:55px;
+}
+.title{
+	display:block;
+	position:relative;
+	width:1100px;
+	margin-inline:120px auto;
+	margin-bottom: 20px;
+    padding: 25px 0 14px;
+    font-family:'SUIT-Medium';
+}
+.bottom_hr{
+	width:250px;
+    margin-inline: 100px;
+    color:black;
+}
+.table_wrap {
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    padding: 12px 12px;
+    -webkit-border-radius: 4px; -moz-border-radius: 4px; -ms-border-radius: 4px; -o-border-radius: 4px;
+    margin-top: 40px;
+    margin-inline: 100px;
+    margin-right: 100px;
+}
+.main_table{
+	width:100%;
+	border-top: 1px solid #BBBBBB;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0;
+    margin-inline: 0px auto;
+    margin-right:100px;
+}
+.th_basic{
+    height: 45px;
+    padding: 7px 4px;
+    font-size: 15px;
+    text-align: left;
+    border-bottom: 1px solid #EEEEEE;
+    width:180px;
+}
+.th_last{
+	height: 45px;
+    padding: 7px 4px;
+    font-size: 15px;
+    text-align: left;
+    width:180px;
+}
+.td_basic{
+	height: 45px;
+    text-align: left;
+    border-bottom: 1px solid #EEEEEE;
+    padding: 7px 4px;
+    font-size: 15px;
+}
+.td_last{
+	height: 45px;
+    text-align: left;
+    padding: 7px 4px;
+    font-size: 15px;
+}
+
+.btn_wrap{
+	margin: 60px 0;
+    text-align: center;
+    clear:both;
+}
+
+.bottom_div{
+    height: 80px;
+    margin-inline: 120px 0 20px;
+    margin-right: 100px;
+    padding-bottom: 3px;
+    border-top: 1px solid #CECCC1;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.fl_r {
+    float: right !important;
+}
+
+/*input*/
+/*text*/
+.input_text_basic, .input_text_title, .input_text_director, .input_text_cast{
+	height:40px;
+	line-height:40px;
+	padding:0 18px;
+	border-radius:4px;
+	-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;
+	font-size:14px;
+	box-sizing:border-box;
+	border:1px solid #DDD;
+	background-color: #F8F8F8;
+}
+.input_text_title{
+	width:75%;
+}
+.input_text_basic{
+	width:40%;
+}
+.input_text_director{
+	width:25%;
+}
+.input_text_cast{
+	width:62%;
+}
+.input_text_search{
+	width:60%;
+}
+
+
+/*textarea*/
+textarea {
+	width:75%;
+	line-height:1.5;
+	box-sizing:border-box;
+	padding:13px 18px;
+	border:1px solid #DDD;
+	resize:none;
+	font-size:14px;
+	background-color: #F8F8F8;
+	border-radius:4px;
+	-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;
+}
+
+/*button*/
+button > * {position:relative;} /* 클릭할떄 문자 흔들림 방지용!! */
+button{
+	border:1px solid #DDD;
+	cursor:pointer;
+	background-color:#fff;
+}
+.button_main, .button_sub {
+    vertical-align: middle;
+    border: 1px solid #DDD;
+    cursor: pointer;
+    display: inline-block;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #414141;
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+    height: 45px;
+    line-height: 43px;
+    padding: 0 18px;
+    margin: 0 3px;
+    min-width: 160px;
+    text-decoration: none;
+}
+.button_main{
+    color: #ffffff !important;
+    background-color: #414141;
+}
+.button_sub {
+    color: #000000 !important;
+    background-color: #ffffff;
+}
+
+/*select*/
+.table_wrap select::-ms-expand {display:none;}
+.table_wrap select {
+	-webkit-appearance: none;
+	appearance: none;
+    background: #fff url(/movieJoa/img/icon/arr_drop.png);
+	border-radius: 4px;
+    -webkit-border-radius: 4px; -moz-border-radius: 4px; -ms-border-radius: 4px; -o-border-radius: 4px;
+    border: 1px solid #DDD;
+    background-repeat: no-repeat;
+    background-position: right 6px top 50%;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 35px 0 18px;
+    font-size: 14px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+/*date*/
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field {color: #888;}
+
+.input_date_box{
+    width: 30%;
+    height: 40px;
+    font-size:14px;
+    text-align: left;
+	line-height:40px;
+	padding:0 18px;
+	border-radius:4px;
+	-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;
+	box-sizing:border-box;
+	border:1px solid #DDD;
+	background-color: #F8F8F8;
+ }
+ 
+/*file*/
+ ::-webkit-file-upload-button {cursor:pointer;}
+ .bx_file, .file_item{
+    display: inline-block;
+    padding: 0 0 0 20px;
+}
+.bx_file {
+	position: relative;
+}
+.bx_file label {
+    display: inline-block; 
+    border-radius: 4px; 
+    border: 1px solid #000000; 
+    background-color: #ffffff; 
+    height: 40px; 
+    line-height: 40px; 
+    padding: 0 46px; 
+    font-size: 14px; 
+    color: #000000 !important; 
+    text-align: center; 
+    box-sizing: border-box; 
+    cursor: pointer; 
+}
+.bx_file input[type="file"] {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    z-index:-1;
+}
+input[type="file" i] {
+    appearance: none;
+    background-color: initial;
+    align-items: baseline;
+    color: inherit;
+    text-overflow: ellipsis;
+    white-space: pre;
+    text-align: start !important;
+    padding: initial;
+    border: initial;
+    overflow: hidden !important;
+}
+.caution{
+	margin-top: 12px;
+	padding-left: 20px;
+    font-size: 13px;
+    color: #666;
+    background: url(/movieJoa/img/icon/caution.png) no-repeat 0 1px;
+}
+.text_c{
+	text-align: center !important;
+}
+

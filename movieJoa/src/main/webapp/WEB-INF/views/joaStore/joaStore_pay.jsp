@@ -5,93 +5,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품구매</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
+
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/${VERSION}/kakao.min.js"
+  integrity="${INTEGRITY_VALUE}" crossorigin="anonymous"></script>
+<script>
+  // SDK를 초기화 합니다. 사용할 앱의 JavaScript 키를 설정해야 합니다.
+  Kakao.init('JAVASCRIPT_KEY');
+
+  // SDK 초기화 여부를 판단합니다.
+  console.log(Kakao.isInitialized());
+</script>  
 <style>
-
-.store_cart_container{
-	max-width:1100px;
-	margin:auto;
-}
-.store_cart_table{
-	border-top:3px solid black;
-	border-bottom:1px solid black;
-	width:1100px;
-	border-collapse : collapse;
-	text-align:center;
-}
-
-.store_cart_table th{
-	background:#f8f8f8;
-	padding-top:15px;
-	padding-bottom:15px;
-}
-
-.store_cart_table td{
-	border-top:1px solid #f3f3f3;
-	padding-top:20px;
-	padding-bottom:20px;
-}
-.store_cart_select_del{
-	padding-top:30px;
-	padding-bottom:30px;
-}
-
-.store_cart_total_payment{
-	padding-top:50px;
-	padding-bottom:30px;
-}
-
-.store_cart_total_payment_table{
-	border-top:1px solid #838485;
-	border-bottom:1px solid #838485;
-	width:1100px;
-	border-collapse : collapse;
-	text-align:center;
-}
-
-.store_cart_total_payment_table th{
-	background:#f8f8f8;
-	padding-top:15px;
-	padding-bottom:15px;
-}
-
-.store_cart_total_payment_table td{
-	padding-top:20px;
-	padding-bottom:20px;
-}
-
-.store_cart_title_img{
-	text-align:center;
-}
-
-.store_cart_button_final{
-	padding-top:30px;
-	padding-bottom:50px;
-	text-align:center;
-}
-.store_pay_customer_info,
-.store_pay_payments_system{
-	padding-top:50px;
-	padding-bottom:30px;
-}
-
-.store_pay_customer_info_table,
-.store_pay_payments_system_table{
-	padding-top:20px;
-	padding-bottom:20px;
-	border-top:3px solid black;
-	border-bottom:1px solid black;
-	width:1100px;
-	
-}
-
 </style>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-<c:import url="joaStore_category.jsp"></c:import>
 	<div class="store_cart_container">
 		<div class="store_cart_title_img">
 			<img src="/movieJoa/img/joaStore_img/store_top_paying.jpg">
