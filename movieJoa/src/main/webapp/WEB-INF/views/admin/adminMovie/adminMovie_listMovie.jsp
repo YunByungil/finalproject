@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>등록된 영화 목록</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css">
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
 <link rel="stylesheet" type="text/css" href="css/adminMovie_list.css">
 <script>
@@ -18,7 +18,7 @@ function deleteMovie(didx){
 </script>
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <div class="mainBox">
 <div class="div_title"><h2 class="title">| 영화 관리 / 영화 목록</h2></div>
 <div class="table_wrap_list">

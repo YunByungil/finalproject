@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>영화 수정</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css">
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <div class="mainBox">
 <div class="div_title"><h2 class="title">| 영화 관리 / 영화 수정</h2></div>
 <form name="updateMovieForm" method="post" action="updateMovie.do" enctype="multipart/form-data">
@@ -20,7 +20,6 @@
 	<th class="th_basic">영화 코드</th>
 	<td class="td_basic"> ${dto.mov_idx }
 	<input type="hidden" name="mov_idx" value="${dto.mov_idx }"></td>
-	
 </tr>
 <tr>
 	<th class="th_basic">영화 제목</th>
@@ -71,7 +70,6 @@
 	<td class="td_last"><input type="file" name="poster"><span class="caution fl_r"> 파일형식 : jpg / jpeg / png / bmp / gif / pdf (5MB X 1개)</span></td>
 </tr>
 </table>
-
 </div>
 	<div class="btn_wrap"><input type="button" value="돌아가기" class="button_sub"><input type="submit" value="영화 수정" class="button_main"></div>
 </form>

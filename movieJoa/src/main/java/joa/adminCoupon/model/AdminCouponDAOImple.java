@@ -1,6 +1,6 @@
 package joa.adminCoupon.model;
 
-import java.util.Map;
+import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -18,6 +18,28 @@ public class AdminCouponDAOImple implements AdminCouponDAO {
 		int result=sqlMap.insert("addCoupon",dto);
 		return result;
 	}
+
+	@Override
+	public int adminCouponTotalCnt() {
+		int count=sqlMap.selectOne("adminCouponTotalCnt");
+		return count;
+	}
 	
+
+	@Override
+	public List<AdminCouponDTO> listCoupon(Map map) {
+		List<AdminCouponDTO> list=sqlMap.selectList("listCoupon",map);
+		return list;
+	}
+
+	
+	@Override
+	public int deleteCoupon(int cou_idx) {
+		// TODO Auto-generated method stub
+		int result=sqlMap.delete("deleteCoupon",cou_idx);
+		return result;
+	}
+
+
 
 }

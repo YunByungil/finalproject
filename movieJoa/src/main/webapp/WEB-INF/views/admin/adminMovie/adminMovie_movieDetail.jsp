@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<title>영화 상세 정보</title>
+<link rel="stylesheet" type="text/css" href="css/main_admin.css">
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
 <link rel="stylesheet" type="text/css" href="css/adminMovie_detail.css">
 <script>
@@ -18,7 +18,7 @@ function deleteMovie(didx){
 </script>
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <c:if test="${empty dto}">
 			<div>이미 삭제된 게시글이거나 잘못된 접근입니다.</div>
 </c:if>

@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>영화 등록</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css">
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <div class="mainBox">
 <div class="div_title"><h2 class="title">| 영화 관리 / 영화 등록</h2></div>
 <form name="addMovieForm" action="addMovie.do" method="post"  enctype="multipart/form-data">

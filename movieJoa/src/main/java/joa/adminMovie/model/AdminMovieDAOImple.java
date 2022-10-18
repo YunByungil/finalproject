@@ -24,7 +24,6 @@ public class AdminMovieDAOImple implements AdminMovieDAO {
 	public int updateMovie(Map map) {
 		// TODO Auto-generated method stub
 		int result=sqlMap.update("updateMovie",map);
-		System.out.println("daoImple단 result:"+result);
 		return result;
 	}
 

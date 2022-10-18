@@ -2,5 +2,57 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="joa.store">
+  <mapper namespace="joa.event">
+  <select id="listUserEvent" resultType="joa.adminEvent.model.AdminEventDTO">
+			select * from JOA_ADMINEVENT1 order by eve_idx desc
+	</select>
+	<select id="infoUserEvent" parameterType="Integer" resultType="joa.adminEvent.model.AdminEventDTO">
+ 			select 
+ 			* 
+ 			from 
+ 			JOA_ADMINEVENT1
+ 			where 
+ 			eve_idx=#{here}
+</select>
+<select id="couponInfo" parameterType="Integer" resultType="joa.adminCoupon.model.AdminCouponDTO">
+ 			select 
+ 			* 
+ 			from 
+ 			c_t
+ 			where 
+ 			cou_idx=#{here}
+</select>
+  <insert id="addUserCoupon" parameterType="Map">
+			insert into
+			joa_owncou_t3
+			values(
+			joa_owncou_t3_own_idx.nextval,
+			#{name},
+			#{member_id},
+			#{discount},
+			TO_DATE(#{issue_date}, 'YYYY-MM-DD'),
+			TO_DATE(#{limit_date}, 'YYYY-MM-DD'),
+			'미사용'
+			) 	
+</insert>
+  <insert id="addUserApply" parameterType="Map">
+			insert into
+			joa_admin_applycant3
+			values(
+			joa_admin_applycant3_app_idx.nextval,
+			#{event_code},
+			#{event_subject},
+			#{member_id},
+			sysdate
+			) 	
+</insert>
+<select id="userPoint" parameterType="String" resultType="int">
+		select mem_point from joa_member1 where mem_id=#{member_id}
+</select>
+<update id="getPoint" parameterType="Map">
+			update joa_member1 set mem_point=#{totalPoint} where mem_id=#{member_id}
+</update>
+<select id="checkApply" parameterType="Map" resultType="int">
+	    	select count(*) from joa_admin_applycant3 where app_member_id=#{member_id} and app_event_code=#{event_code}
+</select>
   </mapper>

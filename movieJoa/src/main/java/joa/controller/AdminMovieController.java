@@ -74,7 +74,7 @@ public class AdminMovieController {
 		String msg=result>0?"영화 정보 등록에 성공하였습니다.":"영화 정보 등록에 실패하였습니다.";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
-		mav.addObject("nextPage","/listMovie.do");
+		mav.addObject("nextPage","/movieJoa/listMovie.do");
 		mav.setViewName("admin/adminMovie/msg");
 		return mav;
 		
@@ -114,7 +114,7 @@ public class AdminMovieController {
 		String msg=result>0?"영화 정보 수정에 성공하였습니다.":"영화 정보 수정에 실패하였습니다.";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
-		mav.addObject("nextPage","/index.do");
+		mav.addObject("nextPage","/movieJoa/listMovie.do");
 		mav.setViewName("admin/adminMovie/msg");
 		return mav;
 	}
@@ -146,9 +146,6 @@ public class AdminMovieController {
 		
 		List<AdminMovieDTO> movieList=adminMovieService.listMovie(cp, listSize);
 		
-		System.out.println("pageStr:"+pageStr);
-		System.out.println("movieList:"+movieList);
-		
 		ModelAndView mav= new ModelAndView();
 		mav.addObject("pageStr",pageStr);
 		mav.addObject("movieList",movieList);
@@ -161,9 +158,10 @@ public class AdminMovieController {
 			@RequestParam(value="mov_idx", defaultValue="0")int mov_idx) {
 		int result = adminMovieService.deleteMovie(mov_idx);
 		String msg=result>0?"해당 영화 정보 삭제에 성공했습니다.":"해당 영화 정보 삭제에 실패했습니다.";
+		System.out.println(result);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
-		mav.addObject("nextPage","/listMovie.do");
+		mav.addObject("nextPage","/movieJoa/listMovie.do");
 		mav.setViewName("admin/adminMovie/msg");
 		return mav;
 	}

@@ -6,11 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>쿠폰 등록</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css">
 <link rel="stylesheet" type="text/css" href="css/adminCoupon.css">
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <div class="mainBox">
 <div class="div_title"><h2 class="title">| 쿠폰 관리 / 쿠폰 등록</h2></div>
 <form name="addCouponForm" action="addCoupon.do" method="post">
@@ -28,7 +28,7 @@
 </tr>
 </table>
 </div>
-	<div class="btn_wrap"><input type="button" value="돌아가기" class="button_sub"><input type="submit" value="영화 등록" class="button_main"></div>
+	<div class="btn_wrap"><input type="button" value="돌아가기" class="button_sub"><input type="submit" value="쿠폰 등록" class="button_main"></div>
 </form>
 </div>
 <c:import url="../../footer.jsp"></c:import>

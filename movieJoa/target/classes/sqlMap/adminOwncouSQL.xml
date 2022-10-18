@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="admin.owncou">
+	<select id="adminOwncouTotalCnt" resultType="int">
+			select count(*) from JOA_OWNCOU_T3
+	</select>
+	<select id="listOwncou" parameterType="Map" resultType="joa.adminOwncou.model.AdminOwncouDTO">
+			select * from
+			(select rownum as rnum,a.* from
+			(select * from JOA_OWNCOU_T3 order by own_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+	<delete id="deleteOwncou" parameterType="Integer">
+			delete from
+			JOA_OWNCOU_T3
+			where own_idx=
+			#{here}
+	</delete>
+  </mapper>

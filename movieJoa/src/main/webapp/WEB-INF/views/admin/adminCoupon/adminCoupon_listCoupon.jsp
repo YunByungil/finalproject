@@ -6,11 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>등록된 쿠폰 목록</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css">
 <link rel="stylesheet" type="text/css" href="css/adminCoupon.css">
+<script>
+function deleteCoupon(didx){
+	   var delQue = window.confirm('삭제한 쿠폰정보는 복구할 수 없으며, 쿠폰을 보유한 회원에게도 정보가 삭제됩니다. 정말 삭제하시겠습니까?');
+	   	if(!delQue){return;} 
+	   window.location.href = 'deleteCoupon.do?cou_idx='+didx;
+	}
+</script>
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <div class="mainBox">
 <div class="div_title"><h2 class="title">| 쿠폰 관리 / 쿠폰 목록</h2></div>
 <div class="table_wrap_list">
@@ -39,7 +46,7 @@
 	<th scope="col" class="text_c">관리</th>
 </tr>
 </thead>
-	<c:if test="${empty movieList}">
+	<c:if test="${empty couponList}">
 		<tr>
 			<td>등록되어있는 쿠폰이 존재하지 않습니다.</td>
 		</tr>
@@ -49,12 +56,12 @@
 <tr>
 	<td class="text_c">${dto.cou_idx }</td>
 	<td class="text_c">${dto.cou_name }</td>
-	<td class="text_c">${dto.cou_discount }</td>
-	<c:url var="uLink" value="updateMovieForm.do">
-		<c:param name="mov_idx">${dto.mov_idx }</c:param>
+	<td class="text_c">${dto.cou_discount } 원</td>
+	<c:url var="uLink" value="updateCouponForm.do">
+		<c:param name="cou_idx">${dto.cou_idx }</c:param>
 	</c:url>
 	<td class="text_c">
-	<input type="button" value="삭제" onclick="javascript:deleteMovie(${dto.cou_idx });" class="list_s_btn">
+	<input type="button" value="삭제" onclick="javascript:deleteCoupon(${dto.cou_idx });" class="list_s_btn">
 	</td>
 </tr>
 </c:forEach>
@@ -62,10 +69,10 @@
 
 <tfoot>
 	<tr>
-	<td colspan="5" align="center">
+	<td colspan="3" align="center">
 	${pageStr }
 	</td>
-	<td colspan="1"><a href="addMovieForm.do">새 영화 등록</a></td>
+	<td colspan="1"><a href="addCouponForm.do">새 쿠폰 등록</a></td>
 	</tr>
 </tfoot>
 </table>

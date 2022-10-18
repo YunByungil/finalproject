@@ -16,7 +16,6 @@ public class AdminMovieServiceImple implements AdminMovieService {
 
 	@Override
 	public int addMovie(AdminMovieDTO dto) {
-		// TODO Auto-generated method stub
 		
 		Map map=new HashMap();
 		
@@ -72,11 +71,8 @@ public class AdminMovieServiceImple implements AdminMovieService {
 		int end=cp*ls;
 		Map map=new HashMap();
 		map.put("start", start);
-		System.out.println(start);
 		map.put("end", end);
-		System.out.println(end);
 		List list=adminMovieDao.listMovie(map);
-		System.out.println(list);
 		return list;
 	}
 

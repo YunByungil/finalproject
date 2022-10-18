@@ -52,6 +52,7 @@
    <bean id="joaTheaterController" class="joa.controller.JoaTheaterController"></bean>
    <bean id="adminCouponController" class="joa.controller.AdminCouponController"></bean>
    <bean id="adminStoreController" class="joa.controller.AdminStoreController"></bean>
+   <bean id="adminOwncouController" class="joa.controller.AdminOwncouController"></bean>
    
    <!-- daos -->
    <bean id="adminStoreDao" class="joa.adminStore.model.AdminStoreDAOImple">
@@ -74,6 +75,21 @@
          <ref bean="sqlSessionTemplate"/>
      	</constructor-arg>
    </bean> 
+   <bean id="adminOwncouDao" class="joa.adminOwncou.model.AdminOwncouDAOImple">    
+   		<constructor-arg>
+         <ref bean="sqlSessionTemplate"/>
+     	</constructor-arg>
+   </bean> 
+   <bean id="adminEventDao" class="joa.adminEvent.model.AdminEventDAOImple">    
+   		<constructor-arg>
+         <ref bean="sqlSessionTemplate"/>
+     	</constructor-arg>
+   </bean> 
+    <bean id="joa_EventDao" class="joa.event.model.Joa_EventDAOImple">    
+   		<constructor-arg>
+         <ref bean="sqlSessionTemplate"/>
+     	</constructor-arg>
+   </bean> 
    
    <!-- services -->
    <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
@@ -84,9 +100,26 @@
    	<bean id="adminCouponService" class="joa.adminCoupon.model.AdminCouponServiceImple">
    		<constructor-arg>
          <ref bean="adminCouponDao"/>
+		</constructor-arg>
+	</bean>
    <bean id="adminStoreService" class="joa.adminStore.model.AdminStoreServiceImple">
    		<constructor-arg>
          <ref bean="adminStoreDao"/>
+     	 </constructor-arg>
+   	</bean>
+   	<bean id="adminOwncouService" class="joa.adminOwncou.model.AdminOwncouServiceImple">
+   		<constructor-arg>
+         <ref bean="adminOwncouDao"/>
+     	 </constructor-arg>
+   	</bean>
+   		<bean id="adminEventService" class="joa.adminEvent.model.AdminEventServiceImple">
+   		<constructor-arg>
+         <ref bean="adminEventDao"/>
+     	 </constructor-arg>
+   	</bean>
+   	<bean id="joa_EventService" class="joa.event.model.Joa_EventServiceImple">
+   		<constructor-arg>
+         <ref bean="joa_EventDao"/>
      	 </constructor-arg>
    	</bean>
    

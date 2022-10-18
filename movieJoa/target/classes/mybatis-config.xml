@@ -21,6 +21,7 @@
 		<mapper resource="sqlMap/joaStoreSQL.xml"/>
 		<mapper resource="sqlMap/joaTheaterSQL.xml"/>
 		<mapper resource="sqlMap/adminCouponSQL.xml"/>
+		<mapper resource="sqlMap/adminOwncouSQL.xml"/>
 	</mappers>
 </configuration>
 

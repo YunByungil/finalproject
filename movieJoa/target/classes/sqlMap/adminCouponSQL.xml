@@ -12,4 +12,19 @@
 			#{cou_discount}
 			) 
   	</insert>
+  	<select id="listCoupon" parameterType="Map" resultType="joa.adminCoupon.model.AdminCouponDTO">
+			select * from
+			(select rownum as rnum,a.* from
+			(select * from c_t order by cou_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+	<delete id="deleteCoupon" parameterType="Integer">
+			delete from
+			c_t
+			where cou_idx=
+			#{here}
+	</delete>
+	<select id="adminCouponTotalCnt" resultType="int">
+			select count(*) from c_t
+	</select>
   </mapper>
