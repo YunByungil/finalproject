@@ -169,7 +169,6 @@
 		</constructor-arg>
 	</bean>
    
->>>>>>> origin/master_galmae
    
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>
