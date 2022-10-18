@@ -2,5 +2,68 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="joa.store">
+  <mapper namespace="admin.event">
+   <insert id="addEvent" parameterType="Map">
+			insert into
+			JOA_ADMINEVENT1
+			values(
+			JOA_ADMINEVENT1_eve_idx.nextval,
+			#{category},
+			#{subject},
+			#{main_img},
+			#{thumb_img},
+			TO_DATE(#{start_date}, 'YYYY-MM-DD'),
+			TO_DATE(#{end_date}, 'YYYY-MM-DD'),
+			#{status}
+			) 	
+</insert>
+<select id="detailEvent" parameterType="Integer" resultType="joa.adminEvent.model.AdminEventDTO">
+ 			select 
+ 			* 
+ 			from 
+ 			JOA_ADMINEVENT1
+ 			where 
+ 			eve_idx=#{here}
+</select>
+<update id="updateEvent" parameterType="Map">
+			update JOA_ADMINEVENT1
+			set eve_category=#{category}, 
+			eve_subject=#{subject}, 
+			eve_main_img=#{main_img}, 
+			eve_thumb_img=#{thumb_img}, 
+			eve_start_date=TO_DATE(#{start_date}, 'YYYY-MM-DD'), 
+			eve_end_date=TO_DATE(#{end_date}, 'YYYY-MM-DD'), 
+			eve_status=#{status}
+			where eve_idx=#{idx}
+</update>
+<select id="listEvent" parameterType="Map" resultType="joa.adminEvent.model.AdminEventDTO">
+			select * from
+			(select rownum as rnum,a.* from
+			(select * from JOA_ADMINEVENT1 order by eve_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+</select>
+<select id="adminEventTotalCnt" resultType="int">
+			select count(*) from JOA_ADMINEVENT1
+</select>
+<delete id="deleteEvent" parameterType="Integer">
+			delete from
+			JOA_ADMINEVENT1
+			where eve_idx=
+			#{here}
+</delete>
+<select id="adminApplycantTotalCnt" resultType="int">
+			select count(*) from joa_admin_applycant3
+</select>
+<select id="listApplycant" parameterType="Map" resultType="joa.adminEvent.model.AdminApplycantDTO">
+			select * from
+			(select rownum as rnum,a.* from
+			(select * from joa_admin_applycant3 order by app_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+</select>
+<delete id="deleteApplycant" parameterType="Integer">
+			delete from
+			joa_admin_applycant3
+			where app_idx=
+			#{here}
+</delete>
   </mapper>

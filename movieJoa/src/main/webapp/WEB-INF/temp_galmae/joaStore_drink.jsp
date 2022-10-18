@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>콤보</title>
+<title>음료</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
 </head>
@@ -17,23 +17,12 @@
 			<a href="joaStoreSnack.do">스낵</a>
 			<a href="joaStoreDrink.do">음료</a>
 	</div>
-	<hr color="#dcdcdc"/>
+	<hr color="#dcdcdc">
 	<div class="store_spaceMaker"></div>
-	<div class="product_container">
-		<h1>콤보</h1>
-		<hr size="2px"/>
-		<table>
-			<tr>
-				<td><a href="joaStoreProduct.do"><img src="/movieJoa/img/joaStore_img/combo1.jpg" alt="콤보" width="350" height="400"></a></td>
-			</tr>
-			<tr>
-				<td class="product_list_name"><b>MJOA콤보</b></td>
-			</tr>
-			<tr>
-				<td class="product_list_price"><b>9,000원</b></td>
-			</tr>								
-		</table>
-	</div>
+	<div class="store_container">
+	<div class="left">
+		<div class="drink"><h1>음료</h1></div>
+	</div></div>
 <c:import url="../footer.jsp"></c:import>
 </body>
 </html>

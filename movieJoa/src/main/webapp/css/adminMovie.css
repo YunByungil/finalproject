@@ -85,7 +85,6 @@ body, input, button, select, textarea {
 }
 
 .bottom_div{
-    
     height: 80px;
     margin-inline: 120px 0 20px;
     margin-right: 100px;
@@ -100,8 +99,6 @@ body, input, button, select, textarea {
 }
 
 /*input*/
-
-
 /*text*/
 .input_text_basic, .input_text_title, .input_text_director, .input_text_cast{
 	height:40px;
@@ -126,6 +123,9 @@ body, input, button, select, textarea {
 .input_text_cast{
 	width:62%;
 }
+.input_text_search{
+	width:60%;
+}
 
 
 /*textarea*/
@@ -143,7 +143,7 @@ textarea {
 }
 
 /*button*/
-button > * {position:relative;} /* 클릭시 문자 흔들림 방지 */
+button > * {position:relative;} /* 클릭할떄 문자 흔들림 방지용!! */
 button{
 	border:1px solid #DDD;
 	cursor:pointer;
@@ -177,8 +177,8 @@ button{
 }
 
 /*select*/
-select::-ms-expand {display:none;}
-select {
+.table_wrap select::-ms-expand {display:none;}
+.table_wrap select {
 	-webkit-appearance: none;
 	appearance: none;
     background: #fff url(/movieJoa/img/icon/arr_drop.png);
@@ -259,12 +259,14 @@ input[type="file" i] {
     border: initial;
     overflow: hidden !important;
 }
-
 .caution{
 	margin-top: 12px;
 	padding-left: 20px;
     font-size: 13px;
     color: #666;
     background: url(/movieJoa/img/icon/caution.png) no-repeat 0 1px;
+}
+.text_c{
+	text-align: center !important;
 }
 

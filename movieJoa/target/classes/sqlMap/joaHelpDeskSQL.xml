@@ -2,5 +2,196 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="joa.store">
+  <mapper namespace="joa.helpdesk">
+  	<insert id="QuestionInsert" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
+			insert into
+			joa_helpquestion
+			values(joa_helpquestion_hqt_idx.nextval,
+			#{type},
+			#{region},
+			#{cinema},
+			#{id},
+			#{email},
+			#{subject},
+			#{content},
+			sysdate,
+			#{state},
+			#{answerwrite},
+			#{answercontent},
+			#{answerrank},
+			#{answerdate},
+			sysdate
+			)
+	</insert>
+		
+	<select id="QuestionList" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+			select
+			*
+			from
+			joa_helpquestion order by hqt_idx
+	</select>
+	
+	<select id="SerchQuestionList" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+			select
+			*
+			from
+			joa_helpquestion order by hqt_idx
+			where type=#{type}
+			and
+			region=#{region}
+			and
+			chinema=#{chinema}
+	</select>
+	
+	<select id="QuestionBorder">
+			select
+			*
+			from
+			joa_helpquestion
+			where hqt_idx=#{idx}
+	</select>
+	
+	<update id="QuestionAnswer" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
+	
+		update
+		joa_helpquestion
+		set 
+		state=#{state},
+		answerwrite=#{answerwrite},
+		answercontent=#{answercontent},
+		answerrank=#{answerrank},
+		answerdate=sysdate
+		where hqt_idx=#{idx}
+	</update>
+	
+	<update id="QuestionReAnswer" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
+	
+		update
+		joa_helpquestion
+		set 
+		state=#{state},
+		answerwrite=#{answerwrite},
+		answercontent=#{answercontent},
+		answerrank=#{answerrank},
+		reanswerdate=sysdate
+		where hqt_idx=#{idx}
+	</update>
+	
+	<insert id="ManyHelpInsert" parameterType="joa.helpdesk.model.JoaManyHelpDTO">
+			insert into
+			joa_lookingforquestion
+			values(joa_lookingforquestion_idx.nextval,
+			#{type},
+			#{subject},
+			#{content},
+			sysdate,
+			sysdate
+			)
+	</insert>
+	
+	<delete id="ManyHelpDelete" parameterType="joa.helpdesk.model.JoaManyHelpDTO">
+		delete
+		from
+		joa_lookingforquestion
+		where lfq_idx=#{idx}
+	</delete>
+	
+	<update id="ManyHelpUpdate" parameterType="joa.helpdesk.model.JoaManyHelpDTO">
+		update
+		joa_lookingforquestion
+		set
+		type=#{type},
+		subject=#{subject},
+		content=#{content},
+		writedate=#{writedate},
+		rewritedate=sysdate
+		where lfq_idx=#{idx}
+	</update>
+	
+	<select id="ManyHelpList" resultType="joa.helpdesk.model.JoaManyHelpDTO">
+	
+		select
+			*
+		from
+		joa_lookingforquestion order by lfq_idx
+	
+	</select>
+	
+	<select id="SerchManyHelpList" resultType="joa.helpdesk.model.JoaManyHelpDTO">
+	
+		select
+			*
+		from
+		joa_lookingforquestion order by lfq_idx
+		where type=#{type}
+	</select>
+	
+	<select id="ManyHelpBorder">
+			select
+			*
+			from
+			joa_lookingforquestion
+			where lfq_idx=#{idx}
+	</select>
+	
+	<insert id="NoticeInsert" parameterType="joa.helpdesk.model.JoaNoticeDTO">
+			insert into
+			joa_notice
+			values(joa_notice_idx.nextval,
+			#{type},
+			#{subject},
+			#{content},
+			#{file},
+			sysdate,
+			sysdate
+			)
+	</insert>
+	
+	<delete id="NoticeDelete" parameterType="joa.helpdesk.model.JoaNoticeDTO">
+		delete
+		from
+		joa_notice
+		where ntc_idx=#{idx}
+	</delete>
+	
+	<update id="NoticeUpdate" parameterType="joa.helpdesk.model.JoaNoticeDTO">
+		update
+		joa_notice
+		set
+		type=#{type},
+		subject=#{subject},
+		content=#{content},
+		file=#{file},
+		writedate=#{writedate},
+		rewritedate=sysdate
+		where ntc_idx=#{idx}
+	</update>
+	
+	<select id="NoticeList" resultType="joa.helpdesk.model.JoaNoticeDTO">
+	
+		select
+			*
+		from
+		joa_notice order ntc_idx
+	
+	</select>
+	
+	<select id="SerchNoticeList" resultType="joa.helpdesk.model.JoaNoticeDTO">
+	
+		select
+			*
+		from
+		joa_notice order by ntc_idx
+		where type=#{type}
+	</select>
+	
+	<select id="NoticeBorder">
+			select
+			*
+			from
+			joa_notice
+			where ntc_idx=#{idx}
+	</select>
+	
+	
   </mapper>

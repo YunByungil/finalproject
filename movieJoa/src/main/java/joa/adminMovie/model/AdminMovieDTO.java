@@ -1,7 +1,5 @@
 package joa.adminMovie.model;
 
-import java.sql.*;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class AdminMovieDTO {
@@ -10,9 +8,8 @@ public class AdminMovieDTO {
 	private String mov_title;
 	private String mov_director;
 	private String mov_cast;
-	private String mov_realese_date;
-	private String mov_booking_start_date;
-	private String mov_booking_end_date;
+	private String mov_start_date;
+	private String mov_end_date;
 	private String mov_country;
 	private String mov_genre;
 	private int mov_running_time;
@@ -29,18 +26,17 @@ public class AdminMovieDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public AdminMovieDTO(int mov_idx, String mov_title, String mov_director, String mov_cast, String mov_realese_date,
-			String mov_booking_start_date, String mov_booking_end_date, String mov_country, String mov_genre,
-			int mov_running_time, String mov_rate, String mov_info, String mov_poster, int mov_booking_percent,
-			int mov_gender_percent, int mov_age_percent, int mov_score) {
+	public AdminMovieDTO(int mov_idx, String mov_title, String mov_director, String mov_cast, String mov_start_date,
+			String mov_end_date, String mov_country, String mov_genre, int mov_running_time, String mov_rate,
+			String mov_info, String mov_poster, int mov_booking_percent, int mov_gender_percent, int mov_age_percent,
+			int mov_score) {
 		super();
 		this.mov_idx = mov_idx;
 		this.mov_title = mov_title;
 		this.mov_director = mov_director;
 		this.mov_cast = mov_cast;
-		this.mov_realese_date = mov_realese_date;
-		this.mov_booking_start_date = mov_booking_start_date;
-		this.mov_booking_end_date = mov_booking_end_date;
+		this.mov_start_date = mov_start_date;
+		this.mov_end_date = mov_end_date;
 		this.mov_country = mov_country;
 		this.mov_genre = mov_genre;
 		this.mov_running_time = mov_running_time;
@@ -85,28 +81,20 @@ public class AdminMovieDTO {
 		this.mov_cast = mov_cast;
 	}
 
-	public String getMov_realese_date() {
-		return mov_realese_date;
+	public String getMov_start_date() {
+		return mov_start_date;
 	}
 
-	public void setMov_realese_date(String mov_realese_date) {
-		this.mov_realese_date = mov_realese_date;
+	public void setMov_start_date(String mov_start_date) {
+		this.mov_start_date = mov_start_date;
 	}
 
-	public String getMov_booking_start_date() {
-		return mov_booking_start_date;
+	public String getMov_end_date() {
+		return mov_end_date;
 	}
 
-	public void setMov_booking_start_date(String mov_booking_start_date) {
-		this.mov_booking_start_date = mov_booking_start_date;
-	}
-
-	public String getMov_booking_end_date() {
-		return mov_booking_end_date;
-	}
-
-	public void setMov_booking_end_date(String mov_booking_end_date) {
-		this.mov_booking_end_date = mov_booking_end_date;
+	public void setMov_end_date(String mov_end_date) {
+		this.mov_end_date = mov_end_date;
 	}
 
 	public String getMov_country() {
@@ -188,9 +176,8 @@ public class AdminMovieDTO {
 	public void setMov_score(int mov_score) {
 		this.mov_score = mov_score;
 	}
+
 	
-	
-	
-	
+
 
 }

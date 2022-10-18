@@ -24,6 +24,13 @@ public class AdminStoreDAOImple implements AdminStoreDAO{
 		List<AdminStoreDTO> list=sqlMap.selectList("adminStoreList",map);
 		return list;
 	}
+	
+	@Override
+	public List<AdminStoreDTO> storeCategoryList(AdminStoreDTO dto) {
+		List<AdminStoreDTO> list=sqlMap.selectList("storeCategoryList",dto);
+		return list;
+	}
+	
 	@Override
 	public AdminStoreDTO adminStoreContent(int idx) {
 		AdminStoreDTO dto=sqlMap.selectOne("adminStoreContent",idx);
@@ -33,6 +40,12 @@ public class AdminStoreDAOImple implements AdminStoreDAO{
 	@Override
 	public int adminStoreTotalCnt() {
 		int count=sqlMap.selectOne("adminStoreTotalCnt");
+		return count;
+	}
+	
+	@Override
+	public int productUpdate(AdminStoreDTO dto) {
+		int count=sqlMap.update("productUpdate",dto);
 		return count;
 	}
 
