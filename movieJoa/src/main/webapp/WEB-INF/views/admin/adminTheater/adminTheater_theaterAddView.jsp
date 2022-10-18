@@ -79,7 +79,7 @@ function theaterAddSubmit() {
 		</c:forEach>
 	</c:forEach>
 	$.ajax({
-		url: "theaterAddSubmit.do?seats_s="+seats_s+"&branch="+${theater}+"&width="+${width}+"&height="+${height},
+		url: "theaterAddSubmit.do?seats_s="+seats_s+"&theater="+${theater}+"&width="+${width}+"&height="+${height},
 		type: "get",
 		dataType: "html",
 		success: function(data) {

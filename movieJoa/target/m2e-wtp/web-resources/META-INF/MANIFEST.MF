@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: Yong
-=======
-Built-By: ￪ﾰﾈ￫ﾧﾤ
->>>>>>> origin/master
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 
