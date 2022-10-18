@@ -5,6 +5,7 @@ public class TheaterDTO {
 	private int idx;
 	private String city;
 	private String branch;
+	private String theater;
 	private String seat;
 	private int width;
 	private int height;
@@ -61,14 +62,25 @@ public class TheaterDTO {
 		this.height = height;
 	}
 
-	public TheaterDTO(int idx, String city, String branch, String seat, int width, int height) {
+	public TheaterDTO(int idx, String city, String branch, String theater, String seat, int width, int height) {
 		super();
 		this.idx = idx;
 		this.city = city;
 		this.branch = branch;
+		this.theater = theater;
 		this.seat = seat;
 		this.width = width;
 		this.height = height;
 	}
+
+	public String getTheater() {
+		return theater;
+	}
+
+	public void setTheater(String theater) {
+		this.theater = theater;
+	}
+
+	
 	
 }

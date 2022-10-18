@@ -53,6 +53,7 @@
    <bean id="joaTheaterController" class="joa.controller.JoaTheaterController"></bean>
    <bean id="adminCouponController" class="joa.controller.AdminCouponController"></bean>
    <bean id="adminStoreController" class="joa.controller.AdminStoreController"></bean>
+   <bean id="joaReviewController" class="joa.controller.JoaReviewController"></bean>
    <bean id="adminOwncouController" class="joa.controller.AdminOwncouController"></bean>
    
    <!-- daos -->
@@ -72,10 +73,29 @@
      	 </constructor-arg>
    </bean>
    <bean id="theaterDao" class="joa.adminTheater.model.TheaterDAOImple">
+   		<constructor-arg>
+   		<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
+   <bean id="joaMovieDao" class="joa.movie.model.JoaMovieDAOImple">
+   		<constructor-arg>
+   		<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
+   <bean id="joaReviewDao" class="joa.review.model.JoaReviewDAOImple">
+   		<constructor-arg>
+   		<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
        <constructor-arg>
        		<ref bean="sqlSessionTemplate"/>
        </constructor-arg>
    </bean> 
+   <bean id="scheduleDao" class="joa.adminSchedule.model.ScheduleDAOImple">
+   		<constructor-arg>
+   			<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
    <bean id="adminCouponDao" class="joa.adminCoupon.model.AdminCouponDAOImple">    
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>

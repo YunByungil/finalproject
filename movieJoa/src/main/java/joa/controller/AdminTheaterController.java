@@ -1,5 +1,7 @@
 package joa.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import joa.adminSchedule.model.ScheduleDTO;
 import joa.adminTheater.model.TheaterDAO;
 import joa.adminTheater.model.TheaterDTO;
 
@@ -141,6 +144,24 @@ public class AdminTheaterController {
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
 		mav.setViewName("admin/adminTheater/adminTheater_theaterAdd_ok");
+		return mav;
+	}
+	
+	@RequestMapping("/scheduleAddForm.do")
+	public String scheduleAddForm(Map map) {
+		Date now = new Date();	
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		String nDate=format.format(now);
+		map.put("nDate", nDate);
+		return "admin/adminTheater/adminTheater_schedule_add";
+	}
+	
+	@RequestMapping("/scheduleAdd.do")
+	public ModelAndView scheduleAdd(ScheduleDTO dto){
+		//session id city branch add
+		
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("admin/adminTheater/adminTheater_schedule_add");
 		return mav;
 	}
 }
