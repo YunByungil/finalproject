@@ -3,16 +3,46 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
 function openPop(){
-	document.getElementById('popup_layer').style.display='block';
+	document.getElementById('popup_layer').style.display = 'block';
 }
 function closePop(){
 	document.getElementById('popup_layer').style.display = 'none';
+	location.reload();
 }
 const drawStar = (target) => {
     document.querySelector(`.star span`).style.width = target.value * 10+'%';
     document.getElementById('val').innerText=target.value;
     document.getElementById('score').value=target.value;
-  }
+}
+const drawStar2 = (target) => {
+    document.querySelector(`.star span`).style.width = target.value * 10+'%';
+    document.getElementById('val2').innerText=target.value;
+    document.getElementById('score2').value=target.value;
+}
+function show2(num){
+	const urlParams = new URL(location.href).searchParams;
+	const mov_idx = urlParams.get('mov_idx');
+	if(num==0){
+		location.href='detailView.do?mov_idx='+mov_idx+'&show=1&ot=0';
+		window.alert('0');
+	}else{
+		location.href='detailView.do?mov_idx='+mov_idx+'&show=1&ot=1';
+		window.alert('1');
+	}
+}
+function openUpdate(){
+	document.getElementById('update').style.display = 'block';
+}
+function openDelete(rev_id, rev_movie_title){
+	var result=window.confirm('진짜 삭제하시겠습니까?');
+	if(!result){
+		return;
+	}
+	location.href='commentDelete.do?rev_id='+rev_id+'&rev_movie_title='+rev_movie_title;
+}
+function closeUpdate(){
+	document.getElementById('update').style.display = 'none';
+}
 </script>
 <style>
 /*popup*/
@@ -45,6 +75,27 @@ const drawStar = (target) => {
   overflow: hidden;
   pointer-events: none;
 }
+.star2 {
+   position: relative;
+   font-size: 3rem;
+   color: #ddd;
+}
+.star2 input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.star2 span {
+  width: 0;
+  position: absolute; 
+  left: 0;
+  color: red;
+  overflow: hidden;
+  pointer-events: none;
+}
 #reviewContents {
     width: 100%;
     height: 75px;
@@ -56,82 +107,61 @@ const drawStar = (target) => {
     resize: none;
 }
 </style>
-<div class="sect-grade"><c:forEach var="list" items="${list }">
-	<div class="movie_grade">
-	    <div class="egg_point">
-	        <div class="rating">
-	            <div class="box box_golden">
-	                <span class="sprite_preegg big great"></span>
-	                <span class="desc">Golden Egg</span>
-	                <span class="percent">92%</span>
-	                <span class="tooltip">실관람평지수</span>
-	            </div>
-			</div>
-		</div>
-	</div>
-	<div class="real-rating">
-	    <p class="title">관람일 포함 7일 이내 관람평을 남기시면 <strong>CJ ONE 20P</strong>가 적립됩니다. </p>
-	    <p class="desc"><span><em>37,950</em> 명의 실관람객이 평가해주셨습니다.</span></p>
-	    <div class="wrap_btn">
-	        <a class="link-gradewrite" href="javascript:openPop();"><span>평점작성</span></a>
-	        <div class="popup_layer" id="popup_layer" style="display: none;">
-				<div class="popup_box">
-					<!--팝업 컨텐츠 영역-->
-						<h2 style="padding: 10px;">평점작성</h2>
-						<hr>
-						<h3 align="center">${list.mov_title }</h3>
-						
-					<div class="popup_cont" style="float: left">
-									<span class="star">
-								 	  ★★★★★
-								  	<span>★★★★★</span>
-									<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-									</span>
-					</div>
-						
-					 	<b id="val" style="font-size: 4rem;"></b>			
-					 	<form class="mb-3" name="myform" id="myform" action="commentWrite.do" method="post" target="blankifr">
-					 	<input type="hidden" name="rev_id" value="test">
-					 	<input type="hidden" name="rev_movie_title" value="${list.mov_title }">
-					 	<input type="hidden" name="rev_score" id="score">
-					 	
-							<div>
-								<textarea class="col-auto form-control" id="reviewContents" name="rev_comment"></textarea>
-							</div>
-						</form>		<iframe name="blankifr" style="display:none;"></iframe>	
-					<!--팝업 버튼 영역-->
-					<div>
-            <div style="background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; width: 50%; float: left;" onClick="closePop();">
-                <span class="pop_bt" style="font-size: 13pt;" >
-                     닫기
-                </span>
-            </div>					
-			<div style="background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; width: 50%; float: right;" onClick="document.getElementById('myform').submit();closePop();">
-                <span class="pop_bt" style="font-size: 13pt;" >
-                     확인
-                </span>
-            </div>	
-          			</div>		
+<div class="sect-grade">
+	<c:forEach var="list" items="${list }">
+		<div class="movie_grade">
+		    <div class="egg_point">
+		        <div class="rating">
+		            <div class="box box_golden">
+		                <span class="sprite_preegg big great"></span>
+		                <span class="desc">Golden Egg</span>
+		                <span class="percent">92%</span>
+		                <span class="tooltip">실관람평지수</span>
+		            </div>
 				</div>
 			</div>
-	        <a class="link-reviewwrite" href="/movies/point/my-list.aspx"><span>내 평점</span></a>
-	    </div>
-	    
-	</div>
-	<ul class="sort" id="sortTab">
-	    <li class="sortTab on" data-order-type="0" id="test"><a href="javascript:void(0);" title="현재선택">최신순<span class="arrow-down"></span></a></li>
-	    <li class="sortTab" data-order-type="3"><a href="javascript:void(0);">추천순<span class="arrow-down"></span></a></li>
-	</ul>
-	<div class="wrap-persongrade">
-	    <ul id="movie_point_list_container" class="point_col2"></ul>
-	</div></c:forEach>
+		</div>
+		<div class="real-rating">
+		    <p class="title">관람일 포함 7일 이내 관람평을 남기시면 <strong>CJ ONE 20P</strong>가 적립됩니다. </p>
+		    <p class="desc"><span><em>37,950</em> 명의 실관람객이 평가해주셨습니다.</span></p>
+		    <div class="wrap_btn">
+		        <a class="link-gradewrite" href="javascript:openPop();"><span>평점작성</span></a>
+		        <div class="popup_layer" id="popup_layer" style="display: none;">
+					<div class="popup_box">
+						<c:import url="joaMovie_commentWrite.jsp"/>
+					</div>
+				</div>
+		        <a class="link-reviewwrite" href="/movies/point/my-list.aspx"><span>내 평점</span></a>
+		    </div>
+		</div>
+	</c:forEach>	
 </div>
+<ul class="sort" id="sortTab">
+    <li class="sortTab on" id="test"><a href="javascript:show2(0);" title="현재선택">최신순<span class="arrow-down"></span></a></li>
+    <li class="sortTab"><a href="javascript:show2(1);">추천순<span class="arrow-down"></span></a></li>
+</ul>
+<c:choose>
+	<c:when test="${param.ot eq 0 }">
+		<c:import url="/commentReg.do?ot=0"/>
+	</c:when>
+	<c:when test="${param.ot eq 1 }">
+		<c:import url="/commentReg.do?ot=1"/>
+	</c:when>
+</c:choose>
+<hr>
 <c:forEach var="list" items="${commentList }">
-${list.rev_id }<br>
-관람평: ${list.rev_score }<br> 
-${list.rev_comment }<br>
-${list.rev_date } ${list.rev_like }<br><br>
+	${list.rev_id }<br>
+	관람평: ${list.rev_score }<br> 
+	${list.rev_comment }<br>
+	${list.rev_date } ${list.rev_like }<br>
+	<a onclick="openUpdate()">편집</a> <a onclick="openDelete('${list.rev_id}', '${list.rev_movie_title}');location.reload();">삭제</a><br>
+	<hr>
 </c:forEach>
+	<div class="popup_layer" style="display: none;" id="update">
+		<div class="popup_box">
+			<c:import url="/commentUpdate.do?rev_id=test&rev_movie_title=블랙 아담"/>
+		</div>
+	</div>	
 <div class="paging">
 	<ul id="paging_point"></ul>
 </div>

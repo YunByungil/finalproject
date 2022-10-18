@@ -119,7 +119,7 @@ function show(num){
 			<c:import url="joaMovie_info.jsp"/>
 		</c:when>
 		<c:when test="${param.show eq 1 }">
-			<c:import url="/commentList.do"/>
+			<c:import url="/commentReg.do"/>
 		</c:when>
 		<c:when test="${param.show eq 2 }">
 			<c:import url="joaMovie_showTime.jsp"/>

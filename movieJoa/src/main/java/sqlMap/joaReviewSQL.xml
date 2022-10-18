@@ -14,7 +14,7 @@
   			sysdate,
   			0)
   	</insert>
-  	<select id="commentList" resultType="joa.review.model.JoaReviewDTO">
+  	<select id="commentList0" resultType="joa.review.model.JoaReviewDTO">
   		select
   			*
   		from
@@ -22,4 +22,30 @@
   		order by
   			rev_date desc
   	</select>
+  	<select id="commentList1" resultType="joa.review.model.JoaReviewDTO">
+  		select
+  			*
+  		from
+  			joa_review
+  		order by
+  			rev_like desc
+  	</select>
+  	<select id="commentUpdateList" parameterType="Map" resultType="joa.review.model.JoaReviewDTO">
+  		select
+  			*
+  		from
+  			joa_review
+  		where
+  			rev_id=#{rev_id}
+  		and
+  			rev_movie_title=#{rev_movie_title}
+  	</select>
+  	<delete id="commentDelete" parameterType="Map">
+  		delete from
+			joa_review
+		where
+			rev_id=#{rev_id}
+		and
+			rev_movie_title=#{rev_movie_title}
+  	</delete>
   </mapper>
