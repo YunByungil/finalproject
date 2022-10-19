@@ -11,8 +11,6 @@
 
 <script>
 
-
-
 function selectAll(selectAll)  {
 	
 	var checkBoxes  = document.getElementsByName('chx');
@@ -34,7 +32,7 @@ function selectAll(selectAll)  {
 	}
 }
 
-function priceSum(){
+function itemCheck(){
 		
 	var checkBoxes  = document.getElementsByName('chx');
 	var checkValues = new Array(); 
@@ -61,6 +59,44 @@ function priceSum(){
 	}
 }
 
+function cartSubmit(index) {
+	
+	 if (index == 1) {
+		document.joaStoreCart.action='joaStoreCart.do';
+	 }else if (index == 2) {
+		document.joaStoreCart.action='joaStorePay.do';
+	 }else if (index == 3) {
+
+		var checkBoxes  = document.getElementsByName('chx');	
+		var count = 0;
+		for (var i=0; i<checkBoxes.length; i++) {
+			if(checkBoxes[i].checked==true){
+				count++;
+			}
+		}
+		var checkIdxs = new Array(count);
+		window.alert('c'+checkIdxs.length);
+		
+		for(var i=0;i<checkIdxs.length;i++){
+			
+			if(checkBoxes[i].checked==true){
+				checkIdxs[i]=checkBoxes[i].id;
+				window.alert(checkIdxs[i]);
+			}
+		}
+		
+		window.alert(checkIdxs);
+		var idxsJson=JSON.stringify(checkIdxs);
+		window.alert(idxsJson);
+		document.joaStoreCart.json.value=idxsJson;
+		document.joaStoreCart.action='joaStorePay.do';
+		
+		}
+	 
+
+	
+}
+
 </script>
 
 </head>
@@ -71,7 +107,8 @@ function priceSum(){
 			<img src="/movieJoa/img/joaStore_img/store_top_cart.jpg">
 		</div>
 		<div class="store_spaceMaker"></div>
-		<form name="storeCart" action="joaStorPay.do" method="post">
+		<form name="joaStoreCart" action="joaStorPay.do">
+		<input type="hidden" name="json">
 			<table class="store_cart_table">
 				<thead>
 					<th><input type='checkbox' name="select" onclick="selectAll(this);"></th>
@@ -91,28 +128,24 @@ function priceSum(){
 						</tr>
 				</c:if>
 				<c:forEach var="dto" items="${storeCartList }">
-					<input type="hidden" name="car_mem_id" value="${dto.car_mem_id }">
-					<input type="hidden" name="car_pro_idx" value="${dto.car_pro_idx }">
 					<tr>
-						<td><input type="checkbox" name="chx" value="${dto.pro_price*dto.car_count }" onclick="priceSum();"></td>
+						<td><input type="checkbox" name="chx" id="${dto.car_pro_idx }" value="${dto.pro_price*dto.car_count }" onclick="itemCheck()"></td>
 						<td><img src="/movieJoa/img/joaStore_img/${dto.pro_filename }" width="100" height="100"></td>
 						<td>${dto.pro_name}</td>
 						<td>${dto.pro_price }</td>
-						<td>					
-							<input type='button' onclick='count("minus")' value='-'/>
-							<span id="count">${dto.car_count }</span>
-							<input type='button' onclick='count("plus")' value='+'/>
-							<input type="hidden" name="car_count" id="car_count">
-							<input type="submit" value="번경" onclick="">
-						</td>
+						<td>${dto.car_count }</td>
 						<td>${dto.pro_price*dto.car_count }</td>
+						<input type="hidden" name="car_pro_name" value="${dto.pro_name }">
+						<input type="hidden" name="car_pro_price" value="${dto.pro_price }">
+						<input type="hidden" name="car_count" value="${dto.car_count }">
+						<input type="hidden" name="car_mem_id" value="${dto.car_mem_id }">
+						<input type="hidden" name="car_pro_idx" value="${dto.car_pro_idx }">
 						<td><input type="button" value="바로구매" onclick="cartSubmit(1)"></td>
 						<td><input type="button" value="삭제" onclick="cartSubmit(2)"></td>
 					</tr>
 				</c:forEach>
 				</tbody>
 			</table>
-		</form>
 		<div class="store_cart_select_del">
 			<input type="button" value="선택상품 삭제">
 			<span style="float:right">장바구니에 담긴 상품은 최대 30일까지 보관됩니다.</span>
@@ -139,9 +172,10 @@ function priceSum(){
 				</tbody>
 			</table>
 			<div class="store_cart_button_final">
-				<input type="submit" value="구매하기">
+				<input type="button" value="구매하기" onclick="cartSubmit(3)">
 			</div>
 		</div>
+		</form>
 	</div>
 <c:import url="../footer.jsp"></c:import>
 </body>
