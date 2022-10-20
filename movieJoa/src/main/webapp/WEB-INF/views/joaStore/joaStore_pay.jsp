@@ -49,6 +49,7 @@ function payment(data) {
 		</div>
 		<div class="store_spaceMaker"></div>
 		<h2>구매상품 정보</h2>
+
 		<table class="store_cart_table">
 			<thead>
 				<th colspan="2">상품명</th>
@@ -56,22 +57,17 @@ function payment(data) {
 				<th>수량</th>
 				<th>구매금액</th>
 			</thead>
+			<c:forEach var="dto" items="${jpcList }">
 			<tbody>
 				<tr>
-					<td><img src="/movieJoa/img/joaStore_img/combo1.jpg" width="100" height="100"></td>
-					<td>MJOA콤보</td>
-					<td>9,000원</td>
-					<td>1</td>
-					<td>9,000원</td>
-				</tr>
-				<tr>
-					<td><img src="/movieJoa/img/joaStore_img/combo1.jpg" width="100" height="100"></td>
-					<td>MJOA콤보</td>
-					<td>9,000원</td>
-					<td>1</td>
-					<td>9,000원</td>
+					<td><img src="/movieJoa/img/joaStore_img/${dto.pro_filenames }" width="100" height="100"></td>
+					<td>${dto.pro_name }</td>
+					<td>${dto.pro_price }</td>
+					<td>${dto.car_count }</td>
+					<td>${dto.pro_price_sum }</td>
 				</tr>
 			</tbody>
+			</c:forEach>
 		</table>
 		<div class="store_cart_total_payment">
 		<h2>결제금액</h2>

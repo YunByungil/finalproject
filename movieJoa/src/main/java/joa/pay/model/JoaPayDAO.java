@@ -1,5 +1,12 @@
 package joa.pay.model;
 
-public interface JoaPayDAO {
+import java.util.*;
+
+import joa.adminStore.model.AdminStoreDTO;
+import joa.pay.model.*;
+
+public interface JoaPayDAO {	
+
+	public JoaPayCartListDTO storePayCartList(Map map);
 
 }

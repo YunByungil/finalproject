@@ -1,6 +1,10 @@
 package joa.pay.model;
 
+import java.util.*;
+
 import org.mybatis.spring.SqlSessionTemplate;
+
+import joa.adminStore.model.AdminStoreDTO;
 
 public class JoaPayDAOImple implements JoaPayDAO {
 
@@ -9,5 +13,11 @@ public class JoaPayDAOImple implements JoaPayDAO {
 	public JoaPayDAOImple (SqlSessionTemplate sqlMap) {
 		super();
 		this.sqlMap = sqlMap;
+	}
+	
+	@Override
+	public JoaPayCartListDTO storePayCartList(Map map) {
+		JoaPayCartListDTO dto=sqlMap.selectOne("storePayCartList",map);
+		return dto;
 	}
 }

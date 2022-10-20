@@ -2,7 +2,7 @@ package joa.controller;
 
 import java.util.List;
 
-
+import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,7 +78,6 @@ public class JoaStoreController {
 	public ModelAndView joaStoreCartList(String car_mem_id) {
 
 		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(car_mem_id);
-		System.out.println("test: "+storeCartList);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("storeCartList",storeCartList);
 		mav.setViewName("joaStore/joaStore_cart");

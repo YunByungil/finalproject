@@ -67,33 +67,28 @@ function cartSubmit(index) {
 		document.joaStoreCart.action='joaStorePay.do';
 	 }else if (index == 3) {
 
-		var checkBoxes  = document.getElementsByName('chx');	
-		var count = 0;
-		for (var i=0; i<checkBoxes.length; i++) {
-			if(checkBoxes[i].checked==true){
-				count++;
-			}
-		}
-		var checkIdxs = new Array(count);
-		window.alert('c'+checkIdxs.length);
+		var checkBoxes  = document.getElementsByName('chx');
+		var count=0;		
+		var checkIdxs   = new Array();	
 		
-		for(var i=0;i<checkIdxs.length;i++){
+		for(var i=0;i<checkBoxes.length;i++){
 			
 			if(checkBoxes[i].checked==true){
-				checkIdxs[i]=checkBoxes[i].id;
-				window.alert(checkIdxs[i]);
+				checkIdxs[count]=checkBoxes[i].id;
+				count++;
+				}
 			}
-		}
+		
 		
 		window.alert(checkIdxs);
 		var idxsJson=JSON.stringify(checkIdxs);
 		window.alert(idxsJson);
-		document.joaStoreCart.json.value=idxsJson;
-		document.joaStoreCart.action='joaStorePay.do';
+		document.joaStoreCart.idxsJson.value=idxsJson;
+		document.joaStoreCart.action='joaStorePay.do';		
 		
 		}
 	 
-
+	 document.joaStoreCart.submit();
 	
 }
 
@@ -107,8 +102,8 @@ function cartSubmit(index) {
 			<img src="/movieJoa/img/joaStore_img/store_top_cart.jpg">
 		</div>
 		<div class="store_spaceMaker"></div>
-		<form name="joaStoreCart" action="joaStorPay.do">
-		<input type="hidden" name="json">
+		<form name="joaStoreCart">
+		<input type="hidden" name="idxsJson">
 			<table class="store_cart_table">
 				<thead>
 					<th><input type='checkbox' name="select" onclick="selectAll(this);"></th>
@@ -135,11 +130,14 @@ function cartSubmit(index) {
 						<td>${dto.pro_price }</td>
 						<td>${dto.car_count }</td>
 						<td>${dto.pro_price*dto.car_count }</td>
-						<input type="hidden" name="car_pro_name" value="${dto.pro_name }">
-						<input type="hidden" name="car_pro_price" value="${dto.pro_price }">
+						<input type="hidden" name="pro_filename" value="${dto.pro_filename}">
+						<input type="hidden" name="pro_name" value="${dto.pro_name }">
+						<input type="hidden" name="pro_price" value="${dto.pro_price }">
 						<input type="hidden" name="car_count" value="${dto.car_count }">
-						<input type="hidden" name="car_mem_id" value="${dto.car_mem_id }">
+						<input type="hidden" name="pro_priceSum" value="${dto.pro_price*dto.car_count }">
 						<input type="hidden" name="car_pro_idx" value="${dto.car_pro_idx }">
+						<input type="hidden" name="mem_name" value="테스트이름">
+						<input type="hidden" name="mem_tel" value="테스트번호">
 						<td><input type="button" value="바로구매" onclick="cartSubmit(1)"></td>
 						<td><input type="button" value="삭제" onclick="cartSubmit(2)"></td>
 					</tr>
@@ -163,11 +161,11 @@ function cartSubmit(index) {
 				</thead>
 				<tbody>
 					<tr>
-						<td><input type="text" name="pay_priceSum" id="priceSum" size="20" readonly></td>
+						<td><input type="text" name="pay_price_sum" id="priceSum" size="20" readonly></td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>
 						<td><input type="text" name="pay_discount" id="discount" size="20" readonly></td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>
-						<td><input type="text" name="pay_totalSum" id="totalSum" size="20" readonly></td>
+						<td><input type="text" name="pay_total_sum" id="totalSum" size="20" readonly></td>
 					</tr>
 				</tbody>
 			</table>
