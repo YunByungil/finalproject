@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="joa.pay.store">
+  <mapper namespace="joa.pay">
    	<select id="storePayCartList" parameterType="Map" resultType="joa.pay.model.JoaPayCartListDTO">
 		select   pro_filename, pro_name, pro_price, car_count, car_mem_id, mem_name, mem_tel
 		   from  joa_member, joa_store_cart, joa_product

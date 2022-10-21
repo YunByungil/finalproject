@@ -20,7 +20,7 @@ $(document).ready(function(){
 function payment(data) {
     IMP.init('imp80406606');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
-        pg: "kakaopay.TC0ONETIME", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
+        pg: "nictest00m", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
         merchant_uid: "${payPro_merchatUid}", //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "${payPro_pro_name}", //결제창에 노출될 상품명
@@ -60,11 +60,11 @@ function payment(data) {
 			<c:forEach var="dto" items="${jpcList }">
 			<tbody>
 				<tr>
-					<td><img src="/movieJoa/img/joaStore_img/${dto.pro_filenames }" width="100" height="100"></td>
+					<td><img src="/movieJoa/img/joaStore_img/${dto.pro_filename }" width="100" height="100"></td>
 					<td>${dto.pro_name }</td>
 					<td>${dto.pro_price }</td>
 					<td>${dto.car_count }</td>
-					<td>${dto.pro_price_sum }</td>
+					<td>${dto.pro_price * dto.car_count }</td>
 				</tr>
 			</tbody>
 			</c:forEach>
@@ -83,11 +83,11 @@ function payment(data) {
 				</thead>
 				<tbody>
 					<tr>
-						<td>18,000원</td>
+						<td>${pay_price_sum }원</td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>
-						<td>0원</td>
+						<td>${pay_discount }원</td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>
-						<td>18,000원</td>
+						<td>${pay_total_sum }원</td>
 					</tr>
 				</tbody>
 			</table>
@@ -96,9 +96,9 @@ function payment(data) {
 				<table class="store_pay_customer_info_table">
 					<tr>
 						<td>이름</td>
-						<td><input type="text" value=""></td>
+						<td><input type="text" value="${mem_name }"></td>
 						<td>휴대전화 번호</td>
-						<td><input type="text" value=""></td>
+						<td><input type="text" value="${mem_tel }"></td>
 					</tr>
 				</table>			
 			</div>

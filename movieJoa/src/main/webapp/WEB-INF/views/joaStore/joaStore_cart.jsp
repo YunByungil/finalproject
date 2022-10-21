@@ -77,8 +77,7 @@ function cartSubmit(index) {
 				checkIdxs[count]=checkBoxes[i].id;
 				count++;
 				}
-			}
-		
+			}		
 		
 		window.alert(checkIdxs);
 		var idxsJson=JSON.stringify(checkIdxs);
@@ -86,10 +85,9 @@ function cartSubmit(index) {
 		document.joaStoreCart.idxsJson.value=idxsJson;
 		document.joaStoreCart.action='joaStorePay.do';		
 		
-		}
+		}	 
 	 
-	 document.joaStoreCart.submit();
-	
+	 document.joaStoreCart.submit();	
 }
 
 </script>
@@ -136,12 +134,12 @@ function cartSubmit(index) {
 						<input type="hidden" name="car_count" value="${dto.car_count }">
 						<input type="hidden" name="pro_priceSum" value="${dto.pro_price*dto.car_count }">
 						<input type="hidden" name="car_pro_idx" value="${dto.car_pro_idx }">
-						<input type="hidden" name="mem_name" value="테스트이름">
-						<input type="hidden" name="mem_tel" value="테스트번호">
 						<td><input type="button" value="바로구매" onclick="cartSubmit(1)"></td>
 						<td><input type="button" value="삭제" onclick="cartSubmit(2)"></td>
 					</tr>
 				</c:forEach>
+				<input type="hidden" name="mem_name" value="테스트이름">
+				<input type="hidden" name="mem_tel" value="테스트번호">
 				</tbody>
 			</table>
 		<div class="store_cart_select_del">
@@ -163,7 +161,7 @@ function cartSubmit(index) {
 					<tr>
 						<td><input type="text" name="pay_price_sum" id="priceSum" size="20" readonly></td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>
-						<td><input type="text" name="pay_discount" id="discount" size="20" readonly></td>
+						<td><input type="text" name="pay_discount" id="discount" size="20" value="0" readonly></td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>
 						<td><input type="text" name="pay_total_sum" id="totalSum" size="20" readonly></td>
 					</tr>

@@ -33,7 +33,7 @@ public class JoaPayController {
 	  }
 	
 	@RequestMapping("/joaStorePay.do")
-	public ModelAndView joaStoreCartBuyNow(String idxsJson) {
+	public ModelAndView joaStoreCartBuyNow(String idxsJson,String pay_price_sum,String pay_discount,String pay_total_sum, String mem_name, String mem_tel) {
 		
 		JSONArray jsonArr = new JSONArray(idxsJson);
 		System.out.println(jsonArr.get(0));
@@ -50,8 +50,14 @@ public class JoaPayController {
 		}
 
 		ModelAndView mav=new ModelAndView();
+		mav.addObject("pay_total_sum",pay_total_sum);
+		mav.addObject("pay_discount",pay_discount);
+		mav.addObject("pay_price_sum",pay_price_sum);
+		mav.addObject("mem_name",mem_name);
+		mav.addObject("mem_tel",mem_tel);
 		mav.addObject("jpcList",jpcList);
 		mav.setViewName("joaStore/joaStore_pay");
+		
 		return mav;
 	}
 	
