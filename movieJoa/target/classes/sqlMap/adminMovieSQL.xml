@@ -5,9 +5,9 @@
   <mapper namespace="admin.movie">
   <insert id="addMovie" parameterType="Map">
 			insert into
-			movie_soni2
+			joa_movie
 			values(
-			movie_soni2_mov_idx.nextval,
+			joa_movie_mov_idx.nextval,
 			#{title},
 			#{director},
 			#{cast},
@@ -50,11 +50,11 @@
 <select id="listMovie" parameterType="Map" resultType="joa.adminMovie.model.AdminMovieDTO">
 			select * from
 			(select rownum as rnum,a.* from
-			(select * from movie_soni2 order by mov_idx desc)a)b
+			(select * from joa_movie order by mov_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 </select>
 <select id="adminMovieTotalCnt" resultType="int">
-			select count(*) from movie_soni2
+			select count(*) from joa_movie
 </select>
 <delete id="deleteMovie" parameterType="Integer">
 			delete from

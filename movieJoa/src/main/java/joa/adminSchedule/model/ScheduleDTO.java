@@ -2,110 +2,125 @@ package joa.adminSchedule.model;
 
 public class ScheduleDTO {
 
-	private int idx;
-	private String mov_title;
-	private String city;
-	private String branch;
-	private String theater;
-	private String seat;
-	private String day;
-	private String start_time;
-	private String end_time;
+	private int sch_idx;
+	private String sch_mov_title;
+	private String sch_city;
+	private String sch_branch;
+	private String sch_theater;
+	private String sch_seat;
+	private String sch_day;
+	private String sch_start_hour;
+	private String sch_start_min;
+	private String sch_end_hour;
+	private String sch_end_min;
 	
 	public ScheduleDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ScheduleDTO(int idx, String mov_title, String city, String branch, String theater, String seat, String day,
-			String start_time, String end_time) {
+	public ScheduleDTO(int sch_idx, String sch_mov_title, String sch_city, String sch_branch, String sch_theater,
+			String sch_seat, String sch_day, String sch_start_hour, String sch_start_min, String sch_end_hour,
+			String sch_end_min) {
 		super();
-		this.idx = idx;
-		this.mov_title = mov_title;
-		this.city = city;
-		this.branch = branch;
-		this.theater = theater;
-		this.seat = seat;
-		this.day = day;
-		this.start_time = start_time;
-		this.end_time = end_time;
+		this.sch_idx = sch_idx;
+		this.sch_mov_title = sch_mov_title;
+		this.sch_city = sch_city;
+		this.sch_branch = sch_branch;
+		this.sch_theater = sch_theater;
+		this.sch_seat = sch_seat;
+		this.sch_day = sch_day;
+		this.sch_start_hour = sch_start_hour;
+		this.sch_start_min = sch_start_min;
+		this.sch_end_hour = sch_end_hour;
+		this.sch_end_min = sch_end_min;
 	}
 
-	
-
-	public String getMov_title() {
-		return mov_title;
+	public int getSch_idx() {
+		return sch_idx;
 	}
 
-
-
-	public void setMov_title(String mov_title) {
-		this.mov_title = mov_title;
+	public void setSch_idx(int sch_idx) {
+		this.sch_idx = sch_idx;
 	}
 
-
-
-	public int getIdx() {
-		return idx;
+	public String getSch_mov_title() {
+		return sch_mov_title;
 	}
 
-	public void setIdx(int idx) {
-		this.idx = idx;
+	public void setSch_mov_title(String sch_mov_title) {
+		this.sch_mov_title = sch_mov_title;
 	}
 
-	public String getCity() {
-		return city;
+	public String getSch_city() {
+		return sch_city;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setSch_city(String sch_city) {
+		this.sch_city = sch_city;
 	}
 
-	public String getBranch() {
-		return branch;
+	public String getSch_branch() {
+		return sch_branch;
 	}
 
-	public void setBranch(String branch) {
-		this.branch = branch;
+	public void setSch_branch(String sch_branch) {
+		this.sch_branch = sch_branch;
 	}
 
-	public String getTheater() {
-		return theater;
+	public String getSch_theater() {
+		return sch_theater;
 	}
 
-	public void setTheater(String theater) {
-		this.theater = theater;
+	public void setSch_theater(String sch_theater) {
+		this.sch_theater = sch_theater;
 	}
 
-	public String getSeat() {
-		return seat;
+	public String getSch_seat() {
+		return sch_seat;
 	}
 
-	public void setSeat(String seat) {
-		this.seat = seat;
+	public void setSch_seat(String sch_seat) {
+		this.sch_seat = sch_seat;
 	}
 
-	public String getDay() {
-		return day;
+	public String getSch_day() {
+		return sch_day;
 	}
 
-	public void setDay(String day) {
-		this.day = day;
+	public void setSch_day(String sch_day) {
+		this.sch_day = sch_day;
 	}
 
-	public String getStart_time() {
-		return start_time;
+	public String getSch_start_hour() {
+		return sch_start_hour;
 	}
 
-	public void setStart_time(String start_time) {
-		this.start_time = start_time;
+	public void setSch_start_hour(String sch_start_hour) {
+		this.sch_start_hour = sch_start_hour;
 	}
 
-	public String getEnd_time() {
-		return end_time;
+	public String getSch_start_min() {
+		return sch_start_min;
 	}
 
-	public void setEnd_time(String end_time) {
-		this.end_time = end_time;
+	public void setSch_start_min(String sch_start_min) {
+		this.sch_start_min = sch_start_min;
+	}
+
+	public String getSch_end_hour() {
+		return sch_end_hour;
+	}
+
+	public void setSch_end_hour(String sch_end_hour) {
+		this.sch_end_hour = sch_end_hour;
+	}
+
+	public String getSch_end_min() {
+		return sch_end_min;
+	}
+
+	public void setSch_end_min(String sch_end_min) {
+		this.sch_end_min = sch_end_min;
 	}
 	
 }

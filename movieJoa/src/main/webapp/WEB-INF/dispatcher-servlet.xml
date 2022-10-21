@@ -87,10 +87,7 @@
    		<ref bean="sqlSessionTemplate"/>
    		</constructor-arg>
    </bean>
-       <constructor-arg>
-       		<ref bean="sqlSessionTemplate"/>
-       </constructor-arg>
-   </bean> 
+   
    <bean id="scheduleDao" class="joa.adminSchedule.model.ScheduleDAOImple">
    		<constructor-arg>
    			<ref bean="sqlSessionTemplate"/>
@@ -200,6 +197,6 @@
       <property name="suffix" value=".jsp"></property>
       <property name="order" value="1"></property>
    </bean>    
-  
+  <bean id="joaJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
    
 </beans>

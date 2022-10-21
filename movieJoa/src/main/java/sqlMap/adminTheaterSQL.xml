@@ -7,8 +7,18 @@
   		insert into joa_ttest values(joa_ttest_idx.nextval,'seoul','gang',#{theater},#{seat},#{width},#{height})
   	</insert>
   	
-  	<select id="checkSchedule" parameterType="joa.adminSchedule.model.ScheduleDTO" resultType="String">
-  		select mov_title from sche_test where
-  		
+  	<select id="checkSchedule" parameterType="map" resultType="string">
+  		select branch from sche_test where
+  		(sch_start_hour<![CDATA[>=]]>#{hour} and
+  		sch_start_hour<![CDATA[<=]]>#{hour2}) or
+  		(sch_end_hour<![CDATA[>=]]>#{hour} and
+  		sch_end_hour<![CDATA[<=]]>#{hour2})
+  	</select>
+  	<select id="dayChoice" parameterType="string" resultType="string">
+  		select mov_title from joa_movie where to_char(mov_start_date,'YYYY-MM-DD')<![CDATA[<=]]>#{day}
+  		and to_char(mov_end_date,'YYYY-MM-DD')<![CDATA[>=]]>#{day}
+  	</select>
+  	<select id="theaterChoice" parameterType="map" resultType="string">
+  		select theater from joa_ttest where city=#{city} and branch=#{branch} order by theater asc
   	</select>
   </mapper>
