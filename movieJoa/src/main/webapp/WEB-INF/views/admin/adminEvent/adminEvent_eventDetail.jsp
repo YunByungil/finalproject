@@ -45,10 +45,6 @@ function deleteEvent(didx){
 	<th class="th_basic">이벤트 기간</th>
 	<td class="td_basic"> ${dto.eve_start_date } - ${dto.eve_end_date }</td>
 </tr>
-<tr>
-	<th class="th_basic">활성화 상태</th>
-	<td class="td_basic"> ${dto.eve_status } </td>
-</tr>
 </table>
 </div>
 <c:url var="uLink" value="updateEventForm.do">

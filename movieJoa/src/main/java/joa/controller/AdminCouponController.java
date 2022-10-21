@@ -34,18 +34,19 @@ public class AdminCouponController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/listCoupon.do")
+	@RequestMapping(value={"/listCoupon.do","/searchCoupon.do"})
 	public ModelAndView listCoupon(
-			@RequestParam(value="cp", defaultValue="1")int cp) {
-		
-		int totalCnt=adminCouponService.adminCouponTotalCnt();
-		int listSize=5;
+			@RequestParam(value="cp", defaultValue="1")int cp,
+			@RequestParam(value="s_k",  defaultValue="--")String s_k,
+			@RequestParam(value="s_v", defaultValue="--")String s_v) {
+		int totalCnt=adminCouponService.adminCouponTotalCnt(s_k, s_v);
+		int listSize=10;
 		int pageSize=5;
 		String pageStr=joa.page.PageModule.makePage("listCoupon.do", totalCnt, listSize, pageSize, cp);
-		
-		List<AdminCouponDTO> couponList=adminCouponService.listCoupon(cp, listSize);
-		
+		List<AdminCouponDTO> couponList=adminCouponService.listCoupon(cp, listSize, s_k, s_v);
 		ModelAndView mav= new ModelAndView();
+		mav.addObject("s_k",s_k);
+		mav.addObject("s_v",s_v);
 		mav.addObject("pageStr",pageStr);
 		mav.addObject("couponList",couponList);
 		mav.setViewName("admin/adminCoupon/adminCoupon_listCoupon");

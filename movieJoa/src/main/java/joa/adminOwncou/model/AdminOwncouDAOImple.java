@@ -16,8 +16,8 @@ public class AdminOwncouDAOImple implements AdminOwncouDAO{
 	}
 
 	@Override
-	public int adminOwncouTotalCnt() {
-		int count=sqlMap.selectOne("adminOwncouTotalCnt");
+	public int adminOwncouTotalCnt(Map map) {
+		int count=sqlMap.selectOne("adminOwncouTotalCnt", map);
 		return count;
 	}
 	@Override

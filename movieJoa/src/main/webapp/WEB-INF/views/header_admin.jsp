@@ -32,10 +32,10 @@ function openLogin(){
 	<div class="category_admin">
 		<div class="category_menu">
 			<ul class="myMenu">
-				<li class="menu1"><a href="#">영화 관리</a>
+				<li class="menu1"><a href="/movieJoa/listMovie.do">영화 관리</a>
 					<ul class="menu1_s submenu">
-					    <li>영화 목록</li>
-					    <li>영화 등록</li> 				
+					    <li><a href="/movieJoa/listMovie.do">영화 목록</a></li>
+					    <li><a href="/movieJoa/addMovieForm.do">영화 등록</a></li> 				
 					</ul>
 				</li>
 				<li class="menu2"><a href="#">극장관리</a>
@@ -54,11 +54,11 @@ function openLogin(){
 					    <li>평점 목록</li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">이벤트관리</a>
+				<li class="menu2"><a href="/movieJoa/listEvent.do">이벤트관리</a>
 					<ul class="menu2_s submenu">
-					    <li>이벤트 목록</li>
-					    <li>이벤트 등록</li>
-					    <li>이벤트 참여 목록</li>
+					    <li><a href="/movieJoa/listEvent.do">이벤트 목록</a></li>
+					    <li><a href="/movieJoa/addEvent.do">이벤트 등록</a></li>
+					    <li><a href="/movieJoa/listApplycant.do">이벤트 참여 현황</a></li>
 					</ul>
 				</li>
 				<li class="menu2"><a href="#">고객센터</a>
@@ -70,11 +70,11 @@ function openLogin(){
 					    <li>이메일 문의</li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">쿠폰관리</a>
+				<li class="menu2"><a href="/movieJoa/listCoupon.do">쿠폰관리</a>
 					<ul class="menu2_s submenu">
-					    <li>쿠폰 등록</li>
-					    <li>쿠폰 목록</li>
-					    <li>쿠폰 사용현황</li>
+					    <li><a href="/movieJoa/addCouponForm.do">쿠폰 등록</a></li>
+					    <li><a href="/movieJoa/listCoupon.do">쿠폰 목록</a></li>
+					    <li><a href="/movieJoa/listOwncou.do">쿠폰 보유 현황</a></li>
 					</ul>
 				</li>
 				<li class="menu2"><a href="#">스토어관리</a>

@@ -24,12 +24,15 @@ function deleteMovie(didx){
 <div class="table_wrap_list">
 <fieldset class="search_wrap">
 	<form>
-		<select name="sc_t">
-			<option value="제목" selected>제목</option>
-			<option value="코드">코드</option>
-			<option value="감독명">감독명</option>
+		<select name="s_k">
+			<option value="all" <c:if test="${s_k eq 'all'}">selected</c:if>>전체</option>
+			<option value="mov_title" <c:if test="${s_k eq 'mov_title'}">selected</c:if>>제목</option>
+			<option value="mov_idx" <c:if test="${s_k eq 'mov_idx'}">selected</c:if>>코드</option>
+			<option value="mov_director" <c:if test="${s_k eq 'mov_director'}">selected</c:if>>감독명</option>
+			<option value="mov_info" <c:if test="${s_k eq 'mov_info'}">selected</c:if>>주요 내용</option>
+			<option value="mov_genre" <c:if test="${s_k eq 'mov_genre'}">selected</c:if>>장르</option>
 		</select>
-		<input type="text" name="sc_k" class="input_text_search" placeholder="검색어를 입력해주세요.">
+		<input type="text" name="s_v" class="input_text_search" placeholder="검색어를 입력해주세요." <c:if test="${s_v ne '--'}">value="${s_v }"</c:if>>
 		<button type="submit" class="button_main">검색</button>
 	</form>
 </fieldset>

@@ -68,11 +68,11 @@ function openLogin(){
 					    <li><a href="${drinkUrl }">음료</a></li>
 					</ul>
 				</li>
-				<li class="menu4"><a href="#">이벤트</a>
+				<li class="menu4"><a href="/movieJoa/joaEventMain.do">이벤트</a>
 					<ul class="menu4_s submenu">
-					    <li>진행중인 이벤트</li>
-					    <li>당첨자 발표 조회</li>
-					    <li>종료된 이벤트</li>
+					    <li href="/movieJoa/joaEventMain.do">진행중인 이벤트</li>
+					    <li href="">당첨자 발표 조회</li>
+					    <li href="/movieJoa/joaEventEnded.do">종료된 이벤트</li>
 				    </ul>
 				</li>
 				<li class="menu5"><a href="myPage.do">마이페이지</a>

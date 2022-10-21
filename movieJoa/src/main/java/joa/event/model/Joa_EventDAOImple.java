@@ -22,10 +22,22 @@ public class Joa_EventDAOImple implements Joa_EventDAO {
 		AdminEventDTO dto=sqlMap.selectOne("infoUserEvent",eve_idx);
 		return dto;
 	}
-
+	
 	@Override
 	public List<AdminEventDTO> listEvent() {
 		List<AdminEventDTO> list=sqlMap.selectList("listUserEvent");
+		return list;
+	}
+	
+	@Override
+	public int endedEventTotalCnt() {
+		int count=sqlMap.selectOne("endedEventTotalCnt");
+		return count;
+	}
+	
+	@Override
+	public List<AdminEventDTO> endedEvent() {
+		List<AdminEventDTO> list=sqlMap.selectList("listUserEndedEvent");
 		return list;
 	}
 	
@@ -48,7 +60,6 @@ public class Joa_EventDAOImple implements Joa_EventDAO {
 	}
 	
 	
-	
 	@Override
 	public int getPoint(Map map) {
 		int result=sqlMap.update("getPoint",map);
@@ -66,6 +77,7 @@ public class Joa_EventDAOImple implements Joa_EventDAO {
 		 int userPoint=sqlMap.selectOne("userPoint",member_id);
 		 return userPoint;
 	}
+
 	
 	
 

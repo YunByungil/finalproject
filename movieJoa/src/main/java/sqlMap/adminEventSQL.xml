@@ -5,65 +5,111 @@
   <mapper namespace="admin.event">
    <insert id="addEvent" parameterType="Map">
 			insert into
-			JOA_ADMINEVENT1
+			joa_event
 			values(
-			JOA_ADMINEVENT1_eve_idx.nextval,
+			joa_event_eve_idx.nextval,
 			#{category},
 			#{subject},
 			#{main_img},
 			#{thumb_img},
 			TO_DATE(#{start_date}, 'YYYY-MM-DD'),
-			TO_DATE(#{end_date}, 'YYYY-MM-DD'),
-			#{status}
+			TO_DATE(#{end_date}, 'YYYY-MM-DD')
 			) 	
 </insert>
 <select id="detailEvent" parameterType="Integer" resultType="joa.adminEvent.model.AdminEventDTO">
  			select 
  			* 
  			from 
- 			JOA_ADMINEVENT1
+ 			joa_event
  			where 
  			eve_idx=#{here}
 </select>
 <update id="updateEvent" parameterType="Map">
-			update JOA_ADMINEVENT1
+			update joa_event
 			set eve_category=#{category}, 
 			eve_subject=#{subject}, 
 			eve_main_img=#{main_img}, 
 			eve_thumb_img=#{thumb_img}, 
 			eve_start_date=TO_DATE(#{start_date}, 'YYYY-MM-DD'), 
-			eve_end_date=TO_DATE(#{end_date}, 'YYYY-MM-DD'), 
-			eve_status=#{status}
+			eve_end_date=TO_DATE(#{end_date}, 'YYYY-MM-DD')
 			where eve_idx=#{idx}
 </update>
 <select id="listEvent" parameterType="Map" resultType="joa.adminEvent.model.AdminEventDTO">
 			select * from
 			(select rownum as rnum,a.* from
-			(select * from JOA_ADMINEVENT1 order by eve_idx desc)a)b
+			(select * from joa_event 
+			<include refid="searchEventCondition"/>
+			order by eve_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 </select>
 <select id="adminEventTotalCnt" resultType="int">
-			select count(*) from JOA_ADMINEVENT1
+			select count(*) from joa_event
+			<include refid="searchEventCondition"/>
 </select>
 <delete id="deleteEvent" parameterType="Integer">
 			delete from
-			JOA_ADMINEVENT1
+			joa_event
 			where eve_idx=
 			#{here}
 </delete>
+
+
 <select id="adminApplycantTotalCnt" resultType="int">
-			select count(*) from joa_admin_applycant3
+			select count(*) from joa_applycant
+			<include refid="searchApplycantCondition"/>
 </select>
 <select id="listApplycant" parameterType="Map" resultType="joa.adminEvent.model.AdminApplycantDTO">
 			select * from
 			(select rownum as rnum,a.* from
-			(select * from joa_admin_applycant3 order by app_idx desc)a)b
+			(select * from joa_applycant 
+			<include refid="searchApplycantCondition"/>
+			order by app_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 </select>
 <delete id="deleteApplycant" parameterType="Integer">
 			delete from
-			joa_admin_applycant3
+			joa_applycant
 			where app_idx=
 			#{here}
 </delete>
+<sql id="searchEventCondition">
+		  	<if test="s_k != '--'">
+				<if test='s_k.equals("eve_idx")'>
+					 where eve_idx like '%' || #{s_v} || '%' 
+				 </if>
+				 <if test='s_k.equals("eve_subject")'>
+					 where eve_subject like '%' || #{s_v} || '%' 
+				 </if>	
+				 <if test='s_k.equals("eve_category")'>
+					 where eve_category like '%' || #{s_v} || '%'
+				 </if>	
+				 <if test='s_k.equals("all")'>
+					 where eve_idx like '%' || #{s_v} || '%' 
+					 or eve_subject like '%' || #{s_v} || '%' 
+					 or eve_category like '%' || #{s_v} || '%'
+				 </if>	
+		 </if>
+</sql>
+<sql id="searchApplycantCondition">
+		  	<if test="s_k != '--'">
+				<if test='s_k.equals("app_idx")'>
+					 where app_idx like '%' || #{s_v} || '%'
+				 </if>
+				 <if test='s_k.equals("app_event_code")'>
+					 where app_event_code like '%' || #{s_v} || '%'
+				 </if>	
+				 <if test='s_k.equals("app_member_id")'>
+					 where app_member_id like '%' || #{s_v} || '%'
+				 </if>
+				 <if test='s_k.equals("app_event_subject")'>
+				 	where app_event_subject like '%' || #{s_v} || '%'
+				 </if>		
+				 <if test='s_k.equals("all")'>
+					 where app_idx like '%' || #{s_v} || '%' or
+					 app_event_code like '%' || #{s_v} || '%' or
+					 app_member_id like '%' || #{s_v} || '%' or
+					 app_event_subject like '%' || #{s_v} || '%'
+				 </if>	
+		 </if>
+</sql>
   </mapper>

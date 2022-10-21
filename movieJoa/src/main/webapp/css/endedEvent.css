@@ -1,0 +1,133 @@
+@charset "UTF-8";
+.sect-evt-entlist li strong {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+strong {
+    font-weight: 500;
+}
+a, div{
+	padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+.contents {
+    clear: both;
+    padding-bottom: 50px;
+    position: relative;
+    width: 980px;
+    margin: 0 auto;
+}
+.tit-heading-wrap > .submenu{
+    top: 48px;
+    position: absolute;
+    right: 0px;
+}
+h4{
+	margin: 30px 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+.tit-evt + h4 {
+    margin: 30px 0;
+    font-size: 16px;
+}
+div[class^="sect-"]{
+	clear:both;
+	line-height:1.2;
+	zoom:1;
+	color:#666;
+	font-weight:400;
+}
+div[class^="sect-"]:after {
+	content:' ';
+	clear:both;
+	display:block;
+}
+.sect-evt-entlist ul {
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: #b8b6aa;
+}
+ul:after{
+	content: ' ';
+	clear:both;
+	display:block;
+}
+.sect-evt-entlist li:first-child {
+	border-top: 0 none;
+}
+.sect-evt-entlist li {
+    height: 91px;
+    border-top: 1px solid #d6d4ca;
+}
+.sect-evt-entlist .box-contents {
+    position: relative;
+    width: 87%;
+    margin-top: 26px;
+    line-height: 1.6;
+    margin-left: 23px;
+    margin-right: 0px;
+}
+.sect-evt-entlist li div {
+    float: left;
+}
+.sect-evt-entlist, .box-image {
+	margin-top: 4px;
+}
+
+.box-image a{
+	display:block;
+}
+.sect-evt-entlist li div{
+	float:left;
+}
+.sect-evt-entlist .box-contents a{
+	display:inline-block;
+	margin-right:80px;
+	padding:0;
+}
+.sect-evt-entlist .box-contents .date{
+	position: absolute;
+	top:14px;
+	right:12px;
+}
+.sect-evt-entlist li em{
+	display:inline-block;
+	font-weight:500;
+}
+em{
+	font-style:normal;
+}
+.sect-evt-entlist .box-image .thumb-image {
+    width: 100px;
+    height: 83px;
+}
+.thumb-image {
+    display: block;
+    position: relative;
+    font-family: 'Noto Sans KR', 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+.sect-evt-entlist .box-image img {
+    height: 100%;
+}
+.box-image img {
+    width: 100%;
+}
+input, select, img {
+    vertical-align: middle;
+}
+.paging{
+	text-align: center;
+    padding: 10px;
+    margin: 10px;
+}

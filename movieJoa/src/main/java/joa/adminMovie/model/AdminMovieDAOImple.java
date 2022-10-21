@@ -41,8 +41,8 @@ public class AdminMovieDAOImple implements AdminMovieDAO {
 	}
 
 	@Override
-	public int adminMovieTotalCnt() {
-		int count=sqlMap.selectOne("adminMovieTotalCnt");
+	public int adminMovieTotalCnt(Map map) {
+		int count=sqlMap.selectOne("adminMovieTotalCnt",map);
 		return count;
 	}
 

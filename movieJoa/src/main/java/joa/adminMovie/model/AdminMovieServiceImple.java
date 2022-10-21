@@ -54,8 +54,6 @@ public class AdminMovieServiceImple implements AdminMovieService {
 		map.put("poster", dto.getMov_poster());
 		
 		int result=adminMovieDao.updateMovie(map);
-		
-		System.out.println("service단 result:"+result);
 		return result;
 	}
 
@@ -66,19 +64,24 @@ public class AdminMovieServiceImple implements AdminMovieService {
 	}
 
 	@Override
-	public List listMovie(int cp, int ls) {
+	public List listMovie(int cp, int ls, String s_k, String s_v) {
 		int start=(cp-1)*ls+1;
 		int end=cp*ls;
 		Map map=new HashMap();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("s_k", s_k);
+		map.put("s_v", s_v);
 		List list=adminMovieDao.listMovie(map);
 		return list;
 	}
 
 	@Override
-	public int adminMovieTotalCnt() {
-		int result=adminMovieDao.adminMovieTotalCnt();
+	public int adminMovieTotalCnt(String s_k, String s_v) {
+		Map map=new HashMap();
+		map.put("s_k", s_k);
+		map.put("s_v", s_v);
+		int result=adminMovieDao.adminMovieTotalCnt(map);
 		return result;
 	}
 
@@ -90,11 +93,11 @@ public class AdminMovieServiceImple implements AdminMovieService {
 	}
 
 	@Override
-	public List searchMovie(String sc_t, String sc_k) {
+	public List searchMovie(String s_k, String s_v) {
 		// TODO Auto-generated method stub
 		Map map=new HashMap();
-		map.put("sc_t", sc_t);
-		map.put("sc_k", sc_k);
+		map.put("s_k", s_k);
+		map.put("s_v", s_v);
 		List list=adminMovieDao.searchMovie(map);
 		return list;
 	}

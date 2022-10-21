@@ -16,23 +16,22 @@ public class AdminOwncouController {
 	
 	@Autowired
 	private AdminOwncouService adminOwncouService;
-	
-	@RequestMapping(value="/listOwncou.do")
+	@RequestMapping(value={"/listOwncou.do","/searchOwncou.do"})
 	public ModelAndView listOwnCou(
-			@RequestParam(value="cp", defaultValue="1")int cp) {
-		
+		@RequestParam(value="cp", defaultValue="1")int cp,
+		@RequestParam(value="s_k",  defaultValue="--")String s_k,
+		@RequestParam(value="s_v", defaultValue="--")String s_v) {
 		int listSize=10;
 		int pageSize=5;
-		int totalCnt=adminOwncouService.adminOwncouTotalCnt();
-		
+		int totalCnt=adminOwncouService.adminOwncouTotalCnt(s_k, s_v);
 		String pageStr=joa.page.PageModule.makePage("listOwncou.do", totalCnt, listSize, pageSize, cp);
-		
-		List<AdminOwncouDTO> owncouList=adminOwncouService.listOwncou(cp, listSize); 
+		List<AdminOwncouDTO> owncouList=adminOwncouService.listOwncou(cp, listSize, s_k, s_v); 
 		ModelAndView mav= new ModelAndView();
+		mav.addObject("s_k",s_k);
+		mav.addObject("s_v",s_v);
 		mav.addObject("pageStr",pageStr);
 		mav.addObject("owncouList",owncouList);
 		mav.setViewName("admin/adminCoupon/adminCoupon_listOwncou");
-		
 		return mav;
 	}
 	

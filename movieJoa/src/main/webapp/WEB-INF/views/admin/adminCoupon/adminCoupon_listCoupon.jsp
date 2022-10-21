@@ -22,12 +22,13 @@ function deleteCoupon(didx){
 <div class="div_title"><h2 class="title">| 쿠폰 관리 / 쿠폰 목록</h2></div>
 <div class="table_wrap_list">
 <fieldset class="search_wrap">
-	<form>
-		<select name="sc_t">
-			<option value="식별번호" selected>식별번호</option>
-			<option value="쿠폰명">쿠폰명</option>
+	<form action="searchCoupon.do">
+		<select name="s_k">
+			<option value="all" <c:if test="${s_k eq 'all'}">selected</c:if>>전체</option>
+			<option value="cou_idx" <c:if test="${s_k eq 'cou_idx'}">selected</c:if>>식별번호</option>
+			<option value="cou_name" <c:if test="${s_k eq 'cou_name'}">selected</c:if>>쿠폰명</option>
 		</select>
-		<input type="text" name="sc_k" class="input_text_search" placeholder="검색어를 입력해주세요.">
+		<input type="text" name="s_v" class="input_text_search" placeholder="검색어를 입력해주세요." <c:if test="${s_v ne '--'}">value="${s_v }"</c:if>>
 		<button type="submit" class="button_main">검색</button>
 	</form>
 </fieldset>

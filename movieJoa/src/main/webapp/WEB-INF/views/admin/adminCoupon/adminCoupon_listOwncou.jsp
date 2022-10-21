@@ -22,14 +22,14 @@ function deleteOwncou(didx){
 <div class="div_title"><h2 class="title">| 쿠폰 관리 / 쿠폰 할당 목록</h2></div>
 <div class="table_wrap_list">
 <fieldset class="search_wrap">
-	<form>
-		<select name="sc_t">
-			<option value="식별번호" selected>식별번호</option>
-			<option value="쿠폰명">쿠폰명</option>
-			<option value="발급일" selected>발급일</option>
-			<option value="사용여부">사용여부</option>
+	<form action="/searchOwncou.do">
+		<select name="s_k">
+			<option value="all" <c:if test="${s_k eq 'all'}">selected</c:if>>전체</option>
+			<option value="own_idx" <c:if test="${s_k eq 'own_idx'}">selected</c:if>>식별번호</option>
+			<option value="own_name" <c:if test="${s_k eq 'own_name'}">selected</c:if>>쿠폰명</option>
+			<option value="own_member_id" <c:if test="${s_k eq 'own_member_id'}">selected</c:if>>회원명</option>
 		</select>
-		<input type="text" name="sc_k" class="input_text_search" placeholder="검색어를 입력해주세요.">
+		<input type="text" name="s_v" class="input_text_search" placeholder="검색어를 입력해주세요." <c:if test="${s_v ne '--'}">value="${s_v }"</c:if>>
 		<button type="submit" class="button_main">검색</button>
 	</form>
 </fieldset>
