@@ -68,7 +68,16 @@
        		<ref bean="sqlSessionTemplate"/>
        </constructor-arg>
    </bean> 
-   
+   <bean id="joaMemberDao" class="joa.member.model.JoaMemberDAOImple">
+   		<constructor-arg>
+   			<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   	</bean>
+   	 <bean id="joaAdminMemberDao" class="joa.adminmember.model.JoaAdminMemberDAOImple">
+   		<constructor-arg>
+   			<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   	</bean>
    <!-- services -->
    <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
    		<constructor-arg>

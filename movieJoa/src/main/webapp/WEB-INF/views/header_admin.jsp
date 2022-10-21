@@ -24,6 +24,8 @@ function openLogin(){
 			<a href="#">상영 스케줄 관리</a>
 			<a href="joaStore.do">내 지점 매출 확인</a>
 			<a href="#">질답</a>
+			<a href="adminMemberMain.do">회원관리</a>
+			<a href="adminRevenueMain.do">매출관리</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

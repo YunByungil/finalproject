@@ -23,16 +23,20 @@ public class JoaMemberJoinController {
 	@RequestMapping("/memberJoinFormSubmit.do")
 	public ModelAndView memberJoinSubmit(@ModelAttribute("dto") JoaMemberDTO dto) {
 		int result=joaMemberDao.MemberJoin(dto);
-		String msg=result>0?"회원가입을 축하합니다.":"회원 가입 실패";
+		String msg=result>0?dto.getMem_id()+"님 회원가입을 축하합니다.":"회원 가입 실패";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
 		mav.setViewName("joaMemberJoin/joaMemberJoin_msg");
 		return mav;
 	}
 	@RequestMapping("/memberLogout.do")
-	public String memberLogout(HttpSession session) {
+	public ModelAndView memberLogout(HttpSession session) {
 		session.invalidate();
-		return "index";
+		ModelAndView mav=new ModelAndView();
+		String msg="성공적으로 로그아웃되었습니다.";
+		mav.addObject("msg",msg);
+		mav.setViewName("joaMemberJoin/joaMemberJoin_msg");
+		return mav;
 	}
 	
 }
