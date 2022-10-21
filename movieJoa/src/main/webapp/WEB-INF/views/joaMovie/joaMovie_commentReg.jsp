@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script src="js/httpRequest.js"></script>
 <script>
 function openPop(){
 	document.getElementById('popup_layer').style.display = 'block';
 }
 function closePop(){
 	document.getElementById('popup_layer').style.display = 'none';
-	location.reload();
+	setTimeout(function(){location.reload();},100);
 }
 const drawStar = (target) => {
     document.querySelector(`.star span`).style.width = target.value * 10+'%';
@@ -15,7 +16,7 @@ const drawStar = (target) => {
     document.getElementById('score').value=target.value;
 }
 const drawStar2 = (target) => {
-    document.querySelector(`.star span`).style.width = target.value * 10+'%';
+    document.querySelector(`.star2 span`).style.width = target.value * 10+'%';
     document.getElementById('val2').innerText=target.value;
     document.getElementById('score2').value=target.value;
 }
@@ -24,10 +25,8 @@ function show2(num){
 	const mov_idx = urlParams.get('mov_idx');
 	if(num==0){
 		location.href='detailView.do?mov_idx='+mov_idx+'&show=1&ot=0';
-		window.alert('0');
 	}else{
 		location.href='detailView.do?mov_idx='+mov_idx+'&show=1&ot=1';
-		window.alert('1');
 	}
 }
 function openUpdate(){
@@ -42,7 +41,9 @@ function openDelete(rev_id, rev_movie_title){
 }
 function closeUpdate(){
 	document.getElementById('update').style.display = 'none';
+	setTimeout(function(){location.reload();},100);
 }
+
 </script>
 <style>
 /*popup*/
@@ -106,6 +107,10 @@ function closeUpdate(){
     font-size: 16px;
     resize: none;
 }
+#sortTab li{
+	float: left;
+	font-weight: bold;
+}
 </style>
 <div class="sect-grade">
 	<c:forEach var="list" items="${list }">
@@ -113,17 +118,21 @@ function closeUpdate(){
 		    <div class="egg_point">
 		        <div class="rating">
 		            <div class="box box_golden">
-		                <span class="sprite_preegg big great"></span>
-		                <span class="desc">Golden Egg</span>
-		                <span class="percent">92%</span>
-		                <span class="tooltip">실관람평지수</span>
+		                <span class="desc">관람평</span>
+		                <span class="percent">
+		                <c:if test="${list.mov_score!=0.0 }">
+		                ${list.mov_score }
+		                </c:if>
+		                <c:if test="${list.mov_score==0.0 }">
+		                ?
+		                </c:if>
+		                </span>
 		            </div>
 				</div>
 			</div>
 		</div>
 		<div class="real-rating">
-		    <p class="title">관람일 포함 7일 이내 관람평을 남기시면 <strong>CJ ONE 20P</strong>가 적립됩니다. </p>
-		    <p class="desc"><span><em>37,950</em> 명의 실관람객이 평가해주셨습니다.</span></p>
+		    <p class="desc"><span><em>${totalCnt }</em> 명의 실관람객이 평가해주셨습니다.</span></p>
 		    <div class="wrap_btn">
 		        <a class="link-gradewrite" href="javascript:openPop();"><span>평점작성</span></a>
 		        <div class="popup_layer" id="popup_layer" style="display: none;">
@@ -136,9 +145,23 @@ function closeUpdate(){
 		</div>
 	</c:forEach>	
 </div>
+<script>
+function like(rev_idx, rev_id, rev_movie_title){
+	var param='rev_idx='+rev_idx+'&rev_id='+rev_id+'&rev_movie_title='+rev_movie_title;
+	sendRequest('like.do',param,likeResult,'GET');
+}
+function likeResult(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data=XHR.responseText;
+			window.alert(data);
+		}
+	}
+}
+</script>
 <ul class="sort" id="sortTab">
-    <li class="sortTab on" id="test"><a href="javascript:show2(0);" title="현재선택">최신순<span class="arrow-down"></span></a></li>
-    <li class="sortTab"><a href="javascript:show2(1);">추천순<span class="arrow-down"></span></a></li>
+    <li class="sortTab on" id="test"><a href="javascript:show2(0);">최신순</a> | 
+    <a href="javascript:show2(1);">추천순</a></li>
 </ul>
 <c:choose>
 	<c:when test="${param.ot eq 0 }">
@@ -148,20 +171,25 @@ function closeUpdate(){
 		<c:import url="/commentReg.do?ot=1"/>
 	</c:when>
 </c:choose>
-<hr>
+<hr style="clear:both;">
+<div id="junsung">
 <c:forEach var="list" items="${commentList }">
+	${list.rev_idx}
 	${list.rev_id }<br>
 	관람평: ${list.rev_score }<br> 
 	${list.rev_comment }<br>
-	${list.rev_date } ${list.rev_like }<br>
+	${list.rev_date } <span onclick="like(${list.rev_idx}, '${list.rev_id}', '${list.rev_movie_title }');location.reload();">♡</span> ${list.rev_like }<br>
 	<a onclick="openUpdate()">편집</a> <a onclick="openDelete('${list.rev_id}', '${list.rev_movie_title}');location.reload();">삭제</a><br>
 	<hr>
 </c:forEach>
+</div>
 	<div class="popup_layer" style="display: none;" id="update">
 		<div class="popup_box">
-			<c:import url="/commentUpdate.do?rev_id=test&rev_movie_title=블랙 아담"/>
+			<c:import url="/commentUpdateForm.do?rev_id=test"/>
 		</div>
 	</div>	
 <div class="paging">
-	<ul id="paging_point"></ul>
+	<ul id="paging_point">
+		<li>${pageStr }</li>
+	</ul>
 </div>
