@@ -58,7 +58,7 @@ public class JoaReviewDAOImple implements JoaReviewDAO {
 	}
 	@Override
 	public int addLike(int rev_idx, Map map) {
-		int checkLike(map);
+		//int checkLike(map);
 		int result=sqlMap.update("addLike", rev_idx);
 		return result;
 	}
