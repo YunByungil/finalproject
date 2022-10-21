@@ -143,3 +143,7 @@ fieldset{
 .list_s_btn up{
 	margin-bottom:5px;
 }
+a{
+	color:inherit;
+	text-decoration:none;
+}

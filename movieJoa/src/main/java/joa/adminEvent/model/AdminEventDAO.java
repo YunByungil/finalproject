@@ -9,11 +9,10 @@ public interface AdminEventDAO {
 	public int updateEvent(Map map);
 	public AdminEventDTO detailEvent(int eve_idx);
 	public List<AdminEventDTO> listEvent(Map map);
-	public int adminEventTotalCnt();
+	public int adminEventTotalCnt(Map map);
 	public int deleteEvent(int eve_idx);
-	public List searchEvent(Map map);
 	
-	public int adminApplycantTotalCnt();
+	public int adminApplycantTotalCnt(Map map);
 	public List<AdminApplycantDTO> listApplycant(Map map);
 	public int deleteApplycant(int app_idx);
 	

@@ -20,8 +20,8 @@ public class AdminCouponDAOImple implements AdminCouponDAO {
 	}
 
 	@Override
-	public int adminCouponTotalCnt() {
-		int count=sqlMap.selectOne("adminCouponTotalCnt");
+	public int adminCouponTotalCnt(Map map) {
+		int count=sqlMap.selectOne("adminCouponTotalCnt", map);
 		return count;
 	}
 	
@@ -35,7 +35,6 @@ public class AdminCouponDAOImple implements AdminCouponDAO {
 	
 	@Override
 	public int deleteCoupon(int cou_idx) {
-		// TODO Auto-generated method stub
 		int result=sqlMap.delete("deleteCoupon",cou_idx);
 		return result;
 	}

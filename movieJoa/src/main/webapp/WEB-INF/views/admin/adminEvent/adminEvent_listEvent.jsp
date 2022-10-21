@@ -24,22 +24,23 @@ function deleteEvent(didx){
 <div class="table_wrap_list">
 <fieldset class="search_wrap">
 	<form>
-		<select name="sc_t">
-			<option value="제목" selected>제목</option>
-			<option value="유형">유형</option>
+		<select name="s_k">
+			<option value="all" <c:if test="${s_k eq 'all'}">selected</c:if>>전체</option>
+			<option value="eve_idx" <c:if test="${s_k eq 'eve_idx'}">selected</c:if>>이벤트 코드</option>
+			<option value="eve_subject" <c:if test="${s_k eq 'eve_subject'}">selected</c:if>>제목</option>
+			<option value="eve_category" <c:if test="${s_k eq 'eve_category'}">selected</c:if>>유형</option>
 		</select>
-		<input type="text" name="sc_k" class="input_text_search" placeholder="검색어를 입력해주세요.">
+		<input type="text" name="s_v" class="input_text_search" placeholder="검색어를 입력해주세요." <c:if test="${s_v ne '--'}">value="${s_v }"</c:if>>
 		<button type="submit" class="button_main">검색</button>
 	</form>
 </fieldset>
 <table class="main_table_list">
 <colgroup>
-	<col style="width:10%">
-	<col style="wldth:16%">
-	<col style="width:24%">
-	<col style="width:20%">
-	<col style="width:15%">
-	<col style="width:15%">
+	<col style="width:13%">
+	<col style="wldth:18%">
+	<col style="width:27%">
+	<col style="width:23%">
+	<col style="width:18%">
 </colgroup>
 <thead>
 <tr>
@@ -47,7 +48,6 @@ function deleteEvent(didx){
 	<th scope="col" class="text_c">유형</th>
 	<th scope="col" class="text_c">제목</th>
 	<th scope="col" class="text_c">이벤트 기간</th>
-	<th scope="col" class="text_c">상태</th>
 	<th scope="col" class="text_c">관리 메뉴</th>
 </tr>
 </thead>
@@ -68,7 +68,6 @@ function deleteEvent(didx){
 		<td class="text_c">${dto.eve_category }</td>
 		<td class="text_c"><a href="${detail}">${dto.eve_subject }</a></td>
 		<td class="text_c">${dto.eve_start_date }<br>- ${dto.eve_end_date }</td>
-		<td class="text_c">${dto.eve_status }</td>
 		
 		<c:url var="uLink" value="updateEventForm.do">
 			<c:param name="eve_idx">${dto.eve_idx }</c:param>
@@ -81,7 +80,7 @@ function deleteEvent(didx){
 
 <tfoot>
 	<tr>
-	<td colspan="5" align="center">
+	<td colspan="4" align="center">
 	${pageStr }
 	</td>
 	<td colspan="2"><a href="addEventForm.do">새 이벤트 등록</a></td>

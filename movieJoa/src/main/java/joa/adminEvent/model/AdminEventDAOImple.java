@@ -40,8 +40,8 @@ public class AdminEventDAOImple implements AdminEventDAO {
 	}
 
 	@Override
-	public int adminEventTotalCnt() {
-		int count=sqlMap.selectOne("adminEventTotalCnt");
+	public int adminEventTotalCnt(Map map) {
+		int count=sqlMap.selectOne("adminEventTotalCnt", map);
 		return count;
 	}
 
@@ -51,23 +51,16 @@ public class AdminEventDAOImple implements AdminEventDAO {
 		int result=sqlMap.delete("deleteEvent",eve_idx);
 		return result;
 	}
-
-	@Override
-	public List searchEvent(Map map) {
-		List list=sqlMap.selectList("searchEvent", map);
-		return list;
-	}
 	
 	@Override
-	public int adminApplycantTotalCnt() {
-		int count=sqlMap.selectOne("adminApplycantTotalCnt");
+	public int adminApplycantTotalCnt(Map map) {
+		int count=sqlMap.selectOne("adminApplycantTotalCnt", map);
 		return count;
 	}
 
 	@Override
 	public List<AdminApplycantDTO> listApplycant(Map map) {
 		List<AdminApplycantDTO> list=sqlMap.selectList("listApplycant", map);
-		System.out.println("DAOIMPLE단의 list adminApplycant DTO 반환값");
 		return list;
 	}
 	

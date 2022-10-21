@@ -11,6 +11,8 @@ public interface Joa_EventDAO {
 
 	public AdminEventDTO infoEvent(int eve_idx);
 	public List<AdminEventDTO> listEvent();
+	public int endedEventTotalCnt();
+	public List<AdminEventDTO> endedEvent();
 	public AdminCouponDTO couponInfo(int cou_idx);
 	public int addCoupon(Map map);
 	public int getPoint(Map map);

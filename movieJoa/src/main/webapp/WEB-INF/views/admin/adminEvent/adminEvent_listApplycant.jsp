@@ -23,12 +23,15 @@ function deleteApplycant(didx){
 <div class="div_title"><h2 class="title">| 이벤트 관리 / 응모 회원 조회</h2></div>
 <div class="table_wrap_list">
 <fieldset class="search_wrap">
-	<form>
-		<select name="sc_t">
-			<option value="아이디" selected>아이디</option>
-			<option value="이벤트명">이벤트명</option>
+	<form  action="applySearch">
+		<select name="s_k">
+			<option value="all" <c:if test="${s_k eq 'all'}">selected</c:if>>전체</option>
+			<option value="app_idx" <c:if test="${s_k eq 'app_idx'}">selected</c:if>>응모 코드</option>
+			<option value="app_event_code" <c:if test="${s_k eq 'app_event_code'}">selected</c:if>>이벤트 코드</option>
+			<option value="app_member_id" <c:if test="${s_k eq 'app_member_id'}">selected</c:if>>아이디</option>
+			<option value="app_event_subject" <c:if test="${s_k eq 'app_event_subject'}">selected</c:if>>이벤트명</option>
 		</select>
-		<input type="text" name="sc_k" class="input_text_search" placeholder="검색어를 입력해주세요.">
+		<input type="text" name="s_v" class="input_text_search" placeholder="검색어를 입력해주세요." <c:if test="${s_v ne '--'}">value="${s_v }"</c:if>>
 		<button type="submit" class="button_main">검색</button>
 	</form>
 </fieldset>

@@ -13,9 +13,7 @@
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-
 <div id="content">
-
 	<div class="tit-heading-wrap tit-evt">
 	    <h3>EVENT</h3>
 	</div>
@@ -24,13 +22,13 @@
 	    <ul class="evt-tab-menu">
 	    </ul>    
 	    <div class="submenu">
-	        <a href="" class="round red on"><i>당첨자 발표</i></a>
-	        <a href="" class="round red on"><i>종료된 이벤트</i></a>
+	        <a href="#" class="round red on"><i>당첨자 발표</i></a>
+	        <a href="/movieJoa//joaEventEnded.do" class="round red on"><i>종료된 이벤트</i></a>
 	    </div>
 	</div>
 	<c:if test="${empty userEvent}">
 		<tr>
-			<td>진행중인 이벤트가 존재하지 않습니다.</td>
+			<td rowspan="2">진행중인 '관리자 등록' 이벤트가 존재하지 않습니다.</td>
 		</tr>
 	</c:if>
 	<div class="cols-content">
@@ -42,22 +40,18 @@
 			          			 <div class="evt-desc"> <p class="txt1">신규 고객 감사 할인쿠폰 증정 이벤트</p><p class="txt2">2022.10.01 ~ 2022.12.13</p> </div>
 						</a>
 					</li>
-					
 					<li>
 			           <a id="tile_1" href="joaEventPoint.do">
 			          			 <div class="evt-thumb"> <img src="/movieJoa/img/joaEvent_img/coupon_thumb.jpg" ></div>
 			          			 <div class="evt-desc"> <p class="txt1">MJOA 랜덤 선물 응모 이벤트</p><p class="txt2">2022.10.15 ~ 2022.12.25</p> </div>
 						</a>
 					</li>
-					
 					<li>
 			           <a id="tile_2" href="joaEventApply.do">
 			          			 <div class="evt-thumb"> <img src="/movieJoa/img/joaEvent_img/apply_thumb.jpg" ></div>
 			          			 <div class="evt-desc"> <p class="txt1">401호의 탐정 개봉 기념 시사회 응모 이벤트</p><p class="txt2">2022.10.01 ~ 2022.12.15</p> </div>
 						</a>
 					</li>
-		          
-					
 					<c:forEach var="dto" items="${userEvent }">
 					<c:url var="detail" value="joaEventInfo.do">
 							<c:param name="eve_idx">${dto.eve_idx }</c:param>
@@ -69,7 +63,6 @@
 						</a>
 					</li>
 					</c:forEach>
-					
 		      </ul>
 		</div>
 		 <div class="col-aside">
@@ -86,7 +79,6 @@
         </div>
     </div>
 	</div>
-	
 </div>
 <c:import url="../footer.jsp"></c:import>
 </body>

@@ -4,18 +4,39 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="admin.owncou">
 	<select id="adminOwncouTotalCnt" resultType="int">
-			select count(*) from joa_owncoupon
+			select count(*) from joa_owncou
+			<include refid="searchCondition"/>
 	</select>
 	<select id="listOwncou" parameterType="Map" resultType="joa.adminOwncou.model.AdminOwncouDTO">
 			select * from
 			(select rownum as rnum,a.* from
-			(select * from joa_owncoupon order by own_idx desc)a)b
+			(select * from joa_owncou 
+			<include refid="searchCondition"/>
+			order by own_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	<delete id="deleteOwncou" parameterType="Integer">
 			delete from
-			joa_owncoupon
+			joa_owncou
 			where own_idx=
 			#{here}
 	</delete>
+    <sql id="searchCondition">
+	  	<if test="s_k != '--'">
+				<if test='s_k.equals("own_idx")'>
+						 where own_idx like '%' || #{s_v} || '%'
+				 </if>
+				 <if test='s_k.equals("own_name")'>
+						 where own_name like '%' || #{s_v} || '%'
+				 </if>		
+				 <if test='s_k.equals("own_member_id")'>
+						 where own_member_id like '%' || #{s_v} || '%'
+				 </if>		
+				 <if test='s_k.equals("all")'>
+					  where own_idx LIKE '%' || #{s_v} || '%'
+					   or own_name LIKE '%' || #{s_v} || '%'
+					   or own_member_id LIKE '%' || #{s_v} || '%'
+				 </if>
+		</if>
+    </sql>
   </mapper>

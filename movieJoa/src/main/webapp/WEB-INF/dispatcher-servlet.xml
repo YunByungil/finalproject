@@ -87,10 +87,7 @@
    		<ref bean="sqlSessionTemplate"/>
    		</constructor-arg>
    </bean>
-       <constructor-arg>
-       		<ref bean="sqlSessionTemplate"/>
-       </constructor-arg>
-   </bean> 
+   
    <bean id="scheduleDao" class="joa.adminSchedule.model.ScheduleDAOImple">
    		<constructor-arg>
    			<ref bean="sqlSessionTemplate"/>

@@ -40,14 +40,6 @@ public class AdminEventController {
 	         e.printStackTrace();
 	      }
 	   }
-	
-		
-	@RequestMapping("/searchEvent.do")
-	public ModelAndView searchEvent(String sc_t, String sc_k) {
-		ModelAndView mav=new ModelAndView();
-		List sc_v = adminEventService.searchEvent(sc_t,sc_k);
-		return mav;
-	}
 		
 	   
 	@RequestMapping(value="/addEventForm.do", method=RequestMethod.GET)
@@ -124,7 +116,7 @@ public class AdminEventController {
 		String msg=result>0?"이벤트 정보 수정에 성공하였습니다.":"이벤트 정보 수정에 실패하였습니다.";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
-		mav.addObject("nextPage","/listEvent.do");
+		mav.addObject("nextPage","/movieJoa/listEvent.do");
 		mav.setViewName("admin/adminEvent/msg");
 		return mav;
 	}
@@ -145,20 +137,24 @@ public class AdminEventController {
 		return mav;
 	}
 	
-	@RequestMapping("/listEvent.do")
+	@RequestMapping(value={"/listEvent.do","/searchEvent.do"})
 	public ModelAndView listEvent(
-			@RequestParam(value="cp", defaultValue="1")int cp) {
+			@RequestParam(value="cp", defaultValue="1")int cp,
+			@RequestParam(value="s_k",  defaultValue="--")String s_k,
+			@RequestParam(value="s_v", defaultValue="--")String s_v)  {
 		
-		int totalCnt=adminEventService.adminEventTotalCnt();
-		int listSize=5;
+		int totalCnt=adminEventService.adminEventTotalCnt(s_k, s_v);
+		int listSize=10;
 		int pageSize=5;
 		String pageStr=joa.page.PageModule.makePage("listEvent.do", totalCnt, listSize, pageSize, cp);
 		
-		List<AdminEventDTO> eventList=adminEventService.listEvent(cp, listSize);
+		List<AdminEventDTO> eventList=adminEventService.listEvent(cp, listSize, s_k, s_v);
 		
 		ModelAndView mav= new ModelAndView();
 		mav.addObject("pageStr",pageStr);
 		mav.addObject("eventList",eventList);
+		mav.addObject("s_k",s_k);
+		mav.addObject("s_v",s_v);
 		mav.setViewName("admin/adminEvent/adminEvent_listEvent");
 		return mav;
 	}
@@ -176,21 +172,21 @@ public class AdminEventController {
 		return mav;
 	}
 	
-	@RequestMapping("/listApplycant.do")
+	@RequestMapping(value={"/listApplycant.do","/searchApplycant.do"})
 	public ModelAndView listApplycant(
-			@RequestParam(value="cp", defaultValue="1")int cp) {
-		
-		int totalCnt=adminEventService.adminApplycantTotalCnt();
-		int listSize=5;
+			@RequestParam(value="cp", defaultValue="1")int cp,
+			@RequestParam(value="s_k",  defaultValue="--")String s_k,
+			@RequestParam(value="s_v", defaultValue="--")String s_v) {
+		int totalCnt=adminEventService.adminApplycantTotalCnt(s_k,s_v);
+		int listSize=10;
 		int pageSize=5;
 		String pageStr=joa.page.PageModule.makePage("listApplycant.do", totalCnt, listSize, pageSize, cp);
-		
-		List<AdminApplycantDTO> applyMember=adminEventService.listApplycant(cp, listSize);
-		
-		
+		List<AdminApplycantDTO> applyMember=adminEventService.listApplycant(cp, listSize, s_k, s_v);
 		ModelAndView mav= new ModelAndView();
 		mav.addObject("pageStr",pageStr);
 		mav.addObject("applyMember",applyMember);
+		mav.addObject("s_k",s_k);
+		mav.addObject("s_v",s_v);
 		mav.setViewName("admin/adminEvent/adminEvent_listApplycant");
 		return mav;
 	}

@@ -49,12 +49,15 @@
 </update>
 <select id="listMovie" parameterType="Map" resultType="joa.adminMovie.model.AdminMovieDTO">
 			select * from
-			(select rownum as rnum,a.* from
-			(select * from joa_movie order by mov_idx desc)a)b
+				(select rownum as rnum,a.* from
+					(select * from joa_movie  
+						 <include refid="searchCondition"/>
+					order by mov_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 </select>
-<select id="adminMovieTotalCnt" resultType="int">
+<select id="adminMovieTotalCnt" resultType="int" parameterType="Map">
 			select count(*) from joa_movie
+			<include refid="searchCondition"/>
 </select>
 <delete id="deleteMovie" parameterType="Integer">
 			delete from
@@ -62,4 +65,28 @@
 			where mov_idx=
 			#{here}
 </delete>
+<sql id="searchCondition">
+	<if test='s_k.equals("mov_title")'>
+		  where mov_title like '%' || #{s_v} || '%'
+	 </if>
+	 <if test='s_k.equals("mov_idx")'>
+		  WHERE mov_idx LIKE '%' || #{s_v} || '%'
+	 </if>
+	 <if test='s_k.equals("mov_director")'>
+		  WHERE mov_director LIKE '%' || #{s_v} || '%'
+	 </if>
+	   <if test='s_k.equals("mov_info")'>
+		  WHERE mov_info LIKE '%' || #{s_v} || '%'
+	 </if>
+	  <if test='s_k.equals("mov_genre")'>
+		  WHERE mov_genre LIKE '%' || #{s_v} || '%'
+	 </if>
+	 <if test='s_k.equals("all")'>
+		  WHERE mov_title LIKE '%' || #{s_v} || '%'
+		   or mov_idx LIKE '%' || #{s_v} || '%'
+		   or mov_director LIKE '%' || #{s_v} || '%'
+		   or mov_info LIKE '%' || #{s_v} || '%'
+		   or mov_genre LIKE '%' || #{s_v} || '%'
+	 </if>
+</sql>
 </mapper>

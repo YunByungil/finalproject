@@ -5,9 +5,9 @@
   <mapper namespace="admin.coupon">
   	<insert id="addCoupon" parameterType="joa.adminCoupon.model.AdminCouponDTO">
   		insert into
-			c_t
+			joa_coupon
 			values(
-			c_t_cou_idx.nextval,
+			joa_coupon_cou_idx.nextval,
 			#{cou_name},
 			#{cou_discount}
 			) 
@@ -15,16 +15,33 @@
   	<select id="listCoupon" parameterType="Map" resultType="joa.adminCoupon.model.AdminCouponDTO">
 			select * from
 			(select rownum as rnum,a.* from
-			(select * from c_t order by cou_idx desc)a)b
+			(select * from joa_coupon 
+			<include refid="searchCondition"/>
+			order by cou_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	<delete id="deleteCoupon" parameterType="Integer">
 			delete from
-			c_t
+			joa_coupon
 			where cou_idx=
 			#{here}
 	</delete>
-	<select id="adminCouponTotalCnt" resultType="int">
-			select count(*) from c_t
+	<select id="adminCouponTotalCnt" resultType="int" parameterType="Map">
+			select count(*) from joa_coupon
+			<include refid="searchCondition"/>
 	</select>
+	  	<sql id="searchCondition">
+	  	<if test="s_k != '--'">
+				<if test='s_k.equals("cou_idx")'>
+						 where cou_idx like '%' || #{s_v} || '%'
+				 </if>
+				 <if test='s_k.equals("cou_name")'>
+						 where cou_name like '%' || #{s_v} || '%'
+				 </if>			
+				 <if test='s_k.equals("all")'>
+					  where cou_idx LIKE '%' || #{s_v} || '%'
+					   or cou_name LIKE '%' || #{s_v} || '%'
+				 </if>
+				 </if>
+  	</sql>
   </mapper>

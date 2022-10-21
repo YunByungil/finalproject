@@ -35,6 +35,18 @@ public class Joa_EventServiceImple implements Joa_EventService{
 		return list;
 	}
 	
+	@Override
+	public int endedEventTotalCnt() {
+		int result=joa_EventDao.endedEventTotalCnt();
+		return result;
+	}
+	
+	@Override
+	public List endedEvent() {
+		List list=joa_EventDao.endedEvent();
+		return list;
+	}
+	
 	public AdminCouponDTO couponInfo(int cou_idx) {
 		AdminCouponDTO couponInfo=joa_EventDao.couponInfo(cou_idx);
 		return couponInfo;

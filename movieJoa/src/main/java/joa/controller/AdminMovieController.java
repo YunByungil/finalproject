@@ -28,7 +28,6 @@ public class AdminMovieController {
 	@Autowired
 	private AdminMovieService adminMovieService;
 	
-	  
 	   private void insertPosterImg(MultipartFile mov_poster) {
 	      try {
 	         byte realPosterFile[] = mov_poster.getBytes();
@@ -40,16 +39,8 @@ public class AdminMovieController {
 	         e.printStackTrace();
 	      }
 	   }
-	
+
 		
-	@RequestMapping("/searchMovie.do")
-	public ModelAndView searchMovie(String sc_t, String sc_k) {
-		ModelAndView mav=new ModelAndView();
-		List sc_v = adminMovieService.searchMovie(sc_t,sc_k);
-		return mav;
-	}
-		
-	   
 	@RequestMapping(value="/addMovieForm.do", method=RequestMethod.GET)
 	public ModelAndView addMovie() {
 		ModelAndView mav=new ModelAndView();
@@ -107,8 +98,6 @@ public class AdminMovieController {
 		 
 		 String mov_poster=poster.getOriginalFilename();
 		 dto.setMov_poster(mov_poster);
-		 System.out.println("update poster name"+mov_poster);
-		 System.out.println(dto);
 		
 		int result = adminMovieService.updateMovie(dto);
 		String msg=result>0?"영화 정보 수정에 성공하였습니다.":"영화 정보 수정에 실패하였습니다.";
@@ -135,20 +124,25 @@ public class AdminMovieController {
 		return mav;
 	}
 	
-	@RequestMapping("/listMovie.do")
+	@RequestMapping(value={"/listMovie.do","/searchMovie.do"})
 	public ModelAndView listMovie(
-			@RequestParam(value="cp", defaultValue="1")int cp) {
+			@RequestParam(value="cp", defaultValue="1")int cp,
+			@RequestParam(value="s_k", defaultValue="--")String s_k, 
+			@RequestParam(value="s_v", defaultValue="--")String s_v) {
 		
-		int totalCnt=adminMovieService.adminMovieTotalCnt();
-		int listSize=5;
+		int totalCnt=adminMovieService.adminMovieTotalCnt(s_k, s_v);
+		int listSize=10;
 		int pageSize=5;
 		String pageStr=joa.page.PageModule.makePage("listMovie.do", totalCnt, listSize, pageSize, cp);
-		
-		List<AdminMovieDTO> movieList=adminMovieService.listMovie(cp, listSize);
-		
+
+		List<AdminMovieDTO> movieList=adminMovieService.listMovie(cp, listSize, s_k, s_v);
+	
 		ModelAndView mav= new ModelAndView();
 		mav.addObject("pageStr",pageStr);
 		mav.addObject("movieList",movieList);
+		mav.addObject("s_k",s_k);
+		mav.addObject("s_v",s_v);
+		
 		mav.setViewName("admin/adminMovie/adminMovie_listMovie");
 		return mav;
 	}
