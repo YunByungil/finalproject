@@ -181,6 +181,7 @@
 	    <artifactId>json</artifactId>
 	    <version>20160810</version>
 	</dependency>
+<<<<<<< HEAD
 	
 	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 	<dependency>
@@ -189,11 +190,17 @@
 	    <version>2.13.3</version>
 	</dependency>
 	
+=======
+>>>>>>> d3d35e743aac0d3c9df0ec31f3fcd3d9b8018480
 	<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 	<dependency>
 	    <groupId>com.fasterxml.jackson.core</groupId>
 	    <artifactId>jackson-core</artifactId>
 	    <version>2.13.3</version>
 	</dependency>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d3d35e743aac0d3c9df0ec31f3fcd3d9b8018480
   </dependencies>
 </project>

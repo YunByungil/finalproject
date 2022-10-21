@@ -40,7 +40,7 @@ function openLogin(){
 				</li>
 				<li class="menu2"><a href="#">극장관리</a>
 					<ul class="menu2_s submenu">
-					    <li>상영관 좌석</li>
+					    <li><a href="theaterAddForm.do">상영관 좌석</a></li>
 					    <li>상영 스케줄</li>
 					</ul>
 				</li>

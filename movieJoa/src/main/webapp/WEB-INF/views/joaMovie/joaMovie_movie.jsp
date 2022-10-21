@@ -112,16 +112,16 @@ function show2(){
 		            </a>
 		            <div class="score">
 		                <strong class="percent">예매율 
-		                <span>${list.mov_booking_percent }</span>
-		                <span class='egg great'>| 관람평</span>
-		                <span class='percent'>
-		                <c:if test="${list.mov_score!=0.0 }">
-		                ${list.mov_score }
-		                </c:if>
-		                <c:if test="${list.mov_score==0.0 }">
-		                ?
-		                </c:if>
-		                </span>
+			                <span>${list.mov_booking_percent }</span>
+			                <span class='egg great'>| 관람평</span>
+			                <span class='percent'>
+				                <c:if test="${list.mov_score!=0.0 }">
+									${list.mov_score }
+				                </c:if>
+				                <c:if test="${list.mov_score==0.0 }">
+									?
+				                </c:if>
+			                </span>
 		                </strong>
 		            </div>
 		            <span class="txt-info">

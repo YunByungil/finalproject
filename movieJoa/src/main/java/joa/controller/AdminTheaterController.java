@@ -4,12 +4,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import joa.adminSchedule.model.ScheduleDAO;
 import joa.adminSchedule.model.ScheduleDTO;
 import joa.adminTheater.model.TheaterDAO;
 import joa.adminTheater.model.TheaterDTO;
@@ -19,6 +24,8 @@ public class AdminTheaterController {
 	
 	@Autowired
 	private TheaterDAO theaterDao;
+	@Autowired
+	private ScheduleDAO scheduleDao;
 
 	@RequestMapping("/theaterAddForm.do")
 	public String theaterAddForm() {
@@ -148,20 +155,50 @@ public class AdminTheaterController {
 	}
 	
 	@RequestMapping("/scheduleAddForm.do")
-	public String scheduleAddForm(Map map) {
+	public String scheduleAddForm(Map map,Map ad) {
 		Date now = new Date();	
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String nDate=format.format(now);
+		ad.put("city","seoul");
+		ad.put("branch","gang");
+		List<String> list=scheduleDao.theaterChoice(ad);
 		map.put("nDate", nDate);
+		map.put("tList",list);
 		return "admin/adminTheater/adminTheater_schedule_add";
 	}
 	
 	@RequestMapping("/scheduleAdd.do")
-	public ModelAndView scheduleAdd(ScheduleDTO dto){
+	public ModelAndView scheduleAdd(ScheduleDTO dto,Map map,String start_time){
 		//session id city branch add
+		System.out.println(dto.getSch_mov_title());
+		int runtime=120;
+		int hour=Integer.parseInt(start_time.substring(0,start_time.length()-3));
+		int min=Integer.parseInt(start_time.substring(start_time.length()-2,start_time.length()));
+		int min2=min+runtime;
+		int hour2=hour+(min2/60);
+		min2=min2%60;
 		
+		map.put("hour", hour);
+		map.put("hour2", hour2);
+		map.put("dto",dto);
+		
+		List list=scheduleDao.checkSchedule(map);
+		if(list.size()==0 || list==null) {
+			System.out.println("oo");
+		}else {
+			System.out.println("xx");
+		}
+
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("admin/adminTheater/adminTheater_schedule_add");
-		return mav;
+		return mav;	
+	}
+	
+	@RequestMapping("/dayChoice2.do")
+	public String dayChoice2(String day,Map map,String theater) {
+		List list=scheduleDao.dayChoice(day);
+		map.put("list", list);
+		map.put("theater", theater);
+		return "admin/adminTheater/adminTheater_schedule_addView";
 	}
 }

@@ -2,8 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
-function write(){
-	location.reload();
+function counter(){
+	document.getElementById("counting").innerHTML = document.getElementById("reviewContents").value.length; 
 }
 </script>
 <c:forEach var="list" items="${list }">
@@ -14,7 +14,7 @@ function write(){
 	<span class="star">
  	  ★★★★★
   	<span>★★★★★</span>
-		<input type="range" oninput="drawStar(this)" onload="drawStar(this)" value="1" step="1" min="1" max="10">
+		<input type="range" oninput="drawStar(this)" value="1" step="1" min="1" max="10">
 	</span>
 </div>
 <b id="val" style="font-size: 4rem;"></b>			
@@ -23,7 +23,8 @@ function write(){
 <input type="hidden" name="rev_movie_title" value="${list.mov_title }">
 <input type="hidden" name="rev_score" id="score">
 <div>
-	<textarea class="col-auto form-control" id="reviewContents" name="rev_comment"></textarea>
+	<textarea class="col-auto form-control" id="reviewContents" name="rev_comment" onkeyup="counter()"></textarea>
+	<span id="counting">0</span>/100
 </div>
 </form>
 <iframe name="blankifr" style="display:none;"></iframe>	

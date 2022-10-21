@@ -96,7 +96,7 @@
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
      	</constructor-arg>
-   </bean> 
+   </bean>
    <bean id="adminOwncouDao" class="joa.adminOwncou.model.AdminOwncouDAOImple">    
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
@@ -118,6 +118,11 @@
      	</constructor-arg>
    </bean> 
    
+   <bean id="joaMemberDao" class="joa.member.model.JoaMemberDAOImple">
+   		<constructor-arg>
+   			<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
    <!-- services -->
    <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
    		<constructor-arg>
@@ -207,6 +212,6 @@
       <property name="suffix" value=".jsp"></property>
       <property name="order" value="1"></property>
    </bean>    
-  
+  <bean id="joaJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
    
 </beans>

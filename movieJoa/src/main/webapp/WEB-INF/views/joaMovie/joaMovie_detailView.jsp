@@ -46,6 +46,7 @@ a:visited, a{
 	float: left;
 }
 </style>
+<script src="js/httpRequest.js"></script>
 <script>
 function show(num){
 	const urlParams = new URL(location.href).searchParams;
@@ -60,7 +61,7 @@ function show(num){
 }
 </script>
 </head>
-<body>
+<body onload="document.querySelector(`.star2 span`).style.width = document.getElementById('range').value * 10+'%';document.getElementById('score2').value=document.getElementById('range').value;">
 <c:import url="../header.jsp"/>
 <br>
 <div class="sect-base-movie">
@@ -79,7 +80,14 @@ function show(num){
         <div class="score"> 
             <strong class="percent">예매율&nbsp;<span>${list.mov_booking_percent }</span></strong>
             <div class='egg-gage small'>
-            <strong><span class='percent'>관람평&nbsp;${list.mov_score }</span></strong>
+	            <strong><span class='percent'>관람평&nbsp;
+		            <c:if test="${list.mov_score!=0.0 }">
+						${list.mov_score }
+		            </c:if>
+		            <c:if test="${list.mov_score==0.0 }">
+						?
+		            </c:if>
+	            </span></strong>
             </div>
         </div>
         <div class="spec">

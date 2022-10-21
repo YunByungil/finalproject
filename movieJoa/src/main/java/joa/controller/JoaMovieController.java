@@ -47,5 +47,17 @@ public class JoaMovieController {
 		mav.setViewName("joaMovie/joaMovie_detailView");
 		return mav;
 	}
-	
+	@RequestMapping("/newFile.do")
+	public ModelAndView newFile() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("joaMovie/NewFile");
+		return mav;
+	}
+	@RequestMapping("/getStudent.do")
+	public ModelAndView getStudent() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("joaMovie/getStudentsJSON");
+		return mav;
+	}
+
 }
