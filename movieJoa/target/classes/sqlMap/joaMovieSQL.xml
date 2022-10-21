@@ -5,21 +5,21 @@
   <mapper namespace="joa.movie">
   	<select id="movieList0" resultType="joa.movie.model.JoaMovieDTO">
   		select rownum as runm,a.* from 
-  		(select * from movie_soni order by mov_booking_percent desc)a
+  		(select * from joa_movie order by mov_booking_percent desc)a
   	</select>
   	<select id="movieList1" resultType="joa.movie.model.JoaMovieDTO">
   		select rownum as runm,a.* from 
-  		(select * from movie_soni where mov_start_date<![CDATA[<=]]>sysdate order by mov_booking_percent desc)a
+  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate order by mov_booking_percent desc)a
   	</select>
   	<select id="movieList2" resultType="joa.movie.model.JoaMovieDTO">
   		select rownum as runm,a.* from 
-  		(select * from movie_soni where mov_start_date<![CDATA[<=]]>sysdate order by mov_score desc)a
+  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate order by mov_score desc)a
   	</select>
   	<select id="preMovieDate" resultType="joa.movie.model.JoaMovieDTO">
   		select 
   			distinct mov_start_date 
   		from 
-  			movie_soni 
+  			joa_movie 
   		where 
   			mov_start_date > to_char(sysdate,'yyyy.mm.dd')
   		order by
@@ -29,7 +29,7 @@
   		select
   			* 
   		from 
-  			movie_soni
+  			joa_movie
   		where 
   			mov_start_date > to_char(sysdate,'yyyy.mm.dd')
   		order by
@@ -39,7 +39,7 @@
   		select
   			*
   		from
-  			movie_soni
+  			joa_movie
   		where
   			mov_idx = #{idx}
   	</select>

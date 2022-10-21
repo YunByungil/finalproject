@@ -87,15 +87,11 @@
    		<ref bean="sqlSessionTemplate"/>
    		</constructor-arg>
    </bean>
-       <constructor-arg>
-       		<ref bean="sqlSessionTemplate"/>
-       </constructor-arg>
-   </bean> 
    <bean id="adminCouponDao" class="joa.adminCoupon.model.AdminCouponDAOImple">    
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
      	</constructor-arg>
-   </bean> 
+   </bean>
    <bean id="adminOwncouDao" class="joa.adminOwncou.model.AdminOwncouDAOImple">    
    		<constructor-arg>
          <ref bean="sqlSessionTemplate"/>
@@ -111,8 +107,11 @@
          <ref bean="sqlSessionTemplate"/>
      	</constructor-arg>
    </bean> 
-   
->>>>>>> origin/sonieescape
+   <bean id="joaMemberDao" class="joa.member.model.JoaMemberDAOImple">
+   		<constructor-arg>
+   			<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   </bean>
    <!-- services -->
    <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
    		<constructor-arg>
@@ -184,9 +183,6 @@
 			<ref bean="JoaNoticeDao"></ref>
 		</constructor-arg>
 	</bean>
-   
->>>>>>> origin/master_galmae
-   
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>
    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
@@ -196,7 +192,5 @@
       <property name="prefix" value="/WEB-INF/views/"></property> <!-- this value have property of "prefix" -->
       <property name="suffix" value=".jsp"></property>
       <property name="order" value="1"></property>
-   </bean>    
-  
-   
+   </bean>  
 </beans>

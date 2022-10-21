@@ -14,32 +14,41 @@
   			sysdate,
   			0)
   	</insert>
-  	<select id="commentList0" resultType="joa.review.model.JoaReviewDTO">
-  		select
-  			*
-  		from
-  			joa_review
-  		order by
-  			rev_date desc
+  	<select id="commentList0" parameterType="Map" resultType="joa.review.model.JoaReviewDTO">
+  		select * from
+		(select rownum as rnum,a.* from
+		(select * from joa_review, joa_movie where mov_title=rev_movie_title and mov_idx=#{mov_idx} order by rev_date desc)a)b
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
-  	<select id="commentList1" resultType="joa.review.model.JoaReviewDTO">
-  		select
-  			*
-  		from
-  			joa_review
-  		order by
-  			rev_like desc
+  	<select id="commentList1" parameterType="Map" resultType="joa.review.model.JoaReviewDTO">
+  		select * from
+		(select rownum as rnum,a.* from
+		(select * from joa_review, joa_movie where mov_title=rev_movie_title and mov_idx=#{mov_idx} order by rev_like desc)a)b
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
   	<select id="commentUpdateList" parameterType="Map" resultType="joa.review.model.JoaReviewDTO">
   		select
   			*
   		from
-  			joa_review
+  			joa_review, joa_movie
   		where
   			rev_id=#{rev_id}
-  		and
-  			rev_movie_title=#{rev_movie_title}
+        and
+            mov_idx=#{mov_idx}
+        and
+        	rev_movie_title=mov_title
   	</select>
+  	<update id="commentUpdate" parameterType="joa.review.model.JoaReviewDTO">
+  		update
+  			joa_review
+  		set
+  			rev_comment=#{rev_comment},
+  			rev_score=#{rev_score}
+  		where
+  			rev_id=#{rev_id}
+		and
+			rev_movie_title=#{rev_movie_title}
+  	</update>
   	<delete id="commentDelete" parameterType="Map">
   		delete from
 			joa_review
@@ -48,4 +57,51 @@
 		and
 			rev_movie_title=#{rev_movie_title}
   	</delete>
+  	<select id="totalCnt" parameterType="Integer" resultType="Integer">
+  		select count(*) from joa_movie, joa_review where mov_title=rev_movie_title and mov_idx=#{mov_idx}
+  	</select>
+  	<update id="updateScore" parameterType="String">
+  		update 
+  			joa_movie 
+  		set 
+  			mov_score=(select avg(rev_score) from joa_movie, joa_review where mov_title=rev_movie_title and rev_movie_title=#{rev_movie_title}) 
+  		where 
+  			mov_title=#{rev_movie_title}
+  	</update>
+  	<update id="addLike" parameterType="Integer">
+  		update
+  			joa_review
+  		set
+  			rev_like=rev_like+1
+  		where
+  			rev_idx=#{rev_idx}
+  	</update>
+  	  	<update id="remLike" parameterType="Integer">
+  		update
+  			joa_review
+  		set
+  			rev_like=rev_like-1
+  		where
+  			rev_idx=#{rev_idx}
+  	</update>
+  	<insert id="insertLike" parameterType="Map">
+  		insert into
+  			joa_like
+  		values(joa_like_lik_idx.nextval,
+  			#{lik_movie_title},
+  			#{lik_writer_id},
+  			#{lik_like_id}
+  			)
+  	</insert>
+  	<delete id="">
+  		
+  	</delete>
+  	<select id="checkLike" parameterType="Map" resultType="Integer">
+  		select 
+  			count(lik_like_id) 
+  		from 
+  			joa_like 
+  		where 
+  			lik_like_id=#{lik_like_id}
+  	</select>
   </mapper>
