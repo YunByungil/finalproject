@@ -23,6 +23,12 @@ public class JoaPayServiceImple implements JoaPayService {
 		JoaPayCartListDTO dto=joaPayDao.storePayCartList(map);
 		return dto;
 	}
+	
+	@Override
+	public int payProductResultAdd(JoaPayProDTO dto) {
+		int result=joaPayDao.payProductResultAdd(dto);
+		return result;
+	}
 
 	
 }

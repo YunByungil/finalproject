@@ -11,5 +11,24 @@
 		   and   car_pro_idx = pro_idx
 		   and   car_pro_idx = #{car_pro_idx}
 		   and   mem_id      = #{mem_id}  
-  	</select>    	
+  	</select>
+	<insert id="payProductResultAdd" parameterType="joa.pay.model.JoaPayProDTO">
+	    insert into
+	    	jao_payProduct
+	    values
+		    (joa_payProduct_payPro_idx.nextval,
+		    #{payPro_mem_id},
+		    #{payPro_mem_name},
+		    #{payPro_mem_email},
+		    #{payPro_mem_tel},
+		    #{payPro_pg},
+		    #{payPro_method},
+		    #{payPro_pro_name},
+		    #{payPro_price_sum},
+		    #{payPro_discount},
+		    #{payPro_total_price},
+		    #{payPro_merchant_uid},
+		    sysdate  
+		    )
+  	</insert>     	
   </mapper>

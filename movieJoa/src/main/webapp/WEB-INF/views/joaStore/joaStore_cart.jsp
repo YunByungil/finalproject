@@ -138,8 +138,9 @@ function cartSubmit(index) {
 						<td><input type="button" value="삭제" onclick="cartSubmit(2)"></td>
 					</tr>
 				</c:forEach>
-				<input type="hidden" name="mem_name" value="테스트이름">
-				<input type="hidden" name="mem_tel" value="테스트번호">
+				<input type="hidden" name="mem_name" value="구매자 이름">
+				<input type="hidden" name="mem_tel" value="구매자 전화번호">
+				<input type="hidden" name="mem_email" value="구매자 이메일">				
 				</tbody>
 			</table>
 		<div class="store_cart_select_del">

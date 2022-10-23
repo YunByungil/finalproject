@@ -61,5 +61,13 @@ public class JoaPayController {
 		return mav;
 	}
 	
+	@RequestMapping("/joaStoreKakaoPay.do")
+	public ModelAndView joaStoreKakaoPay(JoaPayProDTO dto) {
+		joaPayService.payProductResultAdd(dto);
+		ModelAndView mav=new ModelAndView();		
+		mav.setViewName("joaStore/joaStore_pay_result");
+		return mav;
+	}
+	
 
 }

@@ -20,4 +20,10 @@ public class JoaPayDAOImple implements JoaPayDAO {
 		JoaPayCartListDTO dto=sqlMap.selectOne("storePayCartList",map);
 		return dto;
 	}
+	
+	@Override
+	public int payProductResultAdd(JoaPayProDTO dto) {
+		int result=sqlMap.insert("payProductResultAdd",dto);
+		return result;
+	}
 }
