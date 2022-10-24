@@ -24,24 +24,24 @@ public class JoaManyHelpDAOImple implements JoaManyHelpDAO {
 	@Override
 	public int deleteManyHelp(int idx) {
 		int result = sqlMap.insert("ManyHelpDelete",idx);
-		return 0;
+		return result;
 	}
 
 	@Override
 	public int rewriteManyHelp(JoaManyHelpDTO dto) {
 		int result = sqlMap.insert("ManyHelpUpdate",dto);
-		return 0;
+		return result;
 	}
 
 	@Override
-	public List<JoaManyHelpDTO> ManyHelpList() {
-		List<JoaManyHelpDTO> list = sqlMap.selectList("ManyHelpList");
+	public List<JoaManyHelpDTO> ManyHelpList(Map map) {
+		List<JoaManyHelpDTO> list = sqlMap.selectList("ManyHelpList",map);
 		return list;
 	}
-
+	
 	@Override
-	public List<JoaManyHelpDTO> serchManyHelpList(String type) {
-		List<JoaManyHelpDTO> list= sqlMap.selectList("SerchManyHelpList",type);
+	public List<JoaManyHelpDTO> manyHelpType(Map map) {
+		List<JoaManyHelpDTO> list= sqlMap.selectList("ManyHelpType",map);
 		return list;
 	}
 
@@ -49,6 +49,30 @@ public class JoaManyHelpDAOImple implements JoaManyHelpDAO {
 	public JoaManyHelpDTO ManyHelpBorder(int idx) {
 		JoaManyHelpDTO dto = sqlMap.selectOne("ManyHelpBorder",idx);
 		return dto;
+	}
+
+	@Override
+	public List<JoaManyHelpDTO> serchManyHelpList(Map map) {
+		List<JoaManyHelpDTO> list = sqlMap.selectList("SerchManyHelpList",map);
+		return list;
+	}
+	
+	@Override
+	public int manyHelpListTotalCnt() {
+		int count = sqlMap.selectOne("ManyHelpListTotalCnt");
+		return count;
+	}
+	
+	@Override
+	public int manyHelpTypeTotalCnt(Map map) {
+		int count = sqlMap.selectOne("ManyHelpTypeTotalCnt", map);
+		return count;
+	}
+	
+	@Override
+	public int serchManyHelpListTotalCnt(Map map) {
+		int count = sqlMap.selectOne("SerchManyHelpListTotalCnt", map);
+		return count;
 	}
 
 }

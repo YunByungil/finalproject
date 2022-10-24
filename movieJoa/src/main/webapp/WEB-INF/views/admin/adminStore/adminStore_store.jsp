@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,7 @@
 				<th>상품명</th>
 				<th>가격</th>
 				<th>카테고리</th>
+				<th>삭제</th>
 			</tr>
 		</thead>
 		<tfoot>
@@ -44,8 +46,12 @@
 					<c:param name="idx">${dto.pro_idx }</c:param>
 				</c:url>
 				<td><a href="${contentUrl}">${dto.pro_name }</a></td>
-				<td>${dto.pro_price }</td>
+				<td><fmt:formatNumber value="${dto.pro_price }" pattern="#,###"/></td>
 				<td>${dto.pro_category }</td>
+				<c:url var="deleteUrl" value="adminStoreDelete.do">
+					<c:param name="pro_idx">${dto.pro_idx }</c:param>
+				</c:url>
+				<td><a href="${deleteUrl}"><input type="button" value="삭제"></a></td>
 			</tr>
 		</c:forEach>
 		</tbody>

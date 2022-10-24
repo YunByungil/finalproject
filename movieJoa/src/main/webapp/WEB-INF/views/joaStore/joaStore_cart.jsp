@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,9 +126,9 @@ function cartSubmit(index) {
 						<td><input type="checkbox" name="chx" id="${dto.car_pro_idx }" value="${dto.pro_price*dto.car_count }" onclick="itemCheck()"></td>
 						<td><img src="/movieJoa/img/joaStore_img/${dto.pro_filename }" width="100" height="100"></td>
 						<td>${dto.pro_name}</td>
-						<td>${dto.pro_price }</td>
+						<td><fmt:formatNumber value="${dto.pro_price }" pattern="#,###"/></td>
 						<td>${dto.car_count }</td>
-						<td>${dto.pro_price*dto.car_count }</td>
+						<td><fmt:formatNumber value="${dto.pro_price*dto.car_count}" pattern="#,###"/></td>
 						<input type="hidden" name="pro_filename" value="${dto.pro_filename}">
 						<input type="hidden" name="pro_name" value="${dto.pro_name }">
 						<input type="hidden" name="pro_price" value="${dto.pro_price }">

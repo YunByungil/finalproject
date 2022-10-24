@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,11 +16,12 @@
 
 $(document).ready(function(){ 
 	
-	$("#creditCard").click(function(){ 
-    	paymentCreditCard(); //버튼 클릭하면 호출 
-    });
 	$("#kakaoPay").click(function(){ 
-    	paymentKakaoPay(); //버튼 클릭하면 호출 
+		paymentKakaoPay(); //버튼 클릭하면 호출 
+    }); 
+	
+	$("#creditCard").click(function(){ 
+		paymentCreditCard(); //버튼 클릭하면 호출 
     }); 
 })
 
@@ -31,12 +33,12 @@ function paymentKakaoPay(){
         pay_method: "card", //지불 방법
         merchant_uid: 'merchant_' + new Date().getTime(), //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "MJOA", //결제창에 노출될 상품명
-        amount: ${pay_total_sum }, //금액
+        amount: "${pay_total_sum }",
         buyer_email : "${mem_email}", 
         buyer_name : "${mem_name}",
         buyer_tel : "${mem_tel}"
         
-    }, function (rsp) { // callback
+    , function (rsp) { // callback
     	
         if (rsp.success) {
             alert("결제가 완료되었습니다");
@@ -50,34 +52,40 @@ function paymentKakaoPay(){
         	
             alert("결제실패");
         }
+    }
     });
 }
 
-function paymentcreditCard(){
+function paymentCreditCard(){
 	
     IMP.init('imp80406606');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
-        pg: "", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
+        pg: "nice", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
         merchant_uid: 'merchant_' + new Date().getTime(), //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
         name: "MJOA", //결제창에 노출될 상품명
-        amount: ${pay_total_sum }, //금액
-        buyer_email : "${mem_email }", 
-        buyer_name : "${mem_name }",
-        buyer_tel : "${mem_tel }"
-    }, function (rsp) { // callback
+        amount: ${pay_total_sum },
+        buyer_email : "${mem_email}", 
+        buyer_name : "${mem_name}",
+        buyer_tel : "${mem_tel}"
+        
+    , function (rsp) { // callback
+    	
         if (rsp.success) {
-        	
             alert("결제가 완료되었습니다");
-    		document.joaStorePay.action='joaStoreCreditPay.do';		
+            document.getElementById("payPro_pg").value="kakaopay";
+            document.getElementById("payPro_method").value="card";
+            document.getElementById("payPro_merchant_uid").value='merchant_'+new Date().getTime();
+    		document.joaStorePay.action='joaStoreKakaoPay.do';		
 			document.joaStorePay.submit();
             
         } else {
-            alert("실패 : 코드("+rsp.error_code+") / 메세지(" + rsp.error_msg + ")");
+        	
+            alert("결제실패");
         }
+    }
     });
 }
-
 </script>
 
 </head>
@@ -102,9 +110,9 @@ function paymentcreditCard(){
 				<tr>
 					<td><img src="/movieJoa/img/joaStore_img/${dto.pro_filename }" width="100" height="100"></td>
 					<td>${dto.pro_name }</td>
-					<td>${dto.pro_price }</td>
+					<td><fmt:formatNumber value="${dto.pro_price }" pattern="#,###"/>원</td>
 					<td>${dto.car_count }</td>
-					<td>${dto.pro_price * dto.car_count }</td>
+					<td><fmt:formatNumber value="${dto.pro_price * dto.car_count }" pattern="#,###"/>원</td>
 				</tr>
 			</tbody>
 			</c:forEach>
@@ -123,11 +131,11 @@ function paymentcreditCard(){
 				</thead>
 				<tbody>
 					<tr>
-						<td>${pay_price_sum }원</td>
+						<td><fmt:parseNumber var="price_sum" type="number" value="${pay_price_sum }" /><fmt:formatNumber value="${price_sum }" pattern="#,###"/>원</td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>
-						<td>${pay_discount }원</td>
+						<td><fmt:parseNumber var="discount" type="number" value="${pay_discount }" /><fmt:formatNumber value="${discount  }" pattern="#,###"/>원</td>
 						<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>
-						<td>${pay_total_sum }원</td>
+						<td><fmt:parseNumber var="total_sum" type="number" value="${pay_total_sum }" /><fmt:formatNumber value="${total_sum }" pattern="#,###"/>원</td>
 					</tr>
 				</tbody>
 			</table>
@@ -164,7 +172,7 @@ function paymentcreditCard(){
 			</div>
 			<div class="store_pay_payments_final">	
 			</div>
-		</div>
+			</div>
 		</form>
 	</div>
 <c:import url="../footer.jsp"></c:import>

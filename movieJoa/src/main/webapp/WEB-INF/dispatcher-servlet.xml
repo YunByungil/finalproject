@@ -192,6 +192,12 @@
 		</constructor-arg>
    </bean>
    
+    <bean id="JoaMypageDao" class="joa.mypage.model.JoaMypageDAOImple">
+         <constructor-arg>
+            <ref bean="sqlSessionTemplate"/>
+         </constructor-arg>
+      </bean>
+   
    
    <!-- services -->
    <bean id="JoaHQService" class="joa.helpdesk.model.JoaHQServiceImple">
@@ -212,6 +218,7 @@
 		</constructor-arg>
 	</bean>
 	
+<<<<<<< HEAD
 	<!-- byungil -->
 	<bean id="joaBookDao" class="joa.book.model.JoaBookDAOImple">
 		<constructor-arg>
@@ -225,6 +232,13 @@
 		</constructor-arg>
 	</bean>
 	<!-- byungil -->
+=======
+	<bean id="JoaMypageService" class="joa.mypage.model.JoaMypageServiceImple">
+		<constructor-arg>
+			<ref bean="JoaMypageDao"></ref>
+		</constructor-arg>
+	</bean>
+>>>>>>> 86833e276301f308a0ebe8d1cb4284fb8c1fda16
    
    
    <!-- views -->

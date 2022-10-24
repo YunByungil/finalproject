@@ -4,8 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/joaHelpDesk.css">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=6">
+<link rel="stylesheet" type="text/css" href="css/joaHelpDesk.css?ver=6">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -18,19 +18,21 @@
 <div class="manyHelpMain">
 	<h4 class="manyHelpSubject">자주찾는 질문</h4>
 	<div class="manyHelpIntroduce">회원님들께서 가장 자주하시는 질문을 모았습니다.<br>
-	궁금하신 내용에 대해 검색해보세요</div>
+	궁금하신 내용에 대해 검색해보세요.</div>
 	<br>
-	<div class="manyHelpSerch"><input class="serchbar" type="text" name="type">&nbsp;<input class="button" type="button" value="검색하기">&nbsp;&nbsp;추천 검색어 | 현금영수증 | 관람권 | 결제 | 예매</div>
+	<form name="manyHelpSerchFM" action="manyHelpSerch.do">
+	<div class="manyHelpSerch"><input class="serchbar" type="text" name="keyword">&nbsp;<input class="button" type="submit" value="검색하기">&nbsp;&nbsp;추천 검색어 | 현금영수증 | 관람권 | 결제 | 예매</div>
+	</form>
 	<br>
 	<div class="box">
 		<ul class="manyHelpSerchBarFeild">
-			<li class="menuli"><a class="a" href="helpDesk.do" style="${color}">전체</a></li>
-			<li class="menuli"><a class="b" href="#" style="${color}">예매/매표</a></li>
-			<li class="menuli"><a class="c" href="#" style="${color}">결제수단</a></li>
-			<li class="menuli"><a class="d" href="#" style="${color}">포인트/쿠폰</a></li>
-			<li class="menuli"><a class="e" href="#" style="${color}">할인혜택</a></li>
-			<li class="menuli"><a class="f" href="#" style="${color}">스토어샵</a></li>
-			<li class="menuli"><a class="g" href="#" style="${color}">홈페이지</a></li>
+			<li class="menuli"><a style="${backA_color}"class="a" href="manyHelp.do">전체</a></li>
+			<li class="menuli"><a style="${backB_color}"class="a" href="serchManyHelp.do?type=예매/매표">예매/매표</a></li>
+			<li class="menuli"><a style="${backC_color}"class="a" href="serchManyHelp.do?type=결제수단">결제수단</a></li>
+			<li class="menuli"><a style="${backD_color}"class="a" href="serchManyHelp.do?type=포인트/쿠폰">포인트/쿠폰</a></li>
+			<li class="menuli"><a style="${backE_color}"class="a" href="serchManyHelp.do?type=할인혜택">할인혜택</a></li>
+			<li class="menuli"><a style="${backF_color}"class="a" href="serchManyHelp.do?type=스토어샵">스토어샵</a></li>
+			<li class="menuli"><a style="${backG_color}"class="a" href="serchManyHelp.do?type=홈페이지">홈페이지</a></li>
 		</ul>
 	</div>
 	<br>
@@ -52,12 +54,26 @@
 					<td colspan="3" align="center">등록된 게시글이 없습니다.</td>
 				</tr>
 			</c:if>
-				<c:forEach var="list" items="${list }">
+		<c:forEach var="dto" items="${list }">
+			
+			<c:url var="manyHelpUrlCL" value="manyHelpBorder.do">
+					<c:param name="idx">
+					${dto.lfq_idx }
+					</c:param>
+			</c:url>
+			
 			<tr>
-				<td class="manyHelpBordertype">${list.idx }</td><td>${list.subject }</td><td class="manyHelpBorderReadnum">${list.readnum }</td>
+				<td class="manyHelpBordertype">${dto.lfq_type }</td><td><a href="${manyHelpUrlCL}">${dto.lfq_subject }</a></td><td class="manyHelpBorderReadnum">${dto.lfq_readnum }</td>
 			</tr>
 		</c:forEach>
 			</tbody>
+			<tfoot>
+			<tr>
+			<td colspan="4" align="center">
+				${pageStr }
+			</td>
+			</tr>
+			</tfoot>
 		</table>
 	</div>
 	</div>

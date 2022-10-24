@@ -3,93 +3,94 @@ package joa.helpdesk.model;
 import java.sql.*;
 
 public class JoaNoticeDTO {
-	int idx;
-	String type;
-	String subject;
-	String content;
-	String file;
-	int readnum;
-	Date writedate;
-	Date rewritedate;
+	int ntc_idx;
+	String ntc_type;
+	String ntc_subject;
+	String ntc_content;
+	String ntc_file;
+	int ntc_readnum;
+	Date ntc_writedate;
+	Date ntc_rewritedate;
 	
 	public JoaNoticeDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getIdx() {
-		return idx;
-	}
-
-	public void setIdx(int idx) {
-		this.idx = idx;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
-	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getFile() {
-		return file;
-	}
-
-	public void setFile(String file) {
-		this.file = file;
-	}
-
-	public int getReadnum() {
-		return readnum;
-	}
-
-	public void setReadnum(int readnum) {
-		this.readnum = readnum;
-	}
-
-	public Date getWritedate() {
-		return writedate;
-	}
-
-	public void setWritedate(Date writedate) {
-		this.writedate = writedate;
-	}
-
-	public Date getRewritedate() {
-		return rewritedate;
-	}
-
-	public void setRewritedate(Date rewritedate) {
-		this.rewritedate = rewritedate;
-	}
-
-	public JoaNoticeDTO(int idx, String type, String subject, String content, String file, int readnum, Date writedate,
-			Date rewritedate) {
+	public JoaNoticeDTO(int ntc_idx, String ntc_type, String ntc_subject, String ntc_content, String ntc_file,
+			int ntc_readnum, Date ntc_writedate, Date ntc_rewritedate) {
 		super();
-		this.idx = idx;
-		this.type = type;
-		this.subject = subject;
-		this.content = content;
-		this.file = file;
-		this.readnum = readnum;
-		this.writedate = writedate;
-		this.rewritedate = rewritedate;
+		this.ntc_idx = ntc_idx;
+		this.ntc_type = ntc_type;
+		this.ntc_subject = ntc_subject;
+		this.ntc_content = ntc_content;
+		this.ntc_file = ntc_file;
+		this.ntc_readnum = ntc_readnum;
+		this.ntc_writedate = ntc_writedate;
+		this.ntc_rewritedate = ntc_rewritedate;
 	}
+
+	public int getNtc_idx() {
+		return ntc_idx;
+	}
+
+	public void setNtc_idx(int ntc_idx) {
+		this.ntc_idx = ntc_idx;
+	}
+
+	public String getNtc_type() {
+		return ntc_type;
+	}
+
+	public void setNtc_type(String ntc_type) {
+		this.ntc_type = ntc_type;
+	}
+
+	public String getNtc_subject() {
+		return ntc_subject;
+	}
+
+	public void setNtc_subject(String ntc_subject) {
+		this.ntc_subject = ntc_subject;
+	}
+
+	public String getNtc_content() {
+		return ntc_content;
+	}
+
+	public void setNtc_content(String ntc_content) {
+		this.ntc_content = ntc_content;
+	}
+
+	public String getNtc_file() {
+		return ntc_file;
+	}
+
+	public void setNtc_file(String ntc_file) {
+		this.ntc_file = ntc_file;
+	}
+
+	public int getNtc_readnum() {
+		return ntc_readnum;
+	}
+
+	public void setNtc_readnum(int ntc_readnum) {
+		this.ntc_readnum = ntc_readnum;
+	}
+
+	public Date getNtc_writedate() {
+		return ntc_writedate;
+	}
+
+	public void setNtc_writedate(Date ntc_writedate) {
+		this.ntc_writedate = ntc_writedate;
+	}
+
+	public Date getNtc_rewritedate() {
+		return ntc_rewritedate;
+	}
+
+	public void setNtc_rewritedate(Date ntc_rewritedate) {
+		this.ntc_rewritedate = ntc_rewritedate;
+	}
+	
 }

@@ -44,7 +44,7 @@ public class PageModule {
 				
 				//&nbsp;&nbsp;<a href="pageTest.jsp?cp=i">i</a>&nbsp;&nbsp;
 				
-				if(i==totalPage)break;
+				if(i==totalPage || totalPage==0)break;
 			}
 
 			if(userGroup!=(totalPage/pageSize)-(totalPage%pageSize==0?1:0)){

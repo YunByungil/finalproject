@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,7 @@ function productSubmit(index) {
 					<img src="/movieJoa/img/joaStore_img/${dto.pro_filename }" alt="콤보" width="430" height="450">
 				</div>
 				<div class="product_select">
-					<b>${dto.pro_price }</b>
+					<b><fmt:formatNumber value="${dto.pro_price }" pattern="#,###"/></b>
 					<hr color="#dcdcdc"/>
 					<table>
 						<tr>
@@ -87,7 +88,7 @@ function productSubmit(index) {
 						<input type="hidden" name="car_count" id="car_count">
 					</div>
 					<hr>
-					<span>총 구매금액</span><span class="product_right_price">${dto.pro_price }</span>
+					<span>총 구매금액</span><span class="product_right_price"><fmt:formatNumber value="${dto.pro_price }" pattern="#,###"/></span>
 					<div>
 						<input type="button" value="장바구니" onclick='productSubmit(1)'>
 						<input type="button" value="구매하기" onclick='productSubmit(2)'>

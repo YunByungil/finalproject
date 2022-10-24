@@ -10,9 +10,17 @@ public interface JoaManyHelpDAO {
 	
 	public int rewriteManyHelp(JoaManyHelpDTO dto);
 	
-	public List<JoaManyHelpDTO> ManyHelpList();
+	public List<JoaManyHelpDTO> ManyHelpList(Map map);
 	
-	public List<JoaManyHelpDTO> serchManyHelpList(String type);
+	public List<JoaManyHelpDTO> manyHelpType(Map map);
+	
+	public List<JoaManyHelpDTO> serchManyHelpList(Map map);
 	
 	public JoaManyHelpDTO ManyHelpBorder(int idx);
+	
+	public int manyHelpListTotalCnt();
+	
+	public int serchManyHelpListTotalCnt(Map map);
+	
+	public int manyHelpTypeTotalCnt(Map map);
 }
