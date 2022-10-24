@@ -446,6 +446,10 @@ public class JoaHelpDeskController {
 	
 	@RequestMapping("/emailHelpWrite.do")
 	public ModelAndView emailHelpWrite(JoaHelpQuestionDTO dto) {
+		ModelAndView mav = new ModelAndView();
+		String msg = null;
+		String link =null;
+		boolean link_tf = false;
 		dto.setHqt_state("미답변");
 		if(dto.getHqt_cinema()==null) {
 			dto.setHqt_cinema("온라인");
@@ -453,11 +457,27 @@ public class JoaHelpDeskController {
 		if(dto.getHqt_region()==null) {
 			dto.setHqt_region("온라인");
 		}
-		
-		int result = joaHQService.addEmailQuestion(dto);
-		String msg = result>0?"문의가 정상적으로 등록되었습니다.":"문의 등록에 실패하였습니다. 1:1문의를 이용해주세요.";
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
+		if(dto.getHqt_subject()==null || dto.getHqt_subject().equals("")) {
+			msg="제목을 입력해주세요.";
+			link_tf = false;
+			link = "emailHelp.do";
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.addObject("msg", msg);
+		}else if(dto.getHqt_content()==null || dto.getHqt_content().equals("")) {
+			msg="내용을 입력해주세요.";
+			link_tf = false;
+			link = "emailHelp.do";
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.addObject("msg", msg);
+		}else {
+			int result = joaHQService.addEmailQuestion(dto);
+			msg = result>0?"문의가 정상적으로 등록되었습니다.":"문의 등록에 실패하였습니다. 1:1문의를 이용해주세요.";
+			link_tf = true;
+			mav.addObject("link", link_tf);
+			mav.addObject("msg", msg);
+		}
 		mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_msg");
 		return mav;
 	
@@ -617,19 +637,40 @@ public class JoaHelpDeskController {
 	
 	@RequestMapping("/oneByOneHelpWrite.do")
 	public ModelAndView oneByOneHelpWrite(JoaHelpQuestionDTO dto) {
-		dto.setHqt_state("미답변");
-		if(dto.getHqt_cinema()==null) {
-			dto.setHqt_cinema("온라인");
-		}
-		if(dto.getHqt_region()==null) {
-			dto.setHqt_region("온라인");
-		}
 		ModelAndView mav = new ModelAndView();
-		int result = joaHQService.addQuestion(dto);
-		String msg = result>0?"1:1문의 등록이 완료되었습니다.":"1:1문의 등록이 실패하였습니다.아래 전화번호로 상담 및 문의를 해주세요.02-7777-7777";
-		mav.addObject("msg", msg);
-		mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_msg");
-		return mav;
+				String msg = null;
+				String link =null;
+				boolean link_tf = false;
+				dto.setHqt_state("미답변");
+				if(dto.getHqt_cinema()==null) {
+					dto.setHqt_cinema("온라인");
+				}
+				if(dto.getHqt_region()==null) {
+					dto.setHqt_region("온라인");
+				}
+				if(dto.getHqt_subject()==null || dto.getHqt_subject().equals("")) {
+					msg="제목을 입력해주세요.";
+					link_tf = false;
+					link = "oneByOneHelp.do";
+					mav.addObject("link", link);
+					mav.addObject("link_tf", link_tf);
+					mav.addObject("msg", msg);
+				}else if(dto.getHqt_content()==null || dto.getHqt_content().equals("")) {
+					msg="내용을 입력해주세요.";
+					link_tf = false;
+					link = "oneByOneHelp.do";
+					mav.addObject("link", link);
+					mav.addObject("link_tf", link_tf);
+					mav.addObject("msg", msg);
+				}else {
+					int result = joaHQService.addQuestion(dto);
+					msg = result>0?"문의가 정상적으로 등록되었습니다.":"문의 등록에 실패하였습니다. 1:1문의를 이용해주세요.";
+					link_tf = true;
+					mav.addObject("link", link_tf);
+					mav.addObject("msg", msg);
+				}
+				mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_msg");
+				return mav;
 	}
 	
 	//1:1 문의 관리자 페이지

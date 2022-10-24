@@ -10,7 +10,8 @@ public class Sub_PageModule {
 
 		/////페이지 처리 코드
 		int totalPage=totalCnt/listSize+1; //총 페이지 수	
-
+		if(totalCnt%listSize==0)totalPage--;
+		
 		int userGroup=cp/pageSize; // 사용자 현재위치에서 보여줄 페이지의 그룹
 		if(cp%pageSize==0)userGroup--;
 		
