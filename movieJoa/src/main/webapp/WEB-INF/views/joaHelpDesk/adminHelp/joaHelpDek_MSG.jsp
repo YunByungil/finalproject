@@ -2,5 +2,12 @@
     pageEncoding="UTF-8"%>
 <script>
 	window.alert('${msg}');
-	window.location.href='adminHelpDesk.do';
+	setTimeout(function sleep(){
+		if(${link_tf}){
+			window.location.href='adminHelpDesk.do';
+		}else{
+			window.location.href='${link}';
+		}
+	}, 300);
+
 </script>

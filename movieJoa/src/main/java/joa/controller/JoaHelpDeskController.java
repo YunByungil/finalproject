@@ -92,20 +92,36 @@ public class JoaHelpDeskController {
 	}
 	@RequestMapping("/manyHelpSerch.do")
 	public ModelAndView manyHelpSerch(@RequestParam(value="keyword", required=false)String keyword, @RequestParam(value =  "cp", defaultValue = "1")int cp) {
+		ModelAndView mav = new ModelAndView();
+		String msg = null;
+		String link =null;
+		boolean link_tf = false;
+		if(keyword == null || keyword.equals("")) {
+			msg="검색어를 입력해주세요.";
+			link_tf = false;
+			link = "manyHelp.do";
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.addObject("msg", msg);
+			mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_msg");
+			return mav;
+		}else {
+		
 		String backA_color = "background-color: #F05650";
 		
 		int totalCnt=joaMHService.serchManyHelpListTotalCnt(keyword);
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=joa.page.Sub_PageModule.makePage("manyHelpSerch.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=joa.page.Sub_PageModule.makePage("manyHelpSerch.do?keyword="+keyword, totalCnt, listSize, pageSize, cp);
 		
-		ModelAndView mav = new ModelAndView();
+		
 		List<JoaManyHelpDTO> list = joaMHService.serchManyHelpList(keyword, cp, listSize);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("backA_color",backA_color);
 		mav.addObject("list", list);
 		mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_manyHelp");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/manyHelpBorder.do")
@@ -175,20 +191,35 @@ public class JoaHelpDeskController {
 	
 	@RequestMapping("/adminSerchManyHelp.do")
 	public ModelAndView adminSerchManyHelp(@RequestParam(value="keyword")String keyword, @RequestParam(value =  "cp", defaultValue = "1")int cp) {
+		
+		ModelAndView mav = new ModelAndView();
+		String msg = null;
+		String link =null;
+		boolean link_tf = false;
+		if(keyword == null || keyword.equals("")) {
+			msg="검색어를 입력해주세요.";
+			link_tf = false;
+			link = "adminHelpDesk.do";
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.addObject("msg", msg);
+			mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
+			return mav;
+		}else {
 		String backA_color = "background-color: #F05650";
 		
 		int totalCnt=joaMHService.serchManyHelpListTotalCnt(keyword);
 		int listSize=5;
 		int pageSize=5;
 		String pageStr=joa.page.PageModule.makePage("adminSerchManyHelp.do?keword="+keyword, totalCnt, listSize, pageSize, cp);
-		
-		ModelAndView mav = new ModelAndView();
+	
 		List<JoaManyHelpDTO> list = joaMHService.serchManyHelpList(keyword, cp, listSize);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("backA_color",backA_color);
 		mav.addObject("list", list);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_ADMManyHelp");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/adminManyHelpBorder.do")
@@ -209,9 +240,11 @@ public class JoaHelpDeskController {
 	
 	@RequestMapping("/manyBorderWrite.do")
 	public ModelAndView manyBorderWrite(JoaManyHelpDTO dto) {
+		boolean link_tf=true;
 		int result = joaMHService.addManyHelp(dto);
 		ModelAndView mav = new ModelAndView();
 		String msg = result>0?"자주찾는 질문 게시글이 정상적으로 등록되었습니다.":"자주찾는 질문 게시글 등록이 실패했습니다. 관리자에게 문의바랍니다.";
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -231,6 +264,8 @@ public class JoaHelpDeskController {
 		int result = joaMHService.rewriteManyHelp(dto);
 		ModelAndView mav = new ModelAndView();
 		String msg = result>0?"자주찾는 질문 게시글이 정상적으로 수정되었습니다.":"자주찾는 질문 게시글 수정이 실패했습니다. 관리자에게 문의바랍니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg",msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -240,6 +275,8 @@ public class JoaHelpDeskController {
 		int result = joaMHService.deleteManyHelp(idx);
 		String msg = result>0?"자주찾는 질문 게시글이 정상적으로 삭제되었습니다.":"자주찾는 질문 게시글 삭제에 실패했습니다. 관리자에게 문의바랍니다.";
 		ModelAndView mav =new ModelAndView();
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg",msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -292,6 +329,22 @@ public class JoaHelpDeskController {
 	
 	@RequestMapping("/serchNotice.do")
 	public ModelAndView serchHelpQuestion(@RequestParam(value="keyword", required = false)String keyword, @RequestParam(value =  "cp", defaultValue = "1")int cp) {
+		
+		ModelAndView mav = new ModelAndView();
+		String msg = null;
+		String link =null;
+		boolean link_tf = false;
+		if(keyword == null || keyword.equals("")) {
+			msg="검색어를 입력해주세요.";
+			link_tf = false;
+			link = "notice.do";
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.addObject("msg", msg);
+			mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_msg");
+			return mav;
+		}else {
+		
 		String backA_color = "background-color: #F05650";
 		
 		int totalCnt=joaNTService.serchNoticeTotalCnt(keyword);
@@ -300,11 +353,12 @@ public class JoaHelpDeskController {
 		String pageStr=joa.page.Sub_PageModule.makePage("serchNotice.do?"+keyword, totalCnt, listSize, pageSize, cp);
 		
 		List<JoaNoticeDTO> list = joaNTService.serchNoticeList(keyword, cp, pageSize);
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("list", list);
 		mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_notice");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/noticeBorder.do")
@@ -366,6 +420,22 @@ public class JoaHelpDeskController {
 	
 	@RequestMapping("/serchAdminNotice.do")
 	public ModelAndView serchAdminNotice(@RequestParam(value="keyword", required = false)String keyword, @RequestParam(value =  "cp", defaultValue = "1")int cp) {
+		
+		ModelAndView mav = new ModelAndView();
+		String msg = null;
+		String link =null;
+		boolean link_tf = false;
+		if(keyword == null || keyword.equals("")) {
+			msg="검색어를 입력해주세요.";
+			link_tf = false;
+			link = "adminNotice.do";
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.addObject("msg", msg);
+			mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
+			return mav;
+		}else {
+		
 		String backA_color = "background-color: #F05650";
 		
 		int totalCnt=joaNTService.serchNoticeTotalCnt(keyword);
@@ -374,11 +444,12 @@ public class JoaHelpDeskController {
 		String pageStr=joa.page.Sub_PageModule.makePage("serchAdminNotice.do?"+keyword, totalCnt, listSize, pageSize, cp);
 		
 		List<JoaNoticeDTO> list = joaNTService.serchNoticeList(keyword, cp, pageSize);
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("list", list);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_ADMNotice");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/adminNoticeBorder.do")
@@ -402,6 +473,8 @@ public class JoaHelpDeskController {
 		int result = joaNTService.addNotice(dto);
 		ModelAndView mav = new ModelAndView();
 		String msg = result>0?"공지게시판에 게시글이 등록되었습니다.":"공지게시판 게시글 등록에 실패하였습니다. 관리자에게 문의바랍니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -420,6 +493,8 @@ public class JoaHelpDeskController {
 		ModelAndView mav = new ModelAndView();
 		int result = joaNTService.rewriteNotice(dto);
 		String msg = result>0?"공지게시판에 게시글이 수정되었습니다.":"공지게시판 게시글 수정에 실패하였습니다. 관리자에게 문의바랍니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -430,6 +505,8 @@ public class JoaHelpDeskController {
 		ModelAndView mav = new ModelAndView();
 		int result = joaNTService.deleteNotice(idx);
 		String msg = result>0?"공지게시판에 게시글이 삭제되었습니다.":"공지게시판 게시글 삭제에 실패하였습니다.관리자에게 문의바랍니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -621,6 +698,8 @@ public class JoaHelpDeskController {
 		ModelAndView mav = new ModelAndView();
 		int result = joaHQService.answerQuestion(dto);
 		String msg = result>0?"이메일 답변완료 설정이 등록되었습니다":"이메일 답변완료 설정 등록에 실패했습니다";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -811,6 +890,8 @@ public class JoaHelpDeskController {
 		ModelAndView mav = new ModelAndView();
 		int result = joaHQService.answerQuestion(dto);
 		String msg = result>0?"1:1문의 답변이 정상적으로 등록됬습니다.":"1:1문의 답변 등록에 실패했습니다. 관리자에게 문의바랍니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -822,6 +903,8 @@ public class JoaHelpDeskController {
 		ModelAndView mav = new ModelAndView();
 		int result = joaHQService.reanswerQuestion(dto);
 		String msg = result>0?"1:1문의 답변이 정상적으로 등록됬습니다.":"1:1문의 답변 등록에 실패했습니다. 관리자에게 문의바랍니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
@@ -969,6 +1052,8 @@ public class JoaHelpDeskController {
 		ModelAndView mav = new ModelAndView();
 		int result = joaHQService.reanswerQuestion(dto);
 		String msg = result>0?"재답변 설정이 완료되었습니다.":"재답변 설정이 실패했습니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;

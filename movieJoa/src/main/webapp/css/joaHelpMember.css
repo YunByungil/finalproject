@@ -7,13 +7,12 @@
 
 .helpMenu_member{
 	position: absolute;
-	top:0px;
+	top:40px;
 	float: left;
-	left: 20px;
+	left: 10px;
 	border: 0px; 
 	padding: 0px;
 	overflow: auto;
-	background-color :#EEEEEE;
 	align:left;
 	
 }
@@ -98,4 +97,38 @@
 }
 .td_subjectCL{
 	width: 420px;
+}
+.td_subjectCL > a{
+	color:black;
+}
+.td_subject > a{
+	color:black;
+}
+
+.HM_bar{
+	display: block;
+	height:40px;
+	width: 160px;
+	background-color: white;
+	margin-left:3px;
+	line-height: 40px;
+}
+
+.HM_bar_a > li:hover{
+  background-color:#F05650;
+}
+.helpMenu_member > a:hover{
+	color:white;
+}
+.HM_bar_a{
+	color:black;
+}
+.menuli > a:hover{
+  background-color:#F05650;
+}
+.pageStr > a{
+	color:black;
+}
+.borderurl > a{
+	color:black;
 }
