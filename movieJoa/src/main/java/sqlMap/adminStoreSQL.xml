@@ -35,13 +35,13 @@
 			update 
 				joa_product
 			set 
-				pro_name=#{pro_name},
-				pro_price=#{pro_price},
-				pro_category=#{pro_category},
-				pro_filename=#{pro_filename},
-				pro_info=#{pro_info} 
+				pro_name      =#{pro_name},
+				pro_price     =#{pro_price},
+				pro_category  =#{pro_category},
+				pro_filename  =#{pro_filename},
+				pro_info      =#{pro_info} 
 			where 
-				pro_idx=#{pro_idx}	
+				pro_idx       =#{pro_idx}	
   	</update>
   	<delete id="productDelete" parameterType="String">
 		delete from 

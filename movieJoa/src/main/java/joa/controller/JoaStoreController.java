@@ -93,5 +93,10 @@ public class JoaStoreController {
 		mav.setViewName("joaStore/joaStore_cart");
 		return mav;
 	}
+	
+	@RequestMapping("/selectCoupon.do")
+	public String selectCoupon() {
+		return "joaStore/joaStore_selectCoupon";
+	}
 
 }
