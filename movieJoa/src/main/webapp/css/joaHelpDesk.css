@@ -47,7 +47,6 @@
 	border: 0px; 
 	padding: 0px;
 	overflow: auto;
-	background-color :#EEEEEE;
 	align:left;
 	
 }
@@ -77,6 +76,30 @@
     float:left;
     text-align:center;
 }
+
+.HM_bar{
+	display: block;
+	height:40px;
+	width: 90px;
+	background-color: white;
+	margin-left:3px;
+	line-height: 40px;
+	color: black;
+}
+
+.helpMenu > li:hover{
+  background-color:#F05650;
+  
+}
+
+.helpMenu > a:hover {
+
+ color: white;
+
+ text-decoration: none;
+
+}
+
 .manyHelpSerchBarFeild{
 	list-style-type:none;
 }
