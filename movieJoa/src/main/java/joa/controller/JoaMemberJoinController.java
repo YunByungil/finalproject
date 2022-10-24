@@ -38,5 +38,13 @@ public class JoaMemberJoinController {
 		mav.setViewName("joaMemberJoin/joaMemberJoin_msg");
 		return mav;
 	}
-	
+	@RequestMapping("/memberIdCheck.do")
+	public ModelAndView memberIdCheck(String id) {
+		int result=joaMemberDao.memberIdCheck(id);
+		String msg=result>0?"사용 가능 ID":"중복된 ID";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg",msg);
+		mav.setViewName("joaMemberJoin/joaMemberJoin_idCheck");
+		return mav;
+	}
 }

@@ -102,6 +102,34 @@ function validate(){
 	}
 }
 </script>
+<script>
+var XHR=null;
+function getXHR(){
+	if(window.ActiveXObject){
+		return new ActiveXObject('Msxml2.XMLHTTP');
+	}else if(window.XMLHttpRequest){
+		return new XLHttpRequest();
+	}else{
+		return null;
+	}
+}
+function show(){
+	var name=document.memberJoinForm.mem_id.value;
+	var param='mem_id='+mem_id;
+	XHR=getXHR();
+	XHR.onreadystatechange=showResult;
+	XHR.open('GET','memberIdCheck.do'+param,true);
+	XHR.send(null);
+}
+function showResult(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data=XHR.responseText;
+			window.alert(data);
+		}	
+	}
+}
+</script>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
@@ -112,7 +140,7 @@ function validate(){
 		<table>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" name="mem_id" id="idCheck" placeholder="사용할 ID를 설정하세요.">
+				<td><input type="text" name="mem_id" id="idCheck" placeholder="사용할 ID를 설정하세요." onchange="shoow()">
 				<span class="setId">아이디는 4~12로 설정해주세요.</span>
 			</tr>
 			<tr>

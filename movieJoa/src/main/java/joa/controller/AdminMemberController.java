@@ -82,8 +82,22 @@ public class AdminMemberController {
 		return mav;
 	}
 	@RequestMapping("/adminMemberMain.do")
-	public String adminMemberMainGo() {
-		return "admin/adminMember/adminMember_main";
+	public ModelAndView adminMemberMainGo() {
+		ModelAndView mav=new ModelAndView();
+		int memberAllCount=joaAdminMemberDao.memberAllCount();
+		int currentMemberJoin=joaAdminMemberDao.currentMemberJoin();
+		int adminAllCount=joaAdminMemberDao.adminAllCount();
+		int memberGenderCount=joaAdminMemberDao.memberGenderCount();
+		int arr[]=new int[5];
+		arr=joaAdminMemberDao.memberAgeCount();
+		mav.addObject("currentMemberJoin",currentMemberJoin);
+		mav.addObject("memberAllCount", memberAllCount);
+		mav.addObject("adminAllCount", adminAllCount);
+		mav.addObject("memberGenderCount", memberGenderCount);
+		mav.addObject("memberAgeCount", arr);
+		mav.setViewName("admin/adminMember/adminMember_main");
+		arr=joaAdminMemberDao.memberAgeCount();
+		return mav;
 	}
 	@RequestMapping("/adminMemberLoginSubmit.do")
 	public ModelAndView adminMemberLogin(JoaAdminMemberDTO dto, HttpServletRequest req) {

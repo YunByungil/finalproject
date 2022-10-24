@@ -6,8 +6,8 @@
 <select id="adminMemberName" resultType="joa.member.model.JoaMemberDTO" parameterType="Map"> 
 select * from joa_member where mem_name=#{mem_name} 
 </select>
-<select id="adminMemberId" resultType="joa.member.model.JoaMemberDTO" parameterType="Map"> s
-elect * from joa_member where mem_id=#{mem_id}
+<select id="adminMemberId" resultType="joa.member.model.JoaMemberDTO" parameterType="Map"> 
+select * from joa_member where mem_id=#{mem_id}
 </select>
 <select id="adminMemberId2" resultType="joa.member.model.JoaMemberDTO" parameterType="String"> 
 select * from joa_member where mem_id=#{mem_id} 
