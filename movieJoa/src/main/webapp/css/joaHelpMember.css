@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+.selectbar{
+	height:30px;
+	width: 110px;
+}
+
+.helpMenu_member{
+	position: absolute;
+	top:0px;
+	float: left;
+	left: 20px;
+	border: 0px; 
+	padding: 0px;
+	overflow: auto;
+	background-color :#EEEEEE;
+	align:left;
+	
+}
+.memberHelpBorder{
+	height:auto;
+	width: 700px;
+	align:center;
+	border: 1px solid red;
+}
+.memberHelpContent{
+	display: flex;
+	justify-content : center;
+	text-align:center;
+	align:center;
+	width: 700px;
+	height:auto;
+	margin: 0px auto;
+	overflow: auto;
+	border: 1px solid #F05650;
+}
+.memberHelpSerchBarFeild{
+	list-style-type:none;
+}
+.memberButton{
+	background-color: black;
+	color: white;
+	cursor:pointer;
+}
+.memberHelpSerch{
+	font-size:12px;
+	color:gray;
+}
+.memberHelpIntroduce{
+	font-size:12px;
+	color:gray;
+}
+
+.menuli{
+	float:left;
+    text-align:center;
+}
+.memberhelpDesk_main{
+	position: relative;
+	width: 1100px;
+   	margin: 0px auto;
+  	height:auto;
+   	overflow:auto;
+}
+.memberHelpMain{
+	text-align:left;
+	width: 700px;
+	height:auto;
+	margin: 0px auto;
+	overflow: auto;
+}
+.a{
+	display: block;
+	height:40px;
+	width: 90px;
+	background-color: gray;
+	margin-left:3px;
+	line-height: 40px;
+	color:white;
+}
+.td_type{
+	width: 85px;
+}
+.td_subject{
+	width: 230px;
+}
+.td_state{
+	width: 95px;
+}
+.td_answerwrite{
+	width: 95px;
+}
+.td_region{
+	width: 95px;
+}
+.td_cinema{
+	width: 100px;
+}
+.td_subjectCL{
+	width: 420px;
+}

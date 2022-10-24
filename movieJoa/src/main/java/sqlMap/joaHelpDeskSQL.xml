@@ -3,87 +3,154 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.helpdesk">
-  	<insert id="QuestionInsert" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
+  	<insert id="questionInsert" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
 			insert into
 			joa_helpquestion
 			values(joa_helpquestion_hqt_idx.nextval,
-			#{type},
-			#{region},
-			#{cinema},
-			#{id},
-			#{email},
-			#{subject},
-			#{content},
+			#{hqt_type},
+			#{hqt_region},
+			#{hqt_cinema},
+			#{hqt_id},
+			#{hqt_email},
+			#{hqt_subject},
+			#{hqt_content},
 			sysdate,
-			#{state},
-			#{answerwrite},
-			#{answercontent},
-			#{answerrank},
-			#{answerdate},
+			#{hqt_state},
+			#{hqt_answerwrite},
+			#{hqt_answercontent},
+			#{hqt_answerrank},
+			#{hqt_answerdate},
 			sysdate
 			)
 	</insert>
 		
-	<select id="QuestionList" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+	<select id="topQuestionList" parameterType="Map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
 			select
 			*
 			from
-			joa_helpquestion order by hqt_idx
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	
-	<select id="SerchQuestionList" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+	<select id="topQuestionTotalCnt" resultType="Integer">
+  	select count(*) from joa_helpquestion
+  	</select>
+  	
+  	<select id="topQuestionTypeList" parameterType="map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
 			select
 			*
 			from
-			joa_helpquestion order by hqt_idx
-			where type=#{type}
-			and
-			region=#{region}
-			and
-			chinema=#{chinema}
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion where hqt_type=#{hqt_type} order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+  	
+  	<select id="questionList" parameterType="map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+			select
+			*
+			from
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NULL order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+  	
+  	<select id="questionTypeList" parameterType="map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+		select
+			*
+			from
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NULL and hqt_type=#{hqt_type} order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+
+  	<select id="questionSerchList" parameterType="map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+		select
+			*
+			from
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NULL and ${hqt_type} and ${hqt_region} and ${hqt_cinema} order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	
-	<select id="QuestionBorder">
+	<select id="topQuestionSerchList" parameterType="map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+		select
+			*
+			from
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion where ${hqt_state} and ${hqt_type} and ${hqt_region} and ${hqt_cinema} order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+
+  	<select id="emailList" parameterType="map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+			select
+			*
+			from
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NOT NULL order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+
+	<select id="emailTypeList" parameterType="map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+		select
+			*
+			from
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NOT NULL and hqt_type=#{hqt_type} order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+
+	<select id="emailSerchList" parameterType="map" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+		select
+			*
+			from
+			(select rownum as rnum,a.* from
+    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NOT NULL and ${hqt_type} and ${hqt_region} and ${hqt_cinema} order by hqt_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+	
+	<select id="questionBorder" parameterType="Integer" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
 			select
 			*
 			from
 			joa_helpquestion
-			where hqt_idx=#{idx}
+			where hqt_idx=#{hqt_idx}
 	</select>
 	
-	<update id="QuestionAnswer" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
+	<update id="questionAnswer" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
 	
 		update
 		joa_helpquestion
 		set 
-		state=#{state},
-		answerwrite=#{answerwrite},
-		answercontent=#{answercontent},
-		answerrank=#{answerrank},
-		answerdate=sysdate
-		where hqt_idx=#{idx}
+		hqt_state=#{hqt_state},
+		hqt_answerwrite=#{hqt_answerwrite},
+		hqt_answercontent=#{hqt_answercontent},
+		hqt_answerrank=#{hqt_answerrank},
+		hqt_answerdate=sysdate
+		where hqt_idx=#{hqt_idx}
 	</update>
 	
-	<update id="QuestionReAnswer" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
+	<update id="questionReAnswer" parameterType="joa.helpdesk.model.JoaHelpQuestionDTO">
 	
 		update
 		joa_helpquestion
 		set 
-		state=#{state},
-		answerwrite=#{answerwrite},
-		answercontent=#{answercontent},
-		answerrank=#{answerrank},
-		reanswerdate=sysdate
-		where hqt_idx=#{idx}
+		hqt_state=#{hqt_state},
+		hqt_answerwrite=#{hqt_answerwrite},
+		hqt_answercontent=#{hqt_answercontent},
+		hqt_answerrank=#{hqt_answerrank},
+		hqt_reanswerdate=sysdate
+		where hqt_idx=#{hqt_idx}
 	</update>
 	
 	<insert id="ManyHelpInsert" parameterType="joa.helpdesk.model.JoaManyHelpDTO">
 			insert into
 			joa_lookingforquestion
-			values(joa_lookingforquestion_idx.nextval,
-			#{type},
-			#{subject},
-			#{content},
+			values(joa_lookingforquestion_lfq_idx.nextval,
+			#{lfq_type},
+			#{lfq_subject},
+			#{lfq_content},
+			0,
 			sysdate,
 			sysdate
 			)
@@ -93,40 +160,42 @@
 		delete
 		from
 		joa_lookingforquestion
-		where lfq_idx=#{idx}
+		where lfq_idx=#{lfq_idx}
 	</delete>
 	
 	<update id="ManyHelpUpdate" parameterType="joa.helpdesk.model.JoaManyHelpDTO">
 		update
 		joa_lookingforquestion
 		set
-		type=#{type},
-		subject=#{subject},
-		content=#{content},
-		writedate=#{writedate},
-		rewritedate=sysdate
-		where lfq_idx=#{idx}
+		lfq_type=#{lfq_type},
+		lfq_subject=#{lfq_subject},
+		lfq_content=#{lfq_content},
+		lfq_rewritedate=sysdate
+		where lfq_idx=#{lfq_idx}
 	</update>
 	
-	<select id="ManyHelpList" resultType="joa.helpdesk.model.JoaManyHelpDTO">
+	<select id="ManyHelpList" parameterType="Map" resultType="joa.helpdesk.model.JoaManyHelpDTO">
 	
 		select
 			*
 		from
-		joa_lookingforquestion order by lfq_idx
+	(select rownum as rnum,a.* from
+    (select * from joa_lookingforquestion order by lfq_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	
 	</select>
 	
-	<select id="SerchManyHelpList" resultType="joa.helpdesk.model.JoaManyHelpDTO">
+	<select id="ManyHelpType" parameterType="Map" resultType="joa.helpdesk.model.JoaManyHelpDTO">
 	
 		select
 			*
 		from
-		joa_lookingforquestion order by lfq_idx
-		where type=#{type}
+		(select rownum as rnum,a.* from
+    (select * from joa_lookingforquestion where lfq_type=#{type} order by lfq_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	
-	<select id="ManyHelpBorder">
+	<select id="ManyHelpBorder" parameterType="Integer" resultType="joa.helpdesk.model.JoaManyHelpDTO">
 			select
 			*
 			from
@@ -134,18 +203,31 @@
 			where lfq_idx=#{idx}
 	</select>
 	
+	<select id="SerchManyHelpList" parameterType="Map" resultType="joa.helpdesk.model.JoaManyHelpDTO">
+	
+		select
+			*
+		from
+		(select rownum as rnum,a.* from
+    (select * from joa_lookingforquestion where lfq_content LIKE '%'||#{keyword}||'%' order by lfq_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+	
 	<insert id="NoticeInsert" parameterType="joa.helpdesk.model.JoaNoticeDTO">
 			insert into
 			joa_notice
-			values(joa_notice_idx.nextval,
-			#{type},
-			#{subject},
-			#{content},
-			#{file},
+			values(joa_notice_ntc_idx.nextval,
+			#{ntc_type},
+			#{ntc_subject},
+			#{ntc_content},
+			#{ntc_file},
+			0,
 			sysdate,
 			sysdate
 			)
 	</insert>
+	
+	
 	
 	<delete id="NoticeDelete" parameterType="joa.helpdesk.model.JoaNoticeDTO">
 		delete
@@ -158,34 +240,33 @@
 		update
 		joa_notice
 		set
-		type=#{type},
-		subject=#{subject},
-		content=#{content},
-		file=#{file},
-		writedate=#{writedate},
-		rewritedate=sysdate
-		where ntc_idx=#{idx}
+		ntc_type=#{ntc_type},
+		ntc_subject=#{ntc_subject},
+		ntc_content=#{ntc_content},
+		ntc_rewritedate=sysdate
+		where ntc_idx=#{ntc_idx}
 	</update>
 	
-	<select id="NoticeList" resultType="joa.helpdesk.model.JoaNoticeDTO">
-	
+	<select id="NoticeList" parameterType="map" resultType="joa.helpdesk.model.JoaNoticeDTO">
 		select
 			*
 		from
-		joa_notice order ntc_idx
-	
+	(select rownum as rnum,a.* from
+    (select * from joa_notice order by ntc_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	
-	<select id="SerchNoticeList" resultType="joa.helpdesk.model.JoaNoticeDTO">
 	
+	<select id="NoticeType" parameterType="map" resultType="joa.helpdesk.model.JoaNoticeDTO">
 		select
 			*
 		from
-		joa_notice order by ntc_idx
-		where type=#{type}
+		(select rownum as rnum,a.* from
+    (select * from joa_notice where ntc_type=#{type} order by ntc_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	
-	<select id="NoticeBorder">
+	<select id="NoticeBorder" parameterType="Integer" resultType="joa.helpdesk.model.JoaNoticeDTO">
 			select
 			*
 			from
@@ -193,5 +274,83 @@
 			where ntc_idx=#{idx}
 	</select>
 	
+	<select id="SerchNoticeList" parameterType="map" resultType="joa.helpdesk.model.JoaNoticeDTO">
+	
+		select
+			*
+		from
+		(select rownum as rnum,a.* from
+    (select * from joa_notice where ntc_content LIKE '%'||#{keyword}||'%' order by ntc_idx desc)a)b
+    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+	
+	<select id="questionTotalCnt" parameterType="String" resultType="Integer">
+  	select count(*) from joa_helpquestion
+  	where hqt_state=#{state} and hqt_email IS NULL
+  	</select>
+  	
+  	<select id="questionTypeTotalCnt" parameterType="map" resultType="Integer">
+  	select count(*) from joa_helpquestion
+  	where hqt_state=#{state} and hqt_email IS NULL and hqt_type=#{hqt_type}
+  	</select>
+  	
+  	<select id="questionSerchTotalCnt" parameterType="map" resultType="Integer">
+		select count(*) from joa_helpquestion
+  		where hqt_state=#{state} and hqt_email IS NULL and ${hqt_type} and ${hqt_region} and ${hqt_cinema}
+	</select>
+	
+	<select id="emailTotalCnt" parameterType="String" resultType="Integer">
+  	select count(*) from joa_helpquestion
+  	where hqt_state=#{state} and hqt_email IS NOT NULL
+  	</select>
+  	
+  	<select id="emailTypeTotalCnt" parameterType="map" resultType="Integer">
+  	select count(*) from joa_helpquestion
+  	where hqt_state=#{state} and hqt_email IS NOT NULL and hqt_type=#{hqt_type}
+  	</select>
+  	
+  	<select id="emailSerchTotalCnt" parameterType="map" resultType="Integer">
+		select count(*) from joa_helpquestion
+  		where hqt_state=#{state} and hqt_email IS NOT NULL and ${hqt_type} and ${hqt_region} and ${hqt_cinema}
+	</select>
+  	
+  	<select id="ManyHelpTypeTotalCnt" parameterType="map" resultType="Integer">
+  	select count(*) from joa_lookingforquestion
+  	where lfq_type=#{type}
+  	</select>
+  	
+  	<select id="SerchManyHelpListTotalCnt" parameterType="map" resultType="Integer">
+  	select count(*) from joa_lookingforquestion
+  	where lfq_content LIKE '%'||#{keyword}||'%'
+  	</select>
+	
+	<select id="NoticeListTotalCnt" resultType="Integer">
+  	select count(*) from joa_notice
+  	</select>
+	
+		<select id="NoticeTypeTotalCnt" parameterType="map"  resultType="Integer">
+  	select count(*) from joa_notice
+  	where ntc_type=#{type}
+  	</select>
+	
+	
+	<select id="SerchNoticeListTotalCnt" parameterType="map" resultType="Integer">
+  	select count(*) from joa_notice
+  	where ntc_content LIKE '%'||#{keyword}||'%'
+  	</select>
+  	
+  	<select id="ManyHelpListTotalCnt" resultType="Integer">
+  	select count(*) from joa_lookingforquestion
+  	</select>
+  	
+  	<select id="topQuestionTypeTotalCnt" parameterType="String"  resultType="Integer">
+  	select count(*) from joa_helpquestion
+  	where hqt_type=#{type}
+  	</select>
+  	
+  	<select id="topQuestionSerchTotalCnt" parameterType="map" resultType="Integer">
+		select count(*) from joa_helpquestion
+  		where ${hqt_state} and ${hqt_type} and ${hqt_region} and ${hqt_cinema}
+	</select>
 	
   </mapper>

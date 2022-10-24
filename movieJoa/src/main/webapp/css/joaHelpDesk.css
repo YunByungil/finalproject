@@ -1,5 +1,17 @@
 @charset "UTF-8";
 
+.writebutton{
+	position: absolute;
+	left:800px;
+	background-color: #F05650;
+	color: white;
+	cursor:pointer;
+	outline:0;
+	border:0;
+	font-size:13px; 
+	padding:8px 17px;
+}
+
 .serchbar{
 	height:19px;
 	width: 330px;
@@ -9,7 +21,15 @@
 	color: white;
 	cursor:pointer;
 }
-
+.a{
+	display: block;
+	height:40px;
+	width: 90px;
+	background-color: gray;
+	margin-left:3px;
+	line-height: 40px;
+	color:white;
+}
 .helpDesk_main{
 	position: relative;
 	width: 1100px;
@@ -23,7 +43,7 @@
 	position: absolute;
 	top:0px;
 	float: left;
-	left: 70px;
+	left: 20px;
 	border: 0px; 
 	padding: 0px;
 	overflow: auto;
@@ -44,7 +64,6 @@
 	height:auto;
 	margin: 0px auto;
 	overflow: auto;
-	border: 1px solid red;
 }
 .manyHelpIntroduce{
 	font-size:12px;
@@ -54,10 +73,7 @@
 	font-size:12px;
 	color:gray;
 }
-
 .menuli{
-	padding: 1px;
-	line-height: 40px;
     float:left;
     text-align:center;
 }
@@ -73,7 +89,7 @@
 	height:auto;
 	margin: 0px auto;
 	overflow: auto;
-	border: 1px solid red;
+	border: 1px solid #F05650;
 }
 .manyHelpBorder{
 	height:auto;
@@ -88,3 +104,149 @@
 	width: 90px;
 }
 
+#subject{
+	width:580px;
+	height:25px;
+	font-size:15px;
+}
+#bordercontent{
+	font-size:15px;
+}
+.emailContent{
+	display: flex;
+	justify-content : center;
+	text-align:left;
+	align:left;
+	width: 700px;
+	height:auto;
+	margin: 0px auto;
+	overflow:outo;
+	box-shadow: 1px 1px 3px 1px #dadce0 inset;
+}
+
+.submitbutton{
+	font-size:13px; 
+	padding:8px 17px;
+	align:right;
+	background-color: black;
+	color: white;
+	cursor:pointer;
+}
+.mun{
+	padding-right: 12px;
+}
+.je{
+	align:center;
+	padding-left: 12px;
+}
+.sub{
+	padding-top: 20px;
+}
+.hr{
+	border:0px;
+	height: 1px;
+	background-color: red;
+	noshade:noshade;
+}
+.ta{
+	border-spacing: 0 20px;
+	
+}
+.manyHelpWrite{
+	display: flex;
+	justify-content : center;
+	text-align:center;
+	align:center;
+	width: 700px;
+	height:auto;
+	margin: 0px auto;
+	overflow: auto;
+	box-shadow: 1px 1px 3px 1px #dadce0 inset;
+}
+.manyHelpWriteFeild{
+	padding:20px;
+	height:auto;
+	width: 700px;
+	align:center;
+	border-spacing:15px;
+}
+.radio{
+	font-size:12px;
+}
+#lfq_subject{
+	width:526px;
+	height:25px;
+	font-size:15px;
+}
+.bordertype{
+	width:100px;
+	border:none;
+}
+.bordersubject{
+	padding-left:20px;
+	text-align:left;
+}
+.readnum{
+	width:110px;
+}
+.readnumW{
+	width:150px;
+}
+.borderhead{
+	height:50px;
+	background-color :#EEEEEE;
+}
+.manyHelpBorderW{
+ border-collapse: collapse;	
+ height:auto;
+	width: 700px;
+	align:center;
+}
+.manyBorderHelpContent{
+    display: flex;
+	justify-content : center;
+	text-align:center;
+	align:center;
+	width: 700px;
+	height:auto;
+	margin: 0px auto;
+	overflow: auto;
+}
+.bordercontent{
+	width: 700px;
+	height:auto;
+	padding-left:25px;
+	padding-bottom:25px;
+	text-align:left;
+}
+.bordersubmit{
+	background-color: #444444;
+	color: white;
+	cursor:pointer;
+	outline:0;
+	border:0;
+	font-size:12px; 
+	padding:8px 40px;
+}
+.updatebutton{
+	background-color:#4B89DC;
+	color: white;
+	cursor:pointer;
+	outline:0;
+	border:0;
+	font-size:12px; 
+	padding:8px 40px;
+}
+.deletebutton{
+	background-color: #F05650;
+	color: white;
+	cursor:pointer;
+	outline:0;
+	border:0;
+	font-size:12px; 
+	padding:8px 40px;
+}
+.manyHelpbutton{
+	float:left;
+	padding:5px;
+}
