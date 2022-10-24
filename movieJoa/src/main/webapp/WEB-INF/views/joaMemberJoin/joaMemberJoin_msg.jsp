@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 window.alert('${msg}');
-location.href='/movieJoa/index.jsp';
+location.href='index.do';
 </script>

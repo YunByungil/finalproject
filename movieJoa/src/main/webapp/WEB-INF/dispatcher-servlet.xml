@@ -78,6 +78,16 @@
    			<ref bean="sqlSessionTemplate"/>
    		</constructor-arg>
    	</bean>
+   	<bean id="joaAdminPayMovieDao" class="joa.adminRevenue.model.JoaAdminPayMovieDAOImple">
+   		<constructor-arg>
+         	<ref bean="sqlSessionTemplate"/>
+     	 </constructor-arg>
+   	</bean>
+   	<bean id="joaAdminPayProductDao" class="joa.adminRevenue.model.JoaAdminPayProductDAOImple">
+   		<constructor-arg>
+         	<ref bean="sqlSessionTemplate"/>
+     	 </constructor-arg>
+   	</bean>
    <!-- services -->
    <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
    		<constructor-arg>
@@ -89,6 +99,7 @@
          <ref bean="adminStoreDao"/>
      	 </constructor-arg>
    	</bean>
+   
    
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>

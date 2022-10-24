@@ -10,6 +10,6 @@
  select * from joa_member where mem_id=#{mem_id} and mem_pwd=#{mem_pwd} 
  </select>
 <select id="memberIdCheckQuery" parameterType="String" resultType="Integer"> 
-select count(*) joa_member where mem_id=#{mem_id} 
+select count(*) from joa_member where mem_id=#{mem_id} 
 </select>
 </mapper>

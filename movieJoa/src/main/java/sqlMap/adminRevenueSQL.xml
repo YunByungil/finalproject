@@ -2,5 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="joa.store">
+  <mapper namespace="joa.adminRevenue">
+  <select id="nowMonthMovieRevenueQuery" resultType="Integer">
+  select sum(payMov_total_price) 
+	from joa_payMovie where payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="nowYearQuery" resultType="Integer">
+  select to_char(sysdate,'yy') from joa_payMovie
+  </select>
+  <select id="nowMonthQuery" resultType="Integer">
+  select to_char(sysdate,'mm') from joa_payMovie
+  </select>
+  <select id="nowMonthProductRevenueQuery" resultType="Integer">
+   select sum(payPro_total_price) 
+	from joa_payProduct where payPro_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="nowMonthSpectatorQuery" resultType="Integer">
+  	select count(*) from joa_payMovie
+  </select>
   </mapper>
