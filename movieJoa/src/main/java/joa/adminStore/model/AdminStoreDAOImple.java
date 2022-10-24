@@ -48,6 +48,12 @@ public class AdminStoreDAOImple implements AdminStoreDAO{
 		int count=sqlMap.update("productUpdate",dto);
 		return count;
 	}
+	
+	@Override
+	public int productDelete(String idx) {
+		int count=sqlMap.delete("productDelete",idx);
+		return count;
+	}
 
 
 }

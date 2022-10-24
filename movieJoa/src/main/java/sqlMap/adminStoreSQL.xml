@@ -42,5 +42,10 @@
 				pro_info=#{pro_info} 
 			where 
 				pro_idx=#{pro_idx}	
-  	</update>  		
+  	</update>
+  	<delete id="productDelete" parameterType="String">
+		delete from 
+			joa_product 
+			where pro_idx=#{pro_idx}
+	</delete>  		
   </mapper>

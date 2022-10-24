@@ -10,4 +10,5 @@ public interface AdminStoreDAO {
 	public AdminStoreDTO adminStoreContent(int idx);
 	public int adminStoreTotalCnt();
 	public int productUpdate(AdminStoreDTO dto);
+	public int productDelete(String idx);
 }

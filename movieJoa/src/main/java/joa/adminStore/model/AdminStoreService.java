@@ -8,5 +8,5 @@ public interface AdminStoreService {
 	public List<AdminStoreDTO> storeCategoryList(AdminStoreDTO dto);
 	public AdminStoreDTO adminStoreContent(int idx);
 	public int adminStoreTotalCnt();
-
+	public int productDelete(String idx);
 }

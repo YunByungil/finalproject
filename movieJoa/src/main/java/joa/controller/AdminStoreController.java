@@ -47,7 +47,7 @@ public class AdminStoreController {
 		return "admin/adminStore/adminStore_store_add";
 	}
 	
-	@RequestMapping(value="/addProduct.do",method = RequestMethod.POST)
+	@RequestMapping("/addProduct.do")
 	public ModelAndView addProduct(AdminStoreDTO dto,@RequestParam("img")MultipartFile img, HttpServletRequest req) {
 
 		String path=req.getRealPath("/img/joaStore_img");
@@ -103,13 +103,26 @@ public class AdminStoreController {
 	}
 	
 	@RequestMapping("/editProduct.do")
-	public ModelAndView empUpdate(AdminStoreDTO dto) {
+	public ModelAndView adminStoreUpdate(AdminStoreDTO dto) {
 		int result=adminStoreDao.productUpdate(dto);
-		String msg=result>0?"정보변경성공(mybatis)":"정보변경실패(mybatis)";
+		String msg=result>0?"상품정보변경 성공":"상품 정보변경 실패";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
+		mav.addObject("nextPage","adminStore.do");
 		mav.setViewName("admin/adminStore/adminStore_store_msg");
 		return mav;		
+	}
+	
+	@RequestMapping("/adminStoreDelete.do")
+	public ModelAndView adminStoreDelete(String pro_idx) {
+		int result=adminStoreDao.productDelete(pro_idx);
+		String msg=result>0?"상품삭제성공":"상품삭제실패";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("nextPage","adminStore.do");
+		mav.addObject("msg",msg);		
+		
+		mav.setViewName("admin/adminStore/adminStore_store_msg");
+		return mav;
 	}
 	
 
