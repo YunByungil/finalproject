@@ -44,8 +44,8 @@ function openLogin(){
 				</li>
 				<li class="menu2"><a href="#">극장</a>
 					<ul class="menu2_s submenu">
-					    <li>극장</li>
-					    <li>예매</li>
+					    <li><a href="joaTheater.do">극장</a></li>
+					    <li><a href="book.do">예매</a></li>
 					</ul>
 				</li>
 				<li class="menu3"><a href="joaStore.do">스토어</a>

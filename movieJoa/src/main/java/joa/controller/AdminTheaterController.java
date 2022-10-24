@@ -159,8 +159,8 @@ public class AdminTheaterController {
 		Date now = new Date();	
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String nDate=format.format(now);
-		ad.put("city","seoul");
-		ad.put("branch","gang");
+		ad.put("city","서울");
+		ad.put("branch","신촌");
 		List<String> list=scheduleDao.theaterChoice(ad);
 		map.put("nDate", nDate);
 		map.put("tList",list);
