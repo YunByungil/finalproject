@@ -142,9 +142,9 @@ function paymentcreditCard(){
 					</tr>
 				</table>			
 			</div>
-			<input type="hidden" name="payPro_mem_id" value="jtl3403">	
+			<input type="hidden" name="payPro_mem_id" value="${mem_id }">	
 			<input type="hidden" name="payPro_mem_name" value="${mem_name }">	
-			<input type="hidden" name="payPro_mem_email" value="jtl3403@hanmail.net">	
+			<input type="hidden" name="payPro_mem_email" value="${mem_email }">	
 			<input type="hidden" name="payPro_mem_tel" value="${mem_tel }">
 			<input type="hidden" name="payPro_pg" id="payPro_pg">
 			<input type="hidden" name="payPro_method" id="payPro_method">

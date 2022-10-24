@@ -14,7 +14,7 @@
   	</select>
 	<insert id="payProductResultAdd" parameterType="joa.pay.model.JoaPayProDTO">
 	    insert into
-	    	jao_payProduct
+	    	joa_payProduct
 	    values
 		    (joa_payProduct_payPro_idx.nextval,
 		    #{payPro_mem_id},

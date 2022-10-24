@@ -62,9 +62,25 @@ public class JoaPayController {
 	}
 	
 	@RequestMapping("/joaStoreKakaoPay.do")
-	public ModelAndView joaStoreKakaoPay(JoaPayProDTO dto) {
+	public ModelAndView joaStoreKakaoPay(
+			String payPro_mem_id, String payPro_mem_name, String payPro_mem_email,
+			String payPro_mem_tel, String payPro_pg, String payPro_method, String payPro_pro_name,
+			String payPro_price_sum, String payPro_discount, String payPro_total_price, String payPro_merchant_uid,
+			JoaPayProDTO dto) {
+		System.out.println("payPro_mem_id: "+payPro_mem_id);
+		System.out.println("payPro_mem_name: "+payPro_mem_name);
+		System.out.println("payPro_mem_email: "+payPro_mem_email);
+		System.out.println("payPro_mem_tel: "+payPro_mem_tel);
+		System.out.println("payPro_pg: "+payPro_pg);
+		System.out.println("payPro_method: "+payPro_method);
+		System.out.println("payPro_pro_name: "+payPro_pro_name);
+		System.out.println("payPro_price_sum: "+payPro_price_sum);
+		System.out.println("payPro_discount: "+payPro_discount);
+		System.out.println("payPro_total_price: "+payPro_total_price);
+		System.out.println("payPro_merchant_uid: "+payPro_merchant_uid);
 		joaPayService.payProductResultAdd(dto);
-		ModelAndView mav=new ModelAndView();		
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("payList",dto);
 		mav.setViewName("joaStore/joaStore_pay_result");
 		return mav;
 	}
