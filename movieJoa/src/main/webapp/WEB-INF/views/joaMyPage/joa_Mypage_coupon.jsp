@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=4">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=4">
 <title>Insert title here</title>
 </head>
 <body>
@@ -52,10 +52,11 @@
 				<dd>예매취소</dd>
 			<a href="myPage_coupon.do"><dt>관람권 관리</dt></a>
 			<a href="myPage_coupon.do"><dd>MovieJoa 영화관람권</dd></a>
-			<a href="myPage_GuidePoint.do"><dt>포인트 관리</dt></a>
-				<a href="myPage_GuidePoint.do"><dd>포인트 적립/사용안내</dd></a>
-				<a href="myPage_Point.do"><dd>포인트 적립/사용내역</dd></a>
-			<a href="myPage_Event.do"><dt>이벤트 참여내역</dt></a>
+			<a href="myPage_usedCoupon.do"><dd>영화관람권 환불</dd></a>
+			<dt>포인트 관리</dt>
+				<dd>포인트 적립/사용안내</dd>
+				<dd>포인트 적립/사용내역</dd>
+			<dt>이벤트 참여내역</dt>
 			<dt>스토어</dt>
 				<dd>내 스토어</dd>
 				<dd>결제내역</dd>
@@ -66,39 +67,42 @@
 			<dt>나의 문의내역</dt>
 		</dl>
 		
-		<div class="joaMypage_home">
-			<div class="mythreelink">
-					<div class="myfavoritesmovie">
-						<div>이미지</div>
-						<div class="myfavoritesmovie_subject">기대되는 영화</div>
-						<div>보고싶은 영화를 미리</div>
-						<div>다운받고싶다면?</div>
-					</div>
-					
-					<div class="mywatchingmovie">
-						<div>이미지</div>
-						<div class="mywatchingmovie_subject">내가 본 영화</div>
-						<div>관람한 영화들을 한번에</div>
-						<div>모아보고싶다면?</div>
-					</div>
-					
-					<div class="mywrite">
-						<div>이미지</div>
-						<div class="mywrite_subject">내가 쓴 평점</div>
-						<div>관람한 내 감상평을 적어</div>
-						<div>추억하고싶다면?</div>
-					</div>
-				</div>
-					<br>
-				
-					<div class="myinquiry">
-						<div>내 문의</div>
-						<div>d</div>
-						<div>d</div>
-						<div>d</div>
-					</div>
+		<div class="joaMypage_ti">
+			<div class="tiket_subject">관람권 관리</div>
+			<br>
+			<div class="co_sub_op">영화 관람권 보유(등록) 내역</div>
+		<div class="my_ticet">
+			<div class="myMovie_button_div"><input type="button" value="영화관람권 등록" class="myMovie_button"></div>
+			<hr class="ti_hr">
+			<br>
+			<br>
+			<table class="ti_border">
+			<thead>
+				<th>관람권(번호)</th>
+				<th>분류</th>
+				<th>유효기간</th>
+			</thead>
+		
+			<tbody>
+			<c:if test="${empty list }">
+				<tr><td colspan="3"><br></td></tr>
+				<tr>
+					<td colspan="3">고객님의 관람권 내역이 존재하지 않습니다.</td>
+				</tr>
+			</c:if>
+				<c:forEach var="dto" items="${list }">
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+			</table>
+			
+			<hr class="ti_hr">
 			</div>
-		</div>
+			<br>
 </div>
 </section>
 <c:import url="../footer.jsp"></c:import>

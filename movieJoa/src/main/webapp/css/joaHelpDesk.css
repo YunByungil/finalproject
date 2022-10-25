@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+.td_subjectCL{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.td_subject{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
 .writebutton{
 	position: absolute;
 	left:800px;
@@ -277,4 +288,10 @@
 .manyHelpbutton{
 	float:left;
 	padding:5px;
+}
+.id{
+	width:200px;
+}
+.date{
+	width:180px;
 }

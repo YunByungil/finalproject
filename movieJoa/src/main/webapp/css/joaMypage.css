@@ -1,6 +1,248 @@
 @charset "UTF-8";
 
+.EventSerchBarFeild{
+	list-style-type:none;
+}
 
+.menuli{
+    float:left;
+    text-align:center;
+}
+
+.a{
+	display: block;
+	height:40px;
+	width: 90px;
+	background-color: gray;
+	margin-left:3px;
+	line-height: 40px;
+	color:white;
+}
+
+.menuli > a:hover{
+  background-color:#F05650;
+}
+
+.po_border{
+	border-collapse: collapse;
+	align:center;
+	margin:auto; 
+}
+.po_content{
+	width : 330px;
+}
+.po_type{
+	width : 330px;
+}
+.my_guidepoint{
+	width : 700px;
+	text-align:center;
+}
+
+.serchBar_sub{
+	position: absolute;
+	top:65px;
+	left:23px;
+	font-size:18px;
+	font-weight : bold;
+}
+.serchBar_type{
+	position: absolute;
+	left:120px;
+	top:35px;
+}
+.serchBar_button{
+	background-color: #4B89DC;
+	cursor:pointer;
+	color: white;
+	outline:0;
+	border:0;
+	font-size:15px; 
+	padding:5px 15px;
+}
+.serchBar_input{
+	width : 150px;
+	height: 40px;
+}
+.serchBar_i_button{
+	background-color: black;
+	cursor:pointer;
+	color: white;
+	outline:0;
+	border:0;
+	font-size:15px; 
+	padding:5px 15px;
+}
+.serchBar_date{
+	position: absolute;
+	left:120px;
+	top:85px;
+}
+.serchBar_usedCoupon{
+	position: relative;
+	display: block;
+	border: 1px solid black;
+	width : 600px;
+	height: 150px;
+	left: 65px;
+}
+
+.co_sub_op{
+	font-size:15px;
+	font-weight : bold;
+}
+
+th{
+	border: 1px solid #444444;
+	background-color : #EEEEEE;
+}
+td{
+	border-bottom: 1px solid #EEEEEE;
+    padding: 10px;
+   
+}
+
+.joaMypage_ti{
+	position: relative;
+	bottom: 337px;
+  	left: 90px;
+  	margin: 0px auto;
+  	width:730px;
+  	height:auto;
+  	 
+}
+.my_ticet{
+	text-align: center;
+	height:auto;
+}
+.ti_cl_div{
+	
+	
+}
+.ti_cancl_sub{
+	font-size:20px;
+	font-weight : bold;
+}
+
+.ti_cl_border{
+	border-collapse: collapse;
+	margin:auto; 
+	text-align:center;
+	align:center;
+	width:700px;
+	
+}
+
+.ti_border{
+	border-collapse: collapse;
+	margin:auto; 
+	text-align:center;
+	align:center;
+	width:700px;
+}
+
+.ti_guide_1{
+	font-size:20px;
+}
+.ti_guide_2{
+	font-size:12px;
+}
+.ti_hr{
+	
+	width : 99%;
+	
+}
+
+d{
+	color:red;
+}
+
+.tiket_subject{
+	font-size:20px;
+	font-weight : bold;
+}
+
+.sub_ob{
+	font-size:12px;
+}
+.myMovie_button_div{
+	position: absolute;
+	top:15px;
+	right:30px;
+}
+
+.myMovie_button{
+	background-color: black;
+	cursor:pointer;
+	color: white;
+	outline:0;
+	border:0;
+	font-size:13px; 
+}
+
+.gradebutton{
+	background-color:#4B89DC;
+	color: white;
+	cursor:pointer;
+	outline:0;
+	border:0;
+	font-size:15px; 
+	padding:10px 60px;
+}
+.nickbutton{
+	background-color: black;
+	cursor:pointer;
+	color: white;
+	outline:0;
+	border:0;
+	font-size:13px; 
+}
+.myproF{
+	position: absolute;
+	top:75px;
+	left:113px;
+}
+.mynickname{
+	position: absolute;
+	top:53px;
+	left:250px;
+}
+.mygrade{
+	position: absolute;
+	top:93px;
+	left:250px;
+}
+.li_o{
+	 float: left;
+}
+.li_p{
+    float: left;
+    margin-left: 130px;
+}
+.li_i{
+	 float: left;
+    margin-left: 250px;
+}
+.hr{
+	position: absolute;
+	top:75px;
+	 width : 70%;
+	 left:230px;
+}
+.my_c_p{
+	font-size:21px;
+	font-weight : bold;
+}
+.mycoupon{
+	position: absolute;
+	bottom:95px;
+	left:100px;
+}
+.mypoint{
+	position: absolute;
+	bottom:95px;
+	right:280px;
+}
 .mypage_main{
 	width: 1000px;
 	
@@ -8,6 +250,8 @@
 }
 
 .myInformation{
+	z-index:1;
+	position: relative;
 	border: 0px; 
 	padding: 50px 50px 0px 50px;
 	margin: 0px auto;
@@ -24,6 +268,7 @@
   	margin: 0px auto;
   	overflow: auto;
 }
+
 
 .mythreelink{
 	font-size: 13px;
@@ -55,7 +300,6 @@
 	left: 300px;
 	border: 0px; 
 	padding: 0px;
-	
 	overflow: auto;
 	background-color : #EEEEEE;
 }
@@ -67,7 +311,6 @@
 	float: left;
 	border: 0px; 
 	padding: 0px;
-	
 	overflow: auto;
 	
 }
