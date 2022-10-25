@@ -1,6 +1,67 @@
 @charset "UTF-8";
-
-
+.gradebutton{
+	background-color:#4B89DC;
+	color: white;
+	cursor:pointer;
+	outline:0;
+	border:0;
+	font-size:15px; 
+	padding:10px 60px;
+}
+.nickbutton{
+	background-color: black;
+	cursor:pointer;
+	color: white;
+	outline:0;
+	border:0;
+	font-size:13px; 
+}
+.myproF{
+	position: absolute;
+	top:75px;
+	left:113px;
+}
+.mynickname{
+	position: absolute;
+	top:53px;
+	left:250px;
+}
+.mygrade{
+	position: absolute;
+	top:93px;
+	left:250px;
+}
+.li_o{
+	 float: left;
+}
+.li_p{
+    float: left;
+    margin-left: 130px;
+}
+.li_i{
+	 float: left;
+    margin-left: 250px;
+}
+.hr{
+	position: absolute;
+	top:75px;
+	 width : 70%;
+	 left:230px;
+}
+.my_c_p{
+	font-size:21px;
+	font-weight : bold;
+}
+.mycoupon{
+	position: absolute;
+	bottom:95px;
+	left:100px;
+}
+.mypoint{
+	position: absolute;
+	bottom:95px;
+	right:280px;
+}
 .mypage_main{
 	width: 1000px;
 	
@@ -8,6 +69,7 @@
 }
 
 .myInformation{
+	position: relative;
 	border: 0px; 
 	padding: 50px 50px 0px 50px;
 	margin: 0px auto;

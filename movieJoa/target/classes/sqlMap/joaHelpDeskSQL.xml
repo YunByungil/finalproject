@@ -51,7 +51,7 @@
 			*
 			from
 			(select rownum as rnum,a.* from
-    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NULL order by hqt_idx desc)a)b
+    (select * from joa_helpquestion where hqt_state!=#{state} and hqt_email IS NULL order by hqt_idx desc)a)b
     where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
   	
@@ -60,7 +60,7 @@
 			*
 			from
 			(select rownum as rnum,a.* from
-    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NULL and hqt_type=#{hqt_type} order by hqt_idx desc)a)b
+    (select * from joa_helpquestion where hqt_state!=#{state} and hqt_email IS NULL and hqt_type=#{hqt_type} order by hqt_idx desc)a)b
     where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 
@@ -69,7 +69,7 @@
 			*
 			from
 			(select rownum as rnum,a.* from
-    (select * from joa_helpquestion where hqt_state=#{state} and hqt_email IS NULL and ${hqt_type} and ${hqt_region} and ${hqt_cinema} order by hqt_idx desc)a)b
+    (select * from joa_helpquestion where hqt_state!=#{state} and hqt_email IS NULL and ${hqt_type} and ${hqt_region} and ${hqt_cinema} order by hqt_idx desc)a)b
     where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 	</select>
 	
@@ -286,17 +286,17 @@
 	
 	<select id="questionTotalCnt" parameterType="String" resultType="Integer">
   	select count(*) from joa_helpquestion
-  	where hqt_state=#{state} and hqt_email IS NULL
+  	where hqt_state!=#{state} and hqt_email IS NULL
   	</select>
   	
   	<select id="questionTypeTotalCnt" parameterType="map" resultType="Integer">
   	select count(*) from joa_helpquestion
-  	where hqt_state=#{state} and hqt_email IS NULL and hqt_type=#{hqt_type}
+  	where hqt_state!=#{state} and hqt_email IS NULL and hqt_type=#{hqt_type}
   	</select>
   	
   	<select id="questionSerchTotalCnt" parameterType="map" resultType="Integer">
 		select count(*) from joa_helpquestion
-  		where hqt_state=#{state} and hqt_email IS NULL and ${hqt_type} and ${hqt_region} and ${hqt_cinema}
+  		where hqt_state!=#{state} and hqt_email IS NULL and ${hqt_type} and ${hqt_region} and ${hqt_cinema}
 	</select>
 	
 	<select id="emailTotalCnt" parameterType="String" resultType="Integer">

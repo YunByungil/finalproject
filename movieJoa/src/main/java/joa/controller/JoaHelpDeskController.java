@@ -31,8 +31,21 @@ public class JoaHelpDeskController {
 	private JoaNTService joaNTService; 
 	
 	@RequestMapping("/helpDesk.do")
-	public String helpDesk() {
-		return "joaHelpDesk/joaHelpDesk_helpDesk";
+	public ModelAndView helpDesk(@RequestParam(value =  "cp", defaultValue = "1")int cp) {
+		String backA_color = "background-color: #F05650";
+		int totalCnt=joaMHService.manyHelpListTotalCnt();
+		int listSize=5;
+		int pageSize=5;
+		String pageStr=joa.page.PageModule.makePage("manyHelp.do", totalCnt, listSize, pageSize, cp);
+		
+		
+		List<JoaManyHelpDTO> list = joaMHService.ManyHelpList(cp, listSize);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pageStr", pageStr);
+		mav.addObject("backA_color",backA_color);
+		mav.addObject("list",list);
+		mav.setViewName("joaHelpDesk/joaHelpDesk_helpDesk");
+		return mav;
 	}
 	
 	//자주 찾는 질문
@@ -745,7 +758,7 @@ public class JoaHelpDeskController {
 					int result = joaHQService.addQuestion(dto);
 					msg = result>0?"문의가 정상적으로 등록되었습니다.":"문의 등록에 실패하였습니다. 1:1문의를 이용해주세요.";
 					link_tf = true;
-					mav.addObject("link", link_tf);
+					mav.addObject("link_tf", link_tf);
 					mav.addObject("msg", msg);
 				}
 				mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_msg");
@@ -758,7 +771,7 @@ public class JoaHelpDeskController {
 	public ModelAndView serchMemberHelp(@RequestParam(value="cp",defaultValue = "1") int cp) {
 		
 		String backA_color = "background-color: #F05650";
-		String state = "미답변";
+		String state = "답변완료";
 		ModelAndView mav = new ModelAndView();
 		int totalCnt=joaHQService.questionTotalCnt(state);
 		int listSize=5;
@@ -794,7 +807,7 @@ public class JoaHelpDeskController {
 			mav.addObject("backF_color", backF_color);
 		}
 		
-		String state="미답변";
+		String state="답변완료";
 		int totalCnt=joaHQService.questionTypeTotalCnt(hqt_type,state);
 		int listSize=5;
 		int pageSize=5;
@@ -809,7 +822,7 @@ public class JoaHelpDeskController {
 		
 		@RequestMapping("/adminSerchList.do")
 		public ModelAndView adminSerchList(@RequestParam(value =  "cp", defaultValue = "1")int cp, @RequestParam(value="hqt_type", required = false)String hqt_type, @RequestParam(value="hqt_region", required = false)String hqt_region, @RequestParam(value="hqt_cinema", required = false)String hqt_cinema) {
-			String state ="미답변";
+			String state ="답변완료";
 			ModelAndView mav = new ModelAndView();
 			String pagename=null;
 			if(hqt_type==null||hqt_type.equals("")) {

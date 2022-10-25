@@ -68,7 +68,7 @@
 				<td colspan="3"><hr></td>
 			</tr>
 			<tr>
-				<td colspan="3"><textarea rows="31" cols="76" name="lfq_content"></textarea></td>
+				<td colspan="3"><textarea rows="31" cols="76" name="hqt_answercontent"></textarea></td>
 			</tr>
 		</table>
 		

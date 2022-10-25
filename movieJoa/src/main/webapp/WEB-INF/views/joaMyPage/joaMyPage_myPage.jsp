@@ -14,23 +14,34 @@
 <section>
 <div class="mypage_main">
 	<div class="myInformation">
+		<div class="myproF">
+		프로필사진
+		</div>
 		<div class="mynickname">
-			<ul>
-				<li>프로필사진</li>
-				<li>이름</li>
-				<li>아이디</li>
-				<li>닉네임</li>
-				<hr>
-				<li>등급</li>
-				<li>지난등급이력 조히</li>
+			<ul class="ul_p">
+				<li class="li_o">이름</li>
+				<li class="li_p">아이디</li>
+				<li class="li_p">닉네임</li>
+				<li class="li_p"><input type="button" value="닉네임 변경" class="nickbutton"></li>
 			</ul>
 		</div>
+		<hr class="hr">
+		<div class="mygrade">
+			<li class="li_o">등급</li>
+			<li class="li_i"><input type="button" value="지난등급 이력 조회" class="gradebutton"></li>
+		</div>
 		<div class="mycoupon">
+			<li class="my_c_p">My Coupon</li>
+			<li><br></li>
 			<li>보유 관람권</li>
+			<li><br></li>
 			<li>관람권 사용내역</li>
 		</div>
 		<div class="mypoint">
+			<li class="my_c_p">My Point</li>
+			<li><br></li>
 			<li>보유 포인트</li>
+			<li><br></li>
 			<li>포인트 사용내역</li>
 		</div>
 	</div>
@@ -78,9 +89,6 @@
 					</div>
 				</div>
 					<br>
-					<div class="myticketing">
-						<div>내 예매내역</div>
-					</div>
 				
 					<div class="myinquiry">
 						<div>내 문의</div>
