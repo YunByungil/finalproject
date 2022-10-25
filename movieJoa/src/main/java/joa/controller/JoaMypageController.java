@@ -53,5 +53,18 @@ public class JoaMypageController {
 		mav.setViewName("joaMyPage/joa_Mypage_Event");
 		return mav;
 	}
+	@RequestMapping("/myPage_EndEvent.do")
+	public ModelAndView myPage_EndEvent() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("joaMyPage/joa_Mypage_Event");
+		return mav;
+	}
+	
+	@RequestMapping("/myPage_Store.do")
+	public ModelAndView myPage_Store() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("joaMyPage/joa_Mypage_myStore");
+		return mav;
+	}
 
 }

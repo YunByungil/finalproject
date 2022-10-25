@@ -56,8 +56,8 @@
 				<a href="myPage_GuidePoint.do"><dd>포인트 적립/사용안내</dd></a>
 				<a href="myPage_Point.do"><dd>포인트 적립/사용내역</dd></a>
 			<a href="myPage_Event.do"><dt>이벤트 참여내역</dt></a>
-			<dt>스토어</dt>
-				<dd>내 스토어</dd>
+			<a href="myPage_Store.do"><dt>스토어</dt></a>
+				<a href="myPage_Store.do"><dd>내 스토어</dd></a>
 				<dd>결제내역</dd>
 			<dt>회원정보</dt>
 				<dd>회원정보 관리</dd>
