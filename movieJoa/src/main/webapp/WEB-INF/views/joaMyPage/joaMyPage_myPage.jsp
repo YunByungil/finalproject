@@ -48,13 +48,14 @@
 	<br>
 	<div class="mypagecontaniner">
 		<dl class="mymenubar">
-			<dt>나의 예매내역</dt>
-			<dt>관람권 관리</dt>
-				<dd>MovieJoa 영화관람권</dd>
-			<dt>포인트 관리</dt>
-				<dd>포인트 적립/사용안내</dd>
-				<dd>포인트 적립/사용내역</dd>
-			<dt>이벤트 참여내역</dt>
+			<a href="myPage_tiket.do"><dt>나의 예매내역</dt></a>
+				<dd>예매취소</dd>
+			<a href="myPage_coupon.do"><dt>관람권 관리</dt></a>
+			<a href="myPage_coupon.do"><dd>MovieJoa 영화관람권</dd></a>
+			<a href="myPage_GuidePoint.do"><dt>포인트 관리</dt></a>
+				<a href="myPage_GuidePoint.do"><dd>포인트 적립/사용안내</dd></a>
+				<a href="myPage_Point.do"><dd>포인트 적립/사용내역</dd></a>
+			<a href="myPage_Event.do"><dt>이벤트 참여내역</dt></a>
 			<dt>스토어</dt>
 				<dd>내 스토어</dd>
 				<dd>결제내역</dd>
@@ -92,6 +93,9 @@
 				
 					<div class="myinquiry">
 						<div>내 문의</div>
+						<div>d</div>
+						<div>d</div>
+						<div>d</div>
 					</div>
 			</div>
 		</div>

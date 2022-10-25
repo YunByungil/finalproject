@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=3">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=3">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=5">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=5">
 <title>Insert title here</title>
 </head>
 <body>
@@ -68,30 +68,30 @@
 		</dl>
 		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">영화관람권 사용 내역</div>
+			<div class="tiket_subject">이벤트 참여 내역</div>
 			<br>
-			<div class="serchBar_usedCoupon">
-				<div class="serchBar_sub">조회기간</div>
-				<div class="serchBar_type"><input type="button" value="2주일" class="serchBar_button">&nbsp;<input type="button" value="1개월" class="serchBar_button">&nbsp;<input type="button" value="전체" class="serchBar_button"></div>
-				<div class="serchBar_date"><input type="date" class="serchBar_input">&nbsp;~&nbsp;<input type="date" class="serchBar_input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="조회하기" class="serchBar_i_button"></div>
-			</div>
-		<div class="my_ticet">
+			<div class="box">
+			<ul class="EventSerchBarFeild">
+				<li class="menuli"><a style="${backA_color}"class="a" href="myPage_Event.do">응모 내역</a></li>
+				<li class="menuli"><a style="${backB_color}"class="a" href="">당첨자 발표</a></li>
+			</ul>
 			<hr class="ti_hr">
-			<br>
+		</div>
+		<div class="my_ticet">
 			<br>
 			<table class="ti_border">
 			<thead>
-				<th>관람권(번호)</th>
-				<th>분류</th>
-				<th>유효기간</th>
-				<th>사용일자</th>
+				<th>이벤트 타입</th>
+				<th>제목</th>
+				<th>시작일</th>
+				<th>종료일</th>
 			</thead>
 		
 			<tbody>
 			<c:if test="${empty list }">
 				<tr><td colspan="4"><br></td></tr>
 				<tr>
-					<td colspan="4">고객님의 사용한 관람권 내역이 존재하지 않습니다.</td>
+					<td colspan="4">내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
 				<c:forEach var="dto" items="${list }">

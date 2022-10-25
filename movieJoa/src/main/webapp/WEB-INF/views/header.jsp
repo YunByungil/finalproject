@@ -6,7 +6,7 @@
     ul, ol, li { list-style:none; margin:0; padding:0; }
    
     ul.myMenu {}
-    ul.myMenu > li { display:inline-block; width:120px; padding:5px 10px; background:white; text-align:center; position:relative; }
+    ul.myMenu > li { z-index:2; display:inline-block; width:120px; padding:5px 10px; background:white; text-align:center; position:relative; }
     ul.myMenu > li:hover { background:#fff; }
     ul.myMenu > li ul.submenu { display:none; position:absolute; border:1px solid #eee; top:30px; left:0; }
     ul.myMenu > li:hover ul.submenu { display:block; }
