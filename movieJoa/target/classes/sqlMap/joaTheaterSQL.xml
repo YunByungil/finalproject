@@ -3,5 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="joa.theater">
-
+	<select id="theaterList" parameterType="HashMap" resultType="joa.adminSchedule.model.ScheduleDTO">
+	select *
+	from joa_schedule
+	where sch_city = #{city} and sch_branch = #{branch}
+	and to_char(sysdate,'yyyy-mm-dd') <![CDATA[<=]]> to_char(sch_dayd,'yyyy-mm-dd') 
+	and to_char(sch_dayd,'yyyy-mm-dd') <![CDATA[<=]]> to_char(sysdate+7,'yyyy-mm-dd')
+	</select>
+	
+	<select id="theaterDayList" parameterType="HashMap" resultType="joa.book.model.JoaBookDTO">
+	select distinct sch_dayd
+	from joa_schedule
+	where sch_city = #{sch_city} and sch_branch = #{sch_branch}
+	and to_char(sysdate,'yyyy-mm-dd') <![CDATA[<=]]> to_char(sch_dayd,'yyyy-mm-dd') 
+	and to_char(sch_dayd,'yyyy-mm-dd') <![CDATA[<=]]> to_char(sysdate+7,'yyyy-mm-dd')
+	order by sch_dayd asc
+	</select>
+	
+	<select id="theaterTimeList" parameterType="HashMap" resultType="joa.theater.model.TheaterTimeDTO">
+	select distinct b.mov_rate as rate,
+	a.sch_mov_title as subject,
+	b.mov_genre as genre,
+	b.mov_running_time as runningtime,
+	to_char(b.mov_start_date,'yyyy-mm-dd') as sdate
+	from joa_schedule a, joa_movie b
+	where a.sch_branch = #{sch_branch}
+	and to_char(sch_dayd,'yyyy-mm-dd') = #{sch_dayd}
+	and a.sch_mov_title = b.mov_title
+	and to_char(sysdate,'hh24') <![CDATA[<=]]> sch_start_hour
+	and to_char(sysdate,'mi') <![CDATA[<=]]> sch_start_min
+	</select>
 </mapper>

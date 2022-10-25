@@ -24,7 +24,7 @@
 		<td>
 		가로 : <input type="text" name="width" id="width">
 		세로 : <input type="text" name="height" id="height">
-		<input type="button" value="자리선택" onclick="movieSeat();">
+		<input type="button" value="자리선택" onclick="movieSeatCreate();">
 		</td>
 	</tr>
 </table>
@@ -32,7 +32,7 @@
 <div id="seat"></div>
 </body>
 <script>
-function movieSeat() {
+function movieSeatCreate() {
 	$.ajax({
 		url: "theaterAdd.do?width="+$('#width').val()+"&height="+$('#height').val()+"&theater="+$('#theater').val(),
 		type: "get",

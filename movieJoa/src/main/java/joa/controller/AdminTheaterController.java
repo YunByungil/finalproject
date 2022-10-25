@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import joa.adminMember.model.JoaAdminMemberDTO;
 import joa.adminSchedule.model.ScheduleDAO;
 import joa.adminSchedule.model.ScheduleDTO;
 import joa.adminTheater.model.TheaterDAO;
@@ -91,7 +94,7 @@ public class AdminTheaterController {
 		int start=0;
 		int le=0;
 		int ri=0;
-		String[][] seats=new String[dto.getHeight()][dto.getWidth()];
+		String[][] seats=new String[dto.getThe_height()][dto.getThe_width()];
 		for(int i=0;i<seats_s.length();i++) {
 			if(seats_s.charAt(i)==',') {
 				if(ri==0 && le==0) {
@@ -102,27 +105,27 @@ public class AdminTheaterController {
 					start=i+1;
 				}
 				ri++;
-				if(ri==dto.getWidth()) {
+				if(ri==dto.getThe_width()) {
 					le++;
 					ri=0;
 				}
 			}
 		}
 		int ch=0;
-		for (int i=0; i<dto.getHeight(); i++) {
-			for(int j=0; j<dto.getWidth(); j++) {
+		for (int i=0; i<dto.getThe_height(); i++) {
+			for(int j=0; j<dto.getThe_width(); j++) {
 				ch=0;
 				if(i==0) {
 					if(seats[i][j].charAt(seats[i][j].length()-1)=='N') {
-						for(int y=0;y<dto.getHeight();y++) {
+						for(int y=0;y<dto.getThe_height();y++) {
 							if(seats[y][j].charAt(seats[y][j].length()-1)!='N') {
 								ch=1;
 								break;
 							}
 						}
 						if(ch==0) {
-							for(int z=0;z<dto.getHeight();z++) {
-								for(int x=j+1;x<dto.getWidth();x++) {
+							for(int z=0;z<dto.getThe_height();z++) {
+								for(int x=j+1;x<dto.getThe_width();x++) {
 									if(seats[z][x].charAt(seats[z][x].length()-1)!='N') {
 										int num=Integer.parseInt(seats[z][x].substring(1,seats[z][x].length()));
 										seats[z][x]=rows[z]+(num-1);
@@ -138,17 +141,31 @@ public class AdminTheaterController {
 			}
 		}
 		String result="";
-		for (int i=0; i<dto.getHeight(); i++) {
-			for(int j=0; j<dto.getWidth(); j++) {
+		for (int i=0; i<dto.getThe_height(); i++) {
+			for(int j=0; j<dto.getThe_width(); j++) {
 				result+=seats[i][j]+",";
 			}
 		}
-		dto.setSeat(result);
-		
-		int total=theaterDao.theaterAdd(dto);
-		String msg=total>0?"좌석 등록 성공":"좌석 등록 실패";
-		
+		dto.setThe_seat(result);
+		String msg="";
+		String gt=dto.getThe_theater();
 		ModelAndView mav=new ModelAndView();
+		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch("admin_test");
+		Map timap=new HashMap();
+		timap.put("gt",gt);
+		timap.put("city",jdto.getAdmin_area());
+		timap.put("branch",jdto.getAdmin_shop());
+		
+		List ch_theater=theaterDao.theaterCheck(timap);
+		if(ch_theater==null || ch_theater.size()==0) {
+			dto.setThe_city(jdto.getAdmin_area());
+			dto.setThe_branch(jdto.getAdmin_shop());
+			int total=theaterDao.theaterAdd(dto);
+			msg=total>0?"좌석 등록 성공":"좌석 등록 실패";
+		}else {
+			msg="이미 등록된 상영관입니다.";
+			mav.addObject("check","c");
+		}
 		mav.addObject("msg",msg);
 		mav.setViewName("admin/adminTheater/adminTheater_theaterAdd_ok");
 		return mav;
@@ -159,8 +176,9 @@ public class AdminTheaterController {
 		Date now = new Date();	
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String nDate=format.format(now);
-		ad.put("city","서울");
-		ad.put("branch","신촌");
+		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch("admin_test");
+		ad.put("city",jdto.getAdmin_area());
+		ad.put("branch",jdto.getAdmin_shop());
 		List<String> list=scheduleDao.theaterChoice(ad);
 		map.put("nDate", nDate);
 		map.put("tList",list);
@@ -168,29 +186,50 @@ public class AdminTheaterController {
 	}
 	
 	@RequestMapping("/scheduleAdd.do")
-	public ModelAndView scheduleAdd(ScheduleDTO dto,Map map,String start_time){
+	public ModelAndView scheduleAdd(ScheduleDTO dto,Map map,String start_time,HttpSession session){
 		//session id city branch add
-		System.out.println(dto.getSch_mov_title());
 		int runtime=120;
 		int hour=Integer.parseInt(start_time.substring(0,start_time.length()-3));
 		int min=Integer.parseInt(start_time.substring(start_time.length()-2,start_time.length()));
 		int min2=min+runtime;
 		int hour2=hour+(min2/60);
 		min2=min2%60;
-		
+		Map seatInfo=new HashMap();
+		String sid="admin_test";
+		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch(sid);
 		map.put("hour", hour);
 		map.put("hour2", hour2);
-		map.put("dto",dto);
+		map.put("city", jdto.getAdmin_area());
+		map.put("branch", jdto.getAdmin_shop());
+		map.put("theater", dto.getSch_theater());
+		map.put("day", dto.getSch_day());
 		
+		ModelAndView mav=new ModelAndView();
 		List list=scheduleDao.checkSchedule(map);
 		if(list.size()==0 || list==null) {
-			System.out.println("oo");
+			dto.setSch_start_hour(""+hour);
+			dto.setSch_start_min(""+min);
+			dto.setSch_end_hour(""+hour2);
+			dto.setSch_end_min(""+min2);
+			dto.setSch_dayD(dto.getSch_day());
+			dto.setSch_city(jdto.getAdmin_area());
+			dto.setSch_branch(jdto.getAdmin_shop());
+			seatInfo.put("city", jdto.getAdmin_area());
+			seatInfo.put("branch", jdto.getAdmin_shop());
+			seatInfo.put("theater",dto.getSch_theater());
+			TheaterDTO tdto=scheduleDao.seatSearch(seatInfo);
+			dto.setSch_seat(tdto.getThe_seat());
+			dto.setSch_height(tdto.getThe_height());
+			dto.setSch_width(tdto.getThe_width());
+			
+			int result=scheduleDao.scheduleInsert(dto); 
+			String msg=result>0?"스케줄 등록 성공":"스케줄 등록 실패";
+			mav.addObject("msg",msg);
 		}else {
-			System.out.println("xx");
+			mav.addObject("msg","이미 등록된 스케줄입니다.");
+			mav.addObject("check","c");
 		}
-
-		ModelAndView mav=new ModelAndView();
-		mav.setViewName("admin/adminTheater/adminTheater_schedule_add");
+		mav.setViewName("admin/adminTheater/adminTheater_schedule_addOk");
 		return mav;	
 	}
 	
@@ -199,6 +238,40 @@ public class AdminTheaterController {
 		List list=scheduleDao.dayChoice(day);
 		map.put("list", list);
 		map.put("theater", theater);
+		map.put("day",day);
 		return "admin/adminTheater/adminTheater_schedule_addView";
+	}
+	
+	@RequestMapping("/scheduleList.do")
+	public String scheduleList() {
+		return "admin/adminTheater/adminTheater_schedule_list"; 
+	}
+	
+	@RequestMapping("/scheduleListView.do")
+	public ModelAndView scheduleListView(String day,@RequestParam(value="cp",defaultValue = "1") int cp) {
+		int totalCnt=scheduleDao.scheduleCount(day);
+		int listSize=10;
+		int pageSize=10;
+		String pageStr=joa.page.PageModule.makePage("scheduleListView.do", totalCnt, listSize, pageSize, cp);
+		List<ScheduleDTO> list=scheduleDao.scheduleList(cp,listSize,day);
+		System.out.println(list.get(0).getSch_mov_title());
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("list",list);
+		mav.addObject("pageStr",pageStr);
+		mav.setViewName("admin/adminTheater/adminTheater_schedule_listView");
+		return mav;
+	}
+	
+	@RequestMapping("/theaterList.do")
+	public ModelAndView theaterList(Map map) {
+		String sid="admin_test";
+		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch(sid);
+		map.put("city", jdto.getAdmin_area());
+		map.put("branch", jdto.getAdmin_shop());
+		List<TheaterDTO> list=theaterDao.theaterList(map);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("list",list);
+		mav.setViewName("admin/adminTheater/adminTheater_theater_list");
+		return mav;
 	}
 }

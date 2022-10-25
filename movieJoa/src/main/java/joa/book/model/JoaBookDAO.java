@@ -8,4 +8,5 @@ public interface JoaBookDAO {
 	public List<JoaBookDTO> moveisTimeList(HashMap map);
 	///////////////////////////////////////////////////////
 	public List<JoaBookDTO> theaterBranchList(String sch_city);
+	public List<JoaBookDTO> theaterDay(HashMap map);
 }

@@ -42,5 +42,12 @@ public class JoaBookDAOImple implements JoaBookDAO {
 		List<JoaBookDTO> list = sqlMap.selectList("theaterBranchList",sch_city);
 		return list;
 	}
+	
+	//theaterDay
+	@Override
+	public List<JoaBookDTO> theaterDay(HashMap map) {
+		List<JoaBookDTO> list = sqlMap.selectList("theaterDayList", map);
+		return list;
+	}
 
 }

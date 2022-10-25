@@ -47,7 +47,7 @@ public class PageModule {
 				if(i==totalPage || totalPage==0)break;
 			}
 
-			if(userGroup!=(totalPage/pageSize)-(totalPage%pageSize==0?1:0)){
+			if(userGroup!=(totalPage/pageSize)-(totalPage%pageSize==0?1:0) && totalCnt>listSize){
 				
 				sb.append("<a href='");
 				sb.append(pagename);

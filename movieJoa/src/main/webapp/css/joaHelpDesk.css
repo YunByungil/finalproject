@@ -41,9 +41,9 @@
 
 .helpMenu{
 	position: absolute;
-	top:0px;
+	top:40px;
 	float: left;
-	left: 20px;
+	left: 10px;
 	border: 0px; 
 	padding: 0px;
 	overflow: auto;
@@ -80,24 +80,29 @@
 .HM_bar{
 	display: block;
 	height:40px;
-	width: 90px;
+	width: 160px;
 	background-color: white;
 	margin-left:3px;
 	line-height: 40px;
-	color: black;
 }
 
-.helpMenu > li:hover{
+.HM_bar_a > li:hover{
   background-color:#F05650;
-  
 }
-
-.helpMenu > a:hover {
-
- color: white;
-
- text-decoration: none;
-
+.helpMenu > a:hover{
+	color:white;
+}
+.HM_bar_a{
+	color:black;
+}
+.menuli > a:hover{
+  background-color:#F05650;
+}
+.pageStr > a{
+	color:black;
+}
+.borderurl > a{
+	color:black;
 }
 
 .manyHelpSerchBarFeild{

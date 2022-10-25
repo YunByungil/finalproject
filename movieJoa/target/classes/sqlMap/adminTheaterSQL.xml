@@ -4,21 +4,63 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.adminTheater">
   	<insert id="theaterAdd" parameterType="joa.adminTheater.model.TheaterDTO">
-  		insert into joa_ttest values(joa_ttest_idx.nextval,'서울','신촌',#{theater},#{seat},#{width},#{height})
+  		insert into joa_theater values(joa_theater_the_idx.nextval,#{the_city},#{the_branch},#{the_theater},#{the_seat},#{the_width},#{the_height})
   	</insert>
   	
   	<select id="checkSchedule" parameterType="map" resultType="string">
-  		select branch from sche_test where
-  		(sch_start_hour<![CDATA[>=]]>#{hour} and
-  		sch_start_hour<![CDATA[<=]]>#{hour2}) or
-  		(sch_end_hour<![CDATA[>=]]>#{hour} and
-  		sch_end_hour<![CDATA[<=]]>#{hour2})
+  		select sch_branch from joa_schedule where
+  		sch_city=#{city} and
+  		sch_branch=#{branch} and
+  		sch_theater=#{theater} and
+  		sch_day=#{day} and
+  		(sch_start_hour<![CDATA[<=]]>#{hour} and
+  		sch_end_hour<![CDATA[>=]]>#{hour}) or
+  		(sch_start_hour<![CDATA[<=]]>#{hour2} and
+  		sch_end_hour<![CDATA[>=]]>#{hour2})
   	</select>
   	<select id="dayChoice" parameterType="string" resultType="string">
   		select mov_title from joa_movie where to_char(mov_start_date,'YYYY-MM-DD')<![CDATA[<=]]>#{day}
   		and to_char(mov_end_date,'YYYY-MM-DD')<![CDATA[>=]]>#{day}
   	</select>
   	<select id="theaterChoice" parameterType="map" resultType="string">
-  		select theater from joa_ttest where city=#{city} and branch=#{branch} order by theater asc
+  		select the_theater from joa_theater where the_city=#{city} and the_branch=#{branch} order by the_theater asc
+  	</select>
+  	<insert id="scheduleInsert" parameterType="joa.adminSchedule.model.ScheduleDTO">
+  		insert into joa_schedule values(joa_schedule_sch_idx.nextval,
+  		#{sch_mov_title},
+  		#{sch_city},
+  		#{sch_branch},
+  		#{sch_theater},
+  		#{sch_seat},
+  		#{sch_day},
+  		to_date(#{sch_day},'YYYY-MM-DD'),
+  		#{sch_height},
+  		#{sch_width},
+  		#{sch_start_hour},
+  		#{sch_start_min},
+  		#{sch_end_hour},
+  		#{sch_end_min}
+  		)
+  	</insert>
+  	<select id="theaterCheck" parameterType="map" resultType="string">
+  		select the_theater from joa_theater where the_theater=#{gt} and the_branch=#{branch} and the_city=#{city}
+  	</select>
+  	<select id="adminIdSearch" parameterType="string" resultType="joa.adminMember.model.JoaAdminMemberDTO">
+  		select * from joa_admin where admin_id=#{sid}
+  	</select>
+  	<select id="theaterList" parameterType="map" resultType="joa.adminTheater.model.TheaterDTO">
+  		select * from joa_theater where the_city=#{city} and the_branch=#{branch} order by the_theater asc
+  	</select>
+  	<select id="seatSearch" parameterType="map" resultType="joa.adminTheater.model.TheaterDTO">
+  		select * from joa_theater where the_city=#{city} and the_branch=#{branch} and the_theater=#{theater}
+  	</select>
+  	<select id="scheduleCount" parameterType="string" resultType="Integer">
+  		select count(*) from joa_schedule where sch_day=#{day}
+  	</select>
+  	<select id="scheduleList" parameterType="map" resultType="joa.adminSchedule.model.ScheduleDTO">
+  		select * from
+		(select rownum as rnum,a.* from
+		(select * from joa_schedule where sch_day=#{day} order by sch_start_hour asc)a)b
+		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
   </mapper>

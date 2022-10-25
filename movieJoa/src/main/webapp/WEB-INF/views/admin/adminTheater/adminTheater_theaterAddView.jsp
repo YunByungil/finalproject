@@ -11,7 +11,6 @@
 <link rel="stylesheet" type="text/css" href="css/main_admin.css">
 </head>
 <body>
-<div id="seat"></div>
 <table border="1" cellspacing="0">
 	<thead>
 		<tr>
@@ -69,8 +68,7 @@ function movieSeat(seat) {
 			alert('다시 시도 바람');
 		}
 	});
-};
-
+}	
 function theaterAddSubmit() {
 	var seats_s='';
 	<c:forEach var='i' begin='0' end='${height-1 }' step='1'>
@@ -79,7 +77,7 @@ function theaterAddSubmit() {
 		</c:forEach>
 	</c:forEach>
 	$.ajax({
-		url: "theaterAddSubmit.do?seats_s="+seats_s+"&theater="+${theater}+"&width="+${width}+"&height="+${height},
+		url: "theaterAddSubmit.do?seats_s="+seats_s+"&the_theater="+${theater}+"&the_width="+${width}+"&the_height="+${height},
 		type: "get",
 		dataType: "html",
 		success: function(data) {

@@ -47,5 +47,14 @@ public class JoaBookServiceImple implements JoaBookService {
 		List<JoaBookDTO> list = joaBookDao.theaterBranchList(sch_city);
 		return list;
 	}
+	//theaterDay
+	@Override
+	public List<JoaBookDTO> theaterDay(String sch_city, String sch_branch) {
+		HashMap map = new HashMap();
+		map.put("sch_city", sch_city);
+		map.put("sch_branch", sch_branch);
+		List<JoaBookDTO> list = joaBookDao.theaterDay(map);
+		return list;
+	}
 
 }

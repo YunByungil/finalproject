@@ -58,13 +58,16 @@
 			</c:url>
 			
 			<tr>
-				<td class="manyHelpBordertype">${dto.ntc_type }</td><td><a href="${noticeUrlCL }">${dto.ntc_subject }</a></td><td class="manyHelpBorderReadnum">${dto.ntc_readnum }</td>
+				<td class="manyHelpBordertype">${dto.ntc_type }</td><td class="borderurl"><a href="${noticeUrlCL }">${dto.ntc_subject }</a></td><td class="manyHelpBorderReadnum">${dto.ntc_readnum }</td>
 			</tr>
 		</c:forEach>
 			</tbody>
 			<tfoot>
 			<tr>
-			<td colspan="4" align="center">
+			<td><br></td>
+			</tr>
+			<tr>
+			<td class="pageStr" colspan="3" align="center">
 				${pageStr }
 			</td>
 			</tr>
@@ -73,11 +76,11 @@
 	</div>
 	</div>
 	<ul class="helpMenu">
-		<li><a href="helpDesk.do">고객센터</a></li>
-		<li><a href="manyHelp.do">자주찾는 질문</a></li>
-		<li><a href="notice.do">공지게시판</a></li>
-		<li><a href="emailHelp.do">이메일문의</a></li>
-		<li><a href="oneByOneHelp.do">1:1문의</a></li>
+		<a href="helpDesk.do" class="HM_bar_a"><li class="HM_bar">고객센터</li></a>
+		<a href="manyHelp.do" class="HM_bar_a"><li class="HM_bar">자주찾는 질문</li></a>
+		<a href="notice.do" class="HM_bar_a"><li class="HM_bar">공지게시판</li></a>
+		<a href="emailHelp.do" class="HM_bar_a"><li class="HM_bar">이메일문의</li></a>
+		<a href="oneByOneHelp.do" class="HM_bar_a"><li class="HM_bar">1:1문의</li></a>
 	</ul>
 	
 </div>

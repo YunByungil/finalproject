@@ -5,20 +5,20 @@
 <mapper namespace="joa.book">
 	<select id="moviesSubjectList" resultType="joa.book.model.JoaBookDTO">
 	select distinct sch_mov_title
-	from sche_test
+	from joa_schedule
 	order by sch_mov_title asc
 	</select>
 	
 	<select id="moviesBranchList" parameterType="String" resultType="joa.book.model.JoaBookDTO">
 	select distinct sch_branch
-	from sche_test
+	from joa_schedule
 	where sch_mov_title = #{String}
 	order by sch_branch asc
 	</select>
 	
 	<select id="moviesDateList" parameterType="HashMap" resultType="joa.book.model.JoaBookDTO">
 	select distinct sch_day
-	from sche_test
+	from joa_schedule
 	where sch_mov_title = #{sch_mov_title}
 	and sch_branch = #{sch_branch}
 	order by sch_day asc
@@ -26,7 +26,7 @@
 	
 	<select id="moviesTimeList" parameterType="HashMap" resultType="joa.book.model.JoaBookDTO">
 	select sch_theater,sch_start_hour,sch_start_min,sch_end_hour,sch_end_min
-	from sche_test
+	from joa_schedule
 	where sch_mov_title = #{sch_mov_title}
 	and sch_branch = #{sch_branch}
 	and sch_day = #{sch_day}
@@ -35,8 +35,9 @@
 	<!-- 이것만 .. theater -->
 	<select id="theaterBranchList" parameterType="String" resultType="joa.book.model.JoaBookDTO">
 	select distinct sch_branch
-	from sche_test
+	from joa_schedule
 	where sch_city = #{String}
+	<!-- 날짜 정보 입력해야 됨 -->
 	order by sch_branch asc 
 	</select>
 </mapper>

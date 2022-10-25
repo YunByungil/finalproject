@@ -58,7 +58,7 @@ public class JoaBookController {
 		String msg = "";
 		msg += "<tr><th>날짜</th></tr>";
 		for (int i=0; i<list.size(); i++) {
-			msg += "<td id="+list.get(i).getSch_day()+"><a href=javascript:next3('"+list.get(i).getSch_day()+"')>"+list.get(i).getSch_day()+"</a></td>";
+			msg += "<tr><td id="+list.get(i).getSch_day()+"><a href=javascript:next3('"+list.get(i).getSch_day()+"')>"+list.get(i).getSch_day()+"</a></td></tr>";
 		}
 		map.put("reloadDate", msg);
 		return map;
@@ -72,11 +72,11 @@ public class JoaBookController {
 		String msg = "";
 		msg += "<tr><th>관/시간</th></tr>";
 		for (int i=0; i<list.size(); i++) {
-			msg += "<td id="+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"><a href=javascript:next4('"+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"')>"+
+			msg += "<tr><td id="+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"><a href=javascript:next4('"+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"')>"+
 					list.get(i).getSch_theater()+"관/ 시작 : " +
 					list.get(i).getSch_start_hour()+":"+list.get(i).getSch_start_min()+"/ 끝 : "+
 					list.get(i).getSch_end_hour()+":"+list.get(i).getSch_end_min()+
-					"</a></td>";
+					"</a></td></tr>";
 		}
 		map.put("reloadTime", msg);
 		return map;

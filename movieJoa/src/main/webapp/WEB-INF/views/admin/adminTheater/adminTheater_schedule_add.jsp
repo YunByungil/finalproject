@@ -10,50 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-function dayChoice(){
-	var day={
-		day:$('#day').val()
-	}
-	$.ajax({
-		url:"dayChoice.do",
-		data:JSON.stringify(day),
-		type:"POST",
-		contentType:"application/json; charset=utf-8",
-		dataType:"json",
-		success:function(res){
-			window.alert(res);
-		},
-		error : function(){
-	        alert("error");
-	    }
-	});
-}
-
-function dayChoice3() {	
-	$.ajax({
-		url: "dayChoice.do?day="+$('#day').val(),
-		type: "GET",
-		dataType: "json",
-		success: function(json) {
-			window.alert('asdasd');
-			if(json.titleList.length==0){
-				window.alert('dasdasd');
-				$('#title').append("<option value='--'>-----</option>")
-			}else{
-				$(json.titleList).each(function(i){
-					var mo_title="<option value='"+json.titleList[i]+"'>"+json.titleList[i]+"</option>"
-					$('#title').append(mo_title);
-				})
-			}
-		},
-		error: function(xhr){
-			alert(xhr.status);
-		}
-	});
-};
-
 function dayChoice4() {
-	window.alert($('#theater').val());
 	$.ajax({
 		url: "dayChoice2.do?day="+$('#day').val()+"&theater="+$('#theater').val(),
 		type: "GET",

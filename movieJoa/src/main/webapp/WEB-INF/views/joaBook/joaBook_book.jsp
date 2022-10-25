@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
+
 a {
   text-decoration: none;
 }
@@ -32,20 +33,41 @@ a {
 .noClick {
 	color: gray;
 }
+
+table {
+	text-align: center;
+}
+
+th {
+	text-align: center;
+}
+
+.bar {
+	display: inline;
+}
+.subjectBar {
+	display: inline;
+}
+.branchBar {
+	display: inline;
+}
 </style>
 </head>
 <body>
 <div> <!-- 전체 div영역 -->
+
+<div>
 <c:import url="../header.jsp"></c:import>
-<h1>예매 페이지</h1>
+</div>
 
-<form>
-<section>
-<article>
 <div id="all">
+<h1 align="center">예매 페이지</h1>
+<form>
 
-<div> <!-- 제목 -->
-<table id="ajaxSubject">
+<div align="center">
+
+<div style="width: 25%; height: 25%; float: left;"> <!-- 제목 -->
+<table id="ajaxSubject" class="tt" >
 	<tr>
 		<th>영화 제목</th>
 	</tr>
@@ -58,28 +80,31 @@ a {
 </table>
 </div>
 
-<div> <!-- 극장 -->
-<table id="ajaxBranch">
+<div style="width: 25%; height: 25%; float: left;"> <!-- 극장 -->
+<table id="ajaxBranch" class="tt">
 	<tr>
 		<th>극장</th>
 	</tr>
 </table>
 </div>
 
-<div> <!-- 상영날짜 -->
-<table id="ajaxDate">
+<div style="width: 25%; height: 25%; float: left;">  <!-- 상영날짜 -->
+<table id="ajaxDate" class="tt">
 	<tr>
 		<th>날짜</th>
 	</tr>
 </table>
 </div>
 
-<div> <!-- 관 + 상영 시간 -->
-<table id="ajaxTime">
+
+<div style="width: 25%; height: 25%; float: left;"> <!-- 관 + 상영 시간 -->
+<table id="ajaxTime" class="tt">
 	<tr>
-		<th>시간</th>
+		<th>관/시간</th>
 	</tr>
 </table>
+</div>
+
 </div>
 
 <input type="hidden" name="sch_mov_title" id="sch_mov_title">
@@ -88,13 +113,43 @@ a {
 <input type="hidden" name="sch_theater" id="sch_theater">
 <input type="hidden" name="sch_start_hour" id="sch_start_hour">
 <input type="hidden" name="sch_start_min" id="sch_start_min">
-<input type="submit" value="테스트">
-<input type="button" value="yes" onclick="yes();">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+<div align="center">
+
+<div style="width: 25%; height: 25%; float: left;">
+<span id="sub2"></span>
+<span id="sub">영화선택</span>
 </div>
-</article>
-</section>
+
+<div style="width: 25%; height: 25%; float: left;">
+<span id="br">극장선택</span><br>
+<span id="date"></span><br>
+<span id="to"></span>
+</div>
+
+<div style="width: 25%; height: 25%; float: left;">
+<span>좌석선택</span>
+<span id="s"></span>
+</div>
+
+<div style="width: 25%; height: 25%; float: left;"><input type="button" value="좌석선택" onclick="yes();" style="display: none; color: red;" id="yesid"></div>
+<div style="width: 25%; height: 25%; float: left;"><input type="button" value="좌석선택" onclick="no();" id="noid"></div>
+
+</div>
+
+<br><br><br><br><br>
+<div align="center"><input type="submit" value="테스트"></div>
 </form>
+
+</div>
+
+<div>
 <c:import url="../footer.jsp"></c:import>
+</div>
+
+
 </div>
 </body>
 
@@ -109,7 +164,10 @@ function next(subject) {
 		window.location.reload();
 		return;
 	}
-	
+	var subText2 = document.getElementById('sub');
+	var subText = document.getElementById('sub2');
+	subText.innerHTML = '<img src="/movieJoa/img/theater/'+subject+'.jpg" width="100px" height="100px">';
+	subText2.innerHTML = subject;
 	
 	var form = {
 		sch_mov_title: $('#sch_mov_title').val()
@@ -136,6 +194,8 @@ function next2(branch) {
 		window.location.reload();
 		return;
 	}
+	var subText = document.getElementById('br');
+	subText.innerHTML = branch;
 	
 	var form = {
 			sch_mov_title: $('#sch_mov_title').val(),
@@ -163,6 +223,8 @@ function next3(day) {
 		window.location.reload();
 		return;
 	}
+	var subText = document.getElementById('date');
+	subText.innerHTML = day;
 	
 	var form = {
 			sch_mov_title: $('#sch_mov_title').val(),
@@ -190,6 +252,8 @@ function next4(time) {
 			window.location.reload();
 			return;
 	}
+	document.getElementById('noid').style.display = 'none';
+	document.getElementById('yesid').style.display = 'inline';
 	
 	if(time.length == 6) {
 		var g = time.substring(0,1);
@@ -212,10 +276,17 @@ function next4(time) {
 		document.getElementById('sch_start_hour').value = h;
 		document.getElementById('sch_start_min').value = m;
 	}
+	var subText = document.getElementById('to');
+	subText.innerHTML = g+'관/'+h+':'+m;
+	
+}
+function no() {
+	window.alert('zz');
 	
 }
 
 function yes() {
+	window.alert('zz');
 	$.ajax ({
 		url: "bookSubmit.do?sch_mov_title="+$('#sch_mov_title').val()+"&sch_branch="+$('#sch_branch').val()
 				+"&sch_day="+$('#sch_day').val()+"&sch_theater="+$('#sch_theater').val()

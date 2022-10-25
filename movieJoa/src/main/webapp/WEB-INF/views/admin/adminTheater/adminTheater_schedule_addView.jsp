@@ -11,9 +11,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 function scheduleSubmit() {
-	window.alert('asd');
+	var date='${day}';
 	$.ajax({
-		url: "scheduleAdd.do?sch_day="+${day}+"&sch_theater="+${theater}+"&start_time="+$('#start_time').val()+"&sch_mov_title="+$('#mov_title').val(),
+		url: "scheduleAdd.do?sch_day="+date+"&sch_theater="+${theater}+"&start_time="+$('#start_time').val()+"&sch_mov_title="+$('#mov_title').val(),
 		type: "get",
 		dataType: "html",
 		success: function(data) {
@@ -27,7 +27,6 @@ function scheduleSubmit() {
 </script>
 </head>
 <body>
-<div id="seat"></div>
 <div class="mainBox">
 <form action="scheduleAdd.do"> 
 <div class="table_wrap">
@@ -35,7 +34,7 @@ function scheduleSubmit() {
 <tr>
 	<th class="th_basic">영화 선택</th>
 	<td class="td_basic">
-		<select name="mov_title" id="title">
+		<select name="mov_title" id="mov_title">
 		<c:if test="${not empty list}">
 			<c:forEach var="i" items="${list }">
 				<option value="${i }">${i }</option>
@@ -49,7 +48,7 @@ function scheduleSubmit() {
 </tr>
 <tr>
 	<th class="th_basic">상영시간</th>
-	<td class="td_basic"><input type="time" name="start_time" class="input_text_director"></td>
+	<td class="td_basic"><input type="time" name="start_time" id="start_time" class="input_text_director"></td>
 </tr>
 </table>
 </div>

@@ -9,6 +9,9 @@ public class JoaBookDTO {
 	private String sch_theater;
 	private String sch_seat;
 	private String sch_day;
+	private String sch_dayD;
+	private int sch_width;
+	private int sch_height;
 	private String sch_start_hour;
 	private String sch_start_min;
 	private String sch_end_hour;
@@ -19,8 +22,8 @@ public class JoaBookDTO {
 	}
 
 	public JoaBookDTO(int sch_idx, String sch_mov_title, String sch_city, String sch_branch, String sch_theater,
-			String sch_seat, String sch_day, String sch_start_hour, String sch_start_min, String sch_end_hour,
-			String sch_end_min) {
+			String sch_seat, String sch_day, String sch_dayD, int sch_width, int sch_height, String sch_start_hour,
+			String sch_start_min, String sch_end_hour, String sch_end_min) {
 		super();
 		this.sch_idx = sch_idx;
 		this.sch_mov_title = sch_mov_title;
@@ -29,6 +32,9 @@ public class JoaBookDTO {
 		this.sch_theater = sch_theater;
 		this.sch_seat = sch_seat;
 		this.sch_day = sch_day;
+		this.sch_dayD = sch_dayD;
+		this.sch_width = sch_width;
+		this.sch_height = sch_height;
 		this.sch_start_hour = sch_start_hour;
 		this.sch_start_min = sch_start_min;
 		this.sch_end_hour = sch_end_hour;
@@ -91,6 +97,30 @@ public class JoaBookDTO {
 		this.sch_day = sch_day;
 	}
 
+	public String getSch_dayD() {
+		return sch_dayD;
+	}
+
+	public void setSch_dayD(String sch_dayD) {
+		this.sch_dayD = sch_dayD;
+	}
+
+	public int getSch_width() {
+		return sch_width;
+	}
+
+	public void setSch_width(int sch_width) {
+		this.sch_width = sch_width;
+	}
+
+	public int getSch_height() {
+		return sch_height;
+	}
+
+	public void setSch_height(int sch_height) {
+		this.sch_height = sch_height;
+	}
+
 	public String getSch_start_hour() {
 		return sch_start_hour;
 	}
@@ -122,5 +152,4 @@ public class JoaBookDTO {
 	public void setSch_end_min(String sch_end_min) {
 		this.sch_end_min = sch_end_min;
 	}
-	
 }
