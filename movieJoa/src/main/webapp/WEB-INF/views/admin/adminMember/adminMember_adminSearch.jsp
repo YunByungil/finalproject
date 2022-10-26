@@ -143,7 +143,6 @@ function adminDelete(id){
 </head>
 <body>
 <c:import url="/WEB-INF/views/header_admin.jsp"></c:import>
-<c:import url="/WEB-INF/views/admin/adminMember/adminMember_sideBar.jsp"></c:import>
 <form name="adminForm" class="joinForm">  
 <h2>관리자 수정</h2>                                                                                           
       <div class="textForm">

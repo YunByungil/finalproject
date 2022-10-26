@@ -15,5 +15,10 @@ public class JoaAdminPayProductDAOImple implements JoaAdminPayProductDAO {
 		int nowMonthProductRevenue=sqlMap.selectOne("nowMonthProductRevenueQuery");
 		return nowMonthProductRevenue;
 	}
+	@Override
+	public String nowMonthBestProduct() {
+		String nowMonthBestProduct=sqlMap.selectOne("nowMonthBestProductQuery");
+		return nowMonthBestProduct;
+	}
 	
 }

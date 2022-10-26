@@ -89,14 +89,15 @@ public class AdminMemberController {
 		int adminAllCount=joaAdminMemberDao.adminAllCount();
 		int memberGenderCount=joaAdminMemberDao.memberGenderCount();
 		int arr[]=new int[5];
+		int memberGradeCount=joaAdminMemberDao.memberGradeCount();
 		arr=joaAdminMemberDao.memberAgeCount();
 		mav.addObject("currentMemberJoin",currentMemberJoin);
 		mav.addObject("memberAllCount", memberAllCount);
 		mav.addObject("adminAllCount", adminAllCount);
 		mav.addObject("memberGenderCount", memberGenderCount);
 		mav.addObject("memberAgeCount", arr);
+		mav.addObject("memberGradeCount",memberGradeCount );
 		mav.setViewName("admin/adminMember/adminMember_main");
-		arr=joaAdminMemberDao.memberAgeCount();
 		return mav;
 	}
 	@RequestMapping("/adminMemberLoginSubmit.do")
@@ -107,6 +108,7 @@ public class AdminMemberController {
 		int adminAllCount=joaAdminMemberDao.adminAllCount();
 		int memberGenderCount=joaAdminMemberDao.memberGenderCount();
 		int arr[]=new int[5];
+		int memberGradeCount=joaAdminMemberDao.memberGradeCount();
 		arr=joaAdminMemberDao.memberAgeCount();
 		HttpSession session=req.getSession();
 		ModelAndView mav=new ModelAndView();
@@ -119,6 +121,7 @@ public class AdminMemberController {
 			mav.addObject("adminAllCount", adminAllCount);
 			mav.addObject("memberGenderCount", memberGenderCount);
 			mav.addObject("memberAgeCount", arr);
+			mav.addObject("memberGradeCount",memberGradeCount );
 			mav.setViewName("admin/adminMember/adminMember_main");
 		}else {
 			msg="로그인 실패!";
@@ -183,9 +186,27 @@ public class AdminMemberController {
 		mav.setViewName("admin/adminMember/adminMember_msg");
 		return mav;
 	}
-	@RequestMapping("/adminDetail.do")
-	public String adminDetailGo() {
-		return "admin/adminMember/adminMember_detail";
+	@RequestMapping("/adminGender.do")
+	public ModelAndView adminGenderGo(String mem_gender) {
+		ModelAndView mav=new ModelAndView();
+		List<JoaMemberDTO> list=joaAdminMemberDao.memberGenderSelect(mem_gender);
+		mav.addObject("list", list);
+		mav.setViewName("admin/adminMember/adminMember_gender");
+		return mav;
+	}
+	@RequestMapping("/adminGrade.do")
+	public ModelAndView adminGradeGo() {
+		ModelAndView mav=new ModelAndView();
+		int gradeGeneral=joaAdminMemberDao.memberGradeGeneral();
+		int gradeVip=joaAdminMemberDao.memberGradeVip();
+		int gradeSvip=joaAdminMemberDao.memberGradeSvip();
+		int gradeVvip=joaAdminMemberDao.memberGradeVvip();
+		mav.addObject("general", gradeGeneral);
+		mav.addObject("vip", gradeVip);
+		mav.addObject("svip", gradeSvip);
+		mav.addObject("vvip", gradeVvip);
+		mav.setViewName("admin/adminMember/adminMember_grade");
+		return mav;
 	}
 
 }
