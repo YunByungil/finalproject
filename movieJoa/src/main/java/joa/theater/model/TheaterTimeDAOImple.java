@@ -19,4 +19,12 @@ public class TheaterTimeDAOImple implements TheaterTimeDAO {
 		List<TheaterTimeDTO> list = sqlMap.selectList("theaterTimeList", map);
 		return list;
 	}
+	
+//	//realtime
+//	@Override
+//	public List<TheaterTimeDTO> realTimeList(HashMap map) {
+//		List<TheaterTimeDTO> list = sqlMap.selectList("realTimeList", map);
+//		return list;
+//	}
+	
 }

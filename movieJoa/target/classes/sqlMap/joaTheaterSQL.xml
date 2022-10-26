@@ -20,6 +20,7 @@
 	order by sch_dayd asc
 	</select>
 	
+	<!-- theaterDAO로 가야 됨 -->
 	<select id="theaterTimeList" parameterType="HashMap" resultType="joa.theater.model.TheaterTimeDTO">
 	select distinct b.mov_rate as rate,
 	a.sch_mov_title as subject,
@@ -33,4 +34,20 @@
 	and to_char(sysdate,'hh24') <![CDATA[<=]]> sch_start_hour
 	and to_char(sysdate,'mi') <![CDATA[<=]]> sch_start_min
 	</select>
+	
+	
+	<select id="realTimeList" parameterType="HashMap" resultType="joa.book.model.JoaBookDTO">
+	select sch_mov_title,sch_theater,
+	sch_start_hour,
+	sch_start_min,
+	sch_end_hour,
+	sch_end_min
+	from joa_schedule
+	where sch_branch = #{sch_branch}
+	and to_char(sch_dayd,'yyyy-mm-dd') = #{sch_dayd}
+	and sch_start_hour <![CDATA[>]]> to_char(sysdate,'hh24')
+	and sch_start_min <![CDATA[>]]> to_char(sysdate,'mi')
+	order by sch_start_hour asc
+	</select>
+	
 </mapper>

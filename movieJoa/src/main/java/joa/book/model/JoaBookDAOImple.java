@@ -2,6 +2,8 @@ package joa.book.model;
 import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
+
+import joa.theater.model.TheaterTimeDTO;
 public class JoaBookDAOImple implements JoaBookDAO {
 	
 	private SqlSessionTemplate sqlMap;
@@ -47,6 +49,20 @@ public class JoaBookDAOImple implements JoaBookDAO {
 	@Override
 	public List<JoaBookDTO> theaterDay(HashMap map) {
 		List<JoaBookDTO> list = sqlMap.selectList("theaterDayList", map);
+		return list;
+	}
+	
+	//seatList
+	@Override
+	public List<JoaBookDTO> seatList(HashMap map) {
+		List<JoaBookDTO> list = sqlMap.selectList("seatList", map);
+		return list;
+	}
+	
+	//realtime
+	@Override
+	public List<JoaBookDTO> realTimeList(HashMap map) {
+		List<JoaBookDTO> list = sqlMap.selectList("realTimeList", map);
 		return list;
 	}
 

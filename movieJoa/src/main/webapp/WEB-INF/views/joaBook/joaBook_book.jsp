@@ -9,7 +9,9 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
-
+li {
+	list-style: inline;
+}
 a {
   text-decoration: none;
 }
@@ -60,10 +62,11 @@ th {
 <c:import url="../header.jsp"></c:import>
 </div>
 
+<div id="all2">
+
+
 <div id="all">
 <h1 align="center">예매 페이지</h1>
-<form>
-
 <div align="center">
 
 <div style="width: 25%; height: 25%; float: left;"> <!-- 제목 -->
@@ -107,6 +110,8 @@ th {
 
 </div>
 
+</div>
+
 <input type="hidden" name="sch_mov_title" id="sch_mov_title">
 <input type="hidden" name="sch_branch" id="sch_branch">
 <input type="hidden" name="sch_day" id="sch_day">
@@ -130,18 +135,16 @@ th {
 </div>
 
 <div style="width: 25%; height: 25%; float: left;">
-<span>좌석선택</span>
-<span id="s"></span>
+<span id="s">좌석선택</span>
 </div>
 
 <div style="width: 25%; height: 25%; float: left;"><input type="button" value="좌석선택" onclick="yes();" style="display: none; color: red;" id="yesid"></div>
 <div style="width: 25%; height: 25%; float: left;"><input type="button" value="좌석선택" onclick="no();" id="noid"></div>
+<div style="width: 25%; height: 25%; float: left;"><input type="button" value="결제하기" onclick="pay();" style="display: none;" id="payid"></div>
 
 </div>
 
 <br><br><br><br><br>
-<div align="center"><input type="submit" value="테스트"></div>
-</form>
 
 </div>
 
@@ -281,12 +284,14 @@ function next4(time) {
 	
 }
 function no() {
-	window.alert('zz');
+	window.alert('예매하실 영화 정보를 선택해주세요.');
 	
 }
 
 function yes() {
 	window.alert('zz');
+	document.getElementById('yesid').style.display = 'none';
+	document.getElementById('payid').style.display = 'inline';
 	$.ajax ({
 		url: "bookSubmit.do?sch_mov_title="+$('#sch_mov_title').val()+"&sch_branch="+$('#sch_branch').val()
 				+"&sch_day="+$('#sch_day').val()+"&sch_theater="+$('#sch_theater').val()
@@ -298,6 +303,14 @@ function yes() {
 			$('#all').html(data);
 		}
 	});
+}
+
+function pay() {
+	if ($('#code').val() == '') {
+		window.alert('좌석을 선택해주세요');
+	}
+	
+	
 }
 </script>
 </html>

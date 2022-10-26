@@ -43,9 +43,12 @@ public class JoaTheaterController {
 						dayList.get(i).getSch_dayD().substring(5, 10)+"</a></li> &nbsp;";
 			}
 		}
-		
-		List<TheaterTimeDTO> timeList = theaterTimeService.timeList(yoil, sch_branch);
+		System.out.println("yoil : " +yoil);
+		List<TheaterTimeDTO> timeList = theaterTimeService.timeList("2022-"+yoil, sch_branch);
 		System.out.println("timeList.size() : "+timeList.size());
+//		System.out.println("timeList : " +timeList.get(0).getRate());
+		
+		List<JoaBookDTO> realTimeList = joaBookService.realTimeList("2022-"+yoil, sch_branch);
 		
 		System.out.println("branchList.size() : "+branchList.size());
 		mav.addObject("testCity", testCity);
@@ -58,6 +61,10 @@ public class JoaTheaterController {
 		mav.addObject("mm", mm);
 		System.out.println(mm);
 		mav.addObject("yoil", yoil);
+		/////////////////timeList
+		mav.addObject("timeList", timeList);
+		mav.addObject("realTimeList", realTimeList);
+		
 		mav.setViewName("joaTheater/joaTheater_theater");
 		return mav;
 	}

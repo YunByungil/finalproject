@@ -29,8 +29,47 @@ public class JoaBookController {
 	@RequestMapping("/bookSubmit.do")
 	public ModelAndView bs(JoaBookDTO dto) {
 		ModelAndView mav = new ModelAndView();
-		System.out.println(dto.getSch_mov_title());
-		System.out.println(dto.getSch_branch());
+//		System.out.println(dto.getSch_mov_title());
+//		System.out.println(dto.getSch_branch());
+		List<JoaBookDTO> list = joaBookService.seatList(dto);
+		System.out.println("listSize : " +list.size());
+		String seats_s = list.get(0).getSch_seat();
+		System.out.println("seat_s : " +seats_s);
+		System.out.println("seat_s.length : " + seats_s.length());
+		int start=0;
+	      int le=0;
+	      int ri=0;
+	      
+	      String[][] seats=new String[list.get(0).getSch_height()][list.get(0).getSch_width()];
+	      for(int i=0;i<seats_s.length();i++) {
+	         if(seats_s.charAt(i)==',') {
+	            if(ri==0 && le==0) {
+	               seats[le][ri]=seats_s.substring(0,i);
+	               start=i+1;
+	            }else {
+	               seats[le][ri]=seats_s.substring(start,i);
+	               start=i+1;
+	            }
+	            ri++;
+	            if(ri==list.get(0).getSch_width()) {
+	               le++;
+	               ri=0;
+	            }
+	         }
+	    }
+	    mav.addObject("width",list.get(0).getSch_width());
+	    mav.addObject("height",list.get(0).getSch_height());
+	    mav.addObject("seats", seats);
+	    mav.addObject("idx", list.get(0).getSch_idx());
+	    /////////////
+	    mav.addObject("sch_mov_title", list.get(0).getSch_mov_title());
+	    mav.addObject("sch_branch", list.get(0).getSch_branch());
+	    mav.addObject("sch_day", list.get(0).getSch_day());
+	    mav.addObject("sch_theater", list.get(0).getSch_theater());
+	    mav.addObject("sch_start_hour", list.get(0).getSch_start_hour());
+	    mav.addObject("sch_start_min", list.get(0).getSch_start_min());
+	    /////////////
+		mav.setViewName("joaBook/joaBook_seat");
 		return mav;
 	}
 	
@@ -81,4 +120,5 @@ public class JoaBookController {
 		map.put("reloadTime", msg);
 		return map;
 	}
+	
 }

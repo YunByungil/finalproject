@@ -1,5 +1,7 @@
 package joa.book.model;
 import java.util.*;
+
+import joa.theater.model.TheaterTimeDTO;
 public interface JoaBookService {
 
 	public List<JoaBookDTO> moviesSubjectList();
@@ -9,4 +11,10 @@ public interface JoaBookService {
 	///////////////////////////////////////////////////////theaterSQL
 	public List<JoaBookDTO> theaterBranchList(String sch_city);
 	public List<JoaBookDTO> theaterDay(String sch_city, String sch_branch);
+	
+	/////seat 불러오기(JoaBookController)
+	public List<JoaBookDTO> seatList(JoaBookDTO dto);
+	
+	/////////////////realtime
+	public List<JoaBookDTO> realTimeList(String sch_dayd, String sch_branch);
 }

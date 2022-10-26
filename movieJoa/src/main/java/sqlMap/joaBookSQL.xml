@@ -40,4 +40,16 @@
 	<!-- 날짜 정보 입력해야 됨 -->
 	order by sch_branch asc 
 	</select>
+	
+	<!-- 좌석 불러오기 -->
+	<select id="seatList" parameterType="HashMap" resultType="joa.book.model.JoaBookDTO">
+	select *
+	from joa_schedule
+	where sch_mov_title = #{sch_mov_title}
+	and sch_branch = #{sch_branch}
+	and sch_day = #{sch_day}
+	and sch_theater = #{sch_theater}
+	and sch_start_hour = #{sch_start_hour}
+	and sch_start_min = #{sch_start_min}
+	</select>
 </mapper>

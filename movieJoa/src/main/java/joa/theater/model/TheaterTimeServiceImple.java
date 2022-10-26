@@ -20,4 +20,14 @@ public class TheaterTimeServiceImple implements TheaterTimeService {
 		List<TheaterTimeDTO> list = theaterTimeDao.timeList(map);
 		return list;
 	}
+	
+//	//realtime
+//	@Override
+//	public List<TheaterTimeDTO> realTimeList(String sch_dayd, String sch_branch) {
+//		HashMap map = new HashMap();
+//		map.put("sch_dayd", sch_dayd);
+//		map.put("sch_branch", sch_branch);
+//		List<TheaterTimeDTO> list = theaterTimeDao.realTimeList(map);
+//		return list;
+//	}
 }

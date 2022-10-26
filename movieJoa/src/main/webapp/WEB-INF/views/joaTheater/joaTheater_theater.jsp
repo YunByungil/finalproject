@@ -107,6 +107,11 @@ ${mm }
 </div>
 
 <div>
+<c:if test="${empty timeList }">
+<ul>
+<li>등록된 정보가 없습니다</li>
+</ul>
+</c:if>
 <ul id = "new">
 <c:forEach var="dto" items="${timeList }" varStatus="c">
 <li>
@@ -115,19 +120,15 @@ ${dto.subject }/
 ${dto.genre }/
 ${dto.runningtime }분/
 ${dto.sdate }개봉
-		<c:forEach var="dto4" items="${totalList }">
-			<c:if test="${dto4.subject eq dto.subject }">
-				<br>
-				${dto4.gwan }관 / 총 ${dto4.total }석
-				<c:forEach var="dto3" items="${realTimeList }">
-					<c:if test="${dto4.gwan eq dto3.gwan && dto4.subject eq dto3.subject}">
-						<br>
-						<a href="javascript:book('${dto3.starttime}')">${dto3.starttime }</a>
-					</c:if>
-				</c:forEach>
-				<br>
-			</c:if>
-		</c:forEach>
+	<br>
+	<c:forEach var="dto3" items="${realTimeList }">
+		
+		<c:if test="${dto.subject eq dto3.sch_mov_title}">
+			<br>
+			<a href="javascript:book('${dto3.sch_start_hour}')">${dto3.sch_start_hour }</a>
+		</c:if>
+	</c:forEach>
+	<br>
 <hr>
 </li>
 </c:forEach>

@@ -1,5 +1,7 @@
 package joa.book.model;
 import java.util.*;
+
+import joa.theater.model.TheaterTimeDTO;
 public class JoaBookServiceImple implements JoaBookService {
 	
 	private JoaBookDAO joaBookDao;
@@ -56,5 +58,29 @@ public class JoaBookServiceImple implements JoaBookService {
 		List<JoaBookDTO> list = joaBookDao.theaterDay(map);
 		return list;
 	}
-
+	
+	//seat불러오기
+	@Override
+	public List<JoaBookDTO> seatList(JoaBookDTO dto) {
+		HashMap map = new HashMap();
+		map.put("sch_mov_title", dto.getSch_mov_title());
+		map.put("sch_branch", dto.getSch_branch());
+		map.put("sch_day", dto.getSch_day());
+		System.out.println(dto.getSch_day());
+		map.put("sch_theater", dto.getSch_theater());
+		map.put("sch_start_hour", dto.getSch_start_hour());
+		map.put("sch_start_min", dto.getSch_start_min());
+		List<JoaBookDTO> list = joaBookDao.seatList(map);
+		return list;
+	}
+	
+	//realtime
+	@Override
+	public List<JoaBookDTO> realTimeList(String sch_dayd, String sch_branch) {
+		HashMap map = new HashMap();
+		map.put("sch_dayd", sch_dayd);
+		map.put("sch_branch", sch_branch);
+		List<JoaBookDTO> list = joaBookDao.realTimeList(map);
+		return list;
+	}
 }
