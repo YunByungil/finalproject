@@ -31,35 +31,34 @@
 			<td rowspan="2">진행중인 '관리자 등록' 이벤트가 존재하지 않습니다.</td>
 		</tr>
 	</c:if>
+	<c:if test="${empty systemEvent}">
+		<tr>
+			<td rowspan="2">진행중인 '관리자 등록' 이벤트가 존재하지 않습니다.</td>
+		</tr>
+	</c:if>
 	<div class="cols-content">
 		<div class="col-detail event">
 		      <ul class="sect-evt-item-list">
-		      		 <li>
-			           <a id="tile_0" href="joaEventNewJoin.do">
-			          			 <div class="evt-thumb"> <img src="/movieJoa/img/joaEvent_img/join_thumb.png"></div>
-			          			 <div class="evt-desc"> <p class="txt1">신규 고객 감사 할인쿠폰 증정 이벤트</p><p class="txt2">2022.10.01 ~ 2022.12.13</p> </div>
-						</a>
-					</li>
+		      		 
+					<c:forEach var="sysdto" items="${systemEvent }">
+					<c:url var="sysDetail" value="${sysdto.eve_idx }.do">
+							<c:param name="eve_idx">${sysdto.eve_idx }</c:param>
+					</c:url>
 					<li>
-			           <a id="tile_1" href="joaEventPoint.do">
-			          			 <div class="evt-thumb"> <img src="/movieJoa/img/joaEvent_img/coupon_thumb.jpg" ></div>
-			          			 <div class="evt-desc"> <p class="txt1">MJOA 랜덤 선물 응모 이벤트</p><p class="txt2">2022.10.15 ~ 2022.12.25</p> </div>
+			           <a id="tile_0" href="${sysDetail}" >
+			          			 <div class="evt-thumb"> <img src="/movieJoa/img/joaEvent_img/${sysdto.eve_thumb_img }"></div>
+			          			 <div class="evt-desc"> <p class="txt1">${sysdto.eve_subject }</p><p class="txt2">${sysdto.eve_start_date } ~ ${sysdto.eve_end_date }</p> </div>
 						</a>
 					</li>
-					<li>
-			           <a id="tile_2" href="joaEventApply.do">
-			          			 <div class="evt-thumb"> <img src="/movieJoa/img/joaEvent_img/apply_thumb.jpg" ></div>
-			          			 <div class="evt-desc"> <p class="txt1">401호의 탐정 개봉 기념 시사회 응모 이벤트</p><p class="txt2">2022.10.01 ~ 2022.12.15</p> </div>
-						</a>
-					</li>
+					</c:forEach>
 					<c:forEach var="dto" items="${userEvent }">
 					<c:url var="detail" value="joaEventInfo.do">
 							<c:param name="eve_idx">${dto.eve_idx }</c:param>
 					</c:url>
 					<li>
-			           <a id="tile_3" href="${detail}" >
+			           <a id="tile_1" href="${detail}" >
 			          			 <div class="evt-thumb"> <img src="/movieJoa/img/joaEvent_img/${dto.eve_thumb_img }"></div>
-			          			 <div class="evt-desc"> <p class="txt1">${dto.eve_subject }</p><p class="txt2"></p> </div>
+			          			 <div class="evt-desc"> <p class="txt1">${dto.eve_subject }</p><p class="txt2">${dto.eve_start_date } ~ ${dto.eve_end_date }</p> </div>
 						</a>
 					</li>
 					</c:forEach>

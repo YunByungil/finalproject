@@ -17,9 +17,6 @@ function getDiscount(){
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-
-<script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/EventCommonUnited.js"></script>
-<script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/EventScriptHome.js"></script>
 <div class="contaniner">
 <div class="content"> 
 <div class="tbl-viw-head">
@@ -29,7 +26,6 @@ function getDiscount(){
     </h3> 
     <em class="date"><span>기간: </span>2022.10.01 ~ 2022.12.13</em>
 </div>
-
 <div class="tbl-viw-content">
  
 <div class="evt_wrap cf ir">

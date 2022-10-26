@@ -9,10 +9,6 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/event.css">
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
-
-
- <link rel="stylesheet" href="http://img.cgv.co.kr/event/develop/2210_4dxmy/event.css" /><!-- CSS -->
-<link rel="stylesheet" type="text/css" href="http://img.cgv.co.kr/WebApp/css/event/evt_template_v2.css">
 <style>
 .wrap_box .apply_btn {
      display: block;
@@ -32,9 +28,6 @@ function getApply(){
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-
-<script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/EventCommonUnited.js"></script>
-<script type="text/javascript" src="http://img.cgv.co.kr/R2014/js/EventScriptHome.js"></script>
 <div class="contaniner">
 <div class="content"> 
 <div class="tbl-viw-head">
@@ -61,9 +54,6 @@ function getApply(){
         <a href="/movieJoa/joaEventMain.do"">목록</a>
     </div>
 </div>
- 
-    
-    <!-- E 예매하기 및 TOP Fixed 버튼 -->
 	</div>
   </div>
   </div>

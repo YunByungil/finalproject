@@ -1,21 +1,57 @@
 package joa.adminMovie.model;
 
-import org.springframework.web.multipart.MultipartFile;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Range;
 
 public class AdminMovieDTO {
 	
 	private int mov_idx;
+	
+	@NotBlank(message="공백 또는 null일수 없습니다.")
+	@Size(min=1,max=20)
 	private String mov_title;
+	
+	@NotBlank(message="공백 또는 null일수 없습니다.")
+	@Size(min=1,max=10,message="길이가 부적합합니다." )
 	private String mov_director;
+	
+	@NotBlank(message="공백 또는 null일수 없습니다.")
+	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_cast;
+	
+	@NotBlank(message="공백 또는 null일수 없습니다.")
 	private String mov_start_date;
+
+	@NotBlank(message="공백 또는 null일수 없습니다.")
 	private String mov_end_date;
+	
+	@NotBlank(message="공백 또는 null일수 없습니다.")
+	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_country;
+	
+	@NotBlank(message="공백 또는 null일수 없습니다.")
+	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_genre;
+	
+	@Pattern(regexp = "^[0-9]*$")
+	@Range(min = 1, max = 999)
+	@NotBlank(message="공백 또는 null일수 없습니다.")
 	private int mov_running_time;
+
+	@NotBlank(message="공백 또는 null일수 없습니다.")
 	private String mov_rate;
+	
+	@NotBlank(message="공백 또는 null일수 없습니다.")
+	@Size(max=2000,message="길이가 부적합합니다." )
 	private String mov_info;
+	
+	@NotBlank(message="공백 또는 null일수 없습니다.")
+	@Size(max=2000,message="길이가 부적합합니다." )
 	private String mov_poster;
+	
 	private int mov_booking_percent;
 	private int mov_gender_percent;
 	private int mov_age_percent;
@@ -35,8 +71,16 @@ public class AdminMovieDTO {
 		this.mov_title = mov_title;
 		this.mov_director = mov_director;
 		this.mov_cast = mov_cast;
-		this.mov_start_date = mov_start_date;
-		this.mov_end_date = mov_end_date;
+		if(mov_start_date==null || mov_start_date =="") {
+			this.mov_start_date=mov_start_date;
+		}else {
+			this.mov_start_date = mov_start_date.substring(0,9);
+		}
+		if(mov_end_date==null || mov_end_date =="") {
+			this.mov_end_date=mov_end_date;
+		}else {
+			this.mov_end_date = mov_end_date.substring(0,10);
+		}
 		this.mov_country = mov_country;
 		this.mov_genre = mov_genre;
 		this.mov_running_time = mov_running_time;
@@ -82,19 +126,38 @@ public class AdminMovieDTO {
 	}
 
 	public String getMov_start_date() {
-		return mov_start_date;
+		if(mov_start_date==null || mov_start_date =="") {
+			mov_start_date="nnnn-nn-nn";
+			return mov_start_date;
+		}else {
+			return mov_start_date.substring(0,10);
+		}
 	}
 
 	public void setMov_start_date(String mov_start_date) {
-		this.mov_start_date = mov_start_date;
+		if(mov_start_date==null || mov_start_date =="") {
+			this.mov_start_date="nnnn-nn-nn";
+		}else {
+			this.mov_start_date = mov_start_date.substring(0,10);
+		}
 	}
 
 	public String getMov_end_date() {
-		return mov_end_date;
+
+		if(mov_end_date==null || mov_end_date =="") {
+			mov_end_date="nnnn-nn-nn";
+			return mov_end_date;
+		}else {
+			return mov_end_date.substring(0,10);
+		}
 	}
 
 	public void setMov_end_date(String mov_end_date) {
-		this.mov_end_date = mov_end_date;
+		if(mov_end_date==null || mov_end_date =="") {
+			this.mov_end_date="nnnn-nn-nn";
+		}else {
+			this.mov_end_date = mov_end_date.substring(0,10);
+		}
 	}
 
 	public String getMov_country() {

@@ -36,6 +36,12 @@ public class Joa_EventServiceImple implements Joa_EventService{
 	}
 	
 	@Override
+	public List listSystemEvent() {
+		List list=joa_EventDao.listSystemEvent();
+		return list;
+	}
+	
+	@Override
 	public int endedEventTotalCnt() {
 		int result=joa_EventDao.endedEventTotalCnt();
 		return result;

@@ -30,6 +30,12 @@ public class Joa_EventDAOImple implements Joa_EventDAO {
 	}
 	
 	@Override
+	public List<AdminEventDTO> listSystemEvent() {
+		List<AdminEventDTO> list=sqlMap.selectList("listSystemEvent");
+		return list;
+	}
+	
+	@Override
 	public int endedEventTotalCnt() {
 		int count=sqlMap.selectOne("endedEventTotalCnt");
 		return count;

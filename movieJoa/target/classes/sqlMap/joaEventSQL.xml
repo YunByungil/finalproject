@@ -4,7 +4,10 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.event">
   <select id="listUserEvent" resultType="joa.adminEvent.model.AdminEventDTO">
-			select * from joa_event where eve_end_date <![CDATA[>=]]> sysdate order by eve_idx desc 
+			select * from joa_event where eve_end_date <![CDATA[>=]]> sysdate and eve_idx <![CDATA[>]]>1000 order by eve_idx desc 
+	</select>
+	  <select id="listSystemEvent" resultType="joa.adminEvent.model.AdminEventDTO">
+			select * from joa_event where eve_end_date <![CDATA[>=]]> sysdate and eve_idx <![CDATA[<]]>1000 order by eve_idx desc 
 	</select>
 	<select id="endedEventTotalCnt" resultType="int">
 			select count(*) from joa_event where eve_end_date <![CDATA[<]]> sysdate

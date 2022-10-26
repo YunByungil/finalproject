@@ -11,6 +11,7 @@ public interface Joa_EventService {
 	
 	public AdminEventDTO infoEvent(int eve_idx);
 	public List<AdminEventDTO> listEvent();
+	public List<AdminEventDTO> listSystemEvent();
 	public int endedEventTotalCnt();
 	public List<AdminEventDTO> endedEvent();
 	public AdminCouponDTO couponInfo(int cou_idx);

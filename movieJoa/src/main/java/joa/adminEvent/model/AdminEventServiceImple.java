@@ -45,6 +45,84 @@ public class AdminEventServiceImple implements AdminEventService {
 		int result=adminEventDao.addEvent(map);
 		return result;
 	}
+	
+	@Override
+	public int addSysEve(int eidx) {
+		
+		Map eve=new HashMap();
+		Map cou=new HashMap();
+		int totalResult=0;
+		System.out.println("serviceImple eidx:"+eidx);
+		
+		if(eidx==111) {
+			eve.put("idx", eidx);
+			eve.put("category", "즉시발급형");
+			eve.put("subject", "신규 고객 감사 할인쿠폰 증정 이벤트");
+			eve.put("main_img", "join_main.jpg");
+			eve.put("thumb_img", "join_thumb.png");
+			eve.put("start_date", "2022-10-01");
+			eve.put("end_date", "2022-12-13");
+			
+			cou.put("idx", eidx);
+			cou.put("cou_name", "신규 고객 감사 할인쿠폰");
+			cou.put("cou_discount", 2000);
+
+			
+			int couResult=adminEventDao.addSysCou(cou);
+			int eveResult=adminEventDao.addSysEve(eve);
+			totalResult=couResult+eveResult;
+			
+			
+		}else if(eidx==222) {
+			eve.put("idx", eidx);
+			eve.put("category", "즉시발급형");
+			eve.put("subject", "MJOA 랜덤 선물 응모 이벤트");
+			eve.put("main_img", "coupon_main.jpg");
+			eve.put("thumb_img", "coupon_thumb.jpg");
+			eve.put("start_date", "2022-10-15");
+			eve.put("end_date", "2022-12-25");
+			
+			int eveResult=adminEventDao.addSysEve(eve);
+			totalResult=eveResult+1;
+			
+			
+			
+		}else if(eidx==333) {
+			eve.put("idx", eidx);
+			eve.put("category", "즉시발급형");
+			eve.put("subject", "401호의 탐정 개봉 기념 시사회 응모 이벤트");
+			eve.put("main_img", "apply_main.jpg");
+			eve.put("thumb_img", "apply_thumb.jpg");
+			eve.put("start_date", "2022-10-15");
+			eve.put("end_date", "2022-12-15");
+			int eveResult=adminEventDao.addSysEve(eve);
+			totalResult=eveResult+1;
+		}
+		
+		return totalResult;
+		
+		
+	}
+	
+	@Override
+	public int delSysEve(int eve_idx) {
+		
+		int totalResult=0;
+		System.out.println("DelSys들어온 idx값:"+eve_idx);
+		if(eve_idx==111) {
+			int eveResult=adminEventDao.deleteEvent(eve_idx);
+			int couResult=adminEventDao.delSysCou(eve_idx);
+			totalResult=eveResult+couResult;
+			System.out.println("111비활성화 경우 delete Event:"+eveResult+"couResult:"+couResult);
+		}else {
+			int eveResult=adminEventDao.deleteEvent(eve_idx);
+			totalResult=eveResult+1;
+		}
+		return totalResult;
+	}
+	
+	
+
 
 	@Override
 	public int updateEvent(AdminEventDTO dto) {
@@ -94,6 +172,14 @@ public class AdminEventServiceImple implements AdminEventService {
 		map.put("end", end);
 		List list=adminEventDao.listEvent(map);
 		return list;
+	}
+	
+	@Override
+	public int systemEventTotalCnt(int eidx) {
+		Map map=new HashMap();
+		map.put("eidx", eidx);
+		int result=adminEventDao.systemEventTotalCnt(map);
+		return result;
 	}
 
 	@Override

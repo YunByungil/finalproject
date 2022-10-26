@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+<<<<<<< HEAD
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/mvc 
+	https://www.springframework.org/schema/mvc/spring-mvc.xsd 
+	http://www.springframework.org/schema/context 
        https://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
     <mvc:annotation-driven />
@@ -225,8 +230,8 @@
 		<constructor-arg>
 			<ref bean="JoaNoticeDao"></ref>
 		</constructor-arg>
-	</bean>
-	
+	</bean>	
+
 	<bean id="JoaMypageService" class="joa.mypage.model.JoaMypageServiceImple">
 		<constructor-arg>
 			<ref bean="JoaMypageDao"></ref>
@@ -260,9 +265,18 @@
 	</bean>
 	<!-- byungil -->
 
-
-   
-   
+<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+      <property name="useCodeAsDefaultMessage">
+            <value>true</value>
+        </property>
+      <property name="basenames">
+         <list>       
+            <value>properties.validation_ko</value> 
+         </list>
+      </property>
+      <property name="defaultEncoding" value="utf-8"></property>
+   </bean>
+	
    
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>
@@ -275,5 +289,7 @@
       <property name="order" value="1"></property>
    </bean>    
   <bean id="joaJson" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"></bean>
+   
+   
    
 </beans>

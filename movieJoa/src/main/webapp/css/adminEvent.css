@@ -308,4 +308,17 @@ a{
 	color:inherit;
 	text-decoration:none;
 }
+.error_span{
+	margin-top: 12px;
+	padding-left: 20px;
+    font-size: 13px;
+    background: url(/movieJoa/img/icon/caution.png) no-repeat 0 1px;
+	color:#ED1C34;
+}
+.error_span_general{
+	margin-top: 12px;
+	padding-left: 20px;
+    font-size: 13px;
+	color:#ED1C34;
+}
 
