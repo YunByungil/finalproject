@@ -227,6 +227,12 @@
 		</constructor-arg>
 	</bean>
 	
+	<bean id="JoaMypageService" class="joa.mypage.model.JoaMypageServiceImple">
+		<constructor-arg>
+			<ref bean="JoaMypageDao"></ref>
+		</constructor-arg>
+	</bean>
+	
 
 	<!-- byungil -->
 	<bean id="joaBookDao" class="joa.book.model.JoaBookDAOImple">
@@ -254,11 +260,6 @@
 	</bean>
 	<!-- byungil -->
 
-	<bean id="JoaMypageService" class="joa.mypage.model.JoaMypageServiceImple">
-		<constructor-arg>
-			<ref bean="JoaMypageDao"></ref>
-		</constructor-arg>
-	</bean>
 
    
    

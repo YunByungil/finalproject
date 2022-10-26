@@ -1,15 +1,29 @@
 package joa.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import joa.mypage.model.JoaMypageService;
+import joa.mypage.model.JoaMypageMemberDTO;
 @Controller
 public class JoaMypageController {
 	
+	@Autowired
+	private JoaMypageService JoaMypageService;
+	
 	@RequestMapping("/myPage.do")
-	public String myPage() {
-		return "joaMyPage/joaMyPage_myPage";
+	public ModelAndView myPage(@RequestParam(value="sid")String sid) {
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", dto);
+		mav.setViewName("joaMyPage/joaMyPage_myPage");
+		return mav;
 	}
 	
 	@RequestMapping("/myPage_tiket.do")

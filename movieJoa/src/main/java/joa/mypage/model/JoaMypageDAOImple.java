@@ -1,10 +1,21 @@
 package joa.mypage.model;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class JoaMypageDAOImple implements JoaMypageDAO {
 	
+	@Autowired
 	private SqlSessionTemplate sqlMap;
+	
+	public JoaMypageDAOImple(SqlSessionTemplate sqlMap) {
+		super();
+		this.sqlMap = sqlMap;
+	}
+	
+	public JoaMypageDAOImple() {
+		// TODO Auto-generated constructor stub
+	}
 	
 	@Override
 	public JoaMypageMemberDTO memberInpo(String sid) {
@@ -14,10 +25,7 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 		return dto;
 	}
 	
-	public JoaMypageDAOImple(SqlSessionTemplate sqlMap) {
-		super();
-		this.sqlMap = sqlMap;
-	}
+	
 
 	@Override
 	public int salePrice(int price, int grade) {

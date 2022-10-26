@@ -562,12 +562,26 @@ d{
 	 float: left;
 }
 .li_p{
+	position: relative;
     float: left;
-    margin-left: 130px;
+    margin-left: 25px;
+    top:4px;
 }
 .li_i{
 	 float: left;
     margin-left: 250px;
+}
+#li_p{
+	left:50px;
+}
+l{
+	position: relative;
+	bottom:1px;	
+	font-size:20px;
+	font-weight : bold;
+}
+l1{
+	font-size:15px
 }
 .hr{
 	position: absolute;

@@ -3,95 +3,102 @@ package joa.mypage.model;
 import java.sql.Date;
 
 public class JoaMypageMemberDTO {
-	
-	int MpMember_idx;
-	String MpMember_id;
-	String MpMember_name;
-	String MpMember_pwd;
-	String MpMember_age;
-	String MpMember_tel;
-	String MpMember_email;
-	int MpMember_grade;
-	int MpMember_point;
-	Date MpMember_date;
+
+	private int mem_idx;
+	private String mem_id;
+	private String mem_name;
+	private String mem_pwd;
+	private String mem_age;
+	private String mem_gender;
+	private String mem_tel;
+	private String mem_email;
+	private String mem_grade;
+	private int mem_point;
+	private Date mem_joindate;
 	
 	public JoaMypageMemberDTO() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	public int getMpMember_idx() {
-		return MpMember_idx;
-	}
-	public void setMpMember_idx(int mpMember_idx) {
-		MpMember_idx = mpMember_idx;
-	}
-	public String getMpMember_id() {
-		return MpMember_id;
-	}
-	public void setMpMember_id(String mpMember_id) {
-		MpMember_id = mpMember_id;
-	}
-	public String getMpMember_name() {
-		return MpMember_name;
-	}
-	public void setMpMember_name(String mpMember_name) {
-		MpMember_name = mpMember_name;
-	}
-	public String getMpMember_pwd() {
-		return MpMember_pwd;
-	}
-	public void setMpMember_pwd(String mpMember_pwd) {
-		MpMember_pwd = mpMember_pwd;
-	}
-	public String getMpMember_age() {
-		return MpMember_age;
-	}
-	public void setMpMember_age(String mpMember_age) {
-		MpMember_age = mpMember_age;
-	}
-	public String getMpMember_tel() {
-		return MpMember_tel;
-	}
-	public void setMpMember_tel(String mpMember_tel) {
-		MpMember_tel = mpMember_tel;
-	}
-	public String getMpMember_email() {
-		return MpMember_email;
-	}
-	public void setMpMember_email(String mpMember_email) {
-		MpMember_email = mpMember_email;
-	}
-	public int getMpMember_grade() {
-		return MpMember_grade;
-	}
-	public void setMpMember_grade(int mpMember_grade) {
-		MpMember_grade = mpMember_grade;
-	}
-	public int getMpMember_point() {
-		return MpMember_point;
-	}
-	public void setMpMember_point(int mpMember_point) {
-		MpMember_point = mpMember_point;
-	}
-	public Date getMpMember_date() {
-		return MpMember_date;
-	}
-	public void setMpMember_date(Date mpMember_date) {
-		MpMember_date = mpMember_date;
-	}
-	public JoaMypageMemberDTO(int mpMember_idx, String mpMember_id, String mpMember_name, String mpMember_pwd,
-			String mpMember_age, String mpMember_tel, String mpMember_email, int mpMember_grade, int mpMember_point,
-			Date mpMember_date) {
+	public JoaMypageMemberDTO(int mem_idx, String mem_id, String mem_name, String mem_pwd, String mem_age, String mem_gender,
+			String mem_tel, String mem_email, String mem_grade, int mem_point, Date mem_joindate) {
 		super();
-		MpMember_idx = mpMember_idx;
-		MpMember_id = mpMember_id;
-		MpMember_name = mpMember_name;
-		MpMember_pwd = mpMember_pwd;
-		MpMember_age = mpMember_age;
-		MpMember_tel = mpMember_tel;
-		MpMember_email = mpMember_email;
-		MpMember_grade = mpMember_grade;
-		MpMember_point = mpMember_point;
-		MpMember_date = mpMember_date;
+		this.mem_idx = mem_idx;
+		this.mem_id = mem_id;
+		this.mem_name = mem_name;
+		this.mem_pwd = mem_pwd;
+		this.mem_age = mem_age;
+		this.mem_gender = mem_gender;
+		this.mem_tel = mem_tel;
+		this.mem_email = mem_email;
+		this.mem_grade = mem_grade;
+		this.mem_point = mem_point;
+		this.mem_joindate = mem_joindate;
 	}
+	public int getMem_idx() {
+		return mem_idx;
+	}
+	public void setMem_idx(int mem_idx) {
+		this.mem_idx = mem_idx;
+	}
+	public String getMem_id() {
+		return mem_id;
+	}
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+	public String getMem_name() {
+		return mem_name;
+	}
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
+	public String getMem_pwd() {
+		return mem_pwd;
+	}
+	public void setMem_pwd(String mem_pwd) {
+		this.mem_pwd = mem_pwd;
+	}
+	public String getMem_age() {
+		return mem_age;
+	}
+	public void setMem_age(String mem_age) {
+		this.mem_age = mem_age;
+	}
+	public String getMem_gender() {
+		return mem_gender;
+	}
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
+	}
+	public String getMem_tel() {
+		return mem_tel;
+	}
+	public void setMem_tel(String mem_tel) {
+		this.mem_tel = mem_tel;
+	}
+	public String getMem_email() {
+		return mem_email;
+	}
+	public void setMem_email(String mem_email) {
+		this.mem_email = mem_email;
+	}
+	public String getMem_grade() {
+		return mem_grade;
+	}
+	public void setMem_grade(String mem_grade) {
+		this.mem_grade = mem_grade;
+	}
+	public int getMem_point() {
+		return mem_point;
+	}
+	public void setMem_point(int mem_point) {
+		this.mem_point = mem_point;
+	}
+	public Date getMem_joindate() {
+		return mem_joindate;
+	}
+	public void setMem_joindate(Date mem_joindate) {
+		this.mem_joindate = mem_joindate;
+	}
+	
 }

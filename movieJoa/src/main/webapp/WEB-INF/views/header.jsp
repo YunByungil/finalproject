@@ -34,7 +34,7 @@ function openLogin(){
 			<a href="memberLogout.do"><span class="material-symbols-outlined">person</span>로그아웃</a>
 			</c:if>
 			<a href="memberJoin.do"><span class="material-symbols-outlined">person_add</span>회원가입</a>
-			<a href="myPage.do"><span class="material-symbols-outlined">account_circle</span>마이페이지</a>
+			<a href="myPage.do?sid=test"><span class="material-symbols-outlined">account_circle</span>마이페이지</a>
 			<a href="helpDest.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>
 			<a href="adminStore.do">관리자페이지</a>
 		</div>		
@@ -82,7 +82,7 @@ function openLogin(){
 					    <li href="/movieJoa/joaEventEnded.do">종료된 이벤트</li>
 				    </ul>
 				</li>
-				<li class="menu5"><a href="myPage.do">마이페이지</a>
+				<li class="menu5"><a href="myPage.do?sid=test">마이페이지</a>
 					<ul class="menu5_s submenu">			    
 					    <li>내정보</li>
 					    <li>이벤트참여내역</li>

@@ -6,8 +6,8 @@
   	<select id="mypageInpo" resultType="joa.mypage.model.JoaMypageMemberDTO">
   		
   		select * from
-  		member
-  		where id=#{sid}
+  		joa_member
+  		where mem_id=#{sid}
   		
   	</select>
   

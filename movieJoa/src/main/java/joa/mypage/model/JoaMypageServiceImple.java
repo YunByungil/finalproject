@@ -5,7 +5,16 @@ package joa.mypage.model;
 public class JoaMypageServiceImple implements JoaMypageService {
 	
 	private JoaMypageDAO JoaMypageDao;
-
+	
+	public JoaMypageServiceImple(JoaMypageDAO joaMypageDao) {
+			super();
+			JoaMypageDao = joaMypageDao;
+		}
+	
+	public JoaMypageServiceImple() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	@Override
 	public JoaMypageMemberDTO memberInpo(String sid) {
 		
@@ -13,6 +22,7 @@ public class JoaMypageServiceImple implements JoaMypageService {
 		
 		return dto;
 	}
+	
 	
 	@Override
 	public int salePrice(int price, int grade) {
@@ -31,10 +41,7 @@ public class JoaMypageServiceImple implements JoaMypageService {
 		return price;
 	}
 	
-	public JoaMypageServiceImple(JoaMypageDAO joaMypageDao) {
-		super();
-		JoaMypageDao = joaMypageDao;
-	}
+
 
 	@Override
 	public int getPlusGrade(int price, int grade) {

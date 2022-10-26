@@ -19,15 +19,14 @@
 		</div>
 		<div class="mynickname">
 			<ul class="ul_p">
-				<li class="li_o">이름</li>
-				<li class="li_p">아이디</li>
-				<li class="li_p">닉네임</li>
-				<li class="li_p"><input type="button" value="닉네임 변경" class="nickbutton" onclick="location.href='myPage_PW_Check_P.do'"></li>
+				<li class="li_o"><l>${dto.mem_name } 님</l> 환영합니다.</li>
+				<li class="li_p"><l1>회원 아이디</l1> | ${dto.mem_id }</li>
+				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> |</li>
 			</ul>
 		</div>
 		<hr class="hr">
 		<div class="mygrade">
-			<li class="li_o">등급</li>
+			<li class="li_o">등급 ${dto.mem_grade }</li>
 			<li class="li_i"><input type="button" value="지난등급 이력 조회" class="gradebutton"></li>
 		</div>
 		<div class="mycoupon">
@@ -40,7 +39,7 @@
 		<div class="mypoint">
 			<li class="my_c_p">My Point</li>
 			<li><br></li>
-			<li>보유 포인트</li>
+			<li>보유 포인트 ${dto.mem_point }</li>
 			<li><br></li>
 			<li>포인트 사용내역</li>
 		</div>
