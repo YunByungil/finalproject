@@ -43,10 +43,10 @@ function openLogin(){
 	<div class="category">
 		<div class="category_menu">
 			<ul class="myMenu">
-				<li class="menu1"><a href="#">영화</a>
+				<li class="menu1"><a href="joaMovie.do">영화</a>
 					<ul class="menu1_s submenu">
-					    <li>무비차트</li>
-					    <li>개봉예정작</li> 
+					    <li><a href="joaMovie.do">무비차트</a></li>
+					    <li><a href="joaPreMovie.do">상영예정작</a></li> 
 				    </ul>
 				</li>
 				<li class="menu2"><a href="#">극장</a>

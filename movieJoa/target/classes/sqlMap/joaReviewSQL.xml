@@ -3,6 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.review">
+  	<select id="checkId" parameterType="Map" resultType="Integer">
+  		select 
+  			count(*) 
+  		from
+  			joa_review, joa_movie
+  		where
+  			rev_id=#{rev_id}
+  		and
+  			mov_idx=#{mov_idx}
+  		and
+  			rev_movie_title=mov_title
+  	</select>
   	<insert id="commentWrite" parameterType="joa.review.model.JoaReviewDTO">
   		insert into
   			joa_Review
@@ -53,9 +65,9 @@
   		delete from
 			joa_review
 		where
-			rev_id=#{rev_id}
+			rev_id=#{lik_writer_id}
 		and
-			rev_movie_title=#{rev_movie_title}
+			rev_movie_title=#{lik_movie_title}
   	</delete>
   	<select id="totalCnt" parameterType="Integer" resultType="Integer">
   		select count(*) from joa_movie, joa_review where mov_title=rev_movie_title and mov_idx=#{mov_idx}
@@ -93,8 +105,23 @@
   			#{lik_like_id}
   			)
   	</insert>
-  	<delete id="">
-  		
+  	<delete id="deleteLike" parameterType="Map">
+  		delete from
+			joa_like
+		where
+			lik_movie_title=#{lik_movie_title}
+		and
+			lik_writer_id=#{lik_writer_id}
+		and
+			lik_like_id=#{lik_like_id}
+  	</delete>
+  	<delete id="deleteLike2" parameterType="Map">
+  		delete from
+			joa_like
+		where
+			lik_movie_title=#{lik_movie_title}
+		and
+			lik_writer_id=#{lik_writer_id}
   	</delete>
   	<select id="checkLike" parameterType="Map" resultType="Integer">
   		select 
@@ -102,6 +129,22 @@
   		from 
   			joa_like 
   		where 
-  			lik_like_id=#{lik_like_id}
+  			lik_movie_title=#{lik_movie_title}
+		and
+			lik_writer_id=#{lik_writer_id}
+		and
+			lik_like_id=#{lik_like_id}
+  	</select>
+  	<select id="likes" parameterType="Map" resultType="joa.review.model.JoaLikeDTO">
+  		select 
+  			lik_idx, lik_movie_title, lik_writer_id, lik_like_id
+  		from 
+  			joa_movie, joa_like 
+  		where 
+  			mov_title=lik_movie_title 
+  		and 
+  			mov_idx=#{mov_idx}
+  		and 
+  			lik_like_id='tester'
   	</select>
   </mapper>

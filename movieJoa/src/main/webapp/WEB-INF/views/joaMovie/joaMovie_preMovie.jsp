@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,6 +56,7 @@ book{
 	</ul>
 </div>
 <hr style="clear:both;">
+<br>
 <ul id="movie">
 	<c:forEach var="list" items="${list }">
 	    <li>
@@ -67,7 +69,9 @@ book{
 	        </div>
 	        <div class="box-contents">
 	            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
-	                <strong class="title">${list.mov_title }</strong>
+	                <strong class="title">
+	                	${fn:substring(list.mov_title,0,17) }
+	                </strong>
 	            </a>
 	            <div class="score">
 	                <strong class="percent">예매율 
@@ -95,6 +99,7 @@ book{
 	            <span id="likes"> 
 	                <a id="book" href="/ticket/?MOVIE_CD=20030774&MOVIE_CD_GROUP=20027588">예매하기</a>
 	            </span>
+	            <br>&nbsp
 	        </div>    
 	    </li>
 	</c:forEach>

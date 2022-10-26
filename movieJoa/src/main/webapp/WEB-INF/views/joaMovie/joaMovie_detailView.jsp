@@ -21,15 +21,10 @@ img{
 	float: left;
 	width: 250px;
 }
-#menu ul{
-	display: table;
- 	margin-left: auto;
- 	margin-right: auto;
-}
 #menu li{
 	list-style-type: none;
 	float: left;
-	margin-left: 20px;
+	text-align: center;
 }
 dl{
 	
@@ -45,6 +40,9 @@ a:visited, a{
 	list-style-type: none;
 	float: left;
 }
+.bb{
+	border-bottom: 1px solid;"
+}
 </style>
 <script src="js/httpRequest.js"></script>
 <script>
@@ -55,13 +53,14 @@ function show(num){
 		location.href='detailView.do?mov_idx='+mov_idx+'&show=0';
 	}else if(num==1){
 		location.href='detailView.do?mov_idx='+mov_idx+'&show=1';
-	}else{
-		location.href='detailView.do?mov_idx='+mov_idx+'&show=2';
 	}
+}
+function slow(){
+	setTimeout(function(){location.reload();},100);
 }
 </script>
 </head>
-<body onload="document.querySelector(`.star2 span`).style.width = document.getElementById('range').value * 10+'%';document.getElementById('score2').value=document.getElementById('range').value;">
+<body onload="plz();counter2();document.querySelector(`.star2 span`).style.width = document.getElementById('range').value * 10+'%';document.getElementById('score2').value=document.getElementById('range').value;">
 <c:import url="../header.jsp"/>
 <br>
 <div class="sect-base-movie">
@@ -114,23 +113,30 @@ function show(num){
     </div>
     </c:forEach>
 </div>
-<div id="menu">
+<br>
+<div id="menu" style="clear: both;font-size: 18px;">
 	<ul id="tabMenu">
-		<li class="on"><a onclick="show(0)">주요정보</a></li>
-		<li><a onclick="show(1)">평점/리뷰</a></li>               
-		<li class="last"><a onclick="show(2)">상영시간표</a></li>
+		<c:choose>
+			<c:when test="${param.show eq 0 }">
+				<li class="on" style="width: 50%"><div onclick="show(0)" id="info" class="bb"><strong>주요정보</strong></div></li>
+				<li style="width: 50%"><div onclick="show(1)" id="comm"><strong>평점/리뷰</strong></div></li>
+			</c:when>
+			<c:when test="${param.show eq 1 }">
+				<li class="on" style="width: 50%"><div onclick="show(0)" id="info"><strong>주요정보</strong></div></li>
+				<li style="width: 50%"><div onclick="show(1)" id="comm" class="bb"><strong>평점/리뷰</strong></div></li>
+			</c:when>
+		</c:choose>
 	</ul>
 </div>
+<br>
+<br>
 <div id="show" style="clear:both;">
 	<c:choose>
 		<c:when test="${param.show eq 0 }">
-			<c:import url="joaMovie_info.jsp"/>
+			<c:import url="/info.do"/>
 		</c:when>
 		<c:when test="${param.show eq 1 }">
 			<c:import url="/commentReg.do"/>
-		</c:when>
-		<c:when test="${param.show eq 2 }">
-			<c:import url="joaMovie_showTime.jsp"/>
 		</c:when>
 	</c:choose>
 </div>

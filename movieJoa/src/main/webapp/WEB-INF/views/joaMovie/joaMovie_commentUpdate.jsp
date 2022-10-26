@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
-
+function counter2(){
+	document.getElementById("counting2").innerHTML = document.getElementById("reviewContents2").value.length; 
+}
 </script>
 <h2 style="padding: 10px;">평점수정</h2>
 <hr>
@@ -21,7 +23,8 @@
 <input type="hidden" name="rev_movie_title" value="${list.rev_movie_title }">
 <input type="hidden" name="rev_score" id="score2">
 <div>
-	<textarea class="col-auto form-control" id="reviewContents" name="rev_comment">${list.rev_comment }</textarea>
+	<textarea class="col-auto form-control" id="reviewContents2" name="rev_comment" onkeyup="counter2()">${list.rev_comment }</textarea>
+	<span id="counting2">0</span>/100
 </div>
 </form>
 </c:forEach>

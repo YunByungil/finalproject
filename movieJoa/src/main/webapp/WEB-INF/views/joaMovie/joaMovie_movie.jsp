@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:useBean id="now" class="java.util.Date"/>
 <!DOCTYPE html>
 <html>
@@ -96,58 +97,67 @@ function show2(){
 	</div>
 </div>
 <br>
-	<ul id="movie" style="clear:both;">
-		<c:forEach var="list" items="${list }">
-		    <li>
-		        <div class="box-image">
-		            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
-		                <span class="thumb-image">
-		                    <img src="/movieJoa/imgmovie/${list.mov_poster }">
+<br>
+<ul id="movie" style="clear:both;">
+	<c:forEach var="list" items="${list }">
+	    <li>
+	        <div class="box-image">
+	            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
+	                <span class="thumb-image">
+	                    <img src="/movieJoa/imgmovie/${list.mov_poster }">
+	                </span>
+	            </a>
+	        </div>
+	        <div class="box-contents">
+	            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
+	                <strong class="title">
+	                	<c:if test="${fn:length(list.mov_title)>20 }">
+	                		${fn:substring(list.mov_title,0,17) }...
+	                	</c:if>
+	                	<c:if test="${fn:length(list.mov_title)<=20 }">
+	                		${fn:substring(list.mov_title,0,17) }
+	                	</c:if>
+	                </strong>
+	            </a>
+	            <div class="score">
+	                <strong class="percent">예매율 
+		                <span>${list.mov_booking_percent }</span>
+		                <span class='egg great'>| 관람평</span>
+		                <span class='percent'>
+			                <c:if test="${list.mov_score!=0.0 }">
+								${list.mov_score }
+			                </c:if>
+			                <c:if test="${list.mov_score==0.0 }">
+								?
+			                </c:if>
 		                </span>
-		            </a>
-		        </div>
-		        <div class="box-contents">
-		            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
-		                <strong class="title">${list.mov_title }</strong>
-		            </a>
-		            <div class="score">
-		                <strong class="percent">예매율 
-			                <span>${list.mov_booking_percent }</span>
-			                <span class='egg great'>| 관람평</span>
-			                <span class='percent'>
-				                <c:if test="${list.mov_score!=0.0 }">
-									${list.mov_score }
-				                </c:if>
-				                <c:if test="${list.mov_score==0.0 }">
-									?
-				                </c:if>
-			                </span>
-		                </strong>
-		            </div>
-		            <span class="txt-info">
-		                <strong>
-		                	<fmt:parseDate var="start" value="${list.mov_start_date }" pattern="yyyy-MM-dd"/>
-	                  		<fmt:formatDate value="${start }" pattern="yyyy-MM-dd"/>
-	                    	<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowTime"/>
-							<fmt:parseNumber value="${start.time / (1000*60*60*24)}" integerOnly="true" var="startTime"/>
-		                	개봉 
-		                	<font>
-		                		<c:if test="${(startTime - nowTime + 1)>0 }">
-		                			D-${startTime - nowTime +1}
-		                		</c:if>
-		                	</font>
-		                </strong>
-		            </span>
-		            <br>
-		            <span class="like"> 
-		                <a class="link-reservation" href="/ticket/?MOVIE_CD=20030774&MOVIE_CD_GROUP=20027588">예매</a>
-		            </span>
-		        </div>
-		    </li>
-		</c:forEach>
-	</ul>
-	<div style="clear:both;"></div>
-	<br>
+	                </strong>
+	            </div>
+	            <span class="txt-info">
+	                <strong>
+	                	<fmt:parseDate var="start" value="${list.mov_start_date }" pattern="yyyy-MM-dd"/>
+                  		<fmt:formatDate value="${start }" pattern="yyyy-MM-dd"/>
+                    	<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowTime"/>
+						<fmt:parseNumber value="${start.time / (1000*60*60*24)}" integerOnly="true" var="startTime"/>
+	                	개봉 
+	                	<font>
+	                		<c:if test="${(startTime - nowTime + 1)>0 }">
+	                			D-${startTime - nowTime +1}
+	                		</c:if>
+	                	</font>
+	                </strong>
+	            </span>
+	            <br>
+	            <span class="like"> 
+	                <a class="link-reservation" href="/ticket/?MOVIE_CD=20030774&MOVIE_CD_GROUP=20027588">예매</a>
+	            </span>
+	            <br>&nbsp
+	        </div>
+	    </li>
+	</c:forEach>
+</ul>
+<div style="clear:both;"></div>
+<br>
 <c:import url="../footer.jsp"></c:import>
 </body>
 </html>
