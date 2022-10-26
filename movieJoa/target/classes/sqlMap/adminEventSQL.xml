@@ -16,6 +16,34 @@
 			TO_DATE(#{end_date}, 'YYYY-MM-DD')
 			) 	
 </insert>
+<insert id="addSysEve" parameterType="Map">
+			insert into
+			joa_event
+			values(
+			#{idx},
+			#{category},
+			#{subject},
+			#{main_img},
+			#{thumb_img},
+			TO_DATE(#{start_date}, 'YYYY-MM-DD'),
+			TO_DATE(#{end_date}, 'YYYY-MM-DD')
+			) 	
+</insert>
+<insert id="addSysCou" parameterType="Map">
+			insert into
+			joa_coupon
+			values(
+			#{idx},
+			#{cou_name},
+			#{cou_discount}
+			) 
+</insert>
+<insert id="delSysCou" parameterType="Integer">
+			delete from
+			joa_coupon
+			where cou_idx=
+			#{here}
+</insert>
 <select id="detailEvent" parameterType="Integer" resultType="joa.adminEvent.model.AdminEventDTO">
  			select 
  			* 
@@ -42,9 +70,13 @@
 			order by eve_idx desc)a)b
 			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
 </select>
-<select id="adminEventTotalCnt" resultType="int">
+<select id="adminEventTotalCnt" parameterType="Map" resultType="int">
 			select count(*) from joa_event
 			<include refid="searchEventCondition"/>
+</select>
+<select id="systemEventTotalCnt" resultType="int">
+			select count(*) from joa_event 
+			where eve_idx = #{eidx}
 </select>
 <delete id="deleteEvent" parameterType="Integer">
 			delete from
@@ -52,8 +84,6 @@
 			where eve_idx=
 			#{here}
 </delete>
-
-
 <select id="adminApplycantTotalCnt" resultType="int">
 			select count(*) from joa_applycant
 			<include refid="searchApplycantCondition"/>

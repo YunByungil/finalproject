@@ -19,6 +19,19 @@ public class AdminEventDAOImple implements AdminEventDAO {
 		int result=sqlMap.insert("addEvent",map);
 		return result;
 	}
+	
+	@Override
+	public int addSysEve(Map map) {
+		int result=sqlMap.insert("addSysEve",map);
+		return result;
+	}
+	
+	@Override
+	public int addSysCou(Map map) {
+		int result=sqlMap.insert("addSysCou",map);
+		return result;
+	}
+
 
 	@Override
 	public int updateEvent(Map map) {
@@ -44,11 +57,24 @@ public class AdminEventDAOImple implements AdminEventDAO {
 		int count=sqlMap.selectOne("adminEventTotalCnt", map);
 		return count;
 	}
+	
+	@Override
+	public int systemEventTotalCnt(Map map) {
+		int count=sqlMap.selectOne("systemEventTotalCnt", map);
+		return count;
+	}
 
 	@Override
 	public int deleteEvent(int eve_idx) {
 		// TODO Auto-generated method stub
 		int result=sqlMap.delete("deleteEvent",eve_idx);
+		return result;
+	}
+	
+	@Override
+	public int delSysCou(int eve_idx) {
+		// TODO Auto-generated method stub
+		int result=sqlMap.delete("delSysCou",eve_idx);
 		return result;
 	}
 	

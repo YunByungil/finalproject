@@ -3,42 +3,52 @@ package joa.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.System.Logger;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
+import org.hibernate.validator.internal.util.logging.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ExtendedModelMap;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.i18n.*;
+import org.springframework.stereotype.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-
 import joa.adminMovie.model.AdminMovieDTO;
 import joa.adminMovie.model.AdminMovieService;
+import joa.adminMovie.model.MovieValidator;
 
 @Controller
 public class AdminMovieController {
 	
 	@Autowired
 	private AdminMovieService adminMovieService;
-	
-	   private void insertPosterImg(MultipartFile mov_poster) {
-	      try {
-	         byte realPosterFile[] = mov_poster.getBytes();
-	         File poster = new File("c:/work_space/movieJoa/movieJoa/src/main/webapp/img/movie_poster/" + mov_poster.getOriginalFilename());
-	         FileOutputStream stream = new FileOutputStream(poster); 
-	         stream.write(realPosterFile); 
-	         stream.close(); 
-	      } catch (IOException e) {
-	         e.printStackTrace();
-	      }
-	   }
+ 
+	@ModelAttribute("vo") 
+	public AdminMovieDTO initCommand() {
+		return new AdminMovieDTO();
+	} 
+
+	public void copyInto(File f,MultipartFile upload) {
+		
+		try {
+			byte bytes[]=upload.getBytes();
+			FileOutputStream fos = new FileOutputStream(f);
+			fos.write(bytes);;
+			fos.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();			
+		}
+		
+	}
 
 		
 	@RequestMapping(value="/addMovieForm.do", method=RequestMethod.GET)
@@ -52,21 +62,42 @@ public class AdminMovieController {
 		
 	}
 	
+	
+	
    @RequestMapping(value="/addMovie.do" ,method=RequestMethod.POST)
-	public ModelAndView addMovie(AdminMovieDTO dto, MultipartHttpServletRequest req) {
-		
-		 MultipartFile poster = req.getFile("poster");
-		 insertPosterImg(poster);
+	public ModelAndView addMovie(@Valid @ModelAttribute("vo") AdminMovieDTO dto, BindingResult errorResult,
+			@RequestParam("poster")MultipartFile poster, HttpServletRequest req) {
+
+		ModelAndView mav=new ModelAndView();
+		int result=0;
+	    String msg="";
+	   
+	    String path=req.getRealPath("/img/movie_poster");
+	    String filename=poster.getOriginalFilename();
+	    File f=new File(path+filename);		
+		copyInto(f, poster);
 		 
 		 String mov_poster=poster.getOriginalFilename();
 		 dto.setMov_poster(mov_poster);
 		 
-	   	int result = adminMovieService.addMovie(dto);
-		String msg=result>0?"영화 정보 등록에 성공하였습니다.":"영화 정보 등록에 실패하였습니다.";
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("msg",msg);
-		mav.addObject("nextPage","/movieJoa/listMovie.do");
-		mav.setViewName("admin/adminMovie/msg");
+		 
+		 new MovieValidator().validate(dto, errorResult);
+			if(errorResult.hasErrors()) {
+				System.out.println("errorResult:"+errorResult);
+				String[] rateList = new String[5];
+				rateList[0]="등급 선택";rateList[1]="전체";rateList[2]="12세";rateList[3]="15세";rateList[4]="청불";
+				
+				mav.addObject("rateList",rateList);
+				mav.setViewName("admin/adminMovie/adminMovie_addMovie");
+			}else {
+
+			   	result = adminMovieService.addMovie(dto);
+				msg=result>0?"영화 정보 등록에 성공하였습니다.":"영화 정보 등록에 실패하였습니다.";
+				mav.addObject("msg",msg);
+				mav.addObject("nextPage","/movieJoa/listMovie.do");
+				mav.setViewName("admin/adminMovie/msg");
+			}
+
 		return mav;
 		
    }
@@ -91,20 +122,33 @@ public class AdminMovieController {
 	}
 	
 	@RequestMapping(value="/updateMovie.do" ,method=RequestMethod.POST)
-	public ModelAndView updateMovie(AdminMovieDTO dto, MultipartHttpServletRequest req) {
-		
-	     MultipartFile poster = req.getFile("poster");
-		 insertPosterImg(poster);
+	public ModelAndView updateMovie(@Valid @ModelAttribute("vo") AdminMovieDTO dto, BindingResult errorResult,
+			@RequestParam("poster")MultipartFile poster, HttpServletRequest req) {
+		ModelAndView mav=new ModelAndView();
+		int result=0;
+		String msg="";
+		String path=req.getRealPath("/img/movie_poster");
+	    String filename=poster.getOriginalFilename();
+	    File f=new File(path+filename);		
+		copyInto(f, poster);
 		 
 		 String mov_poster=poster.getOriginalFilename();
 		 dto.setMov_poster(mov_poster);
-		
-		int result = adminMovieService.updateMovie(dto);
-		String msg=result>0?"영화 정보 수정에 성공하였습니다.":"영화 정보 수정에 실패하였습니다.";
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("msg",msg);
-		mav.addObject("nextPage","/movieJoa/listMovie.do");
-		mav.setViewName("admin/adminMovie/msg");
+		 
+		 new MovieValidator().validate(dto, errorResult);
+			if(errorResult.hasErrors()) {
+				System.out.println("errorResult:"+errorResult);
+				String[] rateList = new String[4];
+				rateList[0]="전체";rateList[1]="12세";rateList[2]="15세";rateList[3]="청불";
+				mav.addObject("rateList",rateList);
+				mav.setViewName("admin/adminMovie/adminMovie_updateMovie");
+			}else {
+				result = adminMovieService.updateMovie(dto);
+				msg=result>0?"영화 정보 수정에 성공하였습니다.":"영화 정보 수정에 실패하였습니다.";
+				mav.addObject("msg",msg);
+				mav.addObject("nextPage","/movieJoa/listMovie.do");
+				mav.setViewName("admin/adminMovie/msg");
+			}
 		return mav;
 	}
 	

@@ -10,6 +10,9 @@
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
 <link rel="stylesheet" type="text/css" href="css/adminMovie_list.css">
 <script>
+function goToSystemEvent(){
+	window.location.href = 'listSystemEvent.do';
+}
 function deleteEvent(didx){
 	   var delQue = window.confirm('삭제한 이벤트 정보는 복구할 수 없습니다. 정말 삭제하시겠습니까?');
 	   	if(!delQue){ return; } 
@@ -20,7 +23,7 @@ function deleteEvent(didx){
 <body>
 <c:import url="../../header_admin.jsp"></c:import>
 <div class="mainBox">
-<div class="div_title"><h2 class="title">| 이벤트 관리 / 이벤트 목록</h2></div>
+<div class="div_title"><h2 class="title">| 이벤트 관리 / 이벤트 목록 <input type="button" value="시스템 이벤트 관리" onclick="javascript:goToSystemEvent();" class="list_s_btn"></h2></div>
 <div class="table_wrap_list">
 <fieldset class="search_wrap">
 	<form>

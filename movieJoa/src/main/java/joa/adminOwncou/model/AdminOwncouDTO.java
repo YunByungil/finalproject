@@ -24,8 +24,8 @@ public class AdminOwncouDTO {
 		this.own_name = own_name;
 		this.own_member_id = own_member_id;
 		this.own_discount = own_discount;
-		this.own_issue_date = own_issue_date;
-		this.own_limit_date = own_limit_date;
+		this.own_issue_date = own_issue_date.substring(0,10);
+		this.own_limit_date = own_limit_date.substring(0,10);
 		this.own_status = own_status;
 	}
 
@@ -62,7 +62,7 @@ public class AdminOwncouDTO {
 	}
 
 	public String getOwn_issue_date() {
-		return own_issue_date;
+		return own_issue_date.substring(0,10);
 	}
 
 	public void setOwn_issue_date(String own_issue_date) {
@@ -70,7 +70,7 @@ public class AdminOwncouDTO {
 	}
 
 	public String getOwn_limit_date() {
-		return own_limit_date;
+		return own_limit_date.substring(0,10);
 	}
 
 	public void setOwn_limit_date(String own_limit_date) {

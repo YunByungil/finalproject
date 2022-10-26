@@ -27,8 +27,10 @@ public class JoaEventController {
 	
 	@RequestMapping("/joaEventMain.do")
 	public ModelAndView joaEventMain() {
-		List<AdminEventDTO> userEvent=joa_EventService.listEvent();
 		ModelAndView mav= new ModelAndView();
+		List<AdminEventDTO> systemEvent=joa_EventService.listSystemEvent();
+		List<AdminEventDTO> userEvent=joa_EventService.listEvent();
+		mav.addObject("systemEvent",systemEvent);
 		mav.addObject("userEvent",userEvent);
 		mav.setViewName("joaEvent/joaEvent_main");
 		return mav;
@@ -66,7 +68,7 @@ public class JoaEventController {
 		return mav;
 	}
 	
-	@RequestMapping("/joaEventNewJoin.do")
+	@RequestMapping("/111.do")
 	public ModelAndView joaEventNewJoin() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("joaEvent/joaEvent_newJoin");
@@ -111,7 +113,7 @@ public class JoaEventController {
 		
 	}
 	
-	@RequestMapping("/joaEventPoint.do")
+	@RequestMapping("/222.do")
 	public ModelAndView joaEventPoint() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("joaEvent/joaEvent_point");
@@ -149,7 +151,7 @@ public class JoaEventController {
 		  return mav;
 	  }
 	
-	@RequestMapping("/joaEventApply.do" )
+	@RequestMapping("/333.do" )
 	public ModelAndView joaEventApply() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("joaEvent/joaEvent_apply");

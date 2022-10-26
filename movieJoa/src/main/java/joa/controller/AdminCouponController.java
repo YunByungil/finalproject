@@ -2,8 +2,12 @@ package joa.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -11,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import joa.adminCoupon.model.AdminCouponDTO;
 import joa.adminCoupon.model.AdminCouponService;
+import joa.adminCoupon.model.CouponValidator;
+import joa.adminMovie.model.MovieValidator;
 
 @Controller
 public class AdminCouponController {
@@ -18,19 +24,32 @@ public class AdminCouponController {
 	@Autowired
 	private AdminCouponService adminCouponService;
 	
+	@ModelAttribute("co")
+	public AdminCouponDTO initCommand() {
+		return new AdminCouponDTO();
+	} 
+	
 	@RequestMapping(value="/addCouponForm.do", method=RequestMethod.GET)
 	public String addCoupon() {
 		return "admin/adminCoupon/adminCoupon_addCoupon";
 	}
 	
 	@RequestMapping(value="/addCoupon.do", method=RequestMethod.POST)
-	public ModelAndView addCoupon(AdminCouponDTO dto) {
-		int result = adminCouponService.addCoupon(dto);
-		String msg=result>0?"쿠폰 등록에 성공하였습니다.":"쿠폰 등록에 실패하였습니다.";
-		
+	public ModelAndView addCoupon(@Valid @ModelAttribute("co") AdminCouponDTO dto, BindingResult errorResult) {
+		new CouponValidator().validate(dto, errorResult);
 		ModelAndView mav=new ModelAndView();
-		mav.addObject("msg",msg);
-		mav.setViewName("admin/adminCoupon/msg");
+		if(errorResult.hasErrors()) {
+			System.out.println("errorResult:"+errorResult);
+			mav.setViewName("admin/adminCoupon/adminCoupon_addCoupon");
+		}else {
+			int result = adminCouponService.addCoupon(dto);
+			String msg=result>0?"쿠폰 등록에 성공하였습니다.":"쿠폰 등록에 실패하였습니다.";
+			
+			mav.addObject("msg",msg);
+			mav.addObject("nextPage","/movieJoa/listCoupon.do");
+			mav.setViewName("admin/adminCoupon/msg");
+		}
+		
 		return mav;
 	}
 	
@@ -60,7 +79,7 @@ public class AdminCouponController {
 		String msg=result>0?"해당 쿠폰 정보 삭제에 성공했습니다.":"해당 쿠폰 정보 삭제에 실패했습니다.";
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("msg",msg);
-		mav.addObject("nextPage","/listCoupon.do");
+		mav.addObject("nextPage","/movieJoa/listCoupon.do");
 		mav.setViewName("admin/adminCoupon/msg");
 		return mav;
 	}
