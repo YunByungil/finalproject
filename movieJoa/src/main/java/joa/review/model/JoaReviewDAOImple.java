@@ -44,7 +44,8 @@ public class JoaReviewDAOImple implements JoaReviewDAO {
 	@Override
 	public int commentDelete(Map map) {
 		int result=sqlMap.delete("commentDelete", map);
-		updateScore((String)map.get("rev_movie_title"));
+		sqlMap.delete("deleteLike2", map);
+		updateScore((String)map.get("lik_movie_title"));
 		return result;
 	}
 	@Override
@@ -59,18 +60,26 @@ public class JoaReviewDAOImple implements JoaReviewDAO {
 	@Override
 	public int addLike(int rev_idx, Map map) {
 		int result=sqlMap.selectOne("checkLike", map);
+		int result2=0;
 		if(result==0) {
 			sqlMap.update("addLike", rev_idx);
 			sqlMap.insert("insertLike", map);
+			result2=1;
 		}else {
 			sqlMap.update("remLike", rev_idx);
 			sqlMap.delete("deleteLike", map);
+			result2=-1;
 		}
-		return result;
+		return result2;
 	}
 	@Override
-	public int checkLike(String rev_id) {
-		int result=sqlMap.selectOne("checkLike", rev_id);
+	public List<JoaLikeDTO> likes(Map map) {
+		List<JoaLikeDTO> list=sqlMap.selectList("likes", map);
+		return list;
+	}
+	@Override
+	public int checkId(Map map) {
+		int result=sqlMap.selectOne("checkId", map);
 		return result;
 	}
 }

@@ -14,5 +14,6 @@ public interface JoaReviewDAO {
 	public int totalCnt(int mov_idx);
 	public void updateScore(String rev_movie_title);
 	public int addLike(int rev_idx, Map map);
-	public int checkLike(String rev_id);
+	public List<JoaLikeDTO> likes(Map map);
+	public int checkId(Map map);
 }

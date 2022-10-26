@@ -13,7 +13,7 @@
 <c:import url="header.jsp"></c:import>
 <section class="main">
 	<article>
-		<div class="movieChart">영화차트</div>
+		<div class="movieChart"><a href="joaMovie.do">영화차트</a></div>
 		<div class="event">이벤트</div>
 		<div class="fnb">스토어상품</div>
 		<div class="notice">공지사항</div>

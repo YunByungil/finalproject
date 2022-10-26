@@ -5,6 +5,10 @@
 function counter(){
 	document.getElementById("counting").innerHTML = document.getElementById("reviewContents").value.length; 
 }
+function submitCom(){
+		document.getElementById('myform').submit();
+		closePop();
+}
 </script>
 <c:forEach var="list" items="${list }">
 <h2 style="padding: 10px;">평점작성</h2>
@@ -19,11 +23,11 @@ function counter(){
 </div>
 <b id="val" style="font-size: 4rem;"></b>			
 <form class="mb-3" name="myform" id="myform" action="commentWrite.do" method="post" target="blankifr">
-<input type="hidden" name="rev_id" value="test">
+<input type="hidden" name="rev_id" value="tester">
 <input type="hidden" name="rev_movie_title" value="${list.mov_title }">
 <input type="hidden" name="rev_score" id="score">
 <div>
-	<textarea class="col-auto form-control" id="reviewContents" name="rev_comment" onkeyup="counter()"></textarea>
+	<textarea class="col-auto form-control" id="reviewContents" name="rev_comment" onkeyup="counter()" maxlength="100"></textarea>
 	<span id="counting">0</span>/100
 </div>
 </form>
@@ -35,7 +39,7 @@ function counter(){
         	닫기
     	</span>
 	</div>					
-	<div style="background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; width: 50%; float: right;" onClick="document.getElementById('myform').submit();closePop();">
+	<div style="background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; width: 50%; float: right;" onClick="submitCom();">
 		<span class="pop_bt" style="font-size: 13pt;">
 			확인
 	    </span>
