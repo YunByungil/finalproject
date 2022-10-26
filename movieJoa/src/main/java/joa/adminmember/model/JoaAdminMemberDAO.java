@@ -1,9 +1,8 @@
 package joa.adminMember.model;
 
 import java.util.List;
-
-import joa.adminMember.model.*;
 import joa.member.model.JoaMemberDTO;
+import joa.adminMember.model.*;
 
 public interface JoaAdminMemberDAO {
 
@@ -27,10 +26,4 @@ public interface JoaAdminMemberDAO {
 	public int adminAllCount();
 	public int memberGenderCount();
 	public int[] memberAgeCount();
-	public int memberGradeCount();
-	public List<JoaMemberDTO> memberGenderSelect(String mem_gender);
-	public int memberGradeGeneral();
-	public int memberGradeVip();
-	public int memberGradeSvip();
-	public int memberGradeVvip();
 }
