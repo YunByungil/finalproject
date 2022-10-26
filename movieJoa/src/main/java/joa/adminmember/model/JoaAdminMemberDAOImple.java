@@ -1,4 +1,4 @@
-package joa.adminmember.model;
+package joa.adminMember.model;
 
 import java.util.*;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -134,35 +134,5 @@ public class JoaAdminMemberDAOImple implements JoaAdminMemberDAO {
 			arr[i]=result;
 		}
 		return arr;
-	}
-	@Override
-	public int memberGradeCount() {
-		int result=sqlMap.selectOne("memberGradeCountQuery");
-		return result;
-	}
-	@Override
-	public List<JoaMemberDTO> memberGenderSelect(String mem_gender) {
-		List<JoaMemberDTO> list=sqlMap.selectList("memberGenderSelectQuery",mem_gender);
-		return list;
-	}
-	@Override
-	public int memberGradeGeneral() {
-		int result=sqlMap.selectOne("memberGradeGeneralQuery");
-		return result;
-	}
-	@Override
-	public int memberGradeVip() {
-		int result=sqlMap.selectOne("memberGradeVipQuery");
-		return result;
-	}
-	@Override
-	public int memberGradeSvip() {
-		int result=sqlMap.selectOne("memberGradeSvipQuery");
-		return result;
-	}
-	@Override
-	public int memberGradeVvip() {
-		int result=sqlMap.selectOne("memberGradeVvipQuery");
-		return result;
 	}
 }
