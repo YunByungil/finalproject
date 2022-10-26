@@ -83,13 +83,13 @@ function openLogin(){
 					    <li><a href="adminStoreAdd.do">상품 등록</a></li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">회원관리</a>
+				<li class="menu2"><a href="adminMemberMain.do">회원관리</a>
 					<ul class="menu2_s submenu">
 					    <li>일반회원</li>
 					    <li>관리자</li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">총 매출관리</a>
+				<li class="menu2"><a href="adminRevenueMain.do">매출관리</a>
 					<ul class="menu2_s submenu">
 					    <li>지점별</li>
 					    <li>영화별</li>

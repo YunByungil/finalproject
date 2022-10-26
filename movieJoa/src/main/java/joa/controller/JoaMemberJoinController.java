@@ -22,6 +22,12 @@ public class JoaMemberJoinController {
 	}
 	@RequestMapping("/memberJoinFormSubmit.do")
 	public ModelAndView memberJoinSubmit(@ModelAttribute("dto") JoaMemberDTO dto) {
+
+		String age_str=dto.getMem_age().substring(0, 4);
+		int age=Integer.parseInt(age_str);
+		int ageValue=2022-age;
+		dto.setMem_age(ageValue+"");
+
 		int result=joaMemberDao.MemberJoin(dto);
 		String msg=result>0?dto.getMem_id()+"님 회원가입을 축하합니다.":"회원 가입 실패";
 		ModelAndView mav=new ModelAndView();
@@ -38,5 +44,14 @@ public class JoaMemberJoinController {
 		mav.setViewName("joaMemberJoin/joaMemberJoin_msg");
 		return mav;
 	}
-	
+	@RequestMapping("/memberIdCheck.do")
+	public ModelAndView memberIdCheck(String id) {
+		int result=joaMemberDao.memberIdCheck(id);
+		String msg=result>0?"사용 가능 ID":"중복된 ID";
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("msg",msg);
+		mav.setViewName("joaMemberJoin/joaMemberJoin_idCheck");
+		return mav;
+	}
+
 }

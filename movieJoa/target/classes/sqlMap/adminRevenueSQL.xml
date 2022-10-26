@@ -2,5 +2,102 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="joa.store">
+  <mapper namespace="joa.adminRevenue">
+  <select id="nowMonthMovieRevenueQuery" resultType="Integer">
+  select sum(payMov_total_price) 
+	from joa_payMovie where payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="nowYearQuery" resultType="Integer">
+  select to_char(sysdate,'yy') from dual
+  </select>
+  <select id="nowMonthQuery" resultType="Integer">
+  select to_char(sysdate,'mm') from dual
+  </select>
+  <select id="nowMonthProductRevenueQuery" resultType="Integer">
+   select sum(payPro_total_price) 
+	from joa_payProduct where payPro_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="nowMonthSpectatorQuery" resultType="Integer">
+  	select count(*) from joa_payMovie where payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="mangenderQuery" resultType="Integer">
+  	select count(mem_gender) from joa_member,joa_paymovie 
+  	where joa_member.mem_id=joa_payMovie.payMov_mem_id
+	and mem_gender='남' and payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="allgenderQuery" resultType="Integer">
+  	select count(mem_gender) from joa_member,joa_paymovie 
+  	where joa_member.mem_id=joa_payMovie.payMov_mem_id and
+  	payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="payAgeQuery1" resultType="Integer">
+  	select count(mem_age) from joa_member,joa_paymovie 
+ 	where joa_member.mem_id=joa_payMovie.payMov_mem_id 
+ 	and mem_age<![CDATA[ >= ]]>10 and mem_age<![CDATA[ < ]]>20 and
+ 	payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="payAgeQuery2" resultType="Integer">
+  	select count(mem_age) from joa_member,joa_paymovie 
+ 	where joa_member.mem_id=joa_payMovie.payMov_mem_id 
+ 	and mem_age<![CDATA[ >= ]]>20 and mem_age<![CDATA[ < ]]>30 and
+ 	payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="payAgeQuery3" resultType="Integer">
+  	select count(mem_age) from joa_member,joa_paymovie 
+ 	where joa_member.mem_id=joa_payMovie.payMov_mem_id 
+ 	and mem_age<![CDATA[ >= ]]>30 and mem_age<![CDATA[ < ]]>40 and
+ 	payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="payAgeQuery4" resultType="Integer">
+  	select count(mem_age) from joa_member,joa_paymovie 
+ 	where joa_member.mem_id=joa_payMovie.payMov_mem_id 
+ 	and mem_age<![CDATA[ >= ]]>40 and mem_age<![CDATA[ < ]]>50 and
+ 	payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="payAgeQuery5" resultType="Integer">
+  	select count(mem_age) from joa_member,joa_paymovie 
+ 	where joa_member.mem_id=joa_payMovie.payMov_mem_id 
+ 	and mem_age<![CDATA[ >= ]]>50 and
+ 	payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="nowMonthBestMovieQuery" resultType="String">
+  	select max(paymov_mov_title) from joa_paymovie
+  	where payMov_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="nowMonthBestProductQuery" resultType="String">
+  	select max(paypro_pro_name) from joa_payproduct
+  	where paypro_date between 
+	(select trunc(sysdate,'mm') from dual) and
+	(select last_day(sysdate) from dual)
+  </select>
+  <select id="revenueShopQuery" resultType="joa.adminmember.model.JoaAdminMemberDTO" parameterType="Map">
+  	select * from joa_admin order by admin_idx desc
+  </select>
+ <select id="revenueShopMoneyQuery" resultType="Integer" parameterType="String">
+ 	select paymov_merchant_uid,nvl(sum(paymov_total_price),0) from joa_paymovie 
+	where paymov_merchant_uid=#{paymov_merchant_uid } and paymov_merchant_uid is not null
+	group by paymov_merchant_uid 
+ </select>
   </mapper>

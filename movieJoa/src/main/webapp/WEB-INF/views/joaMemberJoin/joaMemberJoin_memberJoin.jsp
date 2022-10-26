@@ -102,6 +102,36 @@ function validate(){
 	}
 }
 </script>
+
+<script>
+var XHR=null;
+function getXHR(){
+	if(window.ActiveXObject){
+		return new ActiveXObject('Msxml2.XMLHTTP');
+	}else if(window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}else{
+		return null;
+	}
+}
+function show(){
+	var mem_id=document.memberJoinForm.mem_id.value;
+	var param='?mem_id='+mem_id;
+	XHR=getXHR();
+	XHR.open('GET','memberIdCheck.do'+param,true);
+	XHR.onreadystatechange=showResult();
+	XHR.send(null);
+}
+function showResult(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data=XHR.responseText;
+			document.getElementById('idCheck').innerHTML=data;
+		}	
+	}
+}
+</script>
+>>>>>>> origin/hanmin92
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
@@ -112,8 +142,8 @@ function validate(){
 		<table>
 			<tr>
 				<th>ID</th>
-				<td><input type="text" name="mem_id" id="idCheck" placeholder="사용할 ID를 설정하세요.">
-				<span class="setId">아이디는 4~12로 설정해주세요.</span>
+				<td><input type="text" name="mem_id" id="idCheck" placeholder="사용할 ID를 설정하세요." onchange="show()">
+				<span class="setId" id="idCheck"></span>
 			</tr>
 			<tr>
 				<th>이름</th>
