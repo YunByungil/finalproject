@@ -132,11 +132,6 @@
             <ref bean="sqlSessionTemplate"/>
          </constructor-arg>
       </bean>
-   	 <bean id="joaAdminMemberDao" class="joa.adminmember.model.JoaAdminMemberDAOImple">
-   		<constructor-arg>
-   			<ref bean="sqlSessionTemplate"/>
-   		</constructor-arg>
-   	</bean>
    	<bean id="joaAdminPayMovieDao" class="joa.adminRevenue.model.JoaAdminPayMovieDAOImple">
    		<constructor-arg>
          	<ref bean="sqlSessionTemplate"/>

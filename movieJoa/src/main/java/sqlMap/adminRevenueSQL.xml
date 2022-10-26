@@ -92,7 +92,7 @@
 	(select trunc(sysdate,'mm') from dual) and
 	(select last_day(sysdate) from dual)
   </select>
-  <select id="revenueShopQuery" resultType="joa.adminmember.model.JoaAdminMemberDTO" parameterType="Map">
+  <select id="revenueShopQuery" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="Map">
   	select * from joa_admin order by admin_idx desc
   </select>
  <select id="revenueShopMoneyQuery" resultType="Integer" parameterType="String">

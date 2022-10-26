@@ -18,10 +18,10 @@ update joa_member set mem_name=#{mem_name}, mem_age=#{mem_age}, mem_tel=#{mem_te
 <delete id="adminMemberDeleteQuery" parameterType="String"> 
 delete from joa_member where mem_id=#{mem_id} 
 </delete>
-<insert id="adminRegisterInsertQuery" parameterType="joa.adminmember.model.JoaAdminMemberDTO">
+<insert id="adminRegisterInsertQuery" parameterType="joa.adminMember.model.JoaAdminMemberDTO">
  insert into joa_admin values(admin_idx.nextval,#{admin_id},#{admin_pwd},#{admin_name},#{admin_area},#{admin_shop},'관리자')
   </insert>
-<select id="adminMemberLoginQuery" resultType="joa.adminmember.model.JoaAdminMemberDTO"> 
+<select id="adminMemberLoginQuery" resultType="joa.adminMember.model.JoaAdminMemberDTO"> 
 select * from joa_admin where admin_id=#{admin_id} and admin_pwd=#{admin_pwd} 
 </select>
 <select id="adminMemberAll" resultType="joa.member.model.JoaMemberDTO" parameterType="Map"> 
@@ -37,7 +37,7 @@ ${end}
 <select id="adminMemberTotalCnt" resultType="Integer"> 
 select count(*) from joa_member 
 </select>
-<select id="adminListQuery" resultType="joa.adminmember.model.JoaAdminMemberDTO" parameterType="HashMap">
+<select id="adminListQuery" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="HashMap">
 select * from (select rownum as rnum,a.* from (select * from joa_admin order by admin_idx desc)a)b where rnum
 <![CDATA[ >= ]]>
 ${start} and rnum
@@ -47,16 +47,16 @@ ${end}
 <select id="adminTotalCnt" resultType="Integer"> 
 select count(*) from joa_admin
  </select>
-<select id="adminName" resultType="joa.adminmember.model.JoaAdminMemberDTO" parameterType="Map">
+<select id="adminName" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="Map">
  select * from joa_admin where admin_name=#{admin_name}
   </select>
-<select id="adminId" resultType="joa.adminmember.model.JoaAdminMemberDTO" parameterType="Map"> 
+<select id="adminId" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="Map"> 
 select * from joa_admin where admin_id=#{admin_id}
  </select>
-<select id="adminId2" resultType="joa.adminmember.model.JoaAdminMemberDTO" parameterType="String">
+<select id="adminId2" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="String">
  select * from joa_admin where admin_id=#{admin_id} 
  </select>
-<update id="adminUpdateQuery" parameterType="joa.adminmember.model.JoaAdminMemberDTO">
+<update id="adminUpdateQuery" parameterType="joa.adminMember.model.JoaAdminMemberDTO">
  update joa_admin set admin_id=#{admin_id}, admin_pwd=#{admin_pwd}, admin_name=#{admin_name}, admin_area=#{admin_area}, admin_shop=#{admin_shop} where admin_id=#{admin_id}
   </update>
 <delete id="adminDeleteQuery" parameterType="String">

@@ -3,7 +3,7 @@ package joa.adminRevenue.model;
 import java.util.List;
 import java.util.Map;
 
-import joa.adminmember.model.JoaAdminMemberDTO;
+import joa.adminMember.model.JoaAdminMemberDTO;
 
 public interface JoaAdminPayMovieDAO {
 

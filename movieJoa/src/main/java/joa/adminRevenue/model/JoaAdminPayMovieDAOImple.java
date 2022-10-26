@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
-import joa.adminmember.model.JoaAdminMemberDTO;
+import joa.adminMember.model.JoaAdminMemberDTO;
 
 public class JoaAdminPayMovieDAOImple implements JoaAdminPayMovieDAO {
 

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import joa.adminmember.model.JoaAdminMemberDAO;
-import joa.adminmember.model.JoaAdminMemberDTO;
+import joa.adminMember.model.JoaAdminMemberDAO;
+import joa.adminMember.model.JoaAdminMemberDTO;
 import joa.member.model.JoaMemberDTO;
 
 @Controller

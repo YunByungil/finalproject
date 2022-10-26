@@ -10,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import joa.adminMember.model.JoaAdminMemberDTO;
 import joa.adminRevenue.model.JoaAdminPayMovieDAO;
 import joa.adminRevenue.model.JoaAdminPayProductDAO;
-import joa.adminmember.model.JoaAdminMemberDTO;
 
 @Controller
 public class AdminRevenueController {
