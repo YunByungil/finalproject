@@ -22,7 +22,7 @@
 				<li class="li_o">이름</li>
 				<li class="li_p">아이디</li>
 				<li class="li_p">닉네임</li>
-				<li class="li_p"><input type="button" value="닉네임 변경" class="nickbutton"></li>
+				<li class="li_p"><input type="button" value="닉네임 변경" class="nickbutton" onclick="location.href='myPage_PW_Check_P.do'"></li>
 			</ul>
 		</div>
 		<hr class="hr">
@@ -48,55 +48,48 @@
 	<br>
 	<div class="mypagecontaniner">
 		<dl class="mymenubar">
-			<a href="myPage_tiket.do"><dt>나의 예매내역</dt></a>
-				<dd>예매취소</dd>
-			<a href="myPage_coupon.do"><dt>관람권 관리</dt></a>
-			<a href="myPage_coupon.do"><dd>MovieJoa 영화관람권</dd></a>
-			<a href="myPage_GuidePoint.do"><dt>포인트 관리</dt></a>
-				<a href="myPage_GuidePoint.do"><dd>포인트 적립/사용안내</dd></a>
-				<a href="myPage_Point.do"><dd>포인트 적립/사용내역</dd></a>
-			<a href="myPage_Event.do"><dt>이벤트 참여내역</dt></a>
-			<a href="myPage_Store.do"><dt>스토어</dt></a>
-				<a href="myPage_Store.do"><dd>내 스토어</dd></a>
-				<dd>결제내역</dd>
-			<dt>회원정보</dt>
-				<dd>회원정보 관리</dd>
-				<dd>회원탈퇴</dd>
-			<dt>프로필 관리</dt>
-			<dt>나의 문의내역</dt>
+			<a href="myPage_tiket.do" class="My_bar_a"><dt class="My_bar">나의 예매내역</dt></a>
+				<a href="myPage_cancle_Coupon.do" class="My_bar_a"><dd>예매취소</dd></a>
+			<a href="myPage_coupon.do" class="My_bar_a"><dt class="My_bar">관람권 관리</dt></a>
+			<a href="myPage_coupon.do" class="My_bar_a"><dd>MovieJoa 영화관람권</dd></a>
+			<a href="myPage_GuidePoint.do" class="My_bar_a"><dt class="My_bar">포인트 관리</dt></a>
+				<a href="myPage_GuidePoint.do" class="My_bar_a"><dd>포인트 적립/사용안내</dd></a>
+				<a href="myPage_Point.do" class="My_bar_a"><dd>포인트 적립/사용내역</dd></a>
+			<a href="myPage_Event.do" class="My_bar_a"><dt class="My_bar">이벤트 참여내역</dt></a>
+			<a href="myPage_Store.do" class="My_bar_a"><dt class="My_bar">스토어</dt></a>
+				<a href="myPage_Store.do" class="My_bar_a"><dd>내 스토어</dd></a>
+				<a href="myPage_Store_Payment.do" class="My_bar_a"><dd>결제내역</dd></a>
+			<a href="myPage_PW_Check_M.do" class="My_bar_a"><dt class="My_bar">회원정보</dt></a>
+				<a href="myPage_PW_Check_M.do" class="My_bar_a"><dd>회원정보 관리</dd></a>
+				<a href="myPage_PW_Check_E.do" class="My_bar_a"><dd>회원탈퇴</dd></a>
+			<a href="myPage_PW_Check_P.do" class="My_bar_a"><dt class="My_bar">프로필 관리</dt></a>
+			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
 		
-		<div class="joaMypage_home">
+		<div class="joaMypage_home1">
 			<div class="mythreelink">
 					<div class="myfavoritesmovie">
-						<div>이미지</div>
+						<div><img src="/movieJoa/img/joa_Mypage_img/movie_imo.PNG" class="img"></div>
 						<div class="myfavoritesmovie_subject">기대되는 영화</div>
 						<div>보고싶은 영화를 미리</div>
 						<div>다운받고싶다면?</div>
 					</div>
 					
 					<div class="mywatchingmovie">
-						<div>이미지</div>
+						<div ><img src="/movieJoa/img/joa_Mypage_img/movie_imo2.PNG" class="img"></div>
 						<div class="mywatchingmovie_subject">내가 본 영화</div>
 						<div>관람한 영화들을 한번에</div>
 						<div>모아보고싶다면?</div>
 					</div>
 					
 					<div class="mywrite">
-						<div>이미지</div>
+						<div ><img src="/movieJoa/img/joa_Mypage_img/movie_imo3.PNG" class="img"></div>
 						<div class="mywrite_subject">내가 쓴 평점</div>
 						<div>관람한 내 감상평을 적어</div>
 						<div>추억하고싶다면?</div>
 					</div>
 				</div>
-					<br>
-				
-					<div class="myinquiry">
-						<div>내 문의</div>
-						<div>d</div>
-						<div>d</div>
-						<div>d</div>
-					</div>
+					<br>		
 			</div>
 		</div>
 </div>

@@ -5,27 +5,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=14">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=14">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=3">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=3">
 <title>Insert title here</title>
-</head>
 <script>
-	var count = 0;
-	var inputse = document.getElementsByClassName('p_content');
-	function inputs(){
-		count++;
-		if(count%2==1){
-			for(var i = 0; i<inputse.length; i++){
-				inputse[i].readOnly = false;
-			}
-		}else{
-			for(var i = 0; i<inputse.length; i++){
-				inputse[i].readOnly = true;
-			}
-		}
-		
-		}
+ function select(){
+	
+ }
 </script>
+</head>
 <body>
 <c:import url="../header.jsp"></c:import>
 <section>
@@ -84,25 +72,55 @@
 		</dl>
 		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">개인정보변경</div>
-			<div class="p_button1"><input type="button" value="변경하기" id="p_button1_b" onclick="inputs()"></div>
+			<div class="tiket_subject">내 스토어샵</div>
 			<br>
-			<div class="my_ticet">
-			<hr class="ti_hr">
-			<div class="P_title">닉네임</div><div class="p_content1"><input type="text" class="p_content" readonly></div>
-			<hr class="ti_hr">
-			<div class="ad">
-			각 서비스(이벤트, 매거진, 영화리뷰 등)의 리뷰 및 덧글작성시 등록하신 대표이미지가 노출됩니다.<br>
-			프로필 이미지 종류를 선택해 주세요.
-			<hr class="ad_hr">
+			<div class="serchBar_usedCoupon">
+				<div class="serchBar_sub2">조회유형</div>
+				<div class="serchBar_sub1">조회기간</div>
+				<div class="serchBar_type">
+				<input type="radio" id="radio1" name="type" value="사용가능" class="serchBar_button_1">
+				<label for="radio1">사용가능</label>
+				&nbsp;<input type="radio" id="radio2" name="type" value="사용완료" class="serchBar_button_1">
+				<label for="radio2">사용완료</label>
+				&nbsp;<input type="radio" id="radio3" name="type" value="기간만료" class="serchBar_button_1">
+				<label for="radio3">기간만료</label>
+				&nbsp;<input type="radio" id="radio4" name="type" value="취소/환불" class="serchBar_button_1">
+				<label for="radio4">취소/환불</label>
+				</div>
+				<div class="serchBar_date"><input type="date" class="serchBar_input">&nbsp;~&nbsp;<input type="date" class="serchBar_input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="조회하기" class="serchBar_i_button"></div>
 			</div>
-			<div class="P_title" id="P_title1">프로필 이미지</div><div class="p_content2_2"><div class="fileimage">이미지</div><input type="file" value="파일선택" class="file"></div>
+		<div class="my_ticet">
 			<hr class="ti_hr">
-			<div class="p_button2"><input type="button" value="변경완료" id="p_button2_b"></div>
+			<br>
+			<table class="ti_border">
+			<thead>
+				<th>스토어.NO</th>
+				<th>상품명</th>
+				<th>구매일</th>
+				<th>가격</th>
+				<th>상태</th>
+			</thead>
+		
+			<tbody>
+			<c:if test="${empty list }">
+				<tr><td colspan="5"><br></td></tr>
+				<tr>
+					<td colspan="5">내역이 존재하지 않습니다.</td>
+				</tr>
+			</c:if>
+				<c:forEach var="dto" items="${list }">
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+			</table>
+			
 			<hr class="ti_hr">
 			</div>
-			</div>
-		</div>
+			<br>
 </div>
 </section>
 <c:import url="../footer.jsp"></c:import>

@@ -54,22 +54,21 @@
 	<div class="mypagecontaniner">
 		<dl class="mymenubar">
 			<a href="myPage_tiket.do"><dt>나의 예매내역</dt></a>
-				<dd>예매취소</dd>
+				<a href="myPage_cancle_Coupon.do"><dd>예매취소</dd></a>
 			<a href="myPage_coupon.do"><dt>관람권 관리</dt></a>
 			<a href="myPage_coupon.do"><dd>MovieJoa 영화관람권</dd></a>
-			<a href="myPage_usedCoupon.do"><dd>영화관람권 환불</dd></a>
-			<dt>포인트 관리</dt>
-				<dd>포인트 적립/사용안내</dd>
-				<dd>포인트 적립/사용내역</dd>
-			<dt>이벤트 참여내역</dt>
-			<dt>스토어</dt>
-				<dd>내 스토어</dd>
-				<dd>결제내역</dd>
-			<dt>회원정보</dt>
-				<dd>회원정보 관리</dd>
-				<dd>회원탈퇴</dd>
-			<dt>프로필 관리</dt>
-			<dt>나의 문의내역</dt>
+			<a href="myPage_GuidePoint.do"><dt>포인트 관리</dt></a>
+				<a href="myPage_GuidePoint.do"><dd>포인트 적립/사용안내</dd></a>
+				<a href="myPage_Point.do"><dd>포인트 적립/사용내역</dd></a>
+			<a href="myPage_Event.do"><dt>이벤트 참여내역</dt></a>
+			<a href="myPage_Store.do"><dt>스토어</dt></a>
+				<a href="myPage_Store.do"><dd>내 스토어</dd></a>
+				<a href="myPage_Store_Payment.do"><dd>결제내역</dd></a>
+			<a href="myPage_PW_Check_M.do"><dt>회원정보</dt></a>
+				<a href="myPage_PW_Check_M.do"><dd>회원정보 관리</dd></a>
+				<a href="myPage_PW_Check_E.do"><dd>회원탈퇴</dd></a>
+			<a href="myPage_PW_Check_P.do"><dt>프로필 관리</dt></a>
+			<a href="myPage_myService.do"><dt>나의 문의내역</dt></a>
 		</dl>
 		
 		<div class="joaMypage_ti">
@@ -104,9 +103,9 @@
 		
 			<tbody>
 			<c:if test="${empty list }">
-				<tr><td colspan="4"><br></td></tr>
+				<tr><td colspan="5"><br></td></tr>
 				<tr>
-					<td colspan="4">내역이 존재하지 않습니다.</td>
+					<td colspan="5">내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
 				<c:forEach var="dto" items="${list }">

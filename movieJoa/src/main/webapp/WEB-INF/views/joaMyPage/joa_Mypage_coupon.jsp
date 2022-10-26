@@ -8,6 +8,11 @@
 <link rel="stylesheet" type="text/css" href="css/main.css?ver=4">
 <link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=4">
 <title>Insert title here</title>
+<script>
+	function insertCoupon(){
+		window.open('self_ATNTCN.do', 'self_ATNTCN_coupon', 'width=800, height=400');
+	}
+</script>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
@@ -49,22 +54,21 @@
 	<div class="mypagecontaniner">
 		<dl class="mymenubar">
 			<a href="myPage_tiket.do"><dt>나의 예매내역</dt></a>
-				<dd>예매취소</dd>
+				<a href="myPage_cancle_Coupon.do"><dd>예매취소</dd></a>
 			<a href="myPage_coupon.do"><dt>관람권 관리</dt></a>
 			<a href="myPage_coupon.do"><dd>MovieJoa 영화관람권</dd></a>
-			<a href="myPage_usedCoupon.do"><dd>영화관람권 환불</dd></a>
-			<dt>포인트 관리</dt>
-				<dd>포인트 적립/사용안내</dd>
-				<dd>포인트 적립/사용내역</dd>
-			<dt>이벤트 참여내역</dt>
-			<dt>스토어</dt>
-				<dd>내 스토어</dd>
-				<dd>결제내역</dd>
-			<dt>회원정보</dt>
-				<dd>회원정보 관리</dd>
-				<dd>회원탈퇴</dd>
-			<dt>프로필 관리</dt>
-			<dt>나의 문의내역</dt>
+			<a href="myPage_GuidePoint.do"><dt>포인트 관리</dt></a>
+				<a href="myPage_GuidePoint.do"><dd>포인트 적립/사용안내</dd></a>
+				<a href="myPage_Point.do"><dd>포인트 적립/사용내역</dd></a>
+			<a href="myPage_Event.do"><dt>이벤트 참여내역</dt></a>
+			<a href="myPage_Store.do"><dt>스토어</dt></a>
+				<a href="myPage_Store.do"><dd>내 스토어</dd></a>
+				<a href="myPage_Store_Payment.do"><dd>결제내역</dd></a>
+			<a href="myPage_PW_Check_M.do"><dt>회원정보</dt></a>
+				<a href="myPage_PW_Check_M.do"><dd>회원정보 관리</dd></a>
+				<a href="myPage_PW_Check_E.do"><dd>회원탈퇴</dd></a>
+			<a href="myPage_PW_Check_P.do"><dt>프로필 관리</dt></a>
+			<a href="myPage_myService.do"><dt>나의 문의내역</dt></a>
 		</dl>
 		
 		<div class="joaMypage_ti">
@@ -72,7 +76,6 @@
 			<br>
 			<div class="co_sub_op">영화 관람권 보유(등록) 내역</div>
 		<div class="my_ticet">
-			<div class="myMovie_button_div"><input type="button" value="영화관람권 등록" class="myMovie_button"></div>
 			<hr class="ti_hr">
 			<br>
 			<br>
