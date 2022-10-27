@@ -10,5 +10,6 @@ public interface TheaterDAO {
 	  public int theaterAdd(TheaterDTO dto);
 	  public List theaterCheck(Map timap);
 	  public JoaAdminMemberDTO adminIdSearch(String sid);
-	  public List theaterList(Map map);
+	  public List<TheaterDTO> theaterListView(Map map);
+	  public int theaterDelete(int idx);
 }
