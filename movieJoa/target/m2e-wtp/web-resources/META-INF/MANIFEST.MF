@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: user
-=======
-Built-By: sonion
->>>>>>> 9d469a53ecb33eee88990496dc5ce292822ff081
+Built-By: Galmae
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 
