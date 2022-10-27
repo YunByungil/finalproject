@@ -6,17 +6,12 @@
   	<insert id="theaterAdd" parameterType="joa.adminTheater.model.TheaterDTO">
   		insert into joa_theater values(joa_theater_the_idx.nextval,#{the_city},#{the_branch},#{the_theater},#{the_seat},#{the_width},#{the_height})
   	</insert>
-  	
-  	<select id="checkSchedule" parameterType="map" resultType="string">
-  		select sch_branch from joa_schedule where
+  	<select id="branchCheck" parameterType="map" resultType="joa.adminSchedule.model.ScheduleDTO">
+  		select * from joa_schedule where
   		sch_city=#{city} and
   		sch_branch=#{branch} and
   		sch_theater=#{theater} and
-  		sch_day=#{day} and
-  		(sch_start_hour<![CDATA[<=]]>#{hour} and
-  		sch_end_hour<![CDATA[>=]]>#{hour}) or
-  		(sch_start_hour<![CDATA[<=]]>#{hour2} and
-  		sch_end_hour<![CDATA[>=]]>#{hour2})
+  		sch_day=#{day}
   	</select>
   	<select id="dayChoice" parameterType="string" resultType="string">
   		select mov_title from joa_movie where to_char(mov_start_date,'YYYY-MM-DD')<![CDATA[<=]]>#{day}
@@ -48,7 +43,7 @@
   	<select id="adminIdSearch" parameterType="string" resultType="joa.adminMem.model.JoaAdminMemberDTO">
   		select * from joa_admin where admin_id=#{sid}
   	</select>
-  	<select id="theaterList" parameterType="map" resultType="joa.adminTheater.model.TheaterDTO">
+  	<select id="theaterListView" parameterType="map" resultType="joa.adminTheater.model.TheaterDTO">
   		select * from joa_theater where the_city=#{city} and the_branch=#{branch} order by the_theater asc
   	</select>
   	<select id="seatSearch" parameterType="map" resultType="joa.adminTheater.model.TheaterDTO">
@@ -63,4 +58,13 @@
 		(select * from joa_schedule where sch_day=#{day} order by sch_start_hour asc)a)b
 		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
+  	<select id="runtimeCheck" parameterType="string" resultType="Integer">
+  		select mov_running_time from joa_movie where mov_title=#{title}
+  	</select>
+  	<delete id="scheduleDelete" parameterType="Integer">
+  		delete from joa_schedule where sch_idx=#{idx}
+  	</delete>
+  	<delete id="theaterDelete" parameterType="Integer">
+  		delete from joa_theater where the_idx=#{idx}
+  	</delete>
   </mapper>
