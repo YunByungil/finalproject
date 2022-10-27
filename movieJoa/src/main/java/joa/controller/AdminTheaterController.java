@@ -206,6 +206,7 @@ public class AdminTheaterController {
 		
 		ModelAndView mav=new ModelAndView();
 		List list=scheduleDao.checkSchedule(map);
+		System.out.println(list.size());
 		if(list.size()==0 || list==null) {
 			dto.setSch_start_hour(""+hour);
 			dto.setSch_start_min(""+min);

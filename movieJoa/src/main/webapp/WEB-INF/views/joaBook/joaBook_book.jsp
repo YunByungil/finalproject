@@ -9,6 +9,17 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
+.tt {
+	width: 100%; 
+	border-bottom: 1px;
+}
+.trtr {
+	background-color: black;
+}
+.trtrtr {
+	background-color: #fcf2ce;
+}
+
 li {
 	list-style: inline;
 }
@@ -42,6 +53,7 @@ table {
 
 th {
 	text-align: center;
+	color: white;
 }
 
 .bar {
@@ -53,6 +65,7 @@ th {
 .branchBar {
 	display: inline;
 }
+
 </style>
 </head>
 <body>
@@ -68,16 +81,16 @@ th {
 
 <div id="all">
 <h1 align="center">예매 페이지</h1>
-<div align="center">
+<div align="center" style="background-color: ">
 
 <div style="width: 25%; height: 25%; float: left;"> <!-- 제목 -->
-<table id="ajaxSubject" class="tt" >
-	<tr>
+<table id="ajaxSubject" class="tt">
+	<tr class="trtr">
 		<th>영화 제목</th>
 	</tr>
 	
 	<c:forEach var="dto" items="${subjectList }">
-		<tr>
+		<tr class="trtrtr">
 			<td id="${dto.sch_mov_title }"><a href="javascript:next('${dto.sch_mov_title }')" >${dto.sch_mov_title }</a></td>
 		</tr>
 	</c:forEach>
@@ -86,7 +99,7 @@ th {
 
 <div style="width: 25%; height: 25%; float: left;"> <!-- 극장 -->
 <table id="ajaxBranch" class="tt">
-	<tr>
+	<tr class="trtr">
 		<th>극장</th>
 	</tr>
 </table>
@@ -94,7 +107,7 @@ th {
 
 <div style="width: 25%; height: 25%; float: left;">  <!-- 상영날짜 -->
 <table id="ajaxDate" class="tt">
-	<tr>
+	<tr class="trtr">
 		<th>날짜</th>
 	</tr>
 </table>
@@ -103,7 +116,7 @@ th {
 
 <div style="width: 25%; height: 25%; float: left;"> <!-- 관 + 상영 시간 -->
 <table id="ajaxTime" class="tt">
-	<tr>
+	<tr class="trtr">
 		<th>관/시간</th>
 	</tr>
 </table>
@@ -115,33 +128,33 @@ th {
 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-
-<div align="center">
-
-<div style="width: 25%; height: 25%; float: left;">
-<span id="sub2"></span>
-<span id="sub">영화선택</span>
-</div>
+<div align="center" style="background-color: #392f31; width: 100%; height: 200px; ">
 
 <div style="width: 25%; height: 25%; float: left;">
-<span id="br">극장선택</span><br>
-<span id="date"></span><br>
-<span id="to"></span>
+<span id="sub2" style="color: white;"></span>
+<span id="sub" style="color: white;">영화선택</span>
 </div>
 
 <div style="width: 25%; height: 25%; float: left;">
-<span id="s">좌석선택</span><br>
-<span id="money"></span>
+<span id="br" style="color: white;">극장선택</span><br>
+<span id="date" style="color: white;"></span><br>
+<span id="to" style="color: white;"></span>
 </div>
 
-<div style="width: 25%; height: 25%; float: left;"><input type="button" value="좌석선택" onclick="yes();" style="display: none; color: red;" id="yesid"></div>
-<div style="width: 25%; height: 25%; float: left;"><input type="button" value="좌석선택" onclick="no();" id="noid"></div>
-<div style="width: 25%; height: 25%; float: left;"><input type="button" value="결제선택" onclick="pay();" style="display: none;" id="payid"></div>
-<div style="width: 25%; height: 25%; float: left;"><input type="submit" value="결제선택" style="display: none; color: red;" id="realpayid"></div>
+<div style="width: 25%; height: 25%; float: left;">
+<span id="s" style="color: white;">좌석선택</span><br>
+<span id="money" style="color: white;"></span>
+</div>
+
+<div style="width: 25%; height: 25%; float: left;">
+<input type="button" value="좌석선택" onclick="no();" id="noid" style="width: 418px; height: 200px;">
+<input type="button" value="좌석선택" onclick="yes();" style="display: none; background-color: red; width: 418px; height: 200px;" id="yesid">
+<input type="button" value="결제선택" onclick="pay();" style="display: none; width: 418px; height: 200px;" id="payid">
+<input type="submit" value="결제선택" style="display: none; background-color: red; width: 418px; height: 200px;" id="realpayid">
+</div>
 
 </div>
 
-<br><br><br><br><br>
 
 </div>
 
@@ -165,7 +178,6 @@ function next(subject) {
 	if (document.getElementById('sch_mov_title').value == '') {
 	document.getElementById('sch_mov_title').value = subject;
 	document.getElementById(subject).style.backgroundColor = 'gray';
-	window.alert(subject);
 	}else {
 		window.alert('초기화합니다.');
 		window.location.reload();
@@ -173,7 +185,7 @@ function next(subject) {
 	}
 	var subText2 = document.getElementById('sub');
 	var subText = document.getElementById('sub2');
-	subText.innerHTML = '<img src="/movieJoa/img/theater/'+subject+'.jpg" width="100px" height="100px">';
+	subText.innerHTML = '<img src="/movieJoa/img/theater/'+subject+'.jpg" width="200px" height="200px">';
 	subText2.innerHTML = subject;
 	
 	var form = {
@@ -185,7 +197,6 @@ function next(subject) {
 		data: JSON.stringify(form),
 		contentType: "application/json; charset=utf-8;",
 		success: function(data) {
-			window.alert('성공(제목,장소 체크x)');
 			$('#ajaxBranch').html(data.reloadBranch);
 		}
 	});
@@ -195,7 +206,6 @@ function next2(branch) {
 	if (document.getElementById('sch_branch').value == '') {
 	document.getElementById('sch_branch').value = branch;
 	document.getElementById(branch).style.backgroundColor = 'gray';
-	window.alert(branch);
 	}else {
 		window.alert('초기화합니다.');
 		window.location.reload();
@@ -214,7 +224,6 @@ function next2(branch) {
 			data: JSON.stringify(form),
 			contentType: "application/json; charset=utf-8;",
 			success: function(data) {
-				window.alert('성공(제목,장소 체크x)');
 				$('#ajaxDate').html(data.reloadDate);
 			}
 		});
@@ -224,7 +233,6 @@ function next3(day) {
 	if (document.getElementById('sch_day').value == '') {
 	document.getElementById('sch_day').value = day;
 	document.getElementById(day).style.backgroundColor = 'gray';
-	window.alert(day);
 	}else {
 		window.alert('초기화합니다.');
 		window.location.reload();
@@ -244,14 +252,12 @@ function next3(day) {
 			data: JSON.stringify(form),
 			contentType: "application/json; charset=utf-8;",
 			success: function(data) {
-				window.alert('성공(제목,장소 체크x)');
 				$('#ajaxTime').html(data.reloadTime);
 			}
 		});
 }
 
 function next4(time) {
-	window.alert(time);
 	if (document.getElementById('sch_theater').value == '') {
 		document.getElementById(time).style.backgroundColor = 'gray';
 		}else {
@@ -264,21 +270,15 @@ function next4(time) {
 	
 	if(time.length == 6) {
 		var g = time.substring(0,1);
-		window.alert(g);
 		var h = time.substring(2,4);
-		window.alert(h);
 		var m = time.substring(4,6);
-		window.alert(m);
 		document.getElementById('sch_theater').value = g;
 		document.getElementById('sch_start_hour').value = h;
 		document.getElementById('sch_start_min').value = m;
 	}else {
 		var g = time.substring(0,2);
-		window.alert(g);
 		var h = time.substring(3,5);
-		window.alert(h);
 		var m = time.substring(5,7);
-		window.alert(m);
 		document.getElementById('sch_theater').value = g;
 		document.getElementById('sch_start_hour').value = h;
 		document.getElementById('sch_start_min').value = m;
@@ -293,7 +293,6 @@ function no() {
 }
 
 function yes() {
-	window.alert('zz');
 	document.getElementById('yesid').style.display = 'none';
 	document.getElementById('payid').style.display = 'inline';
 	$.ajax ({
@@ -303,7 +302,6 @@ function yes() {
 		type: "GET",
 		contentType: "application/json; charset=utf-8;",
 		success: function(data) {
-			window.alert('성공(브랜치,요일값 체크x)');
 			$('#all').html(data);
 		}
 	});
