@@ -64,4 +64,21 @@ public class ScheduleDAOImple implements ScheduleDAO {
 		List<ScheduleDTO> list=sqlMap.selectList("scheduleList",map);
 		return list;
 	}
+	@Override
+	public List<ScheduleDTO> branchCheck(Map map) {
+		List list=sqlMap.selectList("branchCheck",map);
+		return list;
+	}
+	
+	@Override
+	public int runtimeCheck(String title) {
+		int run=sqlMap.selectOne("runtimeCheck",title);
+		return run;
+	}
+	
+	@Override
+	public int scheduleDelete(int idx) {
+		int result=sqlMap.delete("scheduleDelete",idx);
+		return result;
+	}
 }

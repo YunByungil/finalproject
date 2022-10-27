@@ -56,6 +56,7 @@ th {
 </style>
 </head>
 <body>
+<form action="theaterPay.do" method="post">
 <div> <!-- 전체 div영역 -->
 
 <div>
@@ -112,12 +113,6 @@ th {
 
 </div>
 
-<input type="hidden" name="sch_mov_title" id="sch_mov_title">
-<input type="hidden" name="sch_branch" id="sch_branch">
-<input type="hidden" name="sch_day" id="sch_day">
-<input type="hidden" name="sch_theater" id="sch_theater">
-<input type="hidden" name="sch_start_hour" id="sch_start_hour">
-<input type="hidden" name="sch_start_min" id="sch_start_min">
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
@@ -135,12 +130,14 @@ th {
 </div>
 
 <div style="width: 25%; height: 25%; float: left;">
-<span id="s">좌석선택</span>
+<span id="s">좌석선택</span><br>
+<span id="money"></span>
 </div>
 
 <div style="width: 25%; height: 25%; float: left;"><input type="button" value="좌석선택" onclick="yes();" style="display: none; color: red;" id="yesid"></div>
 <div style="width: 25%; height: 25%; float: left;"><input type="button" value="좌석선택" onclick="no();" id="noid"></div>
-<div style="width: 25%; height: 25%; float: left;"><input type="button" value="결제하기" onclick="pay();" style="display: none;" id="payid"></div>
+<div style="width: 25%; height: 25%; float: left;"><input type="button" value="결제선택" onclick="pay();" style="display: none;" id="payid"></div>
+<div style="width: 25%; height: 25%; float: left;"><input type="submit" value="결제선택" style="display: none; color: red;" id="realpayid"></div>
 
 </div>
 
@@ -154,6 +151,13 @@ th {
 
 
 </div>
+</form>
+<input type="hidden" name="sch_mov_title" id="sch_mov_title">
+<input type="hidden" name="sch_branch" id="sch_branch">
+<input type="hidden" name="sch_day" id="sch_day">
+<input type="hidden" name="sch_theater" id="sch_theater">
+<input type="hidden" name="sch_start_hour" id="sch_start_hour">
+<input type="hidden" name="sch_start_min" id="sch_start_min">
 </body>
 
 <script>
@@ -309,8 +313,6 @@ function pay() {
 	if ($('#code').val() == '') {
 		window.alert('좌석을 선택해주세요');
 	}
-	
-	
 }
 </script>
 </html>

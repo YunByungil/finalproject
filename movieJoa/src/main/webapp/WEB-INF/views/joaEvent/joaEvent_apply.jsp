@@ -22,7 +22,7 @@
 </style>
 <script>
 function getApply(){
-	window.location.href="joaEventGetApply.do?sid=syseyear&event_code=333&event_subject=401호의 탐정 개봉 기념 시사회 응모 이벤트"
+	window.location.href="joaEventGetApply.do?sid=${sid}&event_code=${event_code}&event_subject=${event_subject}"
 }
 </script>
 </head>

@@ -1,6 +1,8 @@
 package joa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 import joa.book.model.*;
+import joa.pay.model.*;
 
 @Controller
 public class JoaBookController {
@@ -28,6 +31,7 @@ public class JoaBookController {
 	
 	@RequestMapping("/bookSubmit.do")
 	public ModelAndView bs(JoaBookDTO dto) {
+		String[] rows = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		ModelAndView mav = new ModelAndView();
 //		System.out.println(dto.getSch_mov_title());
 //		System.out.println(dto.getSch_branch());
@@ -63,11 +67,13 @@ public class JoaBookController {
 	    mav.addObject("idx", list.get(0).getSch_idx());
 	    /////////////
 	    mav.addObject("sch_mov_title", list.get(0).getSch_mov_title());
+	    mav.addObject("sch_city", list.get(0).getSch_city());
 	    mav.addObject("sch_branch", list.get(0).getSch_branch());
 	    mav.addObject("sch_day", list.get(0).getSch_day());
 	    mav.addObject("sch_theater", list.get(0).getSch_theater());
 	    mav.addObject("sch_start_hour", list.get(0).getSch_start_hour());
 	    mav.addObject("sch_start_min", list.get(0).getSch_start_min());
+	    mav.addObject("rows",rows);
 	    /////////////
 		mav.setViewName("joaBook/joaBook_seat");
 		return mav;
@@ -120,5 +126,5 @@ public class JoaBookController {
 		map.put("reloadTime", msg);
 		return map;
 	}
-	
+
 }

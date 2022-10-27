@@ -1,10 +1,12 @@
 package joa.pay.model;
 
 import java.util.*;
+import joa.movie.model.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
 import joa.adminStore.model.AdminStoreDTO;
+import joa.pay.model.*;
 
 public class JoaPayDAOImple implements JoaPayDAO {
 
@@ -26,4 +28,11 @@ public class JoaPayDAOImple implements JoaPayDAO {
 		int result=sqlMap.insert("payProductResultAdd",dto);
 		return result;
 	}
+	
+	@Override
+	public int joaBookPayAdd(JoaPayMovDTO dto) {
+		int result=sqlMap.insert("joaBookPayAdd",dto);
+		return result;
+	}
+
 }

@@ -11,15 +11,12 @@ public class AdminMovieDTO {
 	private int mov_idx;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=1,max=20)
 	private String mov_title;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=1,max=10,message="길이가 부적합합니다." )
 	private String mov_director;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_cast;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
@@ -29,16 +26,11 @@ public class AdminMovieDTO {
 	private String mov_end_date;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_country;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_genre;
-	
-	@Pattern(regexp = "^[0-9]*$")
-	@Range(min = 1, max = 999)
-	@NotBlank(message="공백 또는 null일수 없습니다.")
+
 	private int mov_running_time;
 
 	@NotBlank(message="공백 또는 null일수 없습니다.")
@@ -48,7 +40,6 @@ public class AdminMovieDTO {
 	@Size(max=2000,message="길이가 부적합합니다." )
 	private String mov_info;
 	
-	@NotBlank(message="공백 또는 null일수 없습니다.")
 	@Size(max=2000,message="길이가 부적합합니다." )
 	private String mov_poster;
 	
@@ -74,7 +65,7 @@ public class AdminMovieDTO {
 		if(mov_start_date==null || mov_start_date =="") {
 			this.mov_start_date=mov_start_date;
 		}else {
-			this.mov_start_date = mov_start_date.substring(0,9);
+			this.mov_start_date = mov_start_date.substring(0,10);
 		}
 		if(mov_end_date==null || mov_end_date =="") {
 			this.mov_end_date=mov_end_date;

@@ -98,5 +98,14 @@ public class JoaStoreController {
 	public String selectCoupon() {
 		return "joaStore/joaStore_selectCoupon";
 	}
+	
+	@RequestMapping("/joaStoreCartUpdate.do")
+	public ModelAndView joaStoreCartUpdate(String update_car_idx) {
+		
+//		int result = joaStoreService.storeCartUpdate(update_car_idx);
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("joaStore/joaStore_cart");
+		return mav;
+	}
 
 }
