@@ -31,7 +31,7 @@
 	    insert into
 	    	joa_store_cart
 	    values
-		    (joa_store_cart_idx.nextval,
+		    (joa_store_cart_car_idx.nextval,
 		    #{car_mem_id},
 		    #{car_pro_idx},
 		    #{car_count},

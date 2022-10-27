@@ -6,7 +6,7 @@
 	<select id="moviesSubjectList" resultType="joa.book.model.JoaBookDTO">
 	select distinct sch_mov_title
 	from joa_schedule
-	where to_char(sch_dayd,'yyyy-mm-dd') <![CDATA[>=]]> to_char(sysdate,'yyyy-mm-dd')
+	<!-- where to_char(sch_dayd,'yyyy-mm-dd') <![CDATA[>=]]> to_char(sysdate,'yyyy-mm-dd')  -->
 	order by sch_mov_title asc
 	</select>
 	
@@ -14,7 +14,7 @@
 	select distinct sch_branch
 	from joa_schedule
 	where sch_mov_title = #{String}
-	and to_char(sch_dayd,'yyyy-mm-dd') <![CDATA[>=]]> to_char(sysdate,'yyyy-mm-dd')
+	<!-- and to_char(sch_dayd,'yyyy-mm-dd') <![CDATA[>=]]> to_char(sysdate,'yyyy-mm-dd') -->
 	order by sch_branch asc
 	</select>
 	
@@ -23,7 +23,7 @@
 	from joa_schedule
 	where sch_mov_title = #{sch_mov_title}
 	and sch_branch = #{sch_branch}
-	and to_char(sch_dayd,'yyyy-mm-dd') <![CDATA[>=]]> to_char(sysdate,'yyyy-mm-dd')
+	<!-- and to_char(sch_dayd,'yyyy-mm-dd') <![CDATA[>=]]> to_char(sysdate,'yyyy-mm-dd') -->
 	order by sch_day asc
 	</select>
 	

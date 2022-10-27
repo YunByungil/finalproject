@@ -89,6 +89,7 @@ public class JoaPayController {
 	@RequestMapping("/joaBookPay.do")
 	public ModelAndView joaBookPay(JoaPayMovDTO dto) {
 		
+
 		int result = joaPayService.joaBookPayAdd(dto);
 		String msg;		
 		//junsung writed
@@ -134,7 +135,6 @@ public class JoaPayController {
 		joaPayService.updateAgePer(map);
 		
 		ModelAndView mav = new ModelAndView();
-		//mav.addObject("payMsg",msg);
 		mav.setViewName("joaBook/joaBook_pay_result");		
 		return mav;
 	}
