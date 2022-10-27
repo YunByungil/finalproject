@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: Galmae
+=======
+Built-By: user
+>>>>>>> junsung_escape
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 
