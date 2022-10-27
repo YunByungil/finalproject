@@ -66,6 +66,9 @@ td{
 			<tr>
 				<td>등록된 상영관이 없습니다.</td>
 			</tr>
+			<tr>
+				<td><a href="theaterAddForm.do" id="addlink">상영관 좌석 등록</a></td>
+			</tr>
 		</c:if>
 </table>
 </div>

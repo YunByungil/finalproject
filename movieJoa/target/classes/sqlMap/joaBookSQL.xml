@@ -55,4 +55,6 @@
 	and sch_start_hour = #{sch_start_hour}
 	and sch_start_min = #{sch_start_min}
 	</select>
+	
+	
 </mapper>

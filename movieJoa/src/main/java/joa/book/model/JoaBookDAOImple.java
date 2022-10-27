@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import joa.paymovie.model.PayMovieDTO;
 import joa.theater.model.TheaterTimeDTO;
 public class JoaBookDAOImple implements JoaBookDAO {
 	
@@ -65,5 +66,11 @@ public class JoaBookDAOImple implements JoaBookDAO {
 		List<JoaBookDTO> list = sqlMap.selectList("realTimeList", map);
 		return list;
 	}
+	
+//	@Override
+//	public List<PayMovieDTO> seatBook(JoaBookDTO dto) {
+//		List<PayMovieDTO> list=sqlMap.selectList("seatBook",dto);
+//		return list;
+//	}
 
 }

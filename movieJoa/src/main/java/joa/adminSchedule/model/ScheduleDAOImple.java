@@ -48,19 +48,25 @@ public class ScheduleDAOImple implements ScheduleDAO {
 	}
 	
 	@Override
-	public int scheduleCount(String day) {
-		int count=sqlMap.selectOne("scheduleCount",day);
+	public int scheduleCount(String day,String city,String branch) {
+		Map map=new HashMap();
+		map.put("day",day);
+		map.put("city",city);
+		map.put("branch",branch);
+		int count=sqlMap.selectOne("scheduleCount",map);
 		return count;
 	}
 	
 	@Override
-	public List<ScheduleDTO> scheduleList(int cp, int ls,String day) {
+	public List<ScheduleDTO> scheduleList(int cp, int ls,String day,String city,String branch) {
 		int start=(cp-1)*ls+1;
 		int end=cp*ls;
 		Map map=new HashMap();
 		map.put("start",start);
 		map.put("end",end);
 		map.put("day",day);
+		map.put("city",city);
+		map.put("branch",branch);
 		List<ScheduleDTO> list=sqlMap.selectList("scheduleList",map);
 		return list;
 	}

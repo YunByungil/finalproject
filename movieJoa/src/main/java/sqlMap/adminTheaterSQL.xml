@@ -49,13 +49,13 @@
   	<select id="seatSearch" parameterType="map" resultType="joa.adminTheater.model.TheaterDTO">
   		select * from joa_theater where the_city=#{city} and the_branch=#{branch} and the_theater=#{theater}
   	</select>
-  	<select id="scheduleCount" parameterType="string" resultType="Integer">
-  		select count(*) from joa_schedule where sch_day=#{day}
+  	<select id="scheduleCount" parameterType="map" resultType="Integer">
+  		select count(*) from joa_schedule where sch_day=#{day} and sch_city=#{city} and sch_branch=#{branch}
   	</select>
   	<select id="scheduleList" parameterType="map" resultType="joa.adminSchedule.model.ScheduleDTO">
   		select * from
 		(select rownum as rnum,a.* from
-		(select * from joa_schedule where sch_day=#{day} order by sch_start_hour asc)a)b
+		(select * from joa_schedule where sch_day=#{day} and sch_city=#{city} and sch_branch=#{branch} order by sch_start_hour asc)a)b
 		where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
   	</select>
   	<select id="runtimeCheck" parameterType="string" resultType="Integer">
