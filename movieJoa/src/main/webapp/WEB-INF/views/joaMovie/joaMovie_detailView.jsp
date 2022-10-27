@@ -66,9 +66,9 @@ function slow(){
 <div class="sect-base-movie">
 	<c:forEach var="list" items="${list }">
     <div id="image">
-        <a href="/movieJoa/imgmovie/${list.mov_poster }" title="포스터 크게 보기 새창" target="_blank">
+        <a href="/movieJoa/img/movie_poster/${list.mov_poster }" title="포스터 크게 보기 새창" target="_blank">
             <span class="thumb-image"> 
-                <img src="/movieJoa/imgmovie/${list.mov_poster }">
+                <img src="/movieJoa/img/movie_poster/${list.mov_poster }">
             </span> 
         </a> 
     </div>
@@ -107,7 +107,7 @@ function slow(){
         </div>
         <div>
 	        <span class="like">
-	            <a class="link-reservation" href="/ticket/?MOVIE_CD=20030711&MOVIE_CD_GROUP=20030711">예매하기</a> 
+	            <a class="link-reservation" href="book.do">예매하기</a> 
 	        </span>
         </div>
     </div>

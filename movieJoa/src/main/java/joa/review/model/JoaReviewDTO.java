@@ -6,7 +6,7 @@ public class JoaReviewDTO {
 	String rev_id;
 	String rev_movie_title;
 	String rev_comment;
-	float rev_score;
+	int rev_score;
 	String rev_date;
 	int rev_like;
 	
@@ -14,7 +14,7 @@ public class JoaReviewDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public JoaReviewDTO(int rev_idx, String rev_id, String rev_movie_title, String rev_comment, float rev_score,
+	public JoaReviewDTO(int rev_idx, String rev_id, String rev_movie_title, String rev_comment, int rev_score,
 			String rev_date, int rev_like) {
 		super();
 		this.rev_idx = rev_idx;
@@ -62,7 +62,7 @@ public class JoaReviewDTO {
 		return rev_score;
 	}
 
-	public void setRev_score(float rev_score) {
+	public void setRev_score(int rev_score) {
 		this.rev_score = rev_score;
 	}
 
