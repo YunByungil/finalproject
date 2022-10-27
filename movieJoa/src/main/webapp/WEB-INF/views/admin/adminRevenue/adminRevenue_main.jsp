@@ -105,8 +105,6 @@
 	<div class="sidebarmenu"><a href="adminRevenueShop.do"><br>지점별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueMovie.do"><br>영화별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueProduct.do"><br>상품별매출</a></div>
-	<div class="sidebarmenu"><a href="adminRevenueGender.do"><br>성별매출</a></div>
-	<div class="sidebarmenu"><a href="adminRevenueAge.do"><br>나이대별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueSpectator.do"><br>관람객 수</a></div>
 </div>
 <div class="container">
@@ -117,13 +115,13 @@
   </div>
   <div class="item"><div class="header">${nowYear }년 ${nowMonth }월 영화 매출<hr></div>
     <div class="content"><br>${nowMonthMovieRevenue }원</div>
-    <div class="footer"><hr><a href="#">확인하기</a></div></div>
+    <div class="footer"><hr><a href="adminRevenueMovie.do">확인하기</a></div></div>
   <div class="item"><div class="header">${nowYear }년 ${nowMonth }월 상품 매출<hr></div>
     <div class="content"><br>${nowMonthProductRevenue }원</div>
-    <div class="footer"><hr><a href="#">확인하기</a></div></div>
+    <div class="footer"><hr><a href="adminRevenueProduct.do">확인하기</a></div></div>
   <div class="item"><div class="header">${nowYear }년 ${nowMonth }월 관람객 수<hr></div>
     <div class="content"><br>${nowMonthSpectator }명</div>
-    <div class="footer"><hr><a href="#">확인하기</a></div></div>
+    <div class="footer"><hr><a href="adminRevenueSpectator.do">확인하기</a></div></div>
   <div class="item"><div class="header">${nowYear }년 ${nowMonth }월 최고 영화<hr></div>
     <div class="content"><br>${nowMonthBestMovie }</div>
     <div class="footer"><hr><a>확인하기</a></div></div>

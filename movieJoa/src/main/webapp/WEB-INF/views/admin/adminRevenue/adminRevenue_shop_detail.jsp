@@ -82,66 +82,39 @@ tr:last-child td:last-child {
   border-bottom-right-radius: 6px;
 }
 </style>
-<script>
-function searchInfo(){
-	if(document.getElementById('mem_category').value=='mem_id'){
-		document.getElementById('mem_search').setAttribute('name','mem_id');
-	}else{
-		document.getElementById('mem_search').setAttribute('name','mem_name');
-	}
-	document.getElementById('adminMemberSubmit').submit();
-}
-function adminMemberUpdate(id){
-	location.href='adminMemberUpdate.do?id='+id;
-}
-</script>
 </head>
 <body>
 <c:import url="/WEB-INF/views/header_admin.jsp"></c:import>
-<h1>회원 검색</h1>
-<form action="adminMemberSearch.do" id="adminMemberSubmit">
-<div class="search_tag">
-	<select id=mem_category>
-		<option value="mem_id">ID</option>
-		<option value="mem_name">이름</option>
-	</select>
-</div>
-<div class="search" >
-	<input type="text" placeholder="search.." id="mem_search" onkeypress="if(window.event.keyCode==13){searchInfo()}">
-	<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png" onclick="searchInfo()">
-</div>
-</form>
+<h1>${dto.payMov_merchant_uid } 지점 조회</h1>
+<c:if test="${empty list }">
+	<h2>조회 결과가 존재하지 않습니다.</h2>
+</c:if>
 <c:if test="${not empty list }">
 <table>
 	<thead>
 		<tr>
 			<th>고유번호</th>
 			<th>ID</th>
-			<th>이름</th>
-			<th>성별</th>
-			<th>등급</th>
-			<th>가입날짜</th>
+			<th>영화</th>
+			<th>금액</th>
+			<th>지점</th>
+			<th>결제날짜</th>
 			<th>비고</th>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach var="dto" items="${list}" varStatus="status">
 		<tr>
-			<td>${dto.mem_idx }</td>
-			<td>${dto.mem_id }</td>
-			<td>${dto.mem_name }</td>
-			<td>${dto.mem_gender }</td>
-			<td>${dto.mem_grade }</td>
-			<td>${dto.mem_joindate }</td>
-			<td><input type="button" value="수정" onclick="adminMemberUpdate('${dto.mem_id}')"></td>
+			<td>${dto.payMov_idx }</td>
+			<td>${dto.payMov_mem_id }</td>
+			<td>${dto.payMov_mov_title }</td>
+			<td>${dto.payMov_price }</td>
+			<td>${dto.payMov_the_branch }</td>
+			<td>${dto.payMov_date }</td>
+			<td><input type="button" value="조회"></td>
 		</tr>
 		</c:forEach>
 	</tbody>
-	<tfoot>
-		<tr>
-			<td colspan="7" align="center">${pageStr }</td>
-		</tr>
-	</tfoot>
 </table>
 </c:if>
 </body>
