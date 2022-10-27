@@ -63,6 +63,7 @@ public class JoaBookController {
 	    mav.addObject("idx", list.get(0).getSch_idx());
 	    /////////////
 	    mav.addObject("sch_mov_title", list.get(0).getSch_mov_title());
+	    mav.addObject("sch_city", list.get(0).getSch_city());
 	    mav.addObject("sch_branch", list.get(0).getSch_branch());
 	    mav.addObject("sch_day", list.get(0).getSch_day());
 	    mav.addObject("sch_theater", list.get(0).getSch_theater());
