@@ -205,15 +205,6 @@ public class AdminTheaterController {
 		map.put("day", dto.getSch_day());
 		List<ScheduleDTO> blist=scheduleDao.branchCheck(map);
 		ModelAndView mav=new ModelAndView();
-<<<<<<< HEAD
-		List list=scheduleDao.checkSchedule(map);
-		System.out.println(list.size());
-		if(list.size()==0 || list==null) {
-			dto.setSch_start_hour(""+hour);
-			dto.setSch_start_min(""+min);
-			dto.setSch_end_hour(""+hour2);
-			dto.setSch_end_min(""+min2);
-=======
 		List list=new ArrayList();
 		int count=0;
 		if(blist==null || blist.size()==0) {
@@ -249,7 +240,6 @@ public class AdminTheaterController {
 			}else {
 				dto.setSch_end_min(""+min2);
 			}
->>>>>>> 97adff23bc84523649d9424cd722cbdc31d4c7b7
 			dto.setSch_dayD(dto.getSch_day());
 			dto.setSch_city(jdto.getAdmin_area());
 			dto.setSch_branch(jdto.getAdmin_shop());
