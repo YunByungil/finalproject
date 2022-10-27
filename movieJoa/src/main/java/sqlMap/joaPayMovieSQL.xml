@@ -25,5 +25,123 @@
 		    #{payMov_merchant_uid},
 		    sysdate  
 		    )
-  	</insert>     	
+  	</insert>
+  	<select id="allMovCnt" resultType="Integer">
+  		select
+  			count(*)
+  		from
+  			joa_payMovie
+  	</select>
+  	<select id="selMovCnt" parameterType="String" resultType="Integer">
+  		select
+  			count(*)
+  		from
+  			joa_payMovie
+  		where
+  			payMov_mov_title=#{payMov_mov_title}
+  	</select>
+  	<update id="updateBookPer" parameterType="Map">
+  		update
+  			joa_movie
+  		set
+  			mov_booking_percent=#{mov_booking_percent}
+  		where
+  			mov_title=#{mov_title}
+  	</update>
+  	<select id="allBookCnt" parameterType="String" resultType="Integer">
+  		select
+  			count(*)
+  		from
+  			joa_payMovie, joa_member
+  		where
+  			payMov_mem_id=mem_id
+  		and
+  			payMov_mov_title=#{payMov_mov_title}
+  	</select>
+  	<select id="manBookCnt" parameterType="String" resultType="Integer">
+  		select
+  			count(*)
+  		from
+  			joa_payMovie, joa_member
+  		where
+  			payMov_mem_id=mem_id
+  		and
+  			payMov_mov_title=#{payMov_mov_title}
+  		and
+  			mem_gender='남'
+  	</select>
+  	<select id="womanBookCnt" parameterType="String" resultType="Integer">
+  		select
+  			count(*)
+  		from
+  			joa_payMovie, joa_member
+  		where
+  			payMov_mem_id=mem_id
+  		and
+  			payMov_mov_title=#{payMov_mov_title}
+  		and
+  			mem_gender='여'
+  	</select>
+  	<update id="updateGenderPer" parameterType="Map">
+  		update
+  			joa_movie
+  		set
+  			mov_gender_percent=#{mov_gender_percent}
+  		where
+  			mov_title=#{payMov_mov_title}
+  	</update>
+	<select id="oneBookCnt" parameterType="String" resultType="Integer">
+  		select 
+  			count(*) 
+  		from 
+  			joa_payMovie, joa_member 
+  		where 
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 <![CDATA[<]]> 19
+  	</select>
+  	<select id="twoBookCnt" parameterType="String" resultType="Integer">
+  		select 
+  			count(*) 
+  		from 
+  			joa_payMovie, joa_member 
+  		where 
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 20 and 29
+  	</select>
+  	<select id="threeBookCnt" parameterType="String" resultType="Integer">
+  		select 
+  			count(*) 
+  		from 
+  			joa_payMovie, joa_member 
+  		where 
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 30 and 39
+  	</select>
+  	<select id="fourBookCnt" parameterType="String" resultType="Integer">
+  		select 
+  			count(*) 
+  		from 
+  			joa_payMovie, joa_member 
+  		where 
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 40 and 49
+  	</select>
+  	<select id="fiveBookCnt" parameterType="String" resultType="Integer">
+  		select 
+  			count(*) 
+  		from 
+  			joa_payMovie, joa_member 
+  		where 
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 <![CDATA[>]]> 49
+  	</select>
+  	<update id="updateAgePer" parameterType="Map">
+  		update
+  			joa_movie
+  		set
+  			mov_age_percent=#{mov_age_percent}
+  		where
+  			mov_title=#{payMov_mov_title}
+  	</update>
+  	<select id="allMovieList" resultType="joa.movie.model.JoaMovieDTO">
+  		select
+  			*
+  		from
+  			joa_movie
+  	</select>     	
   </mapper>
