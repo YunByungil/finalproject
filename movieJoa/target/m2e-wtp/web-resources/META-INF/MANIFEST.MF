@@ -1,13 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: Galmae
-=======
-<<<<<<< HEAD
-Built-By: sonion
-=======
-Built-By: Yong
->>>>>>> origin/dummy_1021
->>>>>>> c18fc238f93c25c092036b272d9332a23aa54d3c
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 

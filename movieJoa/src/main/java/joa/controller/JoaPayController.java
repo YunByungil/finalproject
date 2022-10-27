@@ -85,5 +85,18 @@ public class JoaPayController {
 		return mav;
 	}
 	
+	@RequestMapping("/joaBookPay.do")
+	public ModelAndView joaBookPay(JoaPayMovDTO dto) {
+		
+		int result = joaPayService.joaBookPayAdd(dto);
+		String msg;
+		msg=result>0?"상품을 장바구니에 담았습니다.":"장바구니에 담기 실패";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("payMsg",msg);
+		mav.setViewName("joaBook/joaBook_pay_result");		
+		return mav;
+	}
+	
+	
 
 }

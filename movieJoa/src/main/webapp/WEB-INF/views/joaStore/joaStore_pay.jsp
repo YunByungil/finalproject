@@ -37,7 +37,7 @@ function paymentKakaoPay(){
         buyer_name : "${mem_name}",
         buyer_tel : "${mem_tel}"
         
-    , function (rsp) { // callback
+    }, function (rsp) { // callback
     	
         if (rsp.success) {
             alert("결제가 완료되었습니다");
@@ -51,9 +51,9 @@ function paymentKakaoPay(){
         	
             alert("결제실패");
         }
-    }
     });
 }
+
 
 function paymentCreditCard(){
 	
@@ -68,7 +68,7 @@ function paymentCreditCard(){
         buyer_name : "${mem_name}",
         buyer_tel : "${mem_tel}"
         
-    , function (rsp) { // callback
+    }, function (rsp) { // callback
     	
         if (rsp.success) {
             alert("결제가 완료되었습니다");
@@ -82,9 +82,10 @@ function paymentCreditCard(){
         	
             alert("결제실패");
         }
-    }
     });
+
 }
+
 </script>
 
 </head>

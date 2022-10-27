@@ -5,6 +5,7 @@ import java.util.*;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import joa.adminStore.model.AdminStoreDTO;
+import joa.pay.model.*;
 
 public class JoaPayDAOImple implements JoaPayDAO {
 
@@ -24,6 +25,12 @@ public class JoaPayDAOImple implements JoaPayDAO {
 	@Override
 	public int payProductResultAdd(JoaPayProDTO dto) {
 		int result=sqlMap.insert("payProductResultAdd",dto);
+		return result;
+	}
+	
+	@Override
+	public int joaBookPayAdd(JoaPayMovDTO dto) {
+		int result=sqlMap.insert("joaBookPayAdd",dto);
 		return result;
 	}
 }
