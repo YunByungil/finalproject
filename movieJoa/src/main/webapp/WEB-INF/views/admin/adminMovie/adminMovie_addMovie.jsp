@@ -61,7 +61,9 @@
 <tr>
 	<th class="th_basic">상영 시간</th>
 	<td class="td_basic"><div class="time_div">
-		<form:input type="text" path="mov_running_time" id="mrt" class="input_text_basic" placeholder="총 상영시간" onkeyup="addMovieNumberCheck();"/> 분 <span id="ersp" class="error_span_general"></span><span class="caution fl_r">분 단위로 입력해주세요.</span></div>
+		<input type="text" name="mov_running_time" id="mrt" class="input_text_basic" placeholder="총 상영시간" onkeyup="addMovieNumberCheck();" required/> 분 <span id="ersp" class="error_span_general"></span><span class="caution fl_r">분 단위로 입력해주세요.</span></div>
+
+		
 	
 </tr>
 <tr>

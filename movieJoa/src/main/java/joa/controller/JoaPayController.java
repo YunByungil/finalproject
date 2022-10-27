@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import joa.pay.model.*;
 import joa.store.model.JoaStoreDTO;
 import joa.store.model.JoaStoreService;
+import joa.movie.model.*;
 
 @Controller
 public class JoaPayController {
@@ -84,6 +85,19 @@ public class JoaPayController {
 		mav.setViewName("joaStore/joaStore_pay_result");
 		return mav;
 	}
+	
+	@RequestMapping("/joaBookPay.do")
+	public ModelAndView joaBookPay(JoaPayMovDTO dto) {
+		
+		int result = joaPayService.joaBookPayAdd(dto);
+		String msg;
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("payMsg",msg);
+		mav.setViewName("joaBook/joaBook_pay_result");		
+		return mav;
+	}
+	
 	
 
 }

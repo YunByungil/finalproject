@@ -63,7 +63,7 @@ book{
 	        <div class="box-image">
 	            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
 	                <span class="thumb-image">
-	                    <img src="/movieJoa/imgmovie/${list.mov_poster }">
+	                    <img src="/movieJoa/img/movie_poster/${list.mov_poster }">
 	                </span>
 	            </a>
 	        </div>
@@ -97,7 +97,7 @@ book{
 	            </span>
 	            <br>
 	            <span id="likes"> 
-	                <a id="book" href="/ticket/?MOVIE_CD=20030774&MOVIE_CD_GROUP=20027588">예매하기</a>
+	                <a id="book" href="book.do">예매하기</a>
 	            </span>
 	            <br>&nbsp
 	        </div>    

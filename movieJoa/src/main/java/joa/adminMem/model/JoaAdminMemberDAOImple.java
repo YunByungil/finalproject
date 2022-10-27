@@ -1,8 +1,7 @@
-package joa.adminMember.model;
+package joa.adminMem.model;
 
 import java.util.*;
 import org.mybatis.spring.SqlSessionTemplate;
-
 import joa.member.model.JoaMemberDTO;
 
 public class JoaAdminMemberDAOImple implements JoaAdminMemberDAO {

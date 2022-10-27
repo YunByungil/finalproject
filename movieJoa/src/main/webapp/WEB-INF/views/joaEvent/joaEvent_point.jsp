@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
 <script>
 function getPoint(){
-	window.location.href="joaEventGetPoint.do?sid=syseyear&event_code=222&event_subject=MJOA 랜덤 선물 응모 이벤트"
+	window.location.href="joaEventGetPoint.do?sid=${sid}&event_code=${event_code}&event_subject=${event_subject}"
 }
 </script>
 </head>
