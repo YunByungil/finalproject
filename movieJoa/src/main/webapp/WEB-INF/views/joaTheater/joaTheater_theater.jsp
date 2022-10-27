@@ -47,7 +47,7 @@ li {
 <form>
 
 
-<div style="width: 1250px;">
+<div style="width: 100%;">
 
 <div>
 <div style="width: 10%; float: left;">&nbsp;</div>
@@ -88,9 +88,9 @@ ${dto }
 </div>
 
 <div style="clear: both;">
-<h1>=====================Theater==================</h1>
+<h1>====================Theater====================</h1>
 <div>
-<h3>CGV ${sch_branch }</h3>
+<h3>MJOA ${sch_branch }</h3>
 <img src="/movieJoa/img/theater/${sch_branch }.jpg" width="1000px" height="1000px">
 </div>
 <h2>상영시간표</h2>
@@ -125,7 +125,10 @@ ${dto.sdate }개봉
 		
 		<c:if test="${dto.subject eq dto3.sch_mov_title}">
 			<br>
-			<a href="javascript:book('${dto3.sch_start_hour}')">${dto3.sch_start_hour }</a>
+			${dto3.sch_theater }관/
+			<a href="javascript:book('${dto3.sch_start_hour}')">
+			${dto3.sch_start_hour }:${dto3.sch_start_min }
+			</a>
 		</c:if>
 	</c:forEach>
 	<br>
@@ -139,7 +142,6 @@ ${dto.sdate }개봉
 <input type="hidden" name="sch_city" id="sch_city">
 <input type="hidden" name="sch_branch" id="sch_branch">
 <input type="hidden" name="sch_dayd" id="sch_dayd">
-<input type="submit" value="test">
 </form>
 
 <div>
@@ -150,8 +152,6 @@ ${dto.sdate }개봉
 </body>
 <script>
 function welcome(city) {
-	window.alert(city);
-	window.alert('${sch_branch}');
 	var classAdd = document.getElementById(city); // 서울지역 기본
 	classAdd.classList.add('checkCitys'); // 서울 기본
 	
@@ -165,7 +165,6 @@ function welcome(city) {
 	document.getElementById('1').style.display = 'block';
 }
 function checkCity(city) {
-	window.alert(city);
 	if(city == '서울') {
 		document.getElementById('1').style.display = 'block';
 		document.getElementById('2').style.display = 'none';
@@ -192,7 +191,6 @@ function checkCity(city) {
 	document.getElementById('sch_city').value = city;
 }
 function checkBranch(branch) {
-	window.alert(branch);
 	////////////////class 추가 삭제///////////////////////	
 	var classAdd = document.getElementById(branch);
 	
@@ -206,7 +204,6 @@ function checkBranch(branch) {
 	window.location.href = 'joaTheater.do?sch_city='+document.getElementById('sch_city').value+'&sch_branch='+branch;
 }
 function checkYoil(yoil) {
-	window.alert(yoil);
 	////////////////class 추가 삭제///////////////////////	
 	var classAdd = document.getElementById(yoil);
 	
@@ -229,10 +226,14 @@ function checkYoil(yoil) {
 		data: JSON.stringify(form),
 		contentType: "application/json; charset=utf-8;",
 		success: function(data) {
-			window.alert('성공');
 			$('#new').html(data.reset);
 		}
 	});
+}
+
+function book(bk) {
+	window.location.href = '/movieJoa/book.do';
+	
 }
 </script>
 </html>

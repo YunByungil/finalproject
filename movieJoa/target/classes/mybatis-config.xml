@@ -23,6 +23,7 @@
 		<mapper resource="sqlMap/joaMypageSQL.xml"/>
 		<mapper resource="sqlMap/joaStoreSQL.xml"/>
 		<mapper resource="sqlMap/joaPayStoreSQL.xml"/>
+		<mapper resource="sqlMap/joaPayMovieSQL.xml"/>
 		<mapper resource="sqlMap/joaTheaterSQL.xml"/>
 		<mapper resource="sqlMap/joaReviewSQL.xml"/>
 		<mapper resource="sqlMap/adminCouponSQL.xml"/>

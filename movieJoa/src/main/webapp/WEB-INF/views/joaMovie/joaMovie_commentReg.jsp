@@ -7,6 +7,8 @@
 function openPop(){
 	if(${checkId}==1){
 		window.alert('이미 관람평 작성을 완료하셨습니다.');
+	}else if(${sid==""}){
+		window.alert("로그인이 필요한 서비스입니다.")
 	}else{
 		document.getElementById('popup_layer').style.display = 'block';
 	}
@@ -42,8 +44,12 @@ function closeUpdate(){
 	setTimeout(function(){location.reload();},100);
 }
 function like(rev_idx, rev_id, rev_movie_title, rev_like){
-	var param='rev_idx='+rev_idx+'&rev_id='+rev_id+'&rev_movie_title='+rev_movie_title+'&rev_like='+rev_like;
-	sendRequest('like.do',param,likeResult,'GET');
+	if(${sid==""}){
+		window.alert("로그인이 필요한 서비스입니다.")
+	}else{
+		var param='rev_idx='+rev_idx+'&rev_id='+rev_id+'&rev_movie_title='+rev_movie_title+'&rev_like='+rev_like;
+		sendRequest('like.do',param,likeResult,'GET');
+	}
 }
 function likeResult(){
 	if(XHR.readyState==4){
@@ -217,14 +223,14 @@ function delResult(){
 	<span>
 		<span style="color: red;" id="${list.rev_id }" onclick="like(${list.rev_idx}, '${list.rev_id}', '${list.rev_movie_title }', '${list.rev_like }');slow();">♡</span> ${list.rev_like }
 	</span></<br>
-	<c:if test="${list.rev_id=='tester' }">
+	<c:if test="${list.rev_id==sid }">
 		<a onclick="openUpdate()">편집</a> <a onclick="openDelete('${list.rev_id}', '${list.rev_movie_title}');">삭제</a><br>
 	</c:if>
 	<hr>
 </c:forEach>
 	<div class="popup_layer" style="display: none;" id="update">
 		<div class="popup_box">
-			<c:import url="/commentUpdateForm.do?rev_id=tester"/>
+			<c:import url="/commentUpdateForm.do?rev_id=${sid }"/>
 		</div>
 	</div>	
 <div class="paging">

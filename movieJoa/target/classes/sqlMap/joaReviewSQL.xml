@@ -145,6 +145,6 @@
   		and 
   			mov_idx=#{mov_idx}
   		and 
-  			lik_like_id='tester'
+  			lik_like_id=#{rev_id}
   	</select>
   </mapper>

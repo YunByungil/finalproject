@@ -52,7 +52,7 @@ function scheduleSubmit() {
 </tr>
 </table>
 </div>
-	<div class="btn_wrap"><input type="button" value="돌아가기" class="button_sub"><input type="button" value="상품 등록" class="button_main" onclick="scheduleSubmit();"></div>
+	<div class="btn_wrap"><input type="button" value="스케줄 등록" class="button_main" onclick="scheduleSubmit();"></div>
 </form>
 </div>
 </body>

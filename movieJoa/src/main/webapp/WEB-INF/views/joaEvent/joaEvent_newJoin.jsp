@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/adminMovie.css">
 <script>
 function getDiscount(){
-	window.location.href='joaEventGetNewJoin.do?sid=syseyear&event_code=111&event_subject=신규 고객 감사 할인쿠폰 증정 이벤트&cou_idx=111';
+	window.location.href='joaEventGetNewJoin.do?sid=${sid}&event_code=${event_code}&event_subject=${event_subject}&cou_idx=${cou_idx}';
 }
 </script>
 </head>

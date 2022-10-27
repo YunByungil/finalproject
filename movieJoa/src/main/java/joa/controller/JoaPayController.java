@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import joa.pay.model.*;
 import joa.store.model.JoaStoreDTO;
 import joa.store.model.JoaStoreService;
+import joa.movie.model.*;
 
 @Controller
 public class JoaPayController {
@@ -84,6 +85,60 @@ public class JoaPayController {
 		mav.setViewName("joaStore/joaStore_pay_result");
 		return mav;
 	}
+	
+	@RequestMapping("/joaBookPay.do")
+	public ModelAndView joaBookPay(JoaPayMovDTO dto) {
+		
+
+		int result = joaPayService.joaBookPayAdd(dto);
+		String msg;		
+		//junsung writed
+		List<JoaMovieDTO> aml=joaPayService.allMovieList();
+		double allMovCnt=joaPayService.allMovCnt();
+		for(int i=0;i<aml.size();i++) {
+			double selMovCnt=joaPayService.selMovCnt(aml.get(i).getMov_title());
+			double bookPer_d=selMovCnt/allMovCnt*100;
+			String bookPer=String.format("%.1f", bookPer_d);
+			Map map=new HashMap();
+			map.put("mov_title", aml.get(i).getMov_title());
+			map.put("mov_booking_percent", bookPer);
+			joaPayService.updateBookPer(map);
+		}
+		String payMov_mov_title=dto.getPayMov_mov_title();
+		double allBookCnt=joaPayService.allBookCnt(payMov_mov_title);
+		double manBookCnt=joaPayService.manBookCnt(payMov_mov_title);
+		double manPer_d=manBookCnt/allBookCnt*100;
+		String manPer=String.format("%.1f", manPer_d);
+		double womanBookCnt=joaPayService.womanBookCnt(payMov_mov_title);
+		double womanPer_d=womanBookCnt/allBookCnt*100;
+		String womanPer=String.format("%.1f", womanPer_d);
+		double oneBookCnt=joaPayService.oneBookPer(payMov_mov_title);
+		double onePer_d=oneBookCnt/allBookCnt*100;
+		String onePer=String.format("%.1f", onePer_d);
+		double twoBookCnt=joaPayService.twoBookPer(payMov_mov_title);
+		double twoPer_d=twoBookCnt/allBookCnt*100;
+		String twoPer=String.format("%.1f", twoPer_d);
+		double threeBookCnt=joaPayService.threeBookPer(payMov_mov_title);
+		double threePer_d=threeBookCnt/allBookCnt*100;
+		String threePer=String.format("%.1f", threePer_d);
+		double fourBookCnt=joaPayService.fourBookPer(payMov_mov_title);
+		double fourPer_d=fourBookCnt/allBookCnt*100;
+		String fourPer=String.format("%.1f", fourPer_d);
+		double fiveBookCnt=joaPayService.fiveBookPer(payMov_mov_title);
+		double fivePer_d=fiveBookCnt/allBookCnt*100;
+		String fivePer=String.format("%.1f", fivePer_d);
+		Map map=new HashMap();
+		map.put("payMov_mov_title", payMov_mov_title);
+		map.put("mov_gender_percent", manPer+","+womanPer);
+		map.put("mov_age_percent", onePer+","+twoPer+","+threePer+","+fourPer+","+fivePer);
+		joaPayService.updateGenderPer(map);
+		joaPayService.updateAgePer(map);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("joaBook/joaBook_pay_result");		
+		return mav;
+	}
+	
 	
 
 }

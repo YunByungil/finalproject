@@ -1,6 +1,8 @@
 package joa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 import joa.book.model.*;
+import joa.pay.model.*;
 
 @Controller
 public class JoaBookController {
@@ -28,6 +31,7 @@ public class JoaBookController {
 	
 	@RequestMapping("/bookSubmit.do")
 	public ModelAndView bs(JoaBookDTO dto) {
+		String[] rows = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		ModelAndView mav = new ModelAndView();
 //		System.out.println(dto.getSch_mov_title());
 //		System.out.println(dto.getSch_branch());
@@ -63,11 +67,13 @@ public class JoaBookController {
 	    mav.addObject("idx", list.get(0).getSch_idx());
 	    /////////////
 	    mav.addObject("sch_mov_title", list.get(0).getSch_mov_title());
+	    mav.addObject("sch_city", list.get(0).getSch_city());
 	    mav.addObject("sch_branch", list.get(0).getSch_branch());
 	    mav.addObject("sch_day", list.get(0).getSch_day());
 	    mav.addObject("sch_theater", list.get(0).getSch_theater());
 	    mav.addObject("sch_start_hour", list.get(0).getSch_start_hour());
 	    mav.addObject("sch_start_min", list.get(0).getSch_start_min());
+	    mav.addObject("rows",rows);
 	    /////////////
 		mav.setViewName("joaBook/joaBook_seat");
 		return mav;
@@ -81,9 +87,9 @@ public class JoaBookController {
 		System.out.println("성공 : " +dto.getSch_mov_title());
 		List<JoaBookDTO> list = joaBookService.moviesBranchList(dto.getSch_mov_title());
 		String msg = "";
-		msg += "<tr><th>극장</th></tr>";
+		msg += "<tr class=trtr><th>극장</th></tr>";
 		for (int i=0; i<list.size(); i++) {
-			msg += "<td id="+list.get(i).getSch_branch()+"><a href=javascript:next2('"+list.get(i).getSch_branch()+"')>"+list.get(i).getSch_branch()+"</a></td>";
+			msg += "<tr class=trtrtr><td id="+list.get(i).getSch_branch()+" ><a href=javascript:next2('"+list.get(i).getSch_branch()+"')>"+list.get(i).getSch_branch()+"</a></td></tr>";
 		}
 		map.put("reloadBranch", msg);
 		return map;
@@ -95,9 +101,9 @@ public class JoaBookController {
 		HashMap map = new HashMap();
 		List<JoaBookDTO> list = joaBookService.moveisDateList(dto.getSch_mov_title(), dto.getSch_branch());
 		String msg = "";
-		msg += "<tr><th>날짜</th></tr>";
+		msg += "<tr class=trtr><th>날짜</th></tr>";
 		for (int i=0; i<list.size(); i++) {
-			msg += "<tr><td id="+list.get(i).getSch_day()+"><a href=javascript:next3('"+list.get(i).getSch_day()+"')>"+list.get(i).getSch_day()+"</a></td></tr>";
+			msg += "<tr class=trtrtr><td id="+list.get(i).getSch_day()+"><a href=javascript:next3('"+list.get(i).getSch_day()+"')>"+list.get(i).getSch_day()+"</a></td></tr>";
 		}
 		map.put("reloadDate", msg);
 		return map;
@@ -109,9 +115,9 @@ public class JoaBookController {
 		HashMap map = new HashMap();
 		List<JoaBookDTO> list = joaBookService.moveisTimeList(dto.getSch_mov_title(), dto.getSch_branch(), dto.getSch_day());
 		String msg = "";
-		msg += "<tr><th>관/시간</th></tr>";
+		msg += "<tr class=trtr><th>관/시간</th></tr>";
 		for (int i=0; i<list.size(); i++) {
-			msg += "<tr><td id="+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"><a href=javascript:next4('"+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"')>"+
+			msg += "<tr class=trtrtr><td id="+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"><a href=javascript:next4('"+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"')>"+
 					list.get(i).getSch_theater()+"관/ 시작 : " +
 					list.get(i).getSch_start_hour()+":"+list.get(i).getSch_start_min()+"/ 끝 : "+
 					list.get(i).getSch_end_hour()+":"+list.get(i).getSch_end_min()+
@@ -120,5 +126,5 @@ public class JoaBookController {
 		map.put("reloadTime", msg);
 		return map;
 	}
-	
+
 }

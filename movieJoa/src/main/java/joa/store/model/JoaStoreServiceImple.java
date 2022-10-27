@@ -60,5 +60,11 @@ public class JoaStoreServiceImple implements JoaStoreService{
 		int result=joaStoreDao.storeCartDelete(dto);
 		return result;
 	}
+	
+	@Override
+	public int storeCartUpdateCount(String car_idx) {
+		int result=joaStoreDao.storeCartUpdateCount(car_idx);
+		return result;
+	}
 
 }

@@ -37,8 +37,7 @@ a:visited {
 </head>
 <body>
 <div align="center">
-<form>
-<div>
+<!-- <div>
 <span>인원수 선택</span>
 <ul>
 <li id="person0" class="person"><a href="javascript:ticket(0);">0</a></li>
@@ -46,23 +45,11 @@ a:visited {
 <li id="person2" class="person"><a href="javascript:ticket(2);">2</a></li>
 </ul>
 <input type="hidden" id="pcheck" name="pcheck"> 
-</div>
+</div> -->
 
 <h1 align="center">SCREEN</h1>
 <h1>빨간색 좌석만 선택 가능.</h1>
 <table border="1" cellspacing="0">
-	<thead>
-		<tr>
-			<c:forEach var="cols" begin="0" end="${width }" step="1">
-				<c:if test="${cols!=0 }">
-					<th width="50px" height="50px">${cols }</th>
-				</c:if>
-				<c:if test="${cols==0 }">
-					<th width="50px" height="50px">구분</th>
-				</c:if>
-			</c:forEach>
-		</tr>
-	</thead>
 	<tbody>
 	<c:if test="${not empty seats }">
 		<c:forEach var="i" begin="0" end="${height-1}" step="1">
@@ -73,10 +60,10 @@ a:visited {
 					</c:if>
 					<c:if test="${j!=0 }">
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())!='N' }">
-							<td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');"></td>
+							<td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');">${seats[i][j-1] }</td>
 						</c:if>
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())=='N' }">
-							<td width="50px" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');"></td>
+							<td width="50px" height="50px" id="${seats[i][j-1] }"></td>
 						</c:if>
 					</c:if>
 				</c:forEach>
@@ -86,17 +73,18 @@ a:visited {
 	</tbody>
 </table>
 
-<input type="hidden" name="sidx" value="${idx }">
-<input type="hidden" name="code" id="code">
-<input type="hidden" name="name" value="dool">
-<input type="hidden" name="sch_mov_title" id="sch_mov_title" value="${sch_start_min }">
-<input type="hidden" name="sch_branch" id="sch_branch" value="${sch_branch }">
-<input type="hidden" name="sch_day" id="sch_day" value="${sch_day }">
-<input type="hidden" name="sch_theater" id="sch_theater" value="${sch_theater }">
-<input type="hidden" name="sch_start_hour" id="sch_start_hour" value="${sch_start_hour }">
-<input type="hidden" name="sch_start_min" id="sch_start_min" value="${sch_start_min }">
-<input type="submit" value="testz">
-</form>
+<input type="hidden" name="payMov_the_idx" value="${idx }">
+<input type="hidden" name="payMov_sch_seat" id="code">
+<input type="hidden" name="payMov_mem_id" value="dool">
+
+<input type="hidden" name="payMov_price" value="10000">
+<input type="hidden" name="payMov_mov_title" id="sch_mov_title" value="${sch_mov_title }">
+<input type="hidden" name="payMov_the_city" id="sch_city" value="${sch_city }">
+<input type="hidden" name="payMov_the_branch" id="sch_branch" value="${sch_branch }">
+<input type="hidden" name="payMov_sch_day" id="sch_day" value="${sch_day }">
+<input type="hidden" name="payMov_sch_theater" id="sch_theater" value="${sch_theater }">
+<input type="hidden" name="payMov_sch_start_hour" id="sch_start_hour" value="${sch_start_hour }">
+<input type="hidden" name="payMov_sch_start_min" id="sch_start_min" value="${sch_start_min }">
 </div>
 </body>
 
@@ -115,15 +103,20 @@ function checkSeat(seat) {
 	}
 	
 		$('#code').val(seat);
-		document.getElementById('payid').style.color = 'red';
+		document.getElementById('payid').style.display = 'none';
+		document.getElementById('realpayid').style.display = 'block';
 	//window.alert(seat);
 	
 	
 	
 	var subText = document.getElementById('s');
-	subText.innerHTML = seat;
+	var subText2 = document.getElementById('money');
+	subText.innerHTML = '좌석명 : '+seat;
+	subText2.innerHTML = '가격 : 10000원';
 }
-function hi(k) {
+
+
+/**function hi(k) {
 	var first = k; // 보내는 값
 	var first1 = document.getElementById(k); //span의 id
 	var buy = document.getElementById("buy"); // submit block으로 해놓은ㄱ ㅓ바꾸는 거
@@ -241,6 +234,6 @@ function base() {
 	ticket(0);
 	var sc = document.getElementById("screen");
 	sc.style.display = 'none';
-}
+} */
 </script>
 </html>
