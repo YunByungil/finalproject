@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import joa.adminMember.model.JoaAdminMemberDTO;
+import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.adminRevenue.model.JoaAdminPayMovieDAO;
 import joa.adminRevenue.model.JoaAdminPayProductDAO;
 
@@ -56,8 +56,8 @@ public class AdminRevenueController {
 		Map<String, Integer> map=new HashMap<String, Integer>();
 		for(int i=0; i<list.size(); i++) {
 			String temp=list.get(i).getAdmin_shop();
+			System.out.println(temp);
 			int result=joaAdminPayMovieDao.revenueShopMoney(temp);
-			System.out.println(temp+" "+result);
 			map.put(temp, result);
 		}
 		mav.addObject("list",list);

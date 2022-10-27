@@ -30,7 +30,7 @@ public class AdminMovieDTO {
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
 	private String mov_genre;
-	
+
 	private int mov_running_time;
 
 	@NotBlank(message="공백 또는 null일수 없습니다.")
