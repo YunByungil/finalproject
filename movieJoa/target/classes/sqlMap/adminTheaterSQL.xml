@@ -45,7 +45,7 @@
   	<select id="theaterCheck" parameterType="map" resultType="string">
   		select the_theater from joa_theater where the_theater=#{gt} and the_branch=#{branch} and the_city=#{city}
   	</select>
-  	<select id="adminIdSearch" parameterType="string" resultType="joa.adminMember.model.JoaAdminMemberDTO">
+  	<select id="adminIdSearch" parameterType="string" resultType="joa.adminMem.model.JoaAdminMemberDTO">
   		select * from joa_admin where admin_id=#{sid}
   	</select>
   	<select id="theaterList" parameterType="map" resultType="joa.adminTheater.model.TheaterDTO">

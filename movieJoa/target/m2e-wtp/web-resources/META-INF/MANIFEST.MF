@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: ￬ﾜﾤ￬ﾧﾀ￭ﾘﾜ
+=======
+Built-By: Galmae
+>>>>>>> dummy_1021_master
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 

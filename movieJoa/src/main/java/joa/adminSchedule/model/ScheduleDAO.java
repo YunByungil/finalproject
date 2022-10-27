@@ -2,7 +2,7 @@ package joa.adminSchedule.model;
 
 import java.util.*;
 
-import joa.adminMember.model.JoaAdminMemberDTO;
+import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.adminTheater.model.TheaterDTO;
 
 public interface ScheduleDAO {
