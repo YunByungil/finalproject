@@ -28,6 +28,7 @@ public class JoaBookController {
 	
 	@RequestMapping("/bookSubmit.do")
 	public ModelAndView bs(JoaBookDTO dto) {
+		String[] rows = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		ModelAndView mav = new ModelAndView();
 //		System.out.println(dto.getSch_mov_title());
 //		System.out.println(dto.getSch_branch());
@@ -69,6 +70,7 @@ public class JoaBookController {
 	    mav.addObject("sch_theater", list.get(0).getSch_theater());
 	    mav.addObject("sch_start_hour", list.get(0).getSch_start_hour());
 	    mav.addObject("sch_start_min", list.get(0).getSch_start_min());
+	    mav.addObject("rows",rows);
 	    /////////////
 		mav.setViewName("joaBook/joaBook_seat");
 		return mav;

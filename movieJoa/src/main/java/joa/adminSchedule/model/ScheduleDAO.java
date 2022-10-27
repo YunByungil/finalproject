@@ -2,8 +2,8 @@ package joa.adminSchedule.model;
 
 import java.util.*;
 
-import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.adminTheater.model.TheaterDTO;
+import joa.adminMember.model.JoaAdminMemberDTO;
 
 public interface ScheduleDAO {
 	public List checkSchedule(Map map);
@@ -13,5 +13,8 @@ public interface ScheduleDAO {
 	public int scheduleInsert(ScheduleDTO dto);
 	public int scheduleCount(String day);
 	public List<ScheduleDTO> scheduleList(int cp,int ls,String day);
+	public List<ScheduleDTO> branchCheck(Map map);
+	public int runtimeCheck(String title);
+	public int scheduleDelete(int idx);
 	
 }

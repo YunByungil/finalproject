@@ -50,18 +50,6 @@ a:visited {
 <h1 align="center">SCREEN</h1>
 <h1>빨간색 좌석만 선택 가능.</h1>
 <table border="1" cellspacing="0">
-	<thead>
-		<tr>
-			<c:forEach var="cols" begin="0" end="${width }" step="1">
-				<c:if test="${cols!=0 }">
-					<th width="50px" height="50px">${cols }</th>
-				</c:if>
-				<c:if test="${cols==0 }">
-					<th width="50px" height="50px">구분</th>
-				</c:if>
-			</c:forEach>
-		</tr>
-	</thead>
 	<tbody>
 	<c:if test="${not empty seats }">
 		<c:forEach var="i" begin="0" end="${height-1}" step="1">
@@ -72,10 +60,10 @@ a:visited {
 					</c:if>
 					<c:if test="${j!=0 }">
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())!='N' }">
-							<td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');"></td>
+							<td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');">${seats[i][j-1] }</td>
 						</c:if>
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())=='N' }">
-							<td width="50px" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');"></td>
+							<td width="50px" height="50px" id="${seats[i][j-1] }"></td>
 						</c:if>
 					</c:if>
 				</c:forEach>

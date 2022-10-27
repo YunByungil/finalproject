@@ -35,8 +35,14 @@ public class TheaterDAOImple implements TheaterDAO {
 	}
 	
 	@Override
-	public List theaterList(Map map) {
-		List list=sqlMap.selectList("theaterList",map);
+	public List<TheaterDTO> theaterListView(Map map) {
+		List<TheaterDTO> list=sqlMap.selectList("theaterListView",map);
 		return list;
+	}
+	
+	@Override
+	public int theaterDelete(int idx) {
+		int result=sqlMap.delete("theaterDelete",idx);
+		return result;
 	}
 }
