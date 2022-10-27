@@ -83,21 +83,23 @@
 			<thead>
 				<th>관람권(번호)</th>
 				<th>분류</th>
+				<th>금액</th>
 				<th>유효기간</th>
 			</thead>
 		
 			<tbody>
 			<c:if test="${empty list }">
-				<tr><td colspan="3"><br></td></tr>
+				<tr><td colspan="4"><br></td></tr>
 				<tr>
-					<td colspan="3">고객님의 관람권 내역이 존재하지 않습니다.</td>
+					<td colspan="4">고객님의 관람권 내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
-				<c:forEach var="dto" items="${list }">
+				<c:forEach var="c_dto" items="${list }">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${cdto.own_idx }</td>
+						<td>${cdto.own_name }</td>
+						<td>${cdto.own_discount }</td>
+						<td>${cdto.own_limit_date }</td>
 					</tr>
 				</c:forEach>
 			</tbody>

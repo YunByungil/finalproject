@@ -84,19 +84,20 @@
 		</dl>
 		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">개인정보변경</div>
+			<div class="tiket_subject">프로필 등록</div>
 			<div class="p_button1"><input type="button" value="변경하기" id="p_button1_b" onclick="inputs()"></div>
 			<br>
 			<div class="my_ticet">
 			<hr class="ti_hr">
-			<div class="P_title">닉네임</div><div class="p_content1"><input type="text" class="p_content" readonly></div>
+			<input type="hidden" name="pro_id" value="${mem_id }">
+			<div class="P_title">닉네임</div><div class="p_content1"><input type="text" name="pro_nickname" class="p_content" readonly></div>
 			<hr class="ti_hr">
 			<div class="ad">
 			각 서비스(이벤트, 매거진, 영화리뷰 등)의 리뷰 및 덧글작성시 등록하신 대표이미지가 노출됩니다.<br>
 			프로필 이미지 종류를 선택해 주세요.
 			<hr class="ad_hr">
 			</div>
-			<div class="P_title" id="P_title1">프로필 이미지</div><div class="p_content2_2"><div class="fileimage">이미지</div><input type="file" value="파일선택" class="file"></div>
+			<div class="P_title" id="P_title1">프로필 이미지</div><div class="p_content2_2"><div class="fileimage">이미지</div><input type="file" name="pro_image" value="파일선택" class="file"></div>
 			<hr class="ti_hr">
 			<div class="p_button2"><input type="button" value="변경완료" id="p_button2_b"></div>
 			<hr class="ti_hr">

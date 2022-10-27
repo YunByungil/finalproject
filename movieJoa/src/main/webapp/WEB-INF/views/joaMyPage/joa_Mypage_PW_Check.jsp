@@ -8,6 +8,16 @@
 <link rel="stylesheet" type="text/css" href="css/main.css?ver=7">
 <link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=7">
 <title>Insert title here</title>
+<script>
+function jbSubmit() {
+    var pw1 = document.getElementById( 'pw1' ).value;
+    var pw2 = document.getElementById( 'pw2' ).value;
+    if ( pw1 != pw2 ) {
+      alert( '비밀번호를 잘못 입력하셨습니다.' );
+      return false;
+    }
+  }
+</script>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
@@ -68,11 +78,12 @@
 		
 		<div class="joaMypage_home">
 		<div class="checkBox_sub">${subject }</div>
-		<form name="c_fm" action="${action }">
+		<form name="c_fm" action="${action }" onsubmit="jbSubmit();">
 					<div class="checkBox">
+					<input type="hidden" id="pw1" value="${dto.mem_pwd  }">
 							<hr>
 							<div class="checkBox_content">${content }</div>
-							<div class="checkBox_input_div"><input type="text" class="checkBox_input"></div>
+							<div class="checkBox_input_div"><input type="text" class="checkBox_input" id="pw2"></div>
 							<div class="checkBox_button_div"><input type="submit" value="확인" class="checkBox_button"></div>
 							<hr class="c_hr">
 					</div>	

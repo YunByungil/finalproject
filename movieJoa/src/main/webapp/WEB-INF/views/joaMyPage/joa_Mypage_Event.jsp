@@ -93,11 +93,12 @@
 					<td colspan="4">내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
-				<c:forEach var="dto" items="${list }">
+				<c:forEach var="E_dto" items="${list }">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${E_dto.eve_category   }</td>
+						<td>${E_dto.app_event_subject  }</td>
+						<td>${E_dto.eve_start_date  }</td>
+						<td>${E_dto.eve_end_date  }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
