@@ -5,13 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=3">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=3">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=9">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=9">
 <title>Insert title here</title>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-<section>
 <div class="mypage_main">
 	<div class="myInformation">
 		<div class="myproF">
@@ -73,46 +72,18 @@
 		</dl>
 		
 		
-		<div class="joaMypage_ti">
-			<div class="tiket_subject">영화관람권 사용 내역</div>
-			<br>
-			<div class="serchBar_usedCoupon_p">
-				<div class="serchBar_sub_p">제목검색</div>
-				<div class="serchBar_date_p"><input type="text" class="serchBar_input_p">&nbsp;&nbsp;<input type="button" value="조회하기" class="serchBar_i_button"></div>
+		<div class="joaMypage_home">
+		<div class="checkBox_sub">예매취소</div>
+					<div class="checkBox">
+							<hr>
+							<div class="checkBox_content1"><d>예매번호</d>를 입력해주세요.</div>
+							<div class="checkBox_input_div"><input type="text" class="checkBox_input"></div>
+							<div class="checkBox_button_div"><input type="submit" value="확인" class="checkBox_button"></div>
+							<hr class="c_hr">
+					</div>		
+				<br>
 			</div>
-		<div class="my_ticet">
-			<hr class="ti_hr">
-			<br>
-			<br>
-			<table class="ti_border">
-			<thead>
-			<br>
-				<th>분류</th>
-				<th>제목</th>
-				<th>상태</th>
-				<th>답변일</th>
-			</thead>
-		
-			<tbody>
-			<c:if test="${empty list }">
-				<tr><td colspan="4"><br></td></tr>
-				<tr>
-					<td colspan="4">고객님의 문의 내역이 존재하지 않습니다.</td>
-				</tr>
-			</c:if>
-				<c:forEach var="dto" items="${list }">
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</c:forEach>
-			</tbody>
-			</table>
-			
-			<hr class="ti_hr">
-			</div>
-			<br>
+		</div>
 </div>
 </section>
 <c:import url="../footer.jsp"></c:import>

@@ -47,8 +47,8 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 
 	}
 	@Override
-	public int deleteCounpon(Map map) {
-		int result = sqlMap.selectOne("CouponDelete",map);
+	public int deleteMovie(Map map) {
+		int result = sqlMap.selectOne("MovieDelete",map);
 		return result;
 	}
 	@Override

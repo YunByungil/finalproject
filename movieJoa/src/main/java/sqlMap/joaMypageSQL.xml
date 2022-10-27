@@ -7,7 +7,7 @@
   		
   		select * from
   		joa_member
-  		where mem_id=#{sid} and own_use_date is null
+  		where mem_id=#{sid}
   		
   	</select>
   	
@@ -20,17 +20,16 @@
         ) x
        where ROWNUM<![CDATA[<=]]>3 
   	</select>
-  	
   	<select id="mypageCouponCnt" parameterType="String" resultType="Integer">
   		select count(*) from
   		joa_owncou
   		where own_member_id=#{sid} and own_use_date is null
   	</select>
   	
-  	<select id="myPayMovie" parameterType="String" resultType="joa.mypage.model.JoaMypagePayMovieDTO">
+  	<select id="myPayMovie" parameterType="String" resultType="joa.mypage.model.JoaMyPagePayMovieDTO">
   		select * from
   		joa_payMovie
-  		where tic_mem_id=#{sid} 
+  		where payMov_mem_id=#{sid} 
   	</select>
   	
   	<select id="mypageCoupon" parameterType="String" resultType="joa.mypage.model.JoaMypageOwnCouDTO">
@@ -38,13 +37,13 @@
   		joa_owncou
   		where own_member_id=#{sid} and own_use_date is null
   	</select>
-  	
-  	<delete id="CouponDelete" parameterType="map">
-  		delete from joa_owncou
-  		where own_member_id=#{sid} and own_idx=#{idx}
+  
+  	<delete id="MovieDelete" parameterType="map">
+  		delete from joa_payMovie
+  		where payMov_mem_id=#{sid} and payMov_the_idx=#{idx}
   	</delete>
   	
-  	<select id="mypageUsedCoupon" parameterType="String" resultType="joa.mypage.model.JoaMypageOwnCouDTO">
+	<select id="mypageUsedCoupon" parameterType="String" resultType="joa.mypage.model.JoaMypageOwnCouDTO">
   		select * from
   		joa_owncou
   		where own_member_id=#{sid} and own_use_date is not null
@@ -52,11 +51,9 @@
   	
   	<select id="mypageService" parameterType="String" resultType="joa.mypage.model.JoaMypageServiceDTO">
   	select
-			*
-			from
-			(select rownum as rnum,a.* from
-    (select * from joa_helpquestion where hqt_id=#{sid} order by hqt_idx desc)a)b
-    where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	*
+	from
+	joa_helpquestion where hqt_id=#{sid} order by hqt_idx desc			
 	</select>
 	
 	<select id="mypageEvent" parameterType="String" resultType="joa.mypage.model.JoaMypageEventDTO">
@@ -91,7 +88,7 @@
 		select *
 		from joa_product_result inner join joa_payProduct
 		on joa_product_result.prs_date  = joa_payProduct.payPro_date
-		where prs_order_idx=#{sid} and payPro_mem_id =#{sid}	
+		where prs_order_idx=#{sid}
 	</select>
 	
 	<delete id="memberDelete" parameterType="String">
@@ -104,20 +101,20 @@
 		where mem_id=#{sid}
 	</update>
 	
-	<insert id="insertProfile" parameterType="JoaMypageProfileDTO">
-		insert joa_profiel
-		into
+	<insert id="insertProfile" parameterType="joa.mypage.model.JoaMypageProfileDTO">
+		insert into
+		joa_joa_profiel
 		values(
 		joa_profiel_pro_idx.nextval, #{pro_id},#{pro_nickname},#{pro_image},sysdate
 		)
 	</insert>
 	
-	<select id="memberReview">
-		select
-		*
-		from
+	<select id="memberReview" parameterType="String"  resultType="joa.mypage.model.JoaMypageRivewDTO" >
+		 select
+		 *
+		 from
 		 joa_Review
 		 where rev_id=#{sid}
 	</select>
-	
+  	
   </mapper>

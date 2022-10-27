@@ -18,7 +18,7 @@ public interface JoaMypageDAO {
 	
 	public int memberCouponCnt(String sid);
 	
-	public int deleteCounpon(Map map);
+	public int deleteMovie(Map map);
 	
 	public List<JoaMypageOwnCouDTO> memberUsedCoupon(String sid);
 

@@ -49,11 +49,11 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	}
 	
 	@Override
-	public int deleteCoupon(String sid, int idx) {
+	public int deleteMovie(String sid, int idx) {
 		Map map = new HashMap();
 		map.put("sid", sid);
 		map.put("idx", idx);
-		int result = JoaMypageDao.deleteCounpon(map);
+		int result = JoaMypageDao.deleteMovie(map);
 		return result;
 	}
 	

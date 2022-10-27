@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import joa.mypage.model.JoaMypageService;
 import joa.mypage.model.JoaMypageServiceDTO;
 import joa.adminStore.model.AdminStoreDTO;
+import joa.member.model.JoaMemberDTO;
 import joa.mypage.model.JoaMyPagePayMovieDTO;
 import joa.mypage.model.JoaMypageEventDTO;
 import joa.mypage.model.JoaMypageMemberDTO;
@@ -30,8 +32,10 @@ public class JoaMypageController {
 	private JoaMypageService JoaMypageService;
 	
 	@RequestMapping("/myPageReview.do")
-	public ModelAndView myPageReview(@RequestParam(value="sid")String sid) {
-		
+	public ModelAndView myPageReview(HttpSession session) {
+		String backB_color ="background-color: #F05650";
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
@@ -49,6 +53,7 @@ public class JoaMypageController {
 		}
 
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("backB_color", backB_color);
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -56,13 +61,16 @@ public class JoaMypageController {
 		
 		List<JoaMypageRivewDTO>list = JoaMypageService.memberReview(sid);
 		mav.addObject("list", list);
-		mav.setViewName("joaMyPage/joaMyPage_myReview");
+		mav.setViewName("joaMyPage/joa_Mypage_myReview");
 		return mav;
 	}
 	
 	
 	@RequestMapping("/myPage.do")
-	public ModelAndView myPage(@RequestParam(value="sid")String sid) {
+	public ModelAndView myPage(HttpSession session) {
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
@@ -90,7 +98,11 @@ public class JoaMypageController {
 	}
 
 	@RequestMapping("/myPage_SawMovie.do")
-	public ModelAndView myPage_SawMovie(@RequestParam(value="sid")String sid) {
+	public ModelAndView myPage_SawMovie(HttpSession session) {
+		String backA_color ="background-color: #F05650";
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
 		List<JoaMyPagePayMovieDTO> swm_list =JoaMypageService.memberPayMovie(sid);
 		
 		List<JoaMypageOwnCouDTO> list = JoaMypageService.memberCoupon(sid);
@@ -108,6 +120,7 @@ public class JoaMypageController {
 		}
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("backA_color", backA_color);
 		mav.addObject("swm_list", swm_list);
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("list", list);
@@ -117,7 +130,12 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_tiket.do")
-	public ModelAndView myPage_tiket(@RequestParam(value="sid")String sid) {
+	public ModelAndView myPage_tiket(HttpSession session) {
+		
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
 		List<JoaMyPagePayMovieDTO> swm_list =JoaMypageService.memberPayMovie(sid);
 		
 		List<JoaMypageOwnCouDTO> list = JoaMypageService.memberCoupon(sid);
@@ -142,18 +160,63 @@ public class JoaMypageController {
 		mav.setViewName("joaMyPage/joa_Mypage_ticketing");
 		return mav;
 	}
+	
+	@RequestMapping("/myPage_cancle_Movie_Move.do")
+	public ModelAndView myPage_cancle_CouponMove(HttpSession session) {
+		
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
+		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		
+		int couponCount = JoaMypageService.memberCouponCnt(sid);
+		
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		String m_grade = "일반";
+		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
+			m_grade = "VIP";
+		}
+		if(dto.getMem_grade()>=25000 && dto.getMem_grade()<40000) {
+			m_grade = "SVIP";
+		}
+		if(dto.getMem_grade()>=40000) {
+			m_grade = "VVIP";
+		}
 
-	@RequestMapping("/myPage_cancle_Coupon.do")
-	public ModelAndView myPage_cancle_Coupon(@RequestParam(value="sid", required=false)String sid, @RequestParam(value="idx",  defaultValue = "1")int idx) {
 		ModelAndView mav = new ModelAndView();
-		int result = JoaMypageService.deleteCoupon(sid, idx);
+		mav.addObject("m_grade", m_grade);
+		mav.addObject("datelist", datelist);
+		mav.addObject("couponCount", couponCount);
+		mav.addObject("dto", dto);
+		
+		mav.setViewName("joaMyPage/joa_Mypage_cancelMovie");
+		return mav;
+	}
+
+	@RequestMapping("/myPage_cancle_Movie.do")
+	public ModelAndView myPage_cancle_Coupon(HttpSession session, @RequestParam(value="idx",  defaultValue = "1")int idx) {
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
+		ModelAndView mav = new ModelAndView();
+		int result = JoaMypageService.deleteMovie(sid, idx);
+		String msg = result>0?"예매취소가 정상적으로 진행되었습니다.":"예매취소 진행에 실패했습니다. 관리자에게 문의바랍니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
+		mav.addObject("msg",msg);
+		
 		mav.addObject("result", result);
-		mav.setViewName("joaMyPage/joa_Mypage_cancelCoupon");
+		mav.setViewName("joaMyPage/joa_Mypage_msg");
 		return mav;
 	}
 	
 	@RequestMapping("/myPage_coupon.do")
-	public ModelAndView myPage_coupon(@RequestParam(value="sid")String sid) {
+	public ModelAndView myPage_coupon(HttpSession session) {
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
@@ -183,7 +246,11 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_usedCoupon.do")
-	public ModelAndView myPage_usedCoupon(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_usedCoupon(HttpSession session) {
+		
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
@@ -213,14 +280,43 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_GuidePoint.do")
-	public ModelAndView myPage_GuidePoint() {
+	public ModelAndView myPage_GuidePoint(HttpSession session) {
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
+		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		
+		int couponCount = JoaMypageService.memberCouponCnt(sid);
+		
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		String m_grade = "일반";
+		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
+			m_grade = "VIP";
+		}
+		if(dto.getMem_grade()>=25000 && dto.getMem_grade()<40000) {
+			m_grade = "SVIP";
+		}
+		if(dto.getMem_grade()>=40000) {
+			m_grade = "VVIP";
+		}
+
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("m_grade", m_grade);
+		mav.addObject("datelist", datelist);
+		mav.addObject("couponCount", couponCount);
+		mav.addObject("dto", dto);
+	
+		
 		mav.setViewName("joaMyPage/joa_Mypage_GuidePoint");
 		return mav;
 	}
 	
 	@RequestMapping("/myPage_Point.do")
-	public ModelAndView myPage_Point(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_Point(HttpSession session) {
+		
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
@@ -252,7 +348,11 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_Event.do")
-	public ModelAndView myPage_Event(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_Event(HttpSession session) {
+		
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
@@ -282,7 +382,11 @@ public class JoaMypageController {
 		return mav;
 	}
 	@RequestMapping("/myPage_EndEvent.do")
-	public ModelAndView myPage_EndEvent(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_EndEvent(HttpSession session) {
+		
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
@@ -314,7 +418,11 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_Store.do")
-	public ModelAndView myPage_Store(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_Store(HttpSession session) {
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
@@ -343,7 +451,11 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_Store_Payment.do")
-	public ModelAndView myPage_Store_Payment(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_Store_Payment(HttpSession session) {
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
@@ -373,11 +485,37 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_PW_Check_P.do")
-	public ModelAndView myPage_PW_Check_P() {
+	public ModelAndView myPage_PW_Check_P(HttpSession session) {
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
+		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		
+		int couponCount = JoaMypageService.memberCouponCnt(sid);
+		
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		String m_grade = "일반";
+		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
+			m_grade = "VIP";
+		}
+		if(dto.getMem_grade()>=25000 && dto.getMem_grade()<40000) {
+			m_grade = "SVIP";
+		}
+		if(dto.getMem_grade()>=40000) {
+			m_grade = "VVIP";
+		}
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("m_grade", m_grade);
+		mav.addObject("datelist", datelist);
+		mav.addObject("couponCount", couponCount);
+		mav.addObject("dto", dto);
+		
+		
 		String subject = "프로필 관리";
 		String content = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;프로필 정보를 열람 시 비밀번호가 필요합니다.";
 		String action = "myPage_Nname.do";
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("action",action);
 		mav.addObject("content", content);
 		mav.addObject("subject", subject);
@@ -386,11 +524,36 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_PW_Check_E.do")
-	public ModelAndView myPage_PW_Check_E() {
+	public ModelAndView myPage_PW_Check_E(HttpSession session) {
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
+		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		
+		int couponCount = JoaMypageService.memberCouponCnt(sid);
+		
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		String m_grade = "일반";
+		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
+			m_grade = "VIP";
+		}
+		if(dto.getMem_grade()>=25000 && dto.getMem_grade()<40000) {
+			m_grade = "SVIP";
+		}
+		if(dto.getMem_grade()>=40000) {
+			m_grade = "VVIP";
+		}
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("m_grade", m_grade);
+		mav.addObject("datelist", datelist);
+		mav.addObject("couponCount", couponCount);
+		mav.addObject("dto", dto);
+		
 		String subject = "회원탈퇴";
 		String content = "회원 탈퇴하시려면 비밀번호가 필요합니다.<br>탈퇴 후 <d>1개월간</d> 같은 개인정보로 회원가입이 불가능합니다.<br><br>";
 		String action = "myPage_secession.do";
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("action",action);
 		mav.addObject("content", content);
 		mav.addObject("subject", subject);
@@ -399,11 +562,36 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_PW_Check_M.do")
-	public ModelAndView myPage_PW_Check_M() {
+	public ModelAndView myPage_PW_Check_M(HttpSession session) {
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
+		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		
+		int couponCount = JoaMypageService.memberCouponCnt(sid);
+		
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		String m_grade = "일반";
+		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
+			m_grade = "VIP";
+		}
+		if(dto.getMem_grade()>=25000 && dto.getMem_grade()<40000) {
+			m_grade = "SVIP";
+		}
+		if(dto.getMem_grade()>=40000) {
+			m_grade = "VVIP";
+		}
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("m_grade", m_grade);
+		mav.addObject("datelist", datelist);
+		mav.addObject("couponCount", couponCount);
+		mav.addObject("dto", dto);
+		
 		String subject = "개인정보변경";
 		String content = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원 정보를 수정하시려면 비밀번호가 필요합니다.";
 		String action = "myPage_Profile.do";
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("action",action);
 		mav.addObject("content", content);
 		mav.addObject("subject", subject);
@@ -412,7 +600,11 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_myService.do")
-	public ModelAndView myPage_myService(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_myService(HttpSession session) {
+		
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
@@ -442,8 +634,12 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_Profile.do")
-	public ModelAndView myPage_Profile(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_Profile(HttpSession session) {
+		
 
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
@@ -469,7 +665,10 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_secession.do")
-	public ModelAndView myPage_secession(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_secession(HttpSession session) {
+
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
@@ -504,14 +703,14 @@ public class JoaMypageController {
 	}
 	
 	@RequestMapping("/myPage_Nname.do")
-	public ModelAndView myPage_Nname(@RequestParam(value="sid", required=false)String sid) {
+	public ModelAndView myPage_Nname(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("joaMyPage/joa_Mypage_myNname");
 		return mav;
 	}
 	
 	@RequestMapping("/addProfile.do")
-	public ModelAndView addProduct(JoaMypageProfileDTO dto,@RequestParam("img")MultipartFile img, HttpServletRequest req) {
+	public ModelAndView addProduct(JoaMypageProfileDTO dto,@RequestParam("img")MultipartFile img, HttpServletRequest req, HttpSession session) {
 
 		String path=req.getRealPath("/img/joaPofiel_img");
 		String filename=img.getOriginalFilename();

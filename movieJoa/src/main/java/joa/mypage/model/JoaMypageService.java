@@ -17,7 +17,7 @@ public interface JoaMypageService {
 	
 	public int memberCouponCnt(String sid);
 	
-	public int deleteCoupon(String sid, int idx);
+	public int deleteMovie(String sid, int idx);
 	
 	public List<JoaMypageOwnCouDTO> memberUsedCoupon(String sid);
 

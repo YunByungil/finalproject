@@ -7,7 +7,22 @@ public class JoaMyPagePayMovieDTO {
 		// TODO Auto-generated constructor stub
 	}
 	private int payMov_idx;              
-    private int payMov_the_idx;            
+    private int payMov_the_idx;
+    private String payMov_sch_theater;        
+    private String payMov_mem_id;            
+    private String payMov_sch_day;            
+    private String payMov_sch_start_hour;     
+    private String payMov_sch_start_min;      
+    private String payMov_sch_seat;           
+    private String payMov_the_city;           
+    private String payMov_the_branch;         
+    private int payMov_price;              
+    private String payMov_pg;                 
+    private String payMov_method;             
+    private String payMov_mov_title;          
+    private String payMov_merchant_uid;       
+    private Date payMov_date;
+    
     public int getPayMov_idx() {
 		return payMov_idx;
 	}
@@ -125,19 +140,5 @@ public class JoaMyPagePayMovieDTO {
 		this.payMov_mov_title = payMov_mov_title;
 		this.payMov_merchant_uid = payMov_merchant_uid;
 		this.payMov_date = payMov_date;
-	}
-	private String payMov_sch_theater;        
-    private String payMov_mem_id;            
-    private String payMov_sch_day;            
-    private String payMov_sch_start_hour;     
-    private String payMov_sch_start_min;      
-    private String payMov_sch_seat;           
-    private String payMov_the_city;           
-    private String payMov_the_branch;         
-    private int payMov_price;              
-    private String payMov_pg;                 
-    private String payMov_method;             
-    private String payMov_mov_title;          
-    private String payMov_merchant_uid;       
-    private Date payMov_date;               
+	}  
 }
