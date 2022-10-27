@@ -12,7 +12,7 @@ public class JoaMypageMemberDTO {
 	private String mem_gender;
 	private String mem_tel;
 	private String mem_email;
-	private String mem_grade;
+	private int mem_grade;
 	private int mem_point;
 	private Date mem_joindate;
 	
@@ -20,7 +20,7 @@ public class JoaMypageMemberDTO {
 		// TODO Auto-generated constructor stub
 	}
 	public JoaMypageMemberDTO(int mem_idx, String mem_id, String mem_name, String mem_pwd, String mem_age, String mem_gender,
-			String mem_tel, String mem_email, String mem_grade, int mem_point, Date mem_joindate) {
+			String mem_tel, String mem_email, int mem_grade, int mem_point, Date mem_joindate) {
 		super();
 		this.mem_idx = mem_idx;
 		this.mem_id = mem_id;
@@ -82,10 +82,10 @@ public class JoaMypageMemberDTO {
 	public void setMem_email(String mem_email) {
 		this.mem_email = mem_email;
 	}
-	public String getMem_grade() {
+	public int getMem_grade() {
 		return mem_grade;
 	}
-	public void setMem_grade(String mem_grade) {
+	public void setMem_grade(int mem_grade) {
 		this.mem_grade = mem_grade;
 	}
 	public int getMem_point() {

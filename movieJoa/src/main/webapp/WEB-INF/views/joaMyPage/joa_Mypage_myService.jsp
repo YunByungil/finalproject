@@ -79,10 +79,10 @@
 			<table class="ti_border">
 			<thead>
 			<br>
-				<th>관람권(번호)</th>
 				<th>분류</th>
-				<th>유효기간</th>
-				<th>사용일자</th>
+				<th>제목</th>
+				<th>상태</th>
+				<th>답변일</th>
 			</thead>
 		
 			<tbody>

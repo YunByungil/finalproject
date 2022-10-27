@@ -10,6 +10,20 @@
 <title>Insert title here</title>
 </head>
 <script>
+function isTrue(){
+	if(document.getElementById('pwd1').value!=''&&document.getElementById('pwd2').value!=''){
+		if(document.getElementById('pwd1').value==document.getElementById('pwd2').value){
+			document.getElementById('checkpwd').innerHTML='비밀번호일치';
+			document.getElementById('checkpwd').style.color='green';
+		}else{
+			document.getElementById('checkpwd').innerHTML='비밀번호불일치';
+			document.getElementById('checkpwd').style.color='red';
+		}
+	}
+}
+</script>
+
+<script>
 	var count = 0;
 	var inputse = document.getElementsByClassName('p_content');
 	function inputs(){
@@ -25,6 +39,51 @@
 		}
 		
 		}
+</script>
+<script>
+function validate(){
+	
+	var regExp=/^[a-zA-Z0-9]{4,12}$/;
+	var pwd_regExp=/^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*-+_]).{4,12}$/;
+	var name_regExp=/^[가-힣]{2,10}$/;
+	var tel_regExp=/^010?([0-9]{3,4})?([0-9]{4})$/;
+	var email_regExp=/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$/;
+	
+	if(document.getElementById('name').value==''){
+		window.alert('이름을 입력해주세요.');
+		return false;
+	}
+	if(!name_regExp.test(document.getElementById('name').value)){
+		window.alert('올바른 이름을 적어주세요.');
+		return false;
+	}
+	if(document.getElementById('pwd1').value==''){
+		window.alert('비밀번호를 입력해주세요.');
+		return false;
+	}
+	if(!pwd_regExp.test(document.getElementById('pwd1').value)){
+		window.alert('비밀번호는 4~12자의 영문,숫자,특수기호 조합으로만 입력해주세요.');
+		return false;
+	}
+	if(document.getElementById('tel').value==''){
+		window.alert('휴대전화번호를를 입력해주세요.');
+		return false;
+	}
+	if(!tel_regExp.test(document.getElementById('tel').value)){
+		window.alert('올바른 번호를 입력해주세요.');
+		return false;
+	}
+	if(document.getElementById('email').value==''){
+		window.alert('이메일 주소를 입력해주세요.');
+		return false;
+	}
+	if(!email_regExp.test(document.getElementById('email').value)){
+		window.alert('올바른 이메일 주소를 입력해주세요.');
+		return false;
+	}
+}
+</script>
+
 </script>
 <body>
 <c:import url="../header.jsp"></c:import>
@@ -85,30 +144,23 @@
 		
 		<div class="joaMypage_ti">
 			<div class="tiket_subject">개인정보변경</div>
+			<form name="pro_FM" action="upDateProfile.do" onsubmit="return validate();"></form>
 			<div class="p_button1"><input type="button" value="변경하기" id="p_button1_b" onclick="inputs()"></div>
 			<br>
 			<div class="my_ticet">
 			<hr class="ti_hr">
-			<div class="P_title">이름</div><div class="p_content1"><input type="text" class="p_content" readonly></div>
+			<div class="P_title">이름</div><div class="p_content1"><input type="text" id="name" name="mem_name" class="p_content" value="${dto.mem_name }" readonly></div>
 			<hr class="ti_hr">
-			<div class="P_title">ID</div><div class="p_content2"><input type="text" class="p_content" readonly></div>
+			<div class="P_title">비밀번호 변경</div><div class="p_content1"><input type="password" name="mem_pwd" id="pwd1" onchange="isTrue()"></div>
 			<hr class="ti_hr">
-			<div class="P_title">생년월일</div><div class="p_content3">YYYY - MM - DD</div>
+			<div class="P_title">비밀번호 확인</div><div class="p_content1"><input type="password" name="mem_pwd_check" id="pwd2" onchange="isTrue()">
+				<span id="checkpwd"></span></div>
 			<hr class="ti_hr">
 			<div class="P_title">연락처</div>
-			<div class="p_content4">
-			<select class="tell_F">
-				<option>010</option>
-				<option>011</option>
-			</select>&nbsp;-&nbsp;<input type="text" id="tell_mid" class="p_content" readonly>&nbsp;-&nbsp;<input type="text" id="tell_bot" class="p_content" readonly></div>
+			<div class="p_content4"><input type="text" name="mem_tel" placeholder="(-)생략" id="tel"readonly></div>
 			<hr class="ti_hr">
-			<div class="P_title">E-mail</div><div class="p_content0"><input type="text" id="e_f" class="p_content" readonly>&nbsp;@&nbsp;<input type="text" id="e_m" class="p_content" readonly>&nbsp;
-			<select class="e_b">
-				<option>직접입력</option>
-				<option>gmail.com</option>
-				<option>naver.com</option>
-				<option>daum.net</option>
-			</select></div>
+			<div class="P_title">E-mail</div><div class="p_content0"><input type="text" name="mem_email" value="${dto.mem_email }" id="email" readonly>
+			</div>
 			<hr class="ti_hr">
 			<div class="p_button2"><input type="button" value="변경완료" id="p_button2_b"></div>
 			<hr class="ti_hr">

@@ -88,20 +88,20 @@
 			</thead>
 		
 			<tbody>
-			<c:if test="${empty list }">
+			<c:if test="${empty swm_list }">
 				<tr><td colspan="6"><br></td></tr>
 				<tr>
 					<td colspan="6">고객님의 최근 예매내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
-				<c:forEach var="dto" items="${list }">
+				<c:forEach var="swm_dto" items="${swm_list }">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${swm_dto.payMov_mov_title }</td>
+						<td>${swm_dto.payMov_the_branch }</td>
+						<td>${swm_dto.payMov_sch_day } / ${ payMov_sch_start_hour } / ${ payMov_sch_start_min }</td>
+						<td>${swm_dto.payMov_sch_seat }</td>
+						<td>${swm_dto.payMov_the_idx }</td>
+						<td>${swm_dto.payMov_price }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
