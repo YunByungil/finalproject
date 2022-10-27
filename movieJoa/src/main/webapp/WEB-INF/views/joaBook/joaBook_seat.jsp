@@ -101,6 +101,7 @@ a:visited {
 </body>
 
 <script>
+
 function checkSeat(seat) {
 	if (seat.length == 3) {
 		window.alert('이미 선택 판매 된 좌석입니다');
@@ -123,6 +124,7 @@ function checkSeat(seat) {
 	var subText = document.getElementById('s');
 	subText.innerHTML = seat;
 }
+
 function hi(k) {
 	var first = k; // 보내는 값
 	var first1 = document.getElementById(k); //span의 id
@@ -242,5 +244,6 @@ function base() {
 	var sc = document.getElementById("screen");
 	sc.style.display = 'none';
 }
+
 </script>
 </html>

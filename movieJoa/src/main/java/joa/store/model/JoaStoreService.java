@@ -13,4 +13,5 @@ public interface JoaStoreService {
 	public int storeCartUpdate(JoaStoreCartDTO dto);
 	public int storeCartDelete(JoaStoreDTO dto);	
 	public List<JoaStoreDTO> storeCartList(String car_mem_id);
+	public int storeCartUpdateCount(String car_idx);
 }
