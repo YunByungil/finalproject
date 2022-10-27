@@ -1,4 +1,4 @@
-package joa.adminmember.model;
+package joa.adminMem.model;
 
 public class JoaAdminMemberDTO {
 

@@ -9,6 +9,133 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+.textform {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  font-family:sans-serif;
+}
+body {
+  background-image:#34495e;
+}
+
+.joinForm {
+  position:absolute;
+  width:400px;
+  height:400px;
+  padding: 30px, 20px;
+  background-color:#FFFFFF;
+  text-align:center;
+  top:40%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 15px;
+}
+.textForm {
+  border-bottom: 2px solid #adadad;
+  margin: 30px;
+  padding: 10px 10px;
+}
+.id {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:15px;
+  background: none;
+}
+.pw {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:15px;
+  background: none;
+}
+
+.name {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:15px;
+  background: none;
+}
+
+.area {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:15px;
+  background: none;
+}
+
+.shop {
+  width: 100%;
+  border:none;
+  outline:none;
+  color: #636e72;
+  font-size:16px;
+  height:16px;
+  background: none;
+}
+.btn {
+  position:relative;
+  left:40%;
+  transform: translateX(-50%);
+  margin-bottom: 40px;
+  width:80%;
+  height:40px;
+  background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+  background-position: left;
+  background-size: 200%;
+  color:white;
+  font-weight: bold;
+  border:none;
+  cursor:pointer;
+  transition: 0.4s;
+  display:inline;
+}
+
+.btn:hover {
+  background-position: right;
+}
+.joinForm h2 {
+  text-align: center;
+  margin: 30px;
+}
+</style>
+<script type ="text/javascript">
+	$('#idCheck').keyup(function(){
+		var mem_id = $('#idCheck').val();
+			
+		$.ajax({
+			url : "memberIdCheck.do",
+			type : "post",
+			data : {mem_id: mem_id},
+			dataType : 'json',
+			success : function(result){
+				if(result == 1){
+					$("#confirmId").html('이미 사용중인 아이디입니다.');
+					$("#confirmId").attr('color','#dc3545');
+				} else{
+					$("#confirmId").html('사용할 수 있는 아이디입니다.');
+					$("#confirmId").attr('color','#2fb380');
+				} 
+			},
+			error : function(){
+				alert("서버요청실패");
+			}
+		})
+			 
+	})
+</script>
 <script>
 function kakaoAddr(){
 	new daum.Postcode({
@@ -77,7 +204,7 @@ function validate(){
 		return false;
 	}
 	if(document.getElementById('tel').value==''){
-		window.alert('휴대전화번호를를 입력해주세요.');
+		window.alert('휴대전화번호를 입력해주세요.');
 		return false;
 	}
 	if(!tel_regExp.test(document.getElementById('tel').value)){
@@ -103,97 +230,63 @@ function validate(){
 }
 </script>
 <script>
-var XHR=null;
-function getXHR(){
-	if(window.ActiveXObject){
-		return new ActiveXObject('Msxml2.XMLHTTP');
-	}else if(window.XMLHttpRequest){
-		return new XMLHttpRequest();
-	}else{
-		return null;
-	}
-}
-function show(){
-	var mem_id=document.memberJoinForm.mem_id.value;
-	var param='?mem_id='+mem_id;
-	XHR=getXHR();
-	XHR.open('GET','memberIdCheck.do'+param,true);
-	XHR.onreadystatechange=showResult();
-	XHR.send(null);
-}
-function showResult(){
-	if(XHR.readyState==4){
-		if(XHR.status==200){
-			var data=XHR.responseText;
-			document.getElementById('idCheck').innerHTML=data;
-		}	
+function isTrue(){
+	if(document.getElementById('pwd1').value!=''&&document.getElementById('pwd2').value!=''){
+		if(document.getElementById('pwd1').value==document.getElementById('pwd2').value){
+			document.getElementById('checkpwd').innerHTML='비밀번호일치';
+			document.getElementById('checkpwd').style.color='green';
+		}else{
+			document.getElementById('checkpwd').innerHTML='비밀번호불일치';
+			document.getElementById('checkpwd').style.color='red';
+		}
 	}
 }
 </script>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-<h1>회원가입</h1>
-<section>
-	<article>
-	<form name="memberJoinForm" method="post" action="memberJoinFormSubmit.do" onsubmit="return validate();">
-		<table>
-			<tr>
-				<th>ID</th>
-				<td><input type="text" name="mem_id" id="idCheck" placeholder="사용할 ID를 설정하세요." onchange="show()">
-				<span class="setId" id="idCheck"></span>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td><input type="text" name="mem_name" id="name"placeholder="이름을 설정해주세요."></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="mem_pwd" id="pwd1" onchange="isTrue()">
-				<span>비밀번호 4~12자 입력가능</span></td>
-			</tr>
-			<tr>
-				<th>비밀번호확인</th>
-				<td><input type="password" name="mem_pwd_check" id="pwd2" onchange="isTrue()">
-				<span id="checkpwd"></span></td>
-			</tr>
-			<tr>
-				<th>생년월일</th>
-				<td><input type="text" name="mem_age" id="age" placeholder="YYYYMMDD"></td>
-			</tr>
-			<tr>
-				<th>성별</th>
-				<td><input type="radio" name="mem_gender" value="남" checked>남
-				<input type="radio" name="mem_gender" value="여">여</td>
-			</tr>
-			<tr>
-				<th>휴대전화</th>
-				<td><input type="text" name="mem_tel" placeholder="(-)생략" id="tel"></td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td><input type="text" name="mem_email" placeholder="이메일을 설정해주세요." id="email"></td>
-			</tr>
-			<tr>
-				<th>주소</th>
-				<td><input type="text" id="addr" readonly onclick="kakaoAddr()"></td>
-			</tr>
-			<tr>
-				<th>우편 번호</th>
-				<td><input type="text" id="addr_num" readonly></td>
-			</tr>
-			<tr>
-				<th>상세 주소</th>
-				<td><input type="text" id="addr_sub"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit" value="가입하기">
-				<input type="reset" value="다시작성"></td>
-			</tr>
-		</table>
-	</form>
-	</article>
-</section>
-<c:import url="../footer.jsp"></c:import>
+<form name="memberJoinForm" method="post" action="memberJoinFormSubmit.do" onsubmit="return validate();" class="joinForm">  
+<h2>회원가입</h2>                                                                                           
+      <div class="textForm">
+        <input name="mem_id" id="idCheck" type="text" class="id" placeholder="아이디"></input>
+        <div><font id=confirmId size="2"></font></div>
+      </div>
+      <div class="textForm">
+        <input name="mem_name" id="name" type="text" class="name" placeholder="이름" >
+      </div>
+      <div class="textForm">
+        <input name="mem_pwd" id="pwd1" onchange="isTrue()" type="password" class="pw" placeholder="4~12자,특수문자포함">
+      </div>
+       <div class="textForm">
+        <input name="mem_pwd_check" id="pwd2" onchange="isTrue()" type="password" class="pw" placeholder="비밀번호 확인">
+      </div>
+      <div class="textForm">
+      	<label id="checkpwd"></label>
+      </div>
+       <div class="textForm">
+        <input name="mem_age" id="age" type="text" class="area" placeholder="YYYYMMDD">
+      </div>
+      <div class="textForm">
+        <input type="radio" name="mem_gender" value="남" checked>남
+				<input type="radio" name="mem_gender" value="여">여
+      </div>
+      <div class="textForm">
+        <input name="mem_tel" placeholder="(-)생략" id="tel" type="text" class="shop" >
+      </div>
+      <div class="textForm">
+        <input name="mem_email" placeholder="이메일을 설정해주세요." id="email" type="text" class="shop">
+      </div>
+      <div class="textForm">
+        <input id="addr" readonly onclick="kakaoAddr()" type="text" class="shop" placeholder="주소">
+      </div>
+       <div class="textForm">
+        <input id="addr_num" readonly type="text" class="shop" placeholder="우편번호" >
+      </div>
+       <div class="textForm">
+        <input name="admin_shop" type="text" class="shop" placeholder="상세주소" id="addr_sub">
+      </div>
+      <input type="submit" class="btn" value="가입하기" >
+      <input type="reset" class="btn" value="다시작성">
+    </form>
 </body>
 </html>

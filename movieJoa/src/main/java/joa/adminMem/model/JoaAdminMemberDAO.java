@@ -1,8 +1,9 @@
-package joa.adminmember.model;
+package joa.adminMem.model;
 
 import java.util.List;
+
+import joa.adminMem.model.*;
 import joa.member.model.JoaMemberDTO;
-import joa.adminmember.model.*;
 
 public interface JoaAdminMemberDAO {
 

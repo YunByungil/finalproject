@@ -92,12 +92,13 @@
 	(select trunc(sysdate,'mm') from dual) and
 	(select last_day(sysdate) from dual)
   </select>
-  <select id="revenueShopQuery" resultType="joa.adminmember.model.JoaAdminMemberDTO" parameterType="Map">
+  <select id="revenueShopQuery" resultType="joa.adminMem.model.JoaAdminMemberDTO" parameterType="Map">
   	select * from joa_admin order by admin_idx desc
   </select>
  <select id="revenueShopMoneyQuery" resultType="Integer" parameterType="String">
- 	select paymov_merchant_uid,nvl(sum(paymov_total_price),0) from joa_paymovie 
-	where paymov_merchant_uid=#{paymov_merchant_uid } and paymov_merchant_uid is not null
-	group by paymov_merchant_uid 
+ 	select nvl(sum(paymov_total_price),0) from
+	(select admin_shop,paymov_total_price from joa_admin 
+	paymov_merchant_uid left outer join joa_paymovie on admin_shop=paymov_merchant_uid) where admin_shop=#{admin_shop} 
+	group by admin_shop
  </select>
   </mapper>

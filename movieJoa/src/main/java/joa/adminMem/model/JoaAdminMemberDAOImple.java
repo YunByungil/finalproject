@@ -1,4 +1,4 @@
-package joa.adminmember.model;
+package joa.adminMem.model;
 
 import java.util.*;
 import org.mybatis.spring.SqlSessionTemplate;
