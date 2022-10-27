@@ -146,6 +146,12 @@
          	<ref bean="sqlSessionTemplate"/>
      	 </constructor-arg>
    	</bean>
+   	
+   	   	<bean id="adminReviewDao" class="joa.adminReview.model.AdminReviewDAOImple">
+   		<constructor-arg>
+         	<ref bean="sqlSessionTemplate"/>
+     	 </constructor-arg>
+   	</bean>
 
    <!-- services -->
    <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
@@ -188,6 +194,13 @@
 			<ref bean="joaPayDao"/>
 		</constructor-arg>
    </bean>   
+   
+   
+   	<bean id="adminReviewService" class="joa.adminReview.model.AdminReviewServiceImple">
+   		<constructor-arg>
+         <ref bean="adminReviewDao"/>
+		</constructor-arg>
+	</bean>
    
    
    <bean id="JoaHelpQuestionDao" class="joa.helpdesk.model.JoaHelpQuestionDAOImple">

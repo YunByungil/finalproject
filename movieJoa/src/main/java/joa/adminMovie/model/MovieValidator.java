@@ -45,10 +45,15 @@ public class MovieValidator implements Validator{
 		if(AdminMovieDTO.getMov_genre() == null || AdminMovieDTO.getMov_genre().trim().isEmpty()) { 
 				errors.rejectValue("mov_genre", "NotBlank");}
 		
-		if(AdminMovieDTO.getMov_running_time() < 1 || AdminMovieDTO.getMov_running_time() < 999 ) {
-				errors.rejectValue("mov_running_time", "Renge");}
-		boolean mat=Pattern.matches(onlynumber, running_time_s);
-		if(mat==false){errors.rejectValue("mov_running_time", "Pattern");}
+			/*
+			 * if(AdminMovieDTO.getMov_running_time() == 0) {
+			 * errors.rejectValue("mov_running_time", "NotBlank");}
+			 * if(AdminMovieDTO.getMov_running_time() < 1 ||
+			 * AdminMovieDTO.getMov_running_time() < 999 ) {
+			 * errors.rejectValue("mov_running_time", "Renge");} boolean
+			 * mat=Pattern.matches(onlynumber, running_time_s);
+			 * if(mat==false){errors.rejectValue("mov_running_time", "Pattern");}
+			 */
 		
 		if(AdminMovieDTO.getMov_rate() == null || AdminMovieDTO.getMov_rate().equals("등급 선택") || AdminMovieDTO.getMov_rate().trim().isEmpty() || AdminMovieDTO.getMov_rate() == "") {
 				errors.rejectValue("mov_rate", "NotBlank");}
