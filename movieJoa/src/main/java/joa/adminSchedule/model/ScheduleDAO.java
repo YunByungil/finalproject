@@ -3,7 +3,7 @@ package joa.adminSchedule.model;
 import java.util.*;
 
 import joa.adminTheater.model.TheaterDTO;
-import joa.adminMember.model.JoaAdminMemberDTO;
+import joa.adminMem.model.JoaAdminMemberDTO;
 
 public interface ScheduleDAO {
 	public List checkSchedule(Map map);

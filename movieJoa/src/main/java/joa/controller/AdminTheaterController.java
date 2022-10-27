@@ -20,7 +20,7 @@ import joa.adminSchedule.model.ScheduleDAO;
 import joa.adminSchedule.model.ScheduleDTO;
 import joa.adminTheater.model.TheaterDAO;
 import joa.adminTheater.model.TheaterDTO;
-import joa.adminMember.model.JoaAdminMemberDTO;
+import joa.adminMem.model.JoaAdminMemberDTO;
 
 @Controller
 public class AdminTheaterController {
