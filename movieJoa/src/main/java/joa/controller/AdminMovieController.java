@@ -36,19 +36,20 @@ public class AdminMovieController {
 		return new AdminMovieDTO();
 	} 
 
-	public void copyInto(File f,MultipartFile upload) {
-		
-		try {
-			byte bytes[]=upload.getBytes();
-			FileOutputStream fos = new FileOutputStream(f);
-			fos.write(bytes);;
-			fos.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();			
-		}
-		
-	}
+	   private void insertPosterImg(MultipartFile mov_poster) {
+		      try {
+		         byte realPosterFile[] = mov_poster.getBytes();
+		         File poster = new File("C:/work_space/galmaedummy/movieJoa/src/main/webapp/img/movie_poster/" + mov_poster.getOriginalFilename());
+		         System.out.println("절대경로:"+poster.getAbsolutePath());
+		         System.out.println("상대경로:"+poster.getCanonicalPath());
+		   
+		         FileOutputStream stream = new FileOutputStream(poster); 
+		         stream.write(realPosterFile); 
+		         stream.close(); 
+		      } catch (IOException e) {
+		         e.printStackTrace();
+		      }
+		   }
 
 		
 	@RequestMapping(value="/addMovieForm.do", method=RequestMethod.GET)
@@ -66,16 +67,14 @@ public class AdminMovieController {
 	
    @RequestMapping(value="/addMovie.do" ,method=RequestMethod.POST)
 	public ModelAndView addMovie(@Valid @ModelAttribute("vo") AdminMovieDTO dto, BindingResult errorResult,
-			@RequestParam("poster")MultipartFile poster, HttpServletRequest req) {
+			MultipartHttpServletRequest req) {
 
 		ModelAndView mav=new ModelAndView();
 		int result=0;
 	    String msg="";
 	   
-	    String path=req.getRealPath("/img/movie_poster");
-	    String filename=poster.getOriginalFilename();
-	    File f=new File(path+filename);		
-		copyInto(f, poster);
+	    MultipartFile poster = req.getFile("poster");
+		 insertPosterImg(poster);
 		 
 		 String mov_poster=poster.getOriginalFilename();
 		 dto.setMov_poster(mov_poster);
@@ -123,14 +122,14 @@ public class AdminMovieController {
 	
 	@RequestMapping(value="/updateMovie.do" ,method=RequestMethod.POST)
 	public ModelAndView updateMovie(@Valid @ModelAttribute("vo") AdminMovieDTO dto, BindingResult errorResult,
-			@RequestParam("poster")MultipartFile poster, HttpServletRequest req) {
+			MultipartHttpServletRequest mreq, HttpServletRequest req) {
 		ModelAndView mav=new ModelAndView();
 		int result=0;
 		String msg="";
-		String path=req.getRealPath("/img/movie_poster");
-	    String filename=poster.getOriginalFilename();
-	    File f=new File(path+filename);		
-		copyInto(f, poster);
+		
+		 MultipartFile poster = mreq.getFile("poster");
+		 insertPosterImg(poster);
+		 
 		 
 		 String mov_poster=poster.getOriginalFilename();
 		 dto.setMov_poster(mov_poster);

@@ -32,7 +32,7 @@ public class AdminReviewController {
 		mav.addObject("s_v",s_v);
 		mav.addObject("pageStr",pageStr);
 		mav.addObject("reviewList",reviewList);
-		mav.setViewName("admin/adminReview/adminReview_listReview");
+		mav.setViewName("admin/adminReview/adminReview_review_list");
 		return mav;
 	}
 	
@@ -58,7 +58,7 @@ public class AdminReviewController {
 			mav.setViewName("admin/adminReveiw/msg");
 		}else {
 			mav.addObject("dto",dto);
-			mav.setViewName("admin/adminReview/adminReview_reviewDetail");
+			mav.setViewName("admin/adminReview/adminReview_review_detail");
 		}
 		return mav;
 	}
