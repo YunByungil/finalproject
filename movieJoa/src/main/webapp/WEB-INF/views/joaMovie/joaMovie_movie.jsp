@@ -104,7 +104,7 @@ function show2(){
 	        <div class="box-image">
 	            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
 	                <span class="thumb-image">
-	                    <img src="/movieJoa/imgmovie/${list.mov_poster }">
+	                    <img src="/movieJoa/img/movie_poster/${list.mov_poster }">
 	                </span>
 	            </a>
 	        </div>
@@ -149,7 +149,7 @@ function show2(){
 	            </span>
 	            <br>
 	            <span class="like"> 
-	                <a class="link-reservation" href="/ticket/?MOVIE_CD=20030774&MOVIE_CD_GROUP=20027588">예매</a>
+	                <a class="link-reservation" href="book.do">예매</a>
 	            </span>
 	            <br>&nbsp
 	        </div>

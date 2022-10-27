@@ -23,7 +23,7 @@ function submitCom(){
 </div>
 <b id="val" style="font-size: 4rem;"></b>			
 <form class="mb-3" name="myform" id="myform" action="commentWrite.do" method="post" target="blankifr">
-<input type="hidden" name="rev_id" value="tester">
+<input type="hidden" name="rev_id" value="${sid }">
 <input type="hidden" name="rev_movie_title" value="${list.mov_title }">
 <input type="hidden" name="rev_score" id="score">
 <div>
