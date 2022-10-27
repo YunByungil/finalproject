@@ -7,6 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <style>
 ul {
 	list-style: none;
@@ -18,8 +20,82 @@ li {
 	list-style: none;
 }
 
-
 </style>
+<script>
+$(document).ready(function(){ 
+	
+	$("#kakaoPay").click(function(){ 
+		paymentKakaoPay(); //버튼 클릭하면 호출 
+    }); 
+	
+	$("#creditCard").click(function(){ 
+		paymentCreditCard(); //버튼 클릭하면 호출 
+    }); 
+})
+
+function paymentKakaoPay(){
+	
+    IMP.init('imp80406606');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
+    IMP.request_pay({// param
+        pg: "kakaopay", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
+        pay_method: "card", //지불 방법
+        merchant_uid: 'merchant_' + new Date().getTime(), //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name: "MJOA", //결제창에 노출될 상품명
+        amount: "${pay_total_sum}",
+        buyer_email : "${mem_email}", 
+        buyer_name : "${mem_name}",
+        buyer_tel : "${mem_tel}"
+        
+    , function (rsp) { // callback
+    	
+        if (rsp.success) {
+            alert("결제가 완료되었습니다");
+            document.getElementById("payPro_pg").value="kakaopay";
+            document.getElementById("payPro_method").value="card";
+            document.getElementById("payPro_merchant_uid").value='merchant_'+new Date().getTime();
+    		document.joaStorePay.action='joaStoreKakaoPay.do';		
+			document.joaStorePay.submit();
+            
+        } else {
+        	
+            alert("결제실패");
+        }
+    }
+    });
+}
+
+function paymentCreditCard(){
+	
+    IMP.init('imp80406606');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
+    IMP.request_pay({// param
+        pg: "nice", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
+        pay_method: "card", //지불 방법
+        merchant_uid: 'merchant_'+new Date().getTime(), //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name: "MJOA", //결제창에 노출될 상품명
+        amount: ${pay_total_sum },
+        buyer_email : "${mem_email}", 
+        buyer_name : "${mem_name}",
+        buyer_tel : "${mem_tel}"
+        
+    , function (rsp) { // callback
+    	
+        if (rsp.success) {
+            alert("결제가 완료되었습니다");
+            document.getElementById("payPro_pg").value="CreditCard";
+            document.getElementById("payPro_method").value="card";
+            document.getElementById("payPro_merchant_uid").value='merchant_'+new Date().getTime();
+    		document.joaStorePay.action='joaStoreKakaoPay.do';		
+			document.joaStorePay.submit();
+            
+        } else {
+        	
+            alert("결제실패");
+        }
+    }
+    });
+}
+</script>
+
 </head>
 <body>
 <div align="center">
@@ -31,22 +107,17 @@ li {
 <form>
 <h1>결제페이지</h1>
 
-<div>
-최종결제 수단
 <ul>
 <li>
-<input type="radio" name="payMov_method" value="신용카드" checked>신용카드
-<input type="radio" name="payMov_method" value="휴대폰 결제">휴대폰 결제
-<input type="radio" name="payMov_method" value="간편결제">간편결제
-<input type="radio" name="payMov_method" value="내통장결제">내통장결제
+<input type="button" id="creditCard" value="신용카드">
+<input type="button" id="kakaoPay" value="카카오페이">
 </li>
 </ul>
 </div>
 
 <input type="hidden" name="payMov_the_idx" value="${idx }">
 <input type="hidden" name="payMov_sch_seat" id="${seat }">
-<input type="hidden" name="payMov_mem_id" value="dool">
-
+<input type="hidden" name="payMov_mem_id" value="jtl3403">
 <input type="hidden" name="payMov_price" value="${price }">
 <input type="hidden" name="payMov_mov_title" value="${title }">
 <input type="hidden" name="payMov_the_city" value="${city }">

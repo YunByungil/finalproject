@@ -208,7 +208,6 @@ public class AdminTheaterController {
 		List list=new ArrayList();
 		int count=0;
 		if(blist==null || blist.size()==0) {
-			System.out.println(blist.get(0));
 		}else {
 			for(int i=0;i<blist.size();i++) {
 				int start=Integer.parseInt(blist.get(i).getSch_start_hour());
