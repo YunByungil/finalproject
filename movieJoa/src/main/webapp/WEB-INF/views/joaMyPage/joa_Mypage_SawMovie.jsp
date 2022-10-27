@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=2">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=2">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=5">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=5">
 <title>Insert title here</title>
 </head>
 <body>
@@ -67,41 +67,31 @@
 		</dl>
 		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">포인트 적립내역</div>
+			<div class="tiket_subject">내가 본 영화</div>
 			<br>
+			<div class="box">
+			<ul class="EventSerchBarFeild">
+				<li class="menuli"><a style="${backA_color}"class="a" href="myPage_SawMovie.do">내가 본 영화</a></li>
+				<li class="menuli"><a style="${backB_color}"class="a" href="">내가 쓴 평점</a></li>
+			</ul>
+			<hr class="ti_hr">
+		</div>
 		<div class="my_ticet">
-			<hr class="ti_hr">
 			<br>
-			<table class="po_border">
-			
-			<thead>
-				<th class="po_type">구분</th>
-				<th class="po_content">포인트</th>
-			</thead>
-		
-			<tbody>
-				<tr>
-					<td>사용가능 포인트</td><td>${dto.mem_point }</td>
-				</tr>
-				<tr>	
-					<td>등급선정 포인트</td><td>${dto.mem_grade }</td>
-				</tr>
-				<tr>
-					<td>등급 선정 기준</td><td>10000점 = VIP<br>
-											25000점 = SVIP<br>
-											40000점 = VVIP
-										</td>
-				</tr>
-				<tr>	
-					<td>추가적립 포인트</td><td>${plusPoint }</td>
-				</tr>		
-			</tbody>
-			</table>
-			
-			<hr class="ti_hr">
+			<ul>
+				<c:if test="${empty swm_list }">
+					<li>관람하신 영화내역이 없습니다.</li>
+				</c:if>
+				<c:forEach var="swmdto" items="${swm_list }">
+					<li>${swmdto.tic_mov_poster }</li>
+					<li>${swmdto.tic_mov_title }</li>
+					<li><hr></li>
+					<li>${swmdto.tic_sch_day }</li>
+				</c:forEach>
+				<hr class="ti_hr">
+			</ul>
 			</div>
 			<br>
-		</div>
 </div>
 </section>
 <c:import url="../footer.jsp"></c:import>

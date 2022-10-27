@@ -67,7 +67,7 @@
 		</dl>
 		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">영화관람권 사용 내역</div>
+			<div class="tiket_subject">영화관람권 내역</div>
 			<br>
 			<div class="serchBar_usedCoupon">
 				<div class="serchBar_sub">조회기간</div>
@@ -82,7 +82,7 @@
 			<thead>
 				<th>관람권(번호)</th>
 				<th>분류</th>
-				<th>유효기간</th>
+				<th>등록일자</th>
 				<th>사용일자</th>
 			</thead>
 		
@@ -93,11 +93,12 @@
 					<td colspan="4">고객님의 사용한 관람권 내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
-				<c:forEach var="dto" items="${list }">
+				<c:forEach var="u_c_dto" items="${list }">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${u_c_dto.own_idx  }</td>
+						<td>${u_c_dto.own_name  }</td>
+						<td>${u_c_dto.own_issue_date  }</td>
+						<td>${u_c_dto.own_use_date  }</td>
 					</tr>
 				</c:forEach>
 			</tbody>

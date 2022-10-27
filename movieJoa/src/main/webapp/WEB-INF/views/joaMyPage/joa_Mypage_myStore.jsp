@@ -95,10 +95,10 @@
 			<table class="ti_border">
 			<thead>
 				<th>스토어.NO</th>
+				<th>상품</th>
 				<th>상품명</th>
+				<th>수량</th>
 				<th>구매일</th>
-				<th>유효기간</th>
-				<th>상태</th>
 			</thead>
 		
 			<tbody>
@@ -108,11 +108,13 @@
 					<td colspan="5">내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
-				<c:forEach var="dto" items="${list }">
+				<c:forEach var="p_dto" items="${list }">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${p_dto.prs_idx }</td>
+						<td>${p_dto.prs_pro_filename }</td>
+						<td>${p_dto.prs_pro_name }</td>
+						<td>${p_dto.prs_pro_count }</td>
+						<td>${p_dto.prs_date }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
