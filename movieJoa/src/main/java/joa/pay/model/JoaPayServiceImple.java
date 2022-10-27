@@ -38,4 +38,6 @@ public class JoaPayServiceImple implements JoaPayService {
 		return result;
 	}
 	
+	
+	
 }
