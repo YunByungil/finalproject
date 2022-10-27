@@ -38,7 +38,6 @@ public class AdminMovieDTO {
 	
 	@Pattern(regexp = "^[0-9]*$")
 	@Range(min = 1, max = 999)
-	@NotBlank(message="공백 또는 null일수 없습니다.")
 	private int mov_running_time;
 
 	@NotBlank(message="공백 또는 null일수 없습니다.")
