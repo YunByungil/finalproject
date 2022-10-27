@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -145,7 +146,7 @@ public class AdminMemberController {
 		int totalCnt=joaAdminMemberDao.adminTotalCnt();
 		int listSize=10;
 		int pageSize=5;
-		String pageStr=joa.page.PageModule.makePage("/movieJoa/adminMember.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=joa.page.PageModule.makePage("/movieJoa/adminSearch.do", totalCnt, listSize, pageSize, cp);
 		List<JoaAdminMemberDTO> list=joaAdminMemberDao.adminList(listSize, cp);
 		mav.addObject("list",list);
 		mav.addObject("pageStr", pageStr);
@@ -186,11 +187,26 @@ public class AdminMemberController {
 		mav.setViewName("admin/adminMember/adminMember_msg");
 		return mav;
 	}
-	@RequestMapping("/adminGender.do")
-	public ModelAndView adminGenderGo(String mem_gender) {
+	@RequestMapping(value="/adminGender.do")
+	public ModelAndView adminGenderGo(String mem_gender,@RequestParam(value="cp",defaultValue = "1")int cp) {
 		ModelAndView mav=new ModelAndView();
-		List<JoaMemberDTO> list=joaAdminMemberDao.memberGenderSelect(mem_gender);
+		int listSize=10;
+		int pageSize=5;
+		List<JoaMemberDTO> list=null;
+		String temp=null;
+		if(!mem_gender.equals("")||!mem_gender.equals(null)) {
+			temp=mem_gender;
+			int totalCnt=joaAdminMemberDao.pagingGenderCount(temp);
+			String pageStr=joa.page.PageModule.makePage("/movieJoa/adminGender.do", totalCnt, listSize, pageSize, cp);
+			list=joaAdminMemberDao.memberGenderSelect(temp,listSize,cp);
+		}else {
+			mem_gender=temp;
+		}
+		int totalCnt=joaAdminMemberDao.pagingGenderCount(temp);
+		String pageStr=joa.page.PageModule.makePage("/movieJoa/adminGender.do", totalCnt, listSize, pageSize, cp);
+		list=joaAdminMemberDao.memberGenderSelect(temp,listSize,cp);
 		mav.addObject("list", list);
+		mav.addObject("pageStr", pageStr);
 		mav.setViewName("admin/adminMember/adminMember_gender");
 		return mav;
 	}

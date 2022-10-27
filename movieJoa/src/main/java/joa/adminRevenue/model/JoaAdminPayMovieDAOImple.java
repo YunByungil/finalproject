@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import joa.adminMem.model.JoaAdminMemberDTO;
+import joa.adminMovie.model.AdminMovieDTO;
 
 public class JoaAdminPayMovieDAOImple implements JoaAdminPayMovieDAO {
 
@@ -65,8 +66,33 @@ public class JoaAdminPayMovieDAOImple implements JoaAdminPayMovieDAO {
 		return list;
 	}
 	@Override
-	public int revenueShopMoney(String paymov_merchant_uid ) {
-		int result=sqlMap.selectOne("revenueShopMoneyQuery",paymov_merchant_uid );
+	public int revenueShopMoney(String paymov_the_branch ) {
+		int result=sqlMap.selectOne("revenueShopMoneyQuery",paymov_the_branch );
+		return result;
+	}
+	@Override
+	public List<AdminMovieDTO> revenueMovie() {
+		List<AdminMovieDTO> list=sqlMap.selectList("revenueMovieQuery");
+		return list;
+	}
+	@Override
+	public int revenueMovieMoney(String mov_title) {
+		int result=sqlMap.selectOne("revenueMovieMoneyQuery", mov_title);
+		return result;
+	}
+	@Override
+	public List<JoaAdminPayMovieDTO> revenueShopDetail(String paymov_the_branch) {
+		List<JoaAdminPayMovieDTO> list=sqlMap.selectList("revenueShopDetailQuery", paymov_the_branch);
+		return list;
+	}
+	@Override
+	public List<JoaAdminPayMovieDTO> revenunMovieDetail(String paymov_mov_title) {
+		List<JoaAdminPayMovieDTO> list=sqlMap.selectList("revenueMovieDetailQuery", paymov_mov_title);
+		return list;
+	}
+	@Override
+	public int movieSpectatorCount(String mov_title) {
+		int result=sqlMap.selectOne("movieSpectatorCountQuery", mov_title);
 		return result;
 	}
 }

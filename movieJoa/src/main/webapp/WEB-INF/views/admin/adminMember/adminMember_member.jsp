@@ -137,6 +137,11 @@ function adminMemberUpdate(id){
 		</tr>
 		</c:forEach>
 	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="7" align="center">${pageStr }</td>
+		</tr>
+	</tfoot>
 </table>
 </c:if>
 </body>

@@ -8,6 +8,28 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/main_admin.css">
 <style>
+.container {
+  display: grid;
+  grid-template-columns: 300px 300px 300px;
+  grid-template-rows: 200px 200px 200px 200px;
+  grid-column-gap: 20px;
+  column-gap: 30px;
+   row-gap: 30px;
+}
+.container2{
+	display:grid;
+	column-gap:20px;
+	grid-template-columns: 500px 500px;
+	grid-template-rows: 300px;
+}
+.item {
+  padding: 20px;
+   border-radius: 30px;
+  text-align:right;
+}
+.content{
+  font-size:30px;
+}
 .wrapper{
 	display:grid;
 	grid-template-columns: 500px 1000px;
@@ -36,11 +58,19 @@
 	<div class="sidebarmenu"><a href="adminRevenueShop.do"><br>지점별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueMovie.do"><br>영화별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueProduct.do"><br>상품별매출</a></div>
-	<div class="sidebarmenu"><a href="adminRevenueGender.do"><br>성별매출</a></div>
-	<div class="sidebarmenu"><a href="adminRevenueAge.do"><br>나이대별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueSpectator.do"><br>관람객 수</a></div>
 </div>
-movie
+<div class="container">
+<c:if test="${ not empty list}">
+	<c:forEach var="dto" items="${list }">
+		 <div class="item">
+   			 <div class="header">${dto.mov_title}<hr></div>
+    			<div class="content"><br>${map.get(dto.mov_title) }</div>
+   		 <div class="footer"><hr><a href="adminRevenueMovieDetail.do?paymov_mov_title=${dto.mov_title }">확인하기</a></div>
+  		</div>
+	</c:forEach>
+</c:if>
+</div>
 </div>
 </body>
 </html>
