@@ -11,6 +11,7 @@ import org.json.JSONArray;
 import joa.pay.model.*;
 import joa.store.model.JoaStoreDTO;
 import joa.store.model.JoaStoreService;
+import joa.movie.model.*;
 
 @Controller
 public class JoaPayController {
@@ -84,6 +85,61 @@ public class JoaPayController {
 		mav.setViewName("joaStore/joaStore_pay_result");
 		return mav;
 	}
+	
+	@RequestMapping("/joaBookPay.do")
+	public ModelAndView joaBookPay(JoaPayMovDTO dto) {
+		
+		int result = joaPayService.joaBookPayAdd(dto);
+		String msg;
+		
+		
+		List<JoaMovieDTO> aml=mdao.allMovieList();
+		double allMovCnt=mdao.allMovCnt();
+		for(int i=0;i<aml.size();i++) {
+			double selMovCnt=mdao.selMovCnt(aml.get(i).getMov_title());
+			double bookPer_d=selMovCnt/allMovCnt*100;
+			String bookPer=String.format("%.1f", bookPer_d);
+			Map map=new HashMap();
+			map.put("mov_title", aml.get(i).getMov_title());
+			map.put("mov_booking_percent", bookPer);
+			mdao.updateBookPer(map);
+		}
+		String payMov_mov_title="극장판 짱구는 못말려-수수께끼! 꽃피는 천하떡잎학교";
+		double allBookCnt=mdao.allBookCnt(payMov_mov_title);
+		double manBookCnt=mdao.manBookCnt(payMov_mov_title);
+		double manPer_d=manBookCnt/allBookCnt*100;
+		String manPer=String.format("%.1f", manPer_d);
+		double womanBookCnt=mdao.womanBookCnt(payMov_mov_title);
+		double womanPer_d=womanBookCnt/allBookCnt*100;
+		String womanPer=String.format("%.1f", womanPer_d);
+		double oneBookCnt=mdao.oneBookPer(payMov_mov_title);
+		double onePer_d=oneBookCnt/allBookCnt*100;
+		String onePer=String.format("%.1f", onePer_d);
+		double twoBookCnt=mdao.twoBookPer(payMov_mov_title);
+		double twoPer_d=twoBookCnt/allBookCnt*100;
+		String twoPer=String.format("%.1f", twoPer_d);
+		double threeBookCnt=mdao.threeBookPer(payMov_mov_title);
+		double threePer_d=threeBookCnt/allBookCnt*100;
+		String threePer=String.format("%.1f", threePer_d);
+		double fourBookCnt=mdao.fourBookPer(payMov_mov_title);
+		double fourPer_d=fourBookCnt/allBookCnt*100;
+		String fourPer=String.format("%.1f", fourPer_d);
+		double fiveBookCnt=mdao.fiveBookPer(payMov_mov_title);
+		double fivePer_d=fiveBookCnt/allBookCnt*100;
+		String fivePer=String.format("%.1f", fivePer_d);
+		Map map=new HashMap();
+		map.put("payMov_mov_title", payMov_mov_title);
+		map.put("mov_gender_percent", manPer+","+womanPer);
+		map.put("mov_age_percent", onePer+","+twoPer+","+threePer+","+fourPer+","+fivePer);
+		mdao.updateGenderPer(map);
+		mdao.updateAgePer(map);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("payMsg",msg);
+		mav.setViewName("joaBook/joaBook_pay_result");		
+		return mav;
+	}
+	
 	
 
 }

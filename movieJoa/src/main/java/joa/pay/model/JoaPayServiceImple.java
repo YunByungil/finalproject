@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import joa.adminStore.model.AdminStoreDAO;
+import joa.pay.model.*;
+import joa.pay.model.JoaPayMovDTO;
 
 public class JoaPayServiceImple implements JoaPayService {
 	
@@ -30,5 +32,10 @@ public class JoaPayServiceImple implements JoaPayService {
 		return result;
 	}
 
+	@Override
+	public int joaBookPayAdd(JoaPayMovDTO dto) {
+		int result=joaPayDao.joaBookPayAdd(dto);
+		return result;
+	}
 	
 }
