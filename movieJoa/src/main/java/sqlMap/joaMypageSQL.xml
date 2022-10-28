@@ -3,12 +3,118 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.store">
-  	<select id="mypageInpo" resultType="joa.mypage.model.JoaMypageMemberDTO">
+  	<select id="mypageInpo" parameterType="String" resultType="joa.mypage.model.JoaMypageMemberDTO">
   		
   		select * from
   		joa_member
   		where mem_id=#{sid}
   		
   	</select>
+  	
+  	<select id="mypageCouponDate" parameterType="String" resultType="joa.mypage.model.JoaMypageOwnCouDTO">
+  		SELECT ROWNUM, x.* FROM 
+  		( SELECT a.*            
+           FROM joa_owncou a
+           where a.own_member_id = #{sid} and a.own_use_date is not null           
+          ORDER BY a.own_use_date DESC       
+        ) x
+       where ROWNUM<![CDATA[<=]]>3 
+  	</select>
+  	<select id="mypageCouponCnt" parameterType="String" resultType="Integer">
+  		select count(*) from
+  		joa_owncou
+  		where own_member_id=#{sid} and own_use_date is null
+  	</select>
+  	
+  	<select id="myPayMovie" parameterType="String" resultType="joa.mypage.model.JoaMyPagePayMovieDTO">
+  		select * from
+  		joa_payMovie
+  		where payMov_mem_id=#{sid} 
+  	</select>
+  	
+  	<select id="mypageCoupon" parameterType="String" resultType="joa.mypage.model.JoaMypageOwnCouDTO">
+  		select * from
+  		joa_owncou
+  		where own_member_id=#{sid} and own_use_date is null
+  	</select>
   
+  	<delete id="MovieDelete" parameterType="map">
+  		delete from joa_payMovie
+  		where payMov_mem_id=#{sid} and payMov_the_idx=#{idx}
+  	</delete>
+  	
+	<select id="mypageUsedCoupon" parameterType="String" resultType="joa.mypage.model.JoaMypageOwnCouDTO">
+  		select * from
+  		joa_owncou
+  		where own_member_id=#{sid} and own_use_date is not null
+  	</select>
+  	
+  	<select id="mypageService" parameterType="String" resultType="joa.mypage.model.JoaMypageServiceDTO">
+  	select
+	*
+	from
+	joa_helpquestion where hqt_id=#{sid} order by hqt_idx desc			
+	</select>
+	
+	<select id="mypageEvent" parameterType="String" resultType="joa.mypage.model.JoaMypageEventDTO">
+		select
+			*
+			from
+		 joa_applycant inner join
+		 joa_event
+		 on joa_applycant.app_event_subject =  joa_event.eve_subject 
+		 where app_member_id =#{sid}
+	</select>
+	
+	<select id="mypageEndEvent" parameterType="String" resultType="joa.mypage.model.JoaMypageEventDTO">
+			select
+			*
+			from
+		 joa_applycant inner join
+		 joa_event
+		 on joa_applycant.app_event_subject =  joa_event.eve_subject 
+		 where sysdate > eve_start_date
+	</select>
+	
+	<select id="mypageStore" parameterType="String" resultType="joa.mypage.model.JoaMypagePayProDTO">
+		select
+			*
+		from
+		joa_product_result
+		where prs_order_idx=#{sid} 
+	</select>
+	
+	<select id="mypagePrice" parameterType="String" resultType="joa.mypage.model.JoaMypagePayProDTO">
+		select *
+		from joa_product_result inner join joa_payProduct
+		on joa_product_result.prs_date  = joa_payProduct.payPro_date
+		where prs_order_idx=#{sid}
+	</select>
+	
+	<delete id="memberDelete" parameterType="String">
+		delete from joa_member
+  		where mem_id=#{sid}
+	</delete>
+	
+	<update id="memberProfileUpdate" parameterType="map">
+		update joa_member set mem_name =#{mem_name}, mem_tel=#{mem_tel}, mem_email=#{mem_email}, mem_pwd=#{mem_pwd}
+		where mem_id=#{sid}
+	</update>
+	
+	<insert id="insertProfile" parameterType="joa.mypage.model.JoaMypageProfileDTO">
+		insert into
+		joa_joa_profiel
+		values(
+		joa_profiel_pro_idx.nextval, #{pro_id},#{pro_nickname},#{pro_image},sysdate
+		)
+	</insert>
+	
+	<select id="memberReview" parameterType="String"  resultType="joa.mypage.model.JoaMypageRivewDTO" >
+		 select
+		 *
+		 from
+		 joa_Review
+		 where rev_id=#{sid}
+	</select>
+  	
   </mapper>

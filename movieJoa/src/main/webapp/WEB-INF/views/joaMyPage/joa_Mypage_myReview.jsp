@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=3">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=3">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=5">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=5">
 <title>Insert title here</title>
 </head>
 <body>
@@ -74,43 +74,33 @@
 		
 		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">영화관람권 사용 내역</div>
+			<div class="tiket_subject">내가 쓴 평점</div>
 			<br>
-			<div class="serchBar_usedCoupon_p">
-				<div class="serchBar_sub_p">제목검색</div>
-				<div class="serchBar_date_p"><input type="text" class="serchBar_input_p">&nbsp;&nbsp;<input type="button" value="조회하기" class="serchBar_i_button"></div>
-			</div>
+			<div class="box">
+			<ul class="EventSerchBarFeild">
+				<li class="menuli"><a style="${backA_color}"class="a_r" href="myPage_SawMovie.do">내가 본 영화</a></li>
+				<li class="menuli"><a style="${backB_color}"class="a_r" href="myPageReview.do">내가 쓴 평점</a></li>
+			</ul>
+			<hr class="ti_hr">
+		</div>
 		<div class="my_ticet">
-			<hr class="ti_hr">
 			<br>
-			<br>
-			<table class="ti_border">
-			<thead>
-			<br>
-				<th>분류</th>
-				<th>제목</th>
-				<th>상태</th>
-				<th>답변일</th>
-			</thead>
-		
-			<tbody>
-			<c:if test="${empty list }">
-				<tr><td colspan="4"><br></td></tr>
-				<tr>
-					<td colspan="4">고객님의 문의 내역이 존재하지 않습니다.</td>
-				</tr>
-			</c:if>
-				<c:forEach var="dto" items="${list }">
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
+			<ul>
+				<c:if test="${empty swm_list }">
+					<li>작성하신 코멘트가 없습니다.</li>
+				</c:if>
+				<c:forEach var="rvdto" items="${swm_list }">
+					<li>${rvdto.rev_movie_title }</li>
+					<li><hr></li>
+					<li>${rvdto.rev_comment }</li>
+					<li><hr></li>
+					<li>${rvdto.rev_date }<li>
+					<li>${rvdto.rev_score }</li>
+					<li>${rvdto.rev_like }</li>
+					<li><hr></li>
 				</c:forEach>
-			</tbody>
-			</table>
-			
-			<hr class="ti_hr">
+				<hr class="ti_hr">
+			</ul>
 			</div>
 			<br>
 </div>

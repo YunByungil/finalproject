@@ -124,10 +124,11 @@
 }
 .p_content4{
 	position: relative;
-	right:99px;
+	right:147px;
 }
 .p_content0{
 	position: relative;
+	right:147px;
 }
 .P_title{
 	position: absolute;
@@ -352,7 +353,15 @@ input[type="radio"]:checked + label {
     float:left;
     text-align:center;
 }
-
+.a_r{
+	display: block;
+	height:40px;
+	width: 110px;
+	background-color: gray;
+	margin-left:4px;
+	line-height: 40px;
+	color:white;
+}
 .a{
 	display: block;
 	height:40px;
@@ -448,7 +457,7 @@ td{
 
 .joaMypage_ti{
 	position: relative;
-	bottom: 337px;
+	bottom: 500px;
   	left: 90px;
   	margin: 0px auto;
   	width:730px;
@@ -545,7 +554,7 @@ d{
 }
 .myproF{
 	position: absolute;
-	top:75px;
+	top:30px;
 	left:113px;
 }
 .mynickname{
@@ -595,12 +604,12 @@ l1{
 }
 .mycoupon{
 	position: absolute;
-	bottom:95px;
+	bottom:50px;
 	left:100px;
 }
 .mypoint{
 	position: absolute;
-	bottom:95px;
+	bottom:110px;
 	right:280px;
 }
 .mypage_main{
@@ -623,7 +632,7 @@ l1{
 
 .joaMypage_home{
 	position: relative;
-	bottom: 360px;
+	bottom: 500px;
   	left: 230px;
   	margin: 0px auto;
   	overflow: auto;

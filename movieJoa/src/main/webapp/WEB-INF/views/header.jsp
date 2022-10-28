@@ -82,7 +82,7 @@ function openLogin(){
 					    <li href="/movieJoa/joaEventEnded.do">종료된 이벤트</li>
 				    </ul>
 				</li>
-				<li class="menu5"><a href="myPage.do?sid=test">마이페이지</a>
+				<li class="menu5"><a href="myPage.do">마이페이지</a>
 					<ul class="menu5_s submenu">			    
 					    <li>내정보</li>
 					    <li>이벤트참여내역</li>
