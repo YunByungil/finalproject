@@ -101,7 +101,7 @@ public class JoaEventController {
 	      JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
 	      String sid=login_dto==null?"":login_dto.getMem_id();
 	      mav.addObject("sid",sid);
-		if(sid!=null && sid=="") {
+		if(sid!=null && sid!="") {
 			int applyCheck = joa_EventService.checkApply(sid, event_code);
 			if (applyCheck<=0) {
 				int totalResult = joa_EventService.addCoupon(sid, cou_idx, event_subject, event_code);//두가지 메서드 동시 실행

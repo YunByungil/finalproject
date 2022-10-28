@@ -81,7 +81,7 @@ function deleteMovie(didx){
 <input type="button" value="영화 삭제" class="button_main" onclick="javascript:deleteMovie(${dto.mov_idx });">
 <input type="button" value="영화 수정" class="button_main" onclick="location.href='${uLink}'"></div>
 <div class="bottom_div">
-<a href="#" class="fl_r"> 목록으로 </a>
+<a href="/movieJoa/listMovie.do" class="fl_r"> 목록으로 </a>
 </div>
 </div>
 

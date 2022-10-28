@@ -35,10 +35,13 @@ function deleteReview(didx){
 </fieldset>
 <table class="main_table_list">
 <colgroup>
+	<col style="width:10%">
+	<col style="wldth:15%">
 	<col style="width:20%">
-	<col style="wldth:35%">
-	<col style="width:25%">
-	<col style="width:20%">
+	<col style="width:10%">
+	<col style="wldth:20%">
+	<col style="width:15%">
+	<col style="width:15%">
 </colgroup>
 <thead>
 <tr>
@@ -47,35 +50,40 @@ function deleteReview(didx){
 	<th scope="col" class="text_c">영화명</th>
 	<th scope="col" class="text_c">평점</th>
 	<th scope="col" class="text_c">작성일</th>
-	<th scope="col" class="text_c">관리메뉴</th>
+	<th scope="col" class="text_c">추천수</th>
+	<th scope="col" class="text_c">관리</th>
 </tr>
 </thead>
-	<c:if test="${empty couponList}">
+	<c:if test="${empty reviewList}">
 		<tr>
 			<td colspan="6">등록되어있는 평점이 존재하지 않습니다.</td>
 		</tr>
 	</c:if>
 <tbody>
 <c:forEach var="dto" items="${reviewList }">
-<c:url var="detail" value="detailReview.do">
-		<c:param name="rev_idx">${dto.rev_idx }</c:param>
-</c:url>
 <tr>
 	<td class="text_c">${dto.rev_idx }</td>
 	<td class="text_c">${dto.rev_id }</td>
 	<td class="text_c">${dto.rev_movie_title}</td>
 	<td class="text_c">${dto.rev_score}</td>
 	<td class="text_c">${dto.rev_date}</td>
-	<td class="text_c">
-	<input type="button" value="상세" onclick="location.href=${detail}" class="list_s_btn">
-	</td>
+	<td class="text_c">${dto.rev_like}</td>
+	<c:url var="dLink" value="detailReview.do">
+		<c:param name="rev_idx">${dto.rev_idx }</c:param>
+	</c:url>
+	<td class="text_c"><input type="button" value="상세" onclick="location.href='${dLink}'" class="list_s_btn up"><br>
+					   <input type="button" value="삭제" onclick="javascript:deleteReview(${dto.rev_idx });" class="list_s_btn"></td>
+	
 </tr>
 </c:forEach>
+
+
+
 </tbody>
 
 <tfoot>
 	<tr>
-	<td colspan="6" align="center">
+	<td colspan="7" align="center">
 	${pageStr }
 	</td>
 	</tr>

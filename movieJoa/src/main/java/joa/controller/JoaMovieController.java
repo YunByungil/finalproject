@@ -53,44 +53,6 @@ public class JoaMovieController {
 	public ModelAndView info(
 			@RequestParam("mov_idx")int mov_idx) {
 		ModelAndView mav=new ModelAndView();
-		
-		//junsung writed
-		String buy_title="블랙 아담";
-		double allMovCnt=mdao.allMovCnt();
-		double selMovCnt=mdao.selMovCnt(buy_title);
-		double bookPer_d=selMovCnt/allMovCnt*100;
-		String bookPer=String.format("%.1f", bookPer_d);
-		double allBookCnt=mdao.allBookCnt(buy_title);
-		double manBookCnt=mdao.manBookCnt(buy_title);
-		double manPer_d=manBookCnt/allBookCnt*100;
-		String manPer=String.format("%.1f", manPer_d);
-		double womanBookCnt=mdao.womanBookCnt(buy_title);
-		double womanPer_d=womanBookCnt/allBookCnt*100;
-		String womanPer=String.format("%.1f", womanPer_d);
-		double oneBookCnt=mdao.oneBookPer(buy_title);
-		double onePer_d=oneBookCnt/allBookCnt*100;
-		String onePer=String.format("%.1f", onePer_d);
-		double twoBookCnt=mdao.twoBookPer(buy_title);
-		double twoPer_d=twoBookCnt/allBookCnt*100;
-		String twoPer=String.format("%.1f", twoPer_d);
-		double threeBookCnt=mdao.threeBookPer(buy_title);
-		double threePer_d=threeBookCnt/allBookCnt*100;
-		String threePer=String.format("%.1f", threePer_d);
-		double fourBookCnt=mdao.fourBookPer(buy_title);
-		double fourPer_d=fourBookCnt/allBookCnt*100;
-		String fourPer=String.format("%.1f", fourPer_d);
-		double fiveBookCnt=mdao.fiveBookPer(buy_title);
-		double fivePer_d=fiveBookCnt/allBookCnt*100;
-		String fivePer=String.format("%.1f", fivePer_d);
-		Map map=new HashMap();
-		map.put("buy_title", buy_title);
-		map.put("mov_booking_percent", bookPer);
-		map.put("mov_gender_percent", manPer+","+womanPer);
-		map.put("mov_age_percent", onePer+","+twoPer+","+threePer+","+fourPer+","+fivePer);
-		mdao.updateBookPer(map);
-		mdao.updateGenderPer(map);
-		mdao.updateGenderPer(map);
-		
 		mav.setViewName("joaMovie/joaMovie_info");
 		return mav;
 	}

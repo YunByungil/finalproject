@@ -63,6 +63,7 @@
    <bean id="adminStoreController"     class="joa.controller.AdminStoreController"></bean>
    <bean id="joaReviewController" 	   class="joa.controller.JoaReviewController"></bean>
    <bean id="adminOwncouController"    class="joa.controller.AdminOwncouController"></bean>
+   <bean id="adminPayController"    class="joa.controller.AdminPayController"></bean>
    
    <!-- daos -->
    <bean id="adminStoreDao"   class="joa.adminStore.model.AdminStoreDAOImple">
@@ -151,6 +152,12 @@
          	<ref bean="sqlSessionTemplate"/>
      	 </constructor-arg>
    	</bean>
+   	
+   	<bean id="adminPayDao" class="joa.adminPay.model.AdminPayDAOImple">
+   		<constructor-arg>
+         	<ref bean="sqlSessionTemplate"/>
+     	 </constructor-arg>
+   	</bean>
 
    <!-- services -->
    <bean id="adminMovieService" class="joa.adminMovie.model.AdminMovieServiceImple">
@@ -198,6 +205,12 @@
    	<bean id="adminReviewService" class="joa.adminReview.model.AdminReviewServiceImple">
    		<constructor-arg>
          <ref bean="adminReviewDao"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="adminPayService" class="joa.adminPay.model.AdminPayServiceImple">
+   		<constructor-arg>
+         <ref bean="adminPayDao"/>
 		</constructor-arg>
 	</bean>
    

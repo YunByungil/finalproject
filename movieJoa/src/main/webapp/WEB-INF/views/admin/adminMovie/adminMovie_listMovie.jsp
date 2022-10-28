@@ -58,7 +58,7 @@ function deleteMovie(didx){
 
 	<c:if test="${empty movieList}">
 		<tr>
-			<td>등록되어있는 영화가 존재하지 않습니다.</td>
+			<td colspan="6">등록되어있는 영화가 존재하지 않습니다.</td>
 		</tr>
 	</c:if>
 

@@ -21,6 +21,14 @@
 			select count(*) from joa_review
 			<include refid="searchCondition"/>
 	</select>
+	<select id="detailReview" parameterType="Integer" resultType="joa.review.model.JoaReviewDTO">
+ 			select 
+ 			* 
+ 			from 
+ 			joa_review
+ 			where 
+ 			rev_idx=#{here}
+</select>
 	  	<sql id="searchCondition">
 	  	<if test="s_k != '--'">
 				<if test='s_k.equals("rev_idx")'>
