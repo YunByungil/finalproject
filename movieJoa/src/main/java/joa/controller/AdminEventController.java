@@ -75,7 +75,7 @@ public class AdminEventController {
 		int result=0;
 	    String msg="";
 	    
-	    String path=req.getRealPath("/img/joaEvent_img");
+	    String path=req.getRealPath("/img/joaEvent_img/");
 	    
 	    String filename1=event_main_img.getOriginalFilename();
 	    File f=new File(path+filename1);		

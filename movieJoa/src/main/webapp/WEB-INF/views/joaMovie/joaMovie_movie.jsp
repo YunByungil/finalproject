@@ -35,6 +35,9 @@ a:visited, a{
 font{
 	color: red;
 }
+body, input, button, select, textarea {
+    font-family:'SUIT-Medium';
+}
 </style>
 </head>
 <script>
@@ -119,8 +122,7 @@ function show2(){
 	                	</c:if>
 	                </strong>
 	            </a>
-	            <div class="score">
-	                <strong class="percent">예매율 
+	            <div class="score">예매율 
 		                <span>${list.mov_booking_percent }</span>
 		                <span class='egg great'>| 관람평</span>
 		                <span class='percent'>
@@ -131,10 +133,8 @@ function show2(){
 								?
 			                </c:if>
 		                </span>
-	                </strong>
 	            </div>
 	            <span class="txt-info">
-	                <strong>
 	                	<fmt:parseDate var="start" value="${list.mov_start_date }" pattern="yyyy-MM-dd"/>
                   		<fmt:formatDate value="${start }" pattern="yyyy-MM-dd"/>
                     	<fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowTime"/>
@@ -145,11 +145,10 @@ function show2(){
 	                			D-${startTime - nowTime +1}
 	                		</c:if>
 	                	</font>
-	                </strong>
 	            </span>
 	            <br>
 	            <span class="like"> 
-	                <a class="link-reservation" href="book.do">예매</a>
+	                <button onclick="location.href='book.do'" style="background-color: red;border: none;color: white;border-radius: 15px;">&nbsp예매하기&nbsp</button>
 	            </span>
 	            <br>&nbsp
 	        </div>

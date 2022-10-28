@@ -36,10 +36,11 @@ public class AdminMovieController {
 		return new AdminMovieDTO();
 	} 
 
-	   private void insertPosterImg(MultipartFile mov_poster) {
+	   private void insertPosterImg(HttpServletRequest req, MultipartFile mov_poster) {
 		      try {
+		    	 String path=req.getRealPath("/img/movie_poster/");
 		         byte realPosterFile[] = mov_poster.getBytes();
-		         File poster = new File("C:/work_space/galmaedummy/movieJoa/src/main/webapp/img/movie_poster/" + mov_poster.getOriginalFilename());
+		         File poster = new File(path + mov_poster.getOriginalFilename());
 		         System.out.println("절대경로:"+poster.getAbsolutePath());
 		         System.out.println("상대경로:"+poster.getCanonicalPath());
 		   
@@ -74,7 +75,7 @@ public class AdminMovieController {
 	    String msg="";
 	   
 	    MultipartFile poster = req.getFile("poster");
-		 insertPosterImg(poster);
+		 insertPosterImg(req, poster);
 		 
 		 String mov_poster=poster.getOriginalFilename();
 		 dto.setMov_poster(mov_poster);
@@ -128,7 +129,7 @@ public class AdminMovieController {
 		String msg="";
 		
 		 MultipartFile poster = mreq.getFile("poster");
-		 insertPosterImg(poster);
+		 insertPosterImg(req, poster);
 		 
 		 
 		 String mov_poster=poster.getOriginalFilename();

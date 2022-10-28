@@ -5,15 +5,15 @@
   <mapper namespace="joa.movie">
   	<select id="movieList0" resultType="joa.movie.model.JoaMovieDTO">
   		select rownum as runm,a.* from 
-  		(select * from joa_movie order by mov_booking_percent desc)a
+  		(select * from joa_movie where mov_end_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a
   	</select>
   	<select id="movieList1" resultType="joa.movie.model.JoaMovieDTO">
   		select rownum as runm,a.* from 
-  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate order by mov_booking_percent desc)a
+  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate and mov_end_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a
   	</select>
   	<select id="movieList2" resultType="joa.movie.model.JoaMovieDTO">
   		select rownum as runm,a.* from 
-  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate order by mov_score desc)a
+  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate and mov_end_date<![CDATA[>]]>sysdate order by mov_score desc)a
   	</select>
   	<select id="preMovieDate" resultType="joa.movie.model.JoaMovieDTO">
   		select 
@@ -47,15 +47,17 @@
   		select
   			count(*)
   		from
-  			joa_payMovie
+  			joa_payMovie, joa_movie
+  		where
+  			payMov_mov_title=mov_title and mov_end_date<![CDATA[>]]>sysdate
   	</select>
   	<select id="selMovCnt" parameterType="String" resultType="Integer">
   		select
   			count(*)
   		from
-  			joa_payMovie
+  			joa_payMovie, joa_movie
   		where
-  			payMov_mov_title=#{payMov_mov_title}
+  			payMov_mov_title=mov_title and payMov_mov_title=#{payMov_mov_title} and mov_end_date<![CDATA[>]]>sysdate
   	</select>
   	<update id="updateBookPer" parameterType="Map">
   		update
