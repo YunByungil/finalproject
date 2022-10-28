@@ -117,8 +117,10 @@ function count(type,vs)  {
 	  countElement.innerText = number;
 	}
 	
-function updateItem(car_idx){
+function updateItem(car_idx,vs){
 	
+	ac=document.getElementById('vs').innerText;
+	window.alert(ac);
 	document.joaStoreCart.update_car_idx.value=car_idx;
 	document.joaStoreCart.action='joaStoreCartUpdate.do';		
 	document.joaStoreCart.submit();
@@ -163,7 +165,7 @@ function updateItem(car_idx){
 								<td><input type='button' onclick='count("minus",${vs.count})' value='-'/>
 								<span id="${vs.count }">${dto.car_count }</span>
 								<input type='button' onclick='count("plus",${vs.count})' value='+'/>
-								<input type="button" value="변경" onclick="updateItem(${dto.car_idx},${dto.car_pro_idx })"></td>								
+								<input type="button" value="변경" onclick="updateItem(${dto.car_idx},${vs.count })"></td>								
 								<td><fmt:formatNumber value="${dto.pro_price*dto.car_count}" pattern="#,###"/></td>
 								<input type="hidden" name="pro_filename" value="${dto.pro_filename}">
 								<input type="hidden" name="pro_name" value="${dto.pro_name }">

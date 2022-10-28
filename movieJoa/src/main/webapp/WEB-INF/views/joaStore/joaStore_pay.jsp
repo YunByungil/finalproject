@@ -11,7 +11,22 @@
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+<style>
+.kakao_button{
+	background: url( "img/joaStore_img/payment_icon_yellow_medium.png" ) no-repeat;
+	border: none;
+	width: 121px;
+	height: 50px;
+	cursor: pointer;
+}
+.nicepay_button{
+	background: url( "img/joaStore_img/payment_icon_nicepay_logo.png" ) no-repeat;
+	border: none;
+	width: 217px;
+	height: 60px;
+	cursor: pointer;
+}
+</style>
 <script>
 $(document).ready(function(){ 
 	
@@ -165,8 +180,8 @@ function paymentCreditCard(){
 				<div class="store_pay_payments_system">
 					<table class="store_pay_payments_system_table">
 						<tr>
-							<td><input id="creditCard" type="button" value="신용카드"></td>
-							<td><input id="kakaoPay" type="button" value="카카오페이"></td>	
+							<td><input id="creditCard" class="nicepay_button" type="button"></td>
+							<td><input id="kakaoPay" class="kakao_button" type="button"></td>	
 						</tr>
 					</table>			
 				</div>
