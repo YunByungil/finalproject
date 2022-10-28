@@ -293,6 +293,11 @@ function no() {
 }
 
 function yes() {
+	if (${userInfo.mem_id==null}) {
+		window.alert('로그인 후 이용가능합니다.');
+		window.location.href = '/movieJoa/memberLogin.do';
+		return;
+	}
 	document.getElementById('yesid').style.display = 'none';
 	document.getElementById('payid').style.display = 'inline';
 	$.ajax ({
