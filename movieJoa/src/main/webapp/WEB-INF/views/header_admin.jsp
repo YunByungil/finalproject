@@ -21,11 +21,6 @@
 	text-align: right
     }
 </style>
-<script>
-function openLogin(){
-	window.open('/shoeStore/member/sign.jsp','login','width=450,height=850');
-}
-</script>
 </head>
 <header>
 	<div class="login_area">${adminInfo.admin_area } ${adminInfo.admin_shop }지점 관리자</div>

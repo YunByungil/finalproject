@@ -57,7 +57,7 @@
 		where 
 			car_idx=#{car_idx}
 	</delete>
-	<update id="storeCartUpdateCount" parameterType="joa.store.model.JoaStoreCartDTO">
+	<update id="storeCartUpdateCount" parameterType="Map">
 		update joa_store_cart 
 		   set car_count  = #{car_count}
 		where car_idx = #{car_idx} 

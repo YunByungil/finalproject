@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import joa.store.model.*;
+import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.adminStore.model.*;
+import joa.member.model.*;
 
 @Controller
 public class JoaStoreController {
@@ -87,12 +89,13 @@ public class JoaStoreController {
 	}
 	
 	@RequestMapping("/joaStoreCartDelete.do")
-	public ModelAndView joaStoreCartDelete(String car_idx,HttpSession session) {
-		System.out.println(car_idx);
-		int result = joaStoreService.storeCartDelete(car_idx);		
+	public ModelAndView joaStoreCartDelete(String delete_car_idx,HttpSession session) {
+		JoaMemberDTO udto=(JoaMemberDTO)session.getAttribute("userInfo");
+		String sid=udto.getMem_id();
+		int result = joaStoreService.storeCartDelete(delete_car_idx);		
 		ModelAndView mav=new ModelAndView();
 		
-		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(car_mem_id);
+		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(sid);
 		mav.addObject("storeCartList",storeCartList);
 		mav.setViewName("joaStore/joaStore_cart");
 		return mav;
@@ -103,11 +106,16 @@ public class JoaStoreController {
 		return "joaStore/joaStore_selectCoupon";
 	}
 	
-	@RequestMapping("/joaStoreCartUpdate.do")
-	public ModelAndView joaStoreCartUpdate(String update_car_idx) {
+	@RequestMapping("/joaStoreCartUpdateCount.do")
+	public ModelAndView joaStoreCartUpdate(String update_car_idx, String update_car_count,HttpSession session) {
+		JoaMemberDTO udto=(JoaMemberDTO)session.getAttribute("userInfo");
+		String sid=udto.getMem_id();
+		joaStoreService.storeCartUpdateCount(update_car_idx, update_car_count);
 		
-//		int result = joaStoreService.storeCartUpdate(update_car_idx);
 		ModelAndView mav=new ModelAndView();
+		
+		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(sid);
+		mav.addObject("storeCartList",storeCartList);
 		mav.setViewName("joaStore/joaStore_cart");
 		return mav;
 	}

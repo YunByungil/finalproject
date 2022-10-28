@@ -114,11 +114,12 @@ function count(type,vs)  {
 	
 function updateItem(car_idx,vs){
 	
-	var cartTbody=document.all.cartTbody;
-	window.alert(cartTbody.firstChild.nodeValue);
+	var countElement = document.getElementById(vs);
+	var itemCount=countElement.lastChild.nodeValue;
 
+	document.joaStoreCart.update_car_count.value=itemCount;
 	document.joaStoreCart.update_car_idx.value=car_idx;
-	document.joaStoreCart.action='joaStoreCartUpdate.do';		
+	document.joaStoreCart.action='joaStoreCartUpdateCount.do';		
 	document.joaStoreCart.submit();
 	
 }
@@ -145,6 +146,7 @@ function deleteItem(car_pro_idx,car_idx){
 			<form name="joaStoreCart">
 				<input type="hidden" name="idxsJson">
 				<input type="hidden" name="update_car_idx">
+				<input type="hidden" name="update_car_count">
 				<input type="hidden" name="delete_car_idx">
 					<table class="store_cart_table">
 						<thead>
