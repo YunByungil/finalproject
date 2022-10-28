@@ -1,5 +1,9 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: ￬ﾜﾤ￬ﾧﾀ￭ﾘﾜ
+=======
+Built-By: Galmae
+>>>>>>> 0cfdee4e2203d1b4f6be6d1d0b32b284971fe654
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 

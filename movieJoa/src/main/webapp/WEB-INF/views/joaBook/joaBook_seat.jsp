@@ -59,6 +59,7 @@ a:visited {
 						<td width="50px" height="50px" align="center">${rows[i] }</td>
 					</c:if>
 					<c:if test="${j!=0 }">
+<<<<<<< HEAD
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())!='N' && fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())!='B'}">
                      <td width="50px" bgcolor="green" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');">${seats[i][j-1] }</td>
                   </c:if>
@@ -68,6 +69,26 @@ a:visited {
                   <c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())=='B' }">
                      <td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }">X</td>
                   </c:if>
+=======
+						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())!='N' }">
+							<c:if test="${empty seatList }">
+								<td width="50px" bgcolor="green" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');">${seats[i][j-1] }</td>
+							</c:if>
+							<c:if test="${not empty seatList }">
+								<c:forEach var="seatc" items="${seatList }">
+									<c:if test="${seats[i][j-1]==seatc.payMov_sch_seat }">
+										<td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }">${seats[i][j-1] }</td>
+									</c:if>
+									<c:if test="${seats[i][j-1]!=seatc.payMov_sch_seat }">
+										<td width="50px" bgcolor="green" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');">${seats[i][j-1] }</td>
+									</c:if>
+								</c:forEach>
+							</c:if>
+						</c:if>
+						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())=='N' }">
+							<td width="50px" height="50px" id="${seats[i][j-1] }"></td>
+						</c:if>
+>>>>>>> 0cfdee4e2203d1b4f6be6d1d0b32b284971fe654
 					</c:if>
 				</c:forEach>
 			</tr>
