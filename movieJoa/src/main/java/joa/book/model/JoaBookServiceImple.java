@@ -1,7 +1,7 @@
 package joa.book.model;
 import java.util.*;
 
-import joa.paymovie.model.PayMovieDTO;
+import joa.pay.model.JoaPayMovDTO;
 import joa.theater.model.TheaterTimeDTO;
 public class JoaBookServiceImple implements JoaBookService {
 	
@@ -85,9 +85,9 @@ public class JoaBookServiceImple implements JoaBookService {
 		return list;
 	}
 	
-//	@Override
-//	public List<PayMovieDTO> seatBook(JoaBookDTO dto) {
-//		List<PayMovieDTO> list=joaBookDao.seatBook(dto);
-//		return list;
-//	}
+	@Override
+	public List<JoaPayMovDTO> seatBook(JoaBookDTO dto) {
+		List<JoaPayMovDTO> list=joaBookDao.seatBook(dto);
+		return list;
+	}
 }

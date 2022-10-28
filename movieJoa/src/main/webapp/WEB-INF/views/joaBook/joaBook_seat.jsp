@@ -60,7 +60,19 @@ a:visited {
 					</c:if>
 					<c:if test="${j!=0 }">
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())!='N' }">
-							<td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');">${seats[i][j-1] }</td>
+							<c:if test="${empty seatList }">
+								<td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');">${seats[i][j-1] }</td>
+							</c:if>
+							<c:if test="${not empty seatList }">
+								<c:forEach var="seatc" items="${seatList }">
+									<c:if test="${seats[i][j-1]==seatc.payMov_sch_seat }">
+										<td width="50px" bgcolor="yellow" height="50px" id="${seats[i][j-1] }">${seats[i][j-1] }</td>
+									</c:if>
+									<c:if test="${seats[i][j-1]!=seatc.payMov_sch_seat }">
+										<td width="50px" bgcolor="red" height="50px" id="${seats[i][j-1] }" onclick="checkSeat('${seats[i][j-1] }');">${seats[i][j-1] }</td>
+									</c:if>
+								</c:forEach>
+							</c:if>
 						</c:if>
 						<c:if test="${fn:substring(seats[i][j-1],seats[i][j-1].length()-1,seats[i][j-1].length())=='N' }">
 							<td width="50px" height="50px" id="${seats[i][j-1] }"></td>

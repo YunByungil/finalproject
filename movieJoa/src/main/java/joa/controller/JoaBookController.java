@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
+
+import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.book.model.*;
 import joa.pay.model.*;
 
@@ -38,9 +42,12 @@ public class JoaBookController {
 		List<JoaBookDTO> list = joaBookService.seatList(dto);
 		System.out.println("listSize : " +list.size());
 		String seats_s = list.get(0).getSch_seat();
-		//List<PayMovieDTO> plist=joaBookService.seatBook(dto);
-		System.out.println("seat_s : " +seats_s);
-		System.out.println("seat_s.length : " + seats_s.length());
+		List<JoaPayMovDTO> plist=joaBookService.seatBook(dto);
+		System.out.println(dto.getSch_start_min());
+		System.out.println(dto.getSch_start_hour());
+		System.out.println(dto.getSch_day());
+		System.out.println(dto.getSch_city());
+		System.out.println(dto.getSch_branch());
 		int start=0;
 	      int le=0;
 	      int ri=0;
@@ -75,7 +82,8 @@ public class JoaBookController {
 	    mav.addObject("sch_start_hour", list.get(0).getSch_start_hour());
 	    mav.addObject("sch_start_min", list.get(0).getSch_start_min());
 	    mav.addObject("rows",rows);
-	    //mav.addObject("seatList",plist);
+	    mav.addObject("seatList",plist);
+	    
 	    /////////////
 		mav.setViewName("joaBook/joaBook_seat");
 		return mav;
