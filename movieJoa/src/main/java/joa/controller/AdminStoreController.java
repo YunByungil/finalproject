@@ -50,7 +50,7 @@ public class AdminStoreController {
 	@RequestMapping("/addProduct.do")
 	public ModelAndView addProduct(AdminStoreDTO dto,@RequestParam("img")MultipartFile img, HttpServletRequest req) {
 
-		String path=req.getRealPath("/img/joaStore_img");
+		String path=req.getRealPath("/img/joaStore_img/");
 		String filename=img.getOriginalFilename();
 		File f=new File(path+filename);		
 		copyInto(f, img);

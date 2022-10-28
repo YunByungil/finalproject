@@ -29,6 +29,7 @@
 		<mapper resource="sqlMap/adminCouponSQL.xml"/>
 		<mapper resource="sqlMap/adminOwncouSQL.xml"/>
 		<mapper resource="sqlMap/joaMemberSQL.xml"/>
+		<mapper resource="sqlMap/adminPaySQL.xml"/>
 	</mappers>
 </configuration>
 

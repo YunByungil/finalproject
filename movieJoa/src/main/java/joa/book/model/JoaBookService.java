@@ -1,7 +1,7 @@
 package joa.book.model;
 import java.util.*;
 
-import joa.paymovie.model.PayMovieDTO;
+import joa.pay.model.*;
 import joa.theater.model.TheaterTimeDTO;
 public interface JoaBookService {
 
@@ -19,5 +19,5 @@ public interface JoaBookService {
 	/////////////////realtime
 	public List<JoaBookDTO> realTimeList(String sch_dayd, String sch_branch);
 	
-	//public List<PayMovieDTO> seatBook(JoaBookDTO dto);
+	public List<JoaPayMovDTO> seatBook(JoaBookDTO dto);
 }

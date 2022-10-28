@@ -12,7 +12,10 @@
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
-예매완료
+<script>
+window.alert('예매완료!');
+window.location.href = '/movieJoa/index.do';
+</script>
 <c:import url="../footer.jsp"></c:import>
 </body>
 </html>

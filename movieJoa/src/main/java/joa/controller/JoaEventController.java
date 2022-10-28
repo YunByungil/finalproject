@@ -101,7 +101,7 @@ public class JoaEventController {
 	      JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
 	      String sid=login_dto==null?"":login_dto.getMem_id();
 	      mav.addObject("sid",sid);
-		if(sid!=null && sid=="") {
+		if(sid!=null && sid!="") {
 			int applyCheck = joa_EventService.checkApply(sid, event_code);
 			if (applyCheck<=0) {
 				int totalResult = joa_EventService.addCoupon(sid, cou_idx, event_subject, event_code);//두가지 메서드 동시 실행
@@ -114,7 +114,7 @@ public class JoaEventController {
 				}
 			}else if(applyCheck>0){// 이벤트 참여기록이 존재하는 경우
 				msg="이미 참여한 계정입니다.";
-				nextPage="/movieJoa/1111.do";
+				nextPage="/movieJoa/111.do";
 			}
 		}else{
 			msg="로그인 시 이용 가능합니다.";
