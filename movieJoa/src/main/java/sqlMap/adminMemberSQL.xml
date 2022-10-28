@@ -110,8 +110,17 @@ select count(*) from joa_member where mem_age
 <select id="memberGradeCountQuery" resultType="Integer">
 select count(*) from joa_member where mem_grade<![CDATA[ >= ]]>40000
 </select>
-<select id="memberGenderSelectQuery" resultType="joa.member.model.JoaMemberDTO" parameterType="String">
-select * from joa_member where mem_gender=#{mem_gender}
+<select id="memberGenderSelectQuery" resultType="joa.member.model.JoaMemberDTO" parameterType="HashMap">
+select * from (select rownum as rnum,a.* from (select * from joa_member where mem_gender=#{mem_gender}
+order by mem_idx desc)a)b where rnum
+<![CDATA[ >= ]]>
+${start} and rnum
+<![CDATA[ <= ]]>
+${end}
+
+</select>
+<select id="pagingGenderCountQuery" resultType="Integer" parameterType="String">
+select count(*) from joa_member where mem_gender=#{mem_gender}
 </select>
 <select id="memberGradeGeneralQuery" resultType="Integer">
 select count(*) from joa_member where mem_grade<![CDATA[ < ]]>10000

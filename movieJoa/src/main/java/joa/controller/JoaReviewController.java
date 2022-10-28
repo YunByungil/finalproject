@@ -2,6 +2,9 @@ package joa.controller;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import joa.member.model.JoaMemberDTO;
 import joa.review.model.JoaLikeDTO;
 import joa.review.model.JoaReviewDAO;
 import joa.review.model.JoaReviewDTO;
@@ -30,7 +34,11 @@ public class JoaReviewController {
 	public ModelAndView commentList(
 			@RequestParam(value="ot", required=false, defaultValue = "0")int ot,
 			@RequestParam(value="?cp", required=false, defaultValue = "1")int cp,
-			@RequestParam("mov_idx")int mov_idx) {
+			@RequestParam("mov_idx")int mov_idx,
+			HttpServletRequest req) {
+		HttpSession session=req.getSession();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid=login_dto==null?"":login_dto.getMem_id();
 		int totalCnt=rdao.totalCnt(mov_idx);
 		int listSize=5;
 		int pageSize=5;
@@ -42,7 +50,7 @@ public class JoaReviewController {
 		map.put("mov_idx", mov_idx);
 		map.put("start", start);
 		map.put("end", end);
-		map.put("rev_id", "tester");
+		map.put("rev_id", sid);
 		List<JoaReviewDTO> list=rdao.commentList(ot, map);
 		List<JoaLikeDTO> list2=rdao.likes(map);
 		int checkId=rdao.checkId(map);
@@ -90,11 +98,15 @@ public class JoaReviewController {
 			@RequestParam("rev_idx")int rev_idx,
 			@RequestParam("rev_id")String rev_id,
 			@RequestParam("rev_movie_title")String rev_movie_title,
-			@RequestParam("rev_like")int rev_like) {
+			@RequestParam("rev_like")int rev_like,
+			HttpServletRequest req) {
+		HttpSession session=req.getSession();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid=login_dto==null?"":login_dto.getMem_id();
 		Map map=new HashMap();
 		map.put("lik_movie_title", rev_movie_title);
 		map.put("lik_writer_id", rev_id);
-		map.put("lik_like_id", "tester");
+		map.put("lik_like_id", sid);
 		ModelAndView mav=new ModelAndView();
 		int result=rdao.addLike(rev_idx, map);
 		String result2=(rev_like+result)>rev_like?"♥ "+(rev_like+result):"♡ "+(rev_like+result);

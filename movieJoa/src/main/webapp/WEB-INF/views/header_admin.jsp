@@ -12,6 +12,10 @@
     ul.myMenu > li:hover ul.submenu { display:block; }
     ul.myMenu > li ul.submenu > li { display:inline-block; width:120px; padding:5px 10px; background:white; border:1px solid #eee; text-align:center; }
     ul.myMenu > li ul.submenu > li:hover { background:#fff; }
+    
+    .menu_space{
+    	height:150px;
+    }
 </style>
 <script>
 function openLogin(){
@@ -22,10 +26,10 @@ function openLogin(){
 <header>
 	<div class="nav">
 		<div class="logo">
-			<a href="index.do"><h1>MJOA manage</h1></a>
+			<a href="adminLogout.do"><h1>MJOA manage</h1></a>
 		</div>
 		<div class="nav_menu">
-			<a href="index.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
+			<a href="adminLogout.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
 		</div>	
 	</div>
 	<hr size="1px" color="#c0c0c0">
@@ -103,6 +107,7 @@ function openLogin(){
 		</div>
 	</div>
 	<hr size="2px" color="#808080">
+	<div class="menu_space"></div>
 </header>
 </body>
 </html>

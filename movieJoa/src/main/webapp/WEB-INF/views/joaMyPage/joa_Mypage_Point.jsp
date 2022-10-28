@@ -15,55 +15,61 @@
 <div class="mypage_main">
 	<div class="myInformation">
 		<div class="myproF">
-		프로필사진
+		<img height="90" width="90" src="${pro_image }">
+		
 		</div>
 		<div class="mynickname">
 			<ul class="ul_p">
-				<li class="li_o">이름</li>
-				<li class="li_p">아이디</li>
-				<li class="li_p">닉네임</li>
-				<li class="li_p"><input type="button" value="닉네임 변경" class="nickbutton"></li>
+				<li class="li_o"><l>${dto.mem_name } 님</l> 환영합니다.</li>
+				<li class="li_p"><l1>회원 아이디</l1> | ${dto.mem_id }</li>
+				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> | ${pro_nickname}</li>
 			</ul>
 		</div>
 		<hr class="hr">
 		<div class="mygrade">
-			<li class="li_o">등급</li>
+			<li class="li_o">등급 ${m_grade }</li>
 			<li class="li_i"><input type="button" value="지난등급 이력 조회" class="gradebutton"></li>
 		</div>
 		<div class="mycoupon">
 			<li class="my_c_p">My Coupon</li>
 			<li><br></li>
-			<li>보유 관람권</li>
+			<li>보유 관람권 | ${couponCount } 개</li>
 			<li><br></li>
-			<li>관람권 사용내역</li>
+			<li>최근 관람권 사용내역</li>
+			<li><br></li>
+			<c:if test="${empty datelist }">
+			<li>최근 사용하신 관람권이 없습니다.</li>
+			</c:if>
+			<c:forEach var="date" items="${datelist }">
+				<li>${date.own_use_date }</li>
+			</c:forEach>
 		</div>
 		<div class="mypoint">
 			<li class="my_c_p">My Point</li>
 			<li><br></li>
-			<li>보유 포인트</li>
-			<li><br></li>
-			<li>포인트 사용내역</li>
+			<li>보유 포인트 ${dto.mem_point }</li>
+			<li><br></li>			
 		</div>
 	</div>
 	<br>
 	<div class="mypagecontaniner">
 		<dl class="mymenubar">
-			<a href="myPage_tiket.do"><dt>나의 예매내역</dt></a>
-				<a href="myPage_cancle_Coupon.do"><dd>예매취소</dd></a>
-			<a href="myPage_coupon.do"><dt>관람권 관리</dt></a>
-			<a href="myPage_coupon.do"><dd>MovieJoa 영화관람권</dd></a>
-			<a href="myPage_GuidePoint.do"><dt>포인트 관리</dt></a>
-				<a href="myPage_GuidePoint.do"><dd>포인트 적립/사용안내</dd></a>
-				<a href="myPage_Point.do"><dd>포인트 적립/사용내역</dd></a>
-			<a href="myPage_Event.do"><dt>이벤트 참여내역</dt></a>
-			<a href="myPage_Store.do"><dt>스토어</dt></a>
-				<a href="myPage_Store.do"><dd>내 스토어</dd></a>
-				<a href="myPage_Store_Payment.do"><dd>결제내역</dd></a>
-			<a href="myPage_PW_Check_M.do"><dt>회원정보</dt></a>
-				<a href="myPage_PW_Check_M.do"><dd>회원정보 관리</dd></a>
-				<a href="myPage_PW_Check_E.do"><dd>회원탈퇴</dd></a>
-			<a href="myPage_PW_Check_P.do"><dt>프로필 관리</dt></a>
-			<a href="myPage_myService.do"><dt>나의 문의내역</dt></a>
+			<a href="myPage_tiket.do" class="My_bar_a"><dt class="My_bar">나의 예매내역</dt></a>
+				<a href="myPage_cancle_Movie_Move.do" class="My_bar_a"><dd>예매취소</dd></a>
+			<a href="myPage_coupon.do" class="My_bar_a"><dt class="My_bar">관람권 관리</dt></a>
+			<a href="myPage_coupon.do" class="My_bar_a"><dd>MovieJoa 영화관람권</dd></a>
+			<a href="myPage_GuidePoint.do" class="My_bar_a"><dt class="My_bar">포인트 관리</dt></a>
+				<a href="myPage_GuidePoint.do" class="My_bar_a"><dd>포인트 적립/사용안내</dd></a>
+				<a href="myPage_Point.do" class="My_bar_a"><dd>포인트 적립/사용내역</dd></a>
+			<a href="myPage_Event.do" class="My_bar_a"><dt class="My_bar">이벤트 참여내역</dt></a>
+			<a href="myPage_Store.do" class="My_bar_a"><dt class="My_bar">스토어</dt></a>
+				<a href="myPage_Store.do" class="My_bar_a"><dd>내 스토어</dd></a>
+				<a href="myPage_Store_Payment.do" class="My_bar_a"><dd>결제내역</dd></a>
+			<a href="myPage_PW_Check_M.do" class="My_bar_a"><dt class="My_bar">회원정보</dt></a>
+				<a href="myPage_PW_Check_M.do" class="My_bar_a"><dd>회원정보 관리</dd></a>
+				<a href="myPage_PW_Check_E.do" class="My_bar_a"><dd>회원탈퇴</dd></a>
+			<a href="myPage_PW_Check_P.do" class="My_bar_a"><dt class="My_bar">프로필 관리</dt></a>
+			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
 		
 		<div class="joaMypage_ti">
@@ -81,13 +87,19 @@
 		
 			<tbody>
 				<tr>
-					<td>사용가능 포인트</td><td></td>
+					<td>사용가능 포인트</td><td>${dto.mem_point }</td>
 				</tr>
 				<tr>	
-					<td>등급선정 포인트</td><td></td>
+					<td>등급선정 포인트</td><td>${dto.mem_grade }</td>
+				</tr>
+				<tr>
+					<td>등급 선정 기준</td><td>10000점 = VIP<br>
+											25000점 = SVIP<br>
+											40000점 = VVIP
+										</td>
 				</tr>
 				<tr>	
-					<td>추가적립 포인트</td><td></td>
+					<td>추가적립 포인트</td><td>${plusPoint }</td>
 				</tr>		
 			</tbody>
 			</table>
@@ -95,43 +107,6 @@
 			<hr class="ti_hr">
 			</div>
 			<br>
-			<div class="ti_cancl_sub">포인트 사용내역<br></div>
-			<br>
-			<div class="serchBar_usedCoupon">
-				<div class="serchBar_sub">조회기간</div>
-				<div class="serchBar_type"><input type="button" value="2주일" class="serchBar_button">&nbsp;<input type="button" value="1개월" class="serchBar_button">&nbsp;<input type="button" value="전체" class="serchBar_button"></div>
-				<div class="serchBar_date"><input type="date" class="serchBar_input">&nbsp;~&nbsp;<input type="date" class="serchBar_input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="조회하기" class="serchBar_i_button"></div>
-			</div>
-			
-			<div class="ti_cl_div">
-				<hr class="ti_hr">
-				
-				<br>
-					<table class="ti_cl_border">
-					<thead>
-						<th>구분</th>
-						<th>사용처</th>
-						<th>구매일</th>
-						<th>소모포인트</th>
-					</thead>
-					<tbody>
-						<c:if test="${empty list }">
-						<tr><td colspan="4"><br></td></tr>
-						<tr>
-							<td colspan="4">고객님의 최근 포인트 소비 내역이 존재하지 않습니다.</td>
-						</tr>
-						</c:if>
-						<c:forEach var="dto" items="${list }">
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
 		</div>
 </div>
 </section>

@@ -14,7 +14,7 @@ function counter2(){
 	<span class="star2">
  	  ★★★★★
   	<span>★★★★★</span>
-		<input type="range" oninput="drawStar2(this)" value="${list.rev_score }" step="1" min="0" max="10" id="range">
+		<input type="range" oninput="drawStar2(this)" value="${list.rev_score }" step="1" min="1" max="10" id="range">
 	</span>
 </div>
 <b id="val2" style="font-size: 4rem;">${list.rev_score }</b>			

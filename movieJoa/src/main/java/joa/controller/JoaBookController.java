@@ -38,6 +38,7 @@ public class JoaBookController {
 		List<JoaBookDTO> list = joaBookService.seatList(dto);
 		System.out.println("listSize : " +list.size());
 		String seats_s = list.get(0).getSch_seat();
+		//List<PayMovieDTO> plist=joaBookService.seatBook(dto);
 		System.out.println("seat_s : " +seats_s);
 		System.out.println("seat_s.length : " + seats_s.length());
 		int start=0;
@@ -74,6 +75,7 @@ public class JoaBookController {
 	    mav.addObject("sch_start_hour", list.get(0).getSch_start_hour());
 	    mav.addObject("sch_start_min", list.get(0).getSch_start_min());
 	    mav.addObject("rows",rows);
+	    //mav.addObject("seatList",plist);
 	    /////////////
 		mav.setViewName("joaBook/joaBook_seat");
 		return mav;
@@ -87,9 +89,9 @@ public class JoaBookController {
 		System.out.println("성공 : " +dto.getSch_mov_title());
 		List<JoaBookDTO> list = joaBookService.moviesBranchList(dto.getSch_mov_title());
 		String msg = "";
-		msg += "<tr><th>극장</th></tr>";
+		msg += "<tr class=trtr><th>극장</th></tr>";
 		for (int i=0; i<list.size(); i++) {
-			msg += "<td id="+list.get(i).getSch_branch()+"><a href=javascript:next2('"+list.get(i).getSch_branch()+"')>"+list.get(i).getSch_branch()+"</a></td>";
+			msg += "<tr class=trtrtr><td id="+list.get(i).getSch_branch()+" ><a href=javascript:next2('"+list.get(i).getSch_branch()+"')>"+list.get(i).getSch_branch()+"</a></td></tr>";
 		}
 		map.put("reloadBranch", msg);
 		return map;
@@ -101,9 +103,9 @@ public class JoaBookController {
 		HashMap map = new HashMap();
 		List<JoaBookDTO> list = joaBookService.moveisDateList(dto.getSch_mov_title(), dto.getSch_branch());
 		String msg = "";
-		msg += "<tr><th>날짜</th></tr>";
+		msg += "<tr class=trtr><th>날짜</th></tr>";
 		for (int i=0; i<list.size(); i++) {
-			msg += "<tr><td id="+list.get(i).getSch_day()+"><a href=javascript:next3('"+list.get(i).getSch_day()+"')>"+list.get(i).getSch_day()+"</a></td></tr>";
+			msg += "<tr class=trtrtr><td id="+list.get(i).getSch_day()+"><a href=javascript:next3('"+list.get(i).getSch_day()+"')>"+list.get(i).getSch_day()+"</a></td></tr>";
 		}
 		map.put("reloadDate", msg);
 		return map;
@@ -115,9 +117,9 @@ public class JoaBookController {
 		HashMap map = new HashMap();
 		List<JoaBookDTO> list = joaBookService.moveisTimeList(dto.getSch_mov_title(), dto.getSch_branch(), dto.getSch_day());
 		String msg = "";
-		msg += "<tr><th>관/시간</th></tr>";
+		msg += "<tr class=trtr><th>관/시간</th></tr>";
 		for (int i=0; i<list.size(); i++) {
-			msg += "<tr><td id="+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"><a href=javascript:next4('"+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"')>"+
+			msg += "<tr class=trtrtr><td id="+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"><a href=javascript:next4('"+list.get(i).getSch_theater()+"/"+list.get(i).getSch_start_hour()+list.get(i).getSch_start_min()+"')>"+
 					list.get(i).getSch_theater()+"관/ 시작 : " +
 					list.get(i).getSch_start_hour()+":"+list.get(i).getSch_start_min()+"/ 끝 : "+
 					list.get(i).getSch_end_hour()+":"+list.get(i).getSch_end_min()+

@@ -127,25 +127,27 @@ function paymentCreditCard(){
 </form>
 </div>
 
-<br><br><br><br><br><br><br><br><br>
-<div align="center">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div align="center" style="background-color: #392f31; width: 100%; height: 200px; ">
 
 <div style="width: 25%; height: 25%; float: left;">
-<span id="sub2"><img src="/movieJoa/img/theater/${title }.jpg" width="100px" height="100px"></span>
-<span id="sub">${title }</span>
+<span id="sub2" style="color: white;"><img src="/movieJoa/img/theater/${title }.jpg" width="200px" height="192px"></span>
+<span id="sub" style="color: white;">${title }</span>
 </div>
 
 <div style="width: 25%; height: 25%; float: left;">
-<span id="br">${branch }</span><br>
-<span id="date">${day }</span><br>
-<span id="to">${theater }관/${hour }:${min }</span>
+<span id="br" style="color: white;">${branch }</span><br>
+<span id="date" style="color: white;">${day }</span><br>
+<span id="to" style="color: white;">${theater }관/${hour }:${min }</span>
 </div>
 <div style="width: 25%; height: 25%; float: left;">
-<span id="s">좌석명 : ${seat }</span><br>
-<span id="money">가격 : ${price }</span>
+<span id="s" style="color: white;">좌석명 : ${seat }</span><br>
+<span id="money" style="color: white;">가격 : ${price }</span>
 </div>
 
-<div style="width: 25%; height: 25%; float: left;"><input type="submit" value="결제하기" style="color: red;" id="finalpay"></div>
+<div style="width: 25%; height: 25%; float: left;">
+<input type="submit" value="결제하기" style="background-color: red; width: 418px; height: 192px;" id="finalpay">
+</div>
 <br><br><br><br><br><br><br><br><br>
 <div>
 <c:import url="../footer.jsp"></c:import>

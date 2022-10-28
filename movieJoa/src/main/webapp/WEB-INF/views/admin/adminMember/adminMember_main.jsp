@@ -121,7 +121,7 @@
     <div class="content"><br>${memberGenderCount }명</div>
     <div class="footer"><hr><a href="adminGender.do?mem_gender=남">확인하기</a></div></div>
   <div class="item"><div class="header">여자 회원 수<hr></div>
-    <div class="content"><br>${memberAllCount-memberGenderCount }</div>
+    <div class="content"><br>${memberAllCount-memberGenderCount }명</div>
     <div class="footer"><hr><a href="adminGender.do?mem_gender=여">확인하기</a></div></div>
   <div class="item"><div class="header">VVIP 회원 수<hr></div>
     <div class="content"><br>${memberGradeCount }</div>

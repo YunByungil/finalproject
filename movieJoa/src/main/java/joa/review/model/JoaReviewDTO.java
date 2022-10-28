@@ -2,29 +2,29 @@ package joa.review.model;
 
 public class JoaReviewDTO {
 
-   int rev_idx;
-   String rev_id;
-   String rev_movie_title;
-   String rev_comment;
-   int rev_score;
-   String rev_date;
-   int rev_like;
-   
-   public JoaReviewDTO() {
-      // TODO Auto-generated constructor stub
-   }
+	int rev_idx;
+	String rev_id;
+	String rev_movie_title;
+	String rev_comment;
+	int rev_score;
+	String rev_date;
+	int rev_like;
+	
+	public JoaReviewDTO() {
+		// TODO Auto-generated constructor stub
+	}
 
-   public JoaReviewDTO(int rev_idx, String rev_id, String rev_movie_title, String rev_comment, int rev_score,
-         String rev_date, int rev_like) {
-      super();
-      this.rev_idx = rev_idx;
-      this.rev_id = rev_id;
-      this.rev_movie_title = rev_movie_title;
-      this.rev_comment = rev_comment;
-      this.rev_score = rev_score;
-      this.rev_date = rev_date;
-      this.rev_like = rev_like;
-   }
+	public JoaReviewDTO(int rev_idx, String rev_id, String rev_movie_title, String rev_comment, int rev_score,
+			String rev_date, int rev_like) {
+		super();
+		this.rev_idx = rev_idx;
+		this.rev_id = rev_id;
+		this.rev_movie_title = rev_movie_title;
+		this.rev_comment = rev_comment;
+		this.rev_score = rev_score;
+		this.rev_date = rev_date;
+		this.rev_like = rev_like;
+	}
 
    public int getRev_idx() {
       return rev_idx;
