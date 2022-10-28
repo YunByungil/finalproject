@@ -161,10 +161,10 @@ function validate(){
 			<div class="P_title">비밀번호 변경</div><div class="p_content1"><input type="password" name="mem_pwd" id="pwd1" onchange="isTrue()" readonly class="p_content"></div>
 			<hr class="ti_hr">
 			<div class="P_title">비밀번호 확인</div><div class="p_content1"><input type="password" name="mem_pwd_check" id="pwd2" onchange="isTrue()" readonly class="p_content">
-				<span id="checkpwd"></span></div>
+				<span class="span" id="checkpwd"></span><e>비밀번호는 4~12자의 영문,숫자,특수기호 조합으로만 입력해주세요.</e></div>
 			<hr class="ti_hr">
 			<div class="P_title">연락처</div>
-			<div class="p_content4"><input type="text" name="mem_tel" placeholder="(-)생략" id="tel"readonly></div>
+			<div class="p_content4"><input type="text" name="mem_tel" placeholder="(-)생략" id="tel"readonly class="p_content"></div>
 			<hr class="ti_hr">
 			<div class="P_title">E-mail</div><div class="p_content0"><input type="text" name="mem_email" value="${dto.mem_email }" id="email" readonly class="p_content">
 			</div>

@@ -1,5 +1,21 @@
 @charset "UTF-8";
 
+#pwd2{
+	position: relative;
+	left:155px;
+}
+e{
+	position: relative;
+	top:5px;
+	left:180px;
+	font-size:10px;
+}
+.span{
+	position: absolute;
+	top:2px;
+	left:350px;
+}
+
 .sid{
 	width:200px;
 }

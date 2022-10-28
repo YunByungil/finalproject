@@ -20,6 +20,12 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	}
 	
 	@Override
+	public JoaMypageProfileDTO getProfile(String sid) {
+		JoaMypageProfileDTO pdto = JoaMypageDao.getProfile(sid);
+		return pdto;
+	}
+	
+	@Override
 	public JoaHelpQuestionDTO questionBorder(int idx) {
 		JoaHelpQuestionDTO dto = JoaMypageDao.questionBorder(idx);
 		return dto;
@@ -109,6 +115,10 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	
 	@Override
 	public int memberProfile(JoaMypageProfileDTO dto) {
+		System.out.println(dto.getPro_id());
+		System.out.println(dto.getPro_image());
+		System.out.println(dto.getPro_nickname());
+		
 		int result = JoaMypageDao.memberProfile(dto);
 		return result;
 	}

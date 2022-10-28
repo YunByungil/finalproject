@@ -42,4 +42,6 @@ public interface JoaMypageService {
 	public List<JoaMypageRivewDTO> memberReview(String sid);
 	
 	public List<JoaMyPagePayMovieDTO> memberPayMovie(String sid);
+	
+	public JoaMypageProfileDTO getProfile(String sid);
 }

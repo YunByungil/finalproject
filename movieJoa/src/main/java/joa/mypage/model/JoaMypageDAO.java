@@ -43,4 +43,6 @@ public interface JoaMypageDAO {
 
 	public List<JoaMyPagePayMovieDTO> memberPayMovie(String sid);
 	
+	public JoaMypageProfileDTO getProfile(String sid);
+	
 }

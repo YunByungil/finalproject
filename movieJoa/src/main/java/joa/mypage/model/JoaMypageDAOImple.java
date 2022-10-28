@@ -23,6 +23,12 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 	}
 	
 	@Override
+	public JoaMypageProfileDTO getProfile(String sid) {
+		JoaMypageProfileDTO dto = sqlMap.selectOne("getprofile",sid);
+		return dto;
+	}
+	
+	@Override
 	public JoaHelpQuestionDTO questionBorder(int idx) {
 		JoaHelpQuestionDTO dto = sqlMap.selectOne("questionBorder_s", idx);
 		return dto;
@@ -102,6 +108,10 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 	
 	@Override
 	public int memberProfile(JoaMypageProfileDTO dto) {
+		System.out.println(dto.getPro_id());
+		System.out.println(dto.getPro_image());
+		System.out.println(dto.getPro_nickname());
+		
 		int result = sqlMap.selectOne("insertProfile", dto);
 		return result;
 	}

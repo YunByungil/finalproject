@@ -1,6 +1,8 @@
 package joa.controller;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +50,8 @@ public class JoaMypageController {
 		}else {
 		String sid = login_dto.getMem_id();
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		
+		
 		
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
 		
@@ -141,6 +145,8 @@ public class JoaMypageController {
 		String sid = login_dto.getMem_id();
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
+		
+		
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
 		
 		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
@@ -154,7 +160,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-
+		
+		 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -1014,6 +1021,22 @@ public class JoaMypageController {
 		return mav;
 	}
 	
+	public void copyInto(File f,MultipartFile upload) {
+		
+		System.out.println("파일명:"+upload.getOriginalFilename());
+		
+		try {
+			byte bytes[]=upload.getBytes(); 
+			FileOutputStream fos = new FileOutputStream(f);
+			fos.write(bytes);; 
+			fos.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();			
+		}
+		
+	}
+	
 	@RequestMapping("/addProfile.do")
 	public ModelAndView addProduct(JoaMypageProfileDTO dto,@RequestParam("img")MultipartFile img, HttpServletRequest req, HttpSession session) {
 		
@@ -1030,11 +1053,17 @@ public class JoaMypageController {
 			return mav;
 		}else {
 		
-		String path=req.getRealPath("/movieJoa/img/joaPofiel_img");
+		String path=req.getRealPath("img/joaPofiel_img/");
 		String filename=img.getOriginalFilename();
-		File f=new File(path+filename);		
-		dto.setPro_image(img.getOriginalFilename());
-
+		File f=new File(path+filename);	
+		copyInto(f, img);
+		dto.setPro_image(filename);
+		dto.setPro_id(login_dto.getMem_id());
+		
+		System.out.println(dto.getPro_id());
+		System.out.println(dto.getPro_image());
+		System.out.println(dto.getPro_nickname());
+		
 		int result= JoaMypageService.memberProfile(dto);
 		String msg=result>0?"프로필 등록 성공":"프로필 등록 실패";
 		
