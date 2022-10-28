@@ -57,9 +57,8 @@ function deleteReview(didx){
 <c:url var="didx" value="deleteReview.do">
 </c:url>
 <div class="btn_wrap">
-<input type="button" value="영화 삭제" class="button_main" onclick="javascript:deleteReview(${dto.rev_idx });">
+<input type="button" value="리뷰 삭제" class="button_main" onclick="javascript:deleteReview(${dto.rev_idx });">
 <div class="bottom_div">
-<a href="#" class="fl_r"> 목록으로 </a>
 </div>
 </div>
 <c:import url="../../footer.jsp"></c:import>

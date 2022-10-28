@@ -53,12 +53,12 @@ function openLogin(){
 					    <li><a href="scheduleList.do">상영 스케줄</a></li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">예매현황</a>
+				<li class="menu2"><a href="/movieJoa/listAdminPay.do">예매현황</a>
 					<ul class="menu2_s submenu">
 					    <li>예매현황</li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">평점관리</a>
+				<li class="menu2"><a href="/movieJoa/listReview.do">평점관리</a>
 					<ul class="menu2_s submenu">
 					    <li>평점 목록</li>
 					</ul>

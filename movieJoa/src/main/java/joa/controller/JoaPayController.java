@@ -89,7 +89,6 @@ public class JoaPayController {
 	@RequestMapping("/joaBookPay.do")
 	public ModelAndView joaBookPay(JoaPayMovDTO dto) {
 		
-
 		int result = joaPayService.joaBookPayAdd(dto);		
 		//junsung writed
 		List<JoaMovieDTO> aml=joaPayService.allMovieList();
