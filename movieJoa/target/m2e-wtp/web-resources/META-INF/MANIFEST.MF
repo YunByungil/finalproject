@@ -1,13 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-<<<<<<< HEAD
 Built-By: Galmae
-=======
-Built-By: user
->>>>>>> origin/dummy_1027
-=======
-Built-By: Yong
->>>>>>> origin/save_sangmin
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 
