@@ -5,21 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=7">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=7">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=3">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=3">
 <title>Insert title here</title>
-<script>
-function jbSubmit() {
-    var pw1 = document.getElementById( 'pw1' ).value;
-    var pw2 = document.getElementById( 'pw2' ).value;
-    if (pw1!=pw2) {
-      alert( '비밀번호를 잘못 입력하셨습니다.' );
-      return false;
-    }
-   return true;
-    
-  }
-</script>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
@@ -84,22 +72,51 @@ function jbSubmit() {
 			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
 		
-		
-		<div class="joaMypage_home">
-		<div class="checkBox_sub">${subject }</div>
-		<form name="c_fm" action="${action }" onsubmit="return jbSubmit();">
-					<div class="checkBox">
-					<input type="hidden" id="pw1" value="${dto.mem_pwd  }">
-							<hr>
-							<div class="checkBox_content">${content }</div>
-							<div class="checkBox_input_div"><input type="password" class="checkBox_input" id="pw2"></div>
-							<div class="checkBox_button_div"><input type="submit" value="확인" class="checkBox_button"></div>
-							<hr class="c_hr">
-					</div>	
-		</form>				
-				<br>
+		<form name="reAnswerFM" action="reAnswerSetc.do">
+				<input type="hidden" name="hqt_idx" value="${sdto.hqt_idx }">
+				<input type="hidden" name="hqt_answerwrite" value="${sdto.hqt_answerwrite }">
+				<input type="hidden" name="hqt_answerrank" value="${sdto.hqt_answerrank }">
+		<div class="joaMypage_ti">
+			<div class="tiket_subject">나의 문의 내역</div>
+			<br>
+			<div class="manyHelpbutton">
+			<input type="submit" value="재답변 요청" class="deletebutton">
 			</div>
+		<table class="manyHelpBorderW">
+			<tr>
+			<td class="bordertype">지역 : ${sdto.hqt_region }</td>
+			<td class="bordersubject">영화관 : ${sdto.hqt_cinema }</td>
+			<td class="readnumW">등록일 : ${sdto.hqt_writedate }</td>
+			</tr>
+			<tr class="borderhead">
+				<td class="bordertype">${sdto.hqt_type }</td>
+				<td class="bordersubject">${sdto.hqt_subject }</td>
+				<td class="readnum">${sdto.hqt_email }</td>
+			</tr>
+			<tr>
+				<td colspan="3"><br></td>
+			</tr>
+			<tr>
+				<td colspan="3" class="bordercontent">${sdto.hqt_content }</td>
+			</tr>
+			<tr>
+				<td colspan="4"><hr></td>
+			</tr>
+			<tr class="borderhead">
+				<td class="sid">관리자 ID : ${sdto.hqt_answerwrite }</td>
+				<td class="rank">직책 : ${sdto.hqt_answerrank}</td>
+				<td class="sdate">답변일 : ${sdto.hqt_answerdate }
+				<br>재답변일 : ${sdto.hqt_reanswerdate }</td>
+			</tr>
+			<tr>
+				<td colspan="3"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="3" class="bordercontent">${sdto.hqt_answercontent }</td>
+			</tr>
+		</table>
 		</div>
+		</form>
 </div>
 </section>
 <c:import url="../footer.jsp"></c:import>

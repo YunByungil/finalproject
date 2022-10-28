@@ -10,7 +10,12 @@ public class JoaMHServiceImple implements JoaMHService {
 		super();
 		JoaManyHelpDao = joaManyHelpDao;
 	}
-
+	
+	@Override
+	public void upDateReadNum(int idx) {
+		JoaManyHelpDao.upDateReadNum(idx);
+	}
+	
 	@Override
 	public int addManyHelp(JoaManyHelpDTO dto) {
 		int result = JoaManyHelpDao.addManyHelp(dto);

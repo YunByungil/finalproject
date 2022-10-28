@@ -34,8 +34,8 @@ function openLogin(){
 			<a href="memberLogout.do"><span class="material-symbols-outlined">person</span>로그아웃</a>
 			</c:if>
 			<a href="memberJoin.do"><span class="material-symbols-outlined">person_add</span>회원가입</a>
-			<a href="myPage.do?sid=test"><span class="material-symbols-outlined">account_circle</span>마이페이지</a>
-			<a href="helpDest.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>
+			<a href="myPage.do"><span class="material-symbols-outlined">account_circle</span>마이페이지</a>
+			<a href="helpDesk.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>
 			<a href="adminStore.do">관리자페이지</a>
 		</div>		
 	</div>
@@ -84,17 +84,16 @@ function openLogin(){
 				</li>
 				<li class="menu5"><a href="myPage.do">마이페이지</a>
 					<ul class="menu5_s submenu">			    
-					    <li>내정보</li>
-					    <li>이벤트참여내역</li>
-					    <li>포인트 사용내역</li>
-					    <li>쿠폰</li> 					    
-					    <li>예매내역</li>
-					    <li>내가 본 영화</li> 					    
-					    <li>내가 쓴 평점</li>
-					    <li>나의 등급</li>
-					    <li>나의 문의</li> 					    
-					    <li>내 스토어샵</li>
-					    <li>프로필 관리</li> 					    		     		
+					   	<a href="addProfile.do"><li>내정보</li></a>
+					    <a href="myPage_Event.do"><li>이벤트참여내역</li></a>
+					    <a href="myPage_Point.do"><li>포인트 사용내역</li></a>
+					    <a href="myPage_coupon.do"><li>쿠폰</li></a>				    
+					    <a href="myPage_tiket.do"><li>예매내역</li></a>
+					    <a href="myPage_SawMovie.do"><li>내가 본 영화</li> 	</a>			    
+					    <a href="myPageReview.do"><li>내가 쓴 평점</li>	</a>		
+					    <a href="myPage_myService.do"><li>나의 문의</li></a> 					    
+					    <a href="myPage_Store.do"><li>내 스토어샵</li></a>
+					    <a href="myPage_PW_Check_P.do"><li>프로필 관리</li></a> 					    		     		
 					</ul>		
 				</ul>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

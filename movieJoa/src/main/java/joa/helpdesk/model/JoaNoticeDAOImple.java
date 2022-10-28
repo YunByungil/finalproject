@@ -14,9 +14,15 @@ public class JoaNoticeDAOImple implements JoaNoticeDAO {
 		super();
 		this.sqlMap = sqlMap;
 	}
+	
+	
 
 	public JoaNoticeDAOImple() {
 		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public void upDateReadNum(int idx) {
+		sqlMap.insert("updateReadnum_N", idx);
 	}
 	
 	@Override

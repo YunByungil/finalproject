@@ -1,5 +1,57 @@
 @charset "UTF-8";
 
+.sid{
+	width:200px;
+}
+.sdate{
+	width:180px;
+}
+
+.bordercontent{
+	width: 700px;
+	height:auto;
+	padding-left:25px;
+	padding-bottom:25px;
+	text-align:left;
+}
+
+.bordertype{
+	width:100px;
+	border:none;
+}
+.bordersubject{
+	padding-left:20px;
+	text-align:left;
+}
+.readnum{
+	width:170px;
+}
+
+.readnumW{
+	width:150px;
+}
+.borderhead{
+	height:50px;
+	background-color :#EEEEEE;
+}
+
+.manyHelpBorderW{
+ 	border-collapse: collapse;	
+	height:auto;
+	width: 700px;
+	align:center;
+}
+
+.deletebutton{
+	background-color: #F05650;
+	color: white;
+	cursor:pointer;
+	outline:0;
+	border:0;
+	font-size:12px; 
+	padding:8px 40px;
+}
+
 .img{
 	height:70px;
 	width:70px;

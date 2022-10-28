@@ -6,17 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=4">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css?ver=4">
 <link rel="stylesheet" type="text/css" href="css/joaHelpDesk.css?ver=4">
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <br>
 <section>
 <div class="helpDesk_main">
 <div class="manyHelpMain">
 	<h4 class="NoticeMainSubject">공지사항</h4>
-	<div align="right"><input type="button" value="게시글 작성" class="writebutton" onclick="location.href='noticeWriteMove.do'"></div>
+	<div align="right"><c:if test="${sid eq 'admin_master' }"><input type="button" value="게시글 작성" class="writebutton" onclick="location.href='noticeWriteMove.do'"></c:if></div>
 	<div class="manyHelpIntroduce">공지게시판 입니다.<br>
 	관리자들은 문제 발견 시 최고 관리자에게 보고바랍니다.</div>
 	<br>
@@ -56,6 +56,9 @@
 					<c:param name="idx">
 					${dto.ntc_idx }
 					</c:param>
+					<c:param name="readnum">
+					${dto.ntc_readnum }
+					</c:param>
 				</c:url>
 			<tr>
 				<td class="manyHelpBordertype">${dto.ntc_type }</td><td class="borderurl"><a href="${noticeUrl }">${dto.ntc_subject }</a></td><td class="manyHelpBorderReadnum">${dto.ntc_readnum }</td>
@@ -82,7 +85,9 @@
 		<a href="adminNotice.do" class="HM_bar_a"><li class="HM_bar">공지게시판</li></a>
 		<a href="adminEmailHelp.do" class="HM_bar_a"><li class="HM_bar">이메일문의</li></a>
 		<a href="memberHelp.do" class="HM_bar_a"><li class="HM_bar">1:1문의</li></a>
-		<a href="topAdmin.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		<c:if test="${sid eq 'admin_master' }">
+		<a href="topAdmin_answer.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		</c:if>
 	</ul>
 	
 </div>

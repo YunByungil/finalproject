@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import joa.mypage.model.JoaMypageService;
 import joa.mypage.model.JoaMypageServiceDTO;
 import joa.adminStore.model.AdminStoreDTO;
+import joa.helpdesk.model.JoaHelpQuestionDTO;
 import joa.member.model.JoaMemberDTO;
 import joa.mypage.model.JoaMyPagePayMovieDTO;
 import joa.mypage.model.JoaMypageEventDTO;
@@ -31,10 +32,20 @@ public class JoaMypageController {
 	@Autowired
 	private JoaMypageService JoaMypageService;
 	
-	@RequestMapping("/myPageReview.do")
-	public ModelAndView myPageReview(HttpSession session) {
-		String backB_color ="background-color: #F05650";
+	@RequestMapping("/onebyOneBorder.do")
+	public ModelAndView onebyOneBorder(@RequestParam(value="idx",defaultValue = "1") int idx, HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
 		String sid = login_dto.getMem_id();
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
@@ -52,7 +63,52 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
+		mav.addObject("m_grade", m_grade);
+		mav.addObject("datelist", datelist);
+		mav.addObject("couponCount", couponCount);
+		mav.addObject("dto", dto);
+
+		JoaHelpQuestionDTO sdto = JoaMypageService.questionBorder(idx);
+		mav.addObject("sdto", sdto);
+		mav.setViewName("joaMyPage/joa_Mypage_myService_border");
+		return mav;
+		}
+	}
+	
+	@RequestMapping("/myPageReview.do")
+	public ModelAndView myPageReview(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		String backB_color ="background-color: #F05650";
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		if(sid==null||sid.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "joaLogin/joaLogin_login";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		
+		int couponCount = JoaMypageService.memberCouponCnt(sid);
+		
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		String m_grade = "일반";
+		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
+			m_grade = "VIP";
+		}
+		if(dto.getMem_grade()>=25000 && dto.getMem_grade()<40000) {
+			m_grade = "SVIP";
+		}
+		if(dto.getMem_grade()>=40000) {
+			m_grade = "VVIP";
+		}
+
+		
 		mav.addObject("backB_color", backB_color);
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
@@ -63,15 +119,26 @@ public class JoaMypageController {
 		mav.addObject("list", list);
 		mav.setViewName("joaMyPage/joa_Mypage_myReview");
 		return mav;
+		}
 	}
 	
 	
 	@RequestMapping("/myPage.do")
 	public ModelAndView myPage(HttpSession session) {
-
-		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
-		String sid = login_dto.getMem_id();
 		
+		ModelAndView mav = new ModelAndView();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		String sid = login_dto.getMem_id();
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
 		
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
@@ -88,19 +155,33 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-		ModelAndView mav = new ModelAndView();
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
 		mav.addObject("dto", dto);
 		mav.setViewName("joaMyPage/joaMyPage_myPage");
 		return mav;
+		}
 	}
 
 	@RequestMapping("/myPage_SawMovie.do")
 	public ModelAndView myPage_SawMovie(HttpSession session) {
-		String backA_color ="background-color: #F05650";
+		
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		String backA_color ="background-color: #F05650";
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMyPagePayMovieDTO> swm_list =JoaMypageService.memberPayMovie(sid);
@@ -119,7 +200,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 		
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("backA_color", backA_color);
 		mav.addObject("swm_list", swm_list);
 		mav.addObject("m_grade", m_grade);
@@ -127,13 +208,26 @@ public class JoaMypageController {
 		mav.addObject("dto", dto);
 		mav.setViewName("joaMyPage/joa_Mypage_SawMovie");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_tiket.do")
 	public ModelAndView myPage_tiket(HttpSession session) {
 		
-
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMyPagePayMovieDTO> swm_list =JoaMypageService.memberPayMovie(sid);
@@ -152,19 +246,33 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 		
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("swm_list", swm_list);
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("list", list);
 		mav.addObject("dto", dto);	
 		mav.setViewName("joaMyPage/joa_Mypage_ticketing");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_cancle_Movie_Move.do")
 	public ModelAndView myPage_cancle_CouponMove(HttpSession session) {
 		
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -183,7 +291,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -191,15 +299,29 @@ public class JoaMypageController {
 		
 		mav.setViewName("joaMyPage/joa_Mypage_cancelMovie");
 		return mav;
+		}
 	}
 
 	@RequestMapping("/myPage_cancle_Movie.do")
 	public ModelAndView myPage_cancle_Coupon(HttpSession session, @RequestParam(value="idx",  defaultValue = "1")int idx) {
-
-		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
-		String sid = login_dto.getMem_id();
 		
 		ModelAndView mav = new ModelAndView();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		
+		String sid = login_dto.getMem_id();
+		
+		
 		int result = JoaMypageService.deleteMovie(sid, idx);
 		String msg = result>0?"예매취소가 정상적으로 진행되었습니다.":"예매취소 진행에 실패했습니다. 관리자에게 문의바랍니다.";
 		boolean link_tf=true;
@@ -209,12 +331,26 @@ public class JoaMypageController {
 		mav.addObject("result", result);
 		mav.setViewName("joaMyPage/joa_Mypage_msg");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_coupon.do")
 	public ModelAndView myPage_coupon(HttpSession session) {
-
+		
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -232,7 +368,7 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -243,13 +379,27 @@ public class JoaMypageController {
 		mav.addObject("list", list);
 		mav.setViewName("joaMyPage/joa_Mypage_coupon");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_usedCoupon.do")
 	public ModelAndView myPage_usedCoupon(HttpSession session) {
 		
-
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -267,7 +417,7 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -277,11 +427,26 @@ public class JoaMypageController {
 		mav.addObject("list", list);
 		mav.setViewName("joaMyPage/joa_Mypage_usedCoupon");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_GuidePoint.do")
 	public ModelAndView myPage_GuidePoint(HttpSession session) {
+		
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -300,7 +465,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -309,13 +474,26 @@ public class JoaMypageController {
 		
 		mav.setViewName("joaMyPage/joa_Mypage_GuidePoint");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_Point.do")
 	public ModelAndView myPage_Point(HttpSession session) {
 		
-
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -337,7 +515,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 			plusPoint="10%";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("plusPoint", plusPoint);
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
@@ -345,13 +523,26 @@ public class JoaMypageController {
 		mav.addObject("dto", dto);
 		mav.setViewName("joaMyPage/joa_Mypage_Point");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_Event.do")
 	public ModelAndView myPage_Event(HttpSession session) {
 		
-
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -369,7 +560,7 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -380,12 +571,25 @@ public class JoaMypageController {
 		mav.addObject("list", list);
 		mav.setViewName("joaMyPage/joa_Mypage_Event");
 		return mav;
+		}
 	}
 	@RequestMapping("/myPage_EndEvent.do")
 	public ModelAndView myPage_EndEvent(HttpSession session) {
 		
-
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -403,7 +607,7 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -415,12 +619,26 @@ public class JoaMypageController {
 		
 		mav.setViewName("joaMyPage/joa_Mypage_Event");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_Store.do")
 	public ModelAndView myPage_Store(HttpSession session) {
-
+		
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -438,7 +656,7 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -448,12 +666,26 @@ public class JoaMypageController {
 		mav.addObject("list", list);
 		mav.setViewName("joaMyPage/joa_Mypage_myStore");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_Store_Payment.do")
 	public ModelAndView myPage_Store_Payment(HttpSession session) {
-
+		
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -471,7 +703,7 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -482,11 +714,23 @@ public class JoaMypageController {
 		mav.addObject("pricelist", pricelist);
 		mav.setViewName("joaMyPage/joa_Mypage_myStore_Payment");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_PW_Check_P.do")
 	public ModelAndView myPage_PW_Check_P(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -505,7 +749,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -521,11 +765,23 @@ public class JoaMypageController {
 		mav.addObject("subject", subject);
 		mav.setViewName("joaMyPage/joa_Mypage_PW_Check");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_PW_Check_E.do")
 	public ModelAndView myPage_PW_Check_E(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -544,7 +800,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -559,11 +815,23 @@ public class JoaMypageController {
 		mav.addObject("subject", subject);
 		mav.setViewName("joaMyPage/joa_Mypage_PW_Check");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_PW_Check_M.do")
 	public ModelAndView myPage_PW_Check_M(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -582,7 +850,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-		ModelAndView mav = new ModelAndView();
+	
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -597,13 +865,25 @@ public class JoaMypageController {
 		mav.addObject("subject", subject);
 		mav.setViewName("joaMyPage/joa_Mypage_PW_Check");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_myService.do")
 	public ModelAndView myPage_myService(HttpSession session) {
 		
 
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -621,7 +901,7 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -631,13 +911,25 @@ public class JoaMypageController {
 		mav.addObject("list", list);
 		mav.setViewName("joaMyPage/joa_Mypage_myService");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_Profile.do")
 	public ModelAndView myPage_Profile(HttpSession session) {
 		
 
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -655,19 +947,31 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
 		mav.addObject("dto", dto);
 		mav.setViewName("joaMyPage/joa_Mypage_myProfile");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_secession.do")
 	public ModelAndView myPage_secession(HttpSession session) {
 
+		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
 		String sid = login_dto.getMem_id();
 		
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
@@ -685,7 +989,7 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -700,6 +1004,7 @@ public class JoaMypageController {
 		
 		mav.setViewName("joaMyPage/joa_Mypage_msg");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/myPage_Nname.do")
@@ -711,20 +1016,34 @@ public class JoaMypageController {
 	
 	@RequestMapping("/addProfile.do")
 	public ModelAndView addProduct(JoaMypageProfileDTO dto,@RequestParam("img")MultipartFile img, HttpServletRequest req, HttpSession session) {
-
-		String path=req.getRealPath("/img/joaPofiel_img");
+		
+		ModelAndView mav = new ModelAndView();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		String path=req.getRealPath("/movieJoa/img/joaPofiel_img");
 		String filename=img.getOriginalFilename();
 		File f=new File(path+filename);		
 		dto.setPro_image(img.getOriginalFilename());
 
 		int result= JoaMypageService.memberProfile(dto);
 		String msg=result>0?"프로필 등록 성공":"프로필 등록 실패";
-		ModelAndView mav=new ModelAndView();
+		
 		boolean link_tf=true;
 		mav.addObject("msg",msg);
 		mav.addObject("link_tf", link_tf);
 		mav.setViewName("joaMypage/joa_Mypage_msg");
 		return mav;
+		}
 	}
 	
 	@RequestMapping("/self_ATNTCN.do")

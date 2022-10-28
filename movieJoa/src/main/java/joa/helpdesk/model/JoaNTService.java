@@ -23,4 +23,6 @@ public interface JoaNTService {
 	public int serchNoticeTotalCnt(String type);
 	
 	public int noticeTypeTotalCnt(String keyword);
+	
+	public void upDateReadNum(int idx);
 }

@@ -65,13 +65,12 @@ function openLogin(){
 					    <li><a href="/movieJoa/listApplycant.do">이벤트 참여 현황</a></li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">고객센터</a>
+				<li class="menu2"><a href="adminHelpDesk.do">고객센터</a>
 					<ul class="menu2_s submenu">
-					    <li>공지게시판</li>
-					    <li>자주 찾는 질문</li>
-					    <li>지점 관리자 답변 내역</li>
-					    <li>고객 문의내역</li>
-					    <li>이메일 문의</li>
+					    <a href="adminNotice.do"><li>공지게시판</li></a>
+					    <a href="adminHelpDesk.do"><li>자주 찾는 질문</li></a>			    
+					    <a href="memberHelp.do"><li>고객 문의내역</li></a>
+					    <a href="adminEmailHelp.do"><li>이메일 문의</li></a>
 					</ul>
 				</li>
 				<li class="menu2"><a href="/movieJoa/listCoupon.do">쿠폰관리</a>

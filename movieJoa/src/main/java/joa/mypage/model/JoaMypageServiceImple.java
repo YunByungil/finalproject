@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import joa.helpdesk.model.JoaHelpQuestionDTO;
+
 public class JoaMypageServiceImple implements JoaMypageService {
 	
 	private JoaMypageDAO JoaMypageDao;
@@ -15,6 +17,12 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	
 	public JoaMypageServiceImple() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public JoaHelpQuestionDTO questionBorder(int idx) {
+		JoaHelpQuestionDTO dto = JoaMypageDao.questionBorder(idx);
+		return dto;
 	}
 	
 	@Override

@@ -3,8 +3,12 @@ package joa.mypage.model;
 import java.util.List;
 import java.util.Map;
 
-public interface JoaMypageService {
+import joa.helpdesk.model.JoaHelpQuestionDTO;
 
+public interface JoaMypageService {
+	
+	public JoaHelpQuestionDTO questionBorder(int idx);
+	
 	public JoaMypageMemberDTO memberInpo(String sid);
 	
 	public int salePrice(int price,int grade);

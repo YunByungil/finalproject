@@ -15,8 +15,12 @@
 <div class="mypage_main">
 	<div class="myInformation">
 		<div class="myproF">
+		<c:if test="${empty pro_image }">
+			<img height="90" width="100" src="/movieJoa/img/joaPofiel_img/noimage.PNG">
+		</c:if>
+		<c:if test="${!empty pro_image }">
 		<img height="90" width="90" src="${pro_image }">
-		
+		</c:if>
 		</div>
 		<div class="mynickname">
 			<ul class="ul_p">

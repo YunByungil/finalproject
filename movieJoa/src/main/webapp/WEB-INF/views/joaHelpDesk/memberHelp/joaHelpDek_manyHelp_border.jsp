@@ -14,7 +14,7 @@
 <c:import url="../../header.jsp"></c:import>
 <br>
 <section>
-<div class="helpDesk_main">
+<div class="helpDesk_main_m">
 <div class="manyHelpMain">
 	<h4 class="manyHelpSubject">자주찾는 질문 - 게시글</h4> 
 	<div class="manyHelpIntroduce">회원님들께서 가장 자주하시는 질문을 모았습니다.<br>

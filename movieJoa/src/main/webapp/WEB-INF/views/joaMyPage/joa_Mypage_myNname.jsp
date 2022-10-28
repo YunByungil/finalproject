@@ -89,10 +89,35 @@
 			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
 		
-		
+		<c:if test="${!empty pro_image }">
+		<form name="update_pro_Fm" aciton="">
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">프로필 등록</div>
+			<div class="tiket_subject">프로필 변경</div>
 			<div class="p_button1"><input type="button" value="변경하기" id="p_button1_b" onclick="inputs()"></div>
+			<br>
+			<div class="my_ticet">
+			<hr class="ti_hr">
+			<input type="hidden" name="pro_id" value="${mem_id }">
+			<div class="P_title">닉네임</div><div class="p_content1"><input type="text" name="pro_nickname" class="p_content" value="${pro_nickname }" readonly></div>
+			<hr class="ti_hr">
+			<div class="ad">
+			각 서비스(이벤트, 매거진, 영화리뷰 등)의 리뷰 및 덧글작성시 등록하신 대표이미지가 노출됩니다.<br>
+			프로필 이미지 종류를 선택해 주세요.
+			<hr class="ad_hr">
+			</div>
+			<div class="P_title" id="P_title1">프로필 이미지</div><div class="p_content2_2"><div class="fileimage"><img height="90" width="90" src="${pro_image }"></div><input type="file" name="pro_image" value="파일선택" class="file"></div>
+			<hr class="ti_hr">
+			<div class="p_button2"><input type="button" value="변경완료" id="p_button2_b"></div>
+			<hr class="ti_hr">
+			</div>
+			</div>
+		</div>
+		</form>
+		</c:if>
+		<c:if test="${empty pro_image }">
+		<form name="add_pro_FM" action="">
+			<div class="joaMypage_ti">
+			<div class="tiket_subject">프로필 등록</div>
 			<br>
 			<div class="my_ticet">
 			<hr class="ti_hr">
@@ -104,13 +129,16 @@
 			프로필 이미지 종류를 선택해 주세요.
 			<hr class="ad_hr">
 			</div>
-			<div class="P_title" id="P_title1">프로필 이미지</div><div class="p_content2_2"><div class="fileimage">이미지</div><input type="file" name="pro_image" value="파일선택" class="file"></div>
+			<div class="P_title" id="P_title1">프로필 이미지</div><div class="p_content2_2"><div class="fileimage"><img height="90" width="100" src="/movieJoa/img/joaPofiel_img/noimage.PNG"></div><input type="file" name="pro_image" value="파일선택" class="file"></div>
 			<hr class="ti_hr">
-			<div class="p_button2"><input type="button" value="변경완료" id="p_button2_b"></div>
+			<div class="p_button2"><input type="submit" value="변경완료" id="p_button2_b"></div>
 			<hr class="ti_hr">
 			</div>
 			</div>
 		</div>
+		</form>
+		</c:if>
+		
 </div>
 </section>
 <c:import url="../footer.jsp"></c:import>

@@ -3,8 +3,11 @@ package joa.mypage.model;
 import java.util.List;
 import java.util.Map;
 
+import joa.helpdesk.model.JoaHelpQuestionDTO;
+
 public interface JoaMypageDAO {
 	
+	public JoaHelpQuestionDTO questionBorder(int idx);
 	
 	public JoaMypageMemberDTO memberInpo(String sid);
 	

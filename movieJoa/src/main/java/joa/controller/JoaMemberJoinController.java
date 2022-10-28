@@ -21,6 +21,7 @@ public class JoaMemberJoinController {
 	public String memberJoin() {
 		return "joaMemberJoin/joaMemberJoin_memberJoin";
 	}
+
 	@RequestMapping("/memberJoinFormSubmit.do")
 	public ModelAndView memberJoinSubmit(@ModelAttribute("dto") JoaMemberDTO dto) {
 

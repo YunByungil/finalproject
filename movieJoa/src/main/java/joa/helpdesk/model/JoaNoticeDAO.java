@@ -23,4 +23,6 @@ public interface JoaNoticeDAO {
 	public int serchNoticeTotalCnt(Map map);
 	
 	public int noticeTypeTotalCnt(Map map);
+	
+	public void upDateReadNum(int idx);
 }

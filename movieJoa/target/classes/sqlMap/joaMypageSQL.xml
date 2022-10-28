@@ -3,6 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.store">
+  	
+  	<select id="questionBorder_s" parameterType="Integer" resultType="joa.helpdesk.model.JoaHelpQuestionDTO">
+			select
+			*
+			from
+			joa_helpquestion
+			where hqt_idx=#{hqt_idx}
+	</select>
+  	
   	<select id="mypageInpo" parameterType="String" resultType="joa.mypage.model.JoaMypageMemberDTO">
   		
   		select * from
@@ -39,8 +48,8 @@
   	</select>
   
   	<delete id="MovieDelete" parameterType="map">
-  		delete from joa_payMovie
-  		where payMov_mem_id=#{sid} and payMov_the_idx=#{idx}
+  		delete from  joa_product_result
+  		where payMov_mem_id=#{sid} and prs_order_idx=#{idx}
   	</delete>
   	
 	<select id="mypageUsedCoupon" parameterType="String" resultType="joa.mypage.model.JoaMypageOwnCouDTO">
@@ -85,10 +94,16 @@
 	</select>
 	
 	<select id="mypagePrice" parameterType="String" resultType="joa.mypage.model.JoaMypagePayProDTO">
-		select *
-		from joa_product_result inner join joa_payProduct
-		on joa_product_result.prs_date  = joa_payProduct.payPro_date
-		where prs_order_idx=#{sid}
+		select a.prs_idx,
+		a. prs_order_idx,
+		a. prs_pro_filename,
+		a. prs_pro_name,
+		a. prs_pro_count,
+		a. prs_date,
+		b. payPro_price_sum 
+		from joa_product_result a,
+		joa_payProduct b
+		where b.payPro_mem_id = #{sid}
 	</select>
 	
 	<delete id="memberDelete" parameterType="String">

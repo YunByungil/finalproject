@@ -6,6 +6,8 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import joa.helpdesk.model.JoaHelpQuestionDTO;
+
 public class JoaMypageDAOImple implements JoaMypageDAO {
 	
 	@Autowired
@@ -18,6 +20,12 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 	
 	public JoaMypageDAOImple() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public JoaHelpQuestionDTO questionBorder(int idx) {
+		JoaHelpQuestionDTO dto = sqlMap.selectOne("questionBorder_s", idx);
+		return dto;
 	}
 	
 	@Override
