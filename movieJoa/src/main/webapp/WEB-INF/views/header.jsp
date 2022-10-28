@@ -14,14 +14,21 @@ function openLogin(){
 			<a href="index.do"><h1>MJOA</h1></a>
 		</div>
 		<div class="nav_menu">
-
-			<c:if test="${userInfo.mem_id==null }">
+			<c:choose>
+			<c:when test="${userInfo.mem_id==null&&adminInfo.admin_id==null }">
 			<a href="memberLogin.do"><span class="material-symbols-outlined">person</span>로그인</a>
-			</c:if>
-			<c:if test="${userInfo.mem_id!=null }">
+			</c:when>
+			<c:when test="${userInfo.mem_id!=null }">
 			<a href="memberLogout.do"><span class="material-symbols-outlined">person</span>로그아웃</a>
-			</c:if>
-
+			</c:when>
+			<c:when test="${adminInfo.admin_id!=null }">
+			<a href="adminLogout.do"><span class="material-symbols-outlined">person</span>로그아웃</a>
+			</c:when>
+			</c:choose>
+			<c:choose>
+			<c:when test="${userInfo.mem_id!=null }">${userInfo.mem_id }</c:when>
+			<c:when test="${adminInfo.admin_id!=null }">${adminInfo.admin_area } ${adminInfo.admin_shop }지점 ${adminInfo.admin_name }</c:when>
+			</c:choose>		
 			<a href="memberJoin.do"><span class="material-symbols-outlined">person_add</span>회원가입</a>
 			<a href="myPage.do"><span class="material-symbols-outlined">account_circle</span>마이페이지</a>
 			<a href="helpDest.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>

@@ -23,4 +23,8 @@ public interface JoaAdminPayMovieDAO {
 	public List<JoaAdminPayMovieDTO> revenueShopDetail(String paymov_the_branch);
 	public List<JoaAdminPayMovieDTO> revenunMovieDetail(String paymov_mov_title);
 	public int movieSpectatorCount(String mov_title);
+	public int pagingShopCount(String paymov_the_branch);
+	public List<JoaAdminPayMovieDTO> pagingShopSelect(String paymov_the_branch,int ls, int cp);
+	public int pagingMovieCount(String paymov_mov_title);
+	public List<JoaAdminPayMovieDTO> pagingMovieSelect(String paymov_mov_title,int ls, int cp);
 }

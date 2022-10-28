@@ -7,8 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 <style>
 .textform {
   margin: 0px;
@@ -111,31 +110,7 @@ body {
   margin: 30px;
 }
 </style>
-<script type ="text/javascript">
-	$('#idCheck').keyup(function(){
-		var mem_id = $('#idCheck').val();
-			
-		$.ajax({
-			url : "memberIdCheck.do",
-			type : "post",
-			data : {mem_id: mem_id},
-			dataType : 'json',
-			success : function(result){
-				if(result == 1){
-					$("#confirmId").html('이미 사용중인 아이디입니다.');
-					$("#confirmId").attr('color','#dc3545');
-				} else{
-					$("#confirmId").html('사용할 수 있는 아이디입니다.');
-					$("#confirmId").attr('color','#2fb380');
-				} 
-			},
-			error : function(){
-				alert("서버요청실패");
-			}
-		})
-			 
-	})
-</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 function kakaoAddr(){
 	new daum.Postcode({
@@ -229,27 +204,14 @@ function validate(){
 	}
 }
 </script>
-<script>
-function isTrue(){
-	if(document.getElementById('pwd1').value!=''&&document.getElementById('pwd2').value!=''){
-		if(document.getElementById('pwd1').value==document.getElementById('pwd2').value){
-			document.getElementById('checkpwd').innerHTML='비밀번호일치';
-			document.getElementById('checkpwd').style.color='green';
-		}else{
-			document.getElementById('checkpwd').innerHTML='비밀번호불일치';
-			document.getElementById('checkpwd').style.color='red';
-		}
-	}
-}
-</script>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
 <form name="memberJoinForm" method="post" action="memberJoinFormSubmit.do" onsubmit="return validate();" class="joinForm">  
+<font id=confirmId size="2"></font>
 <h2>회원가입</h2>                                                                                           
       <div class="textForm">
-        <input name="mem_id" id="idCheck" type="text" class="id" placeholder="아이디"></input>
-        <div><font id=confirmId size="2"></font></div>
+        <input name="mem_id" id="idCheck1" type="text" class="id" placeholder="아이디" ></input>
       </div>
       <div class="textForm">
         <input name="mem_name" id="name" type="text" class="name" placeholder="이름" >
@@ -289,4 +251,28 @@ function isTrue(){
       <input type="reset" class="btn" value="다시작성">
     </form>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script type ="text/javascript">
+
+	$('#idCheck1').blur(function(){
+		var mem_id = $('#idCheck1').val();
+		$.ajax({
+			url : '/movieJoa/memberIdCheck.do?mem_id='+mem_id,
+			type : "get",
+			success : function(result){
+				if(result == 1){
+					$('#confirmId').html('이미 사용중인 아이디입니다.');
+					$('#confirmId').attr('color','#dc3545');
+				} else{
+					$('#confirmId').html('사용할 수 있는 아이디입니다.');
+					$('#confirmId').attr('color','#2fb380');
+				} 
+			},
+			error : function(){
+				alert("서버요청실패");
+			}
+		})
+			 
+	})
+</script>
 </html>

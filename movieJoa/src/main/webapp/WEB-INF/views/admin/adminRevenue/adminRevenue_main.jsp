@@ -111,7 +111,7 @@
   <div class="item" id="itemresult">
     <div class="header">${nowYear }년 ${nowMonth }월 총 매출<hr></div>
     <div class="content"><br>${nowMonthMovieRevenue+nowMonthProductRevenue }원</div>
-    <div class="footer"><hr><a href="#">확인하기</a></div>
+    <div class="footer"><hr><a href="#">&nbsp</a></div>
   </div>
   <div class="item"><div class="header">${nowYear }년 ${nowMonth }월 영화 매출<hr></div>
     <div class="content"><br>${nowMonthMovieRevenue }원</div>
@@ -124,10 +124,10 @@
     <div class="footer"><hr><a href="adminRevenueSpectator.do">확인하기</a></div></div>
   <div class="item"><div class="header">${nowYear }년 ${nowMonth }월 최고 영화<hr></div>
     <div class="content"><br>${nowMonthBestMovie }</div>
-    <div class="footer"><hr><a>확인하기</a></div></div>
+    <div class="footer"><hr><a>&nbsp</a></div></div>
   <div class="item"><div class="header">${nowYear }년 ${nowMonth }월 최고 상품<hr></div>
     <div class="content"><br>${nowMonthBestProduct }</div>
-    <div class="footer"><hr><a>확인하기</a></div></div>
+    <div class="footer"><hr><a>&nbsp</a></div></div>
   <div class="container2">
   	<div id="piechart" style="width: 500px; height: 300px;"></div>
   	<div id="piechart1" style="width: 500px; height: 300px;"></div>

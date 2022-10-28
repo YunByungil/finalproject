@@ -134,4 +134,40 @@
 	paymov_mov_title left outer join joa_paymovie on mov_title=paymov_mov_title) where mov_title=#{mov_title}
 	group by mov_title
  </select>
+ <select id="pagingShopCountQuery" resultType="Integer" parameterType="String">
+ 	select count(*) from joa_paymovie where paymov_the_branch=#{paymov_the_branch}
+ </select>
+ <select id="pagingShopSelectQuery" resultType="joa.adminRevenue.model.JoaAdminPayMovieDTO" parameterType="String">
+ select * from (select rownum as rnum,a.* from (select * from joa_paymovie where paymov_the_branch=#{paymov_the_branch}
+	order by paymov_idx desc)a)b where rnum
+	<![CDATA[ >= ]]>
+	${start} and rnum
+	<![CDATA[ <= ]]>
+	${end}
+ </select>
+ <select id="pagingMovieCountQuery" resultType="Integer" parameterType="String">
+ 	select count(*) from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
+ </select>
+ <select id="pagingMovieSelectQuery" resultType="joa.adminRevenue.model.JoaAdminPayMovieDTO" parameterType="String">
+ select * from (select rownum as rnum,a.* from (select * from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
+	order by paymov_idx desc)a)b where rnum
+	<![CDATA[ >= ]]>
+	${start} and rnum
+	<![CDATA[ <= ]]>
+	${end}
+ </select>
+ <select id="pagingProductCountQuery" resultType="Integer" parameterType="String">
+ 	select count(*) from joa_payproduct where paypro_pro_name=#{paypro_pro_name}
+ </select>
+ <select id="pagingProductSelectQuery" resultType="joa.adminRevenue.model.JoaAdminPayProductDTO" parameterType="String">
+ select * from (select rownum as rnum,a.* from (select * from joa_payproduct where paypro_pro_name=#{paypro_pro_name}
+	order by paypro_idx desc)a)b where rnum
+	<![CDATA[ >= ]]>
+	${start} and rnum
+	<![CDATA[ <= ]]>
+	${end}
+ </select>
+ <select id="pagingSpectatorCountQuery" resultType="Integer" parameterType="String">
+ 	select count(*) from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
+ </select>
   </mapper>

@@ -11,4 +11,6 @@ public interface JoaAdminPayProductDAO {
 	List<AdminStoreDTO> revenueStore();
 	int revenueStoreMoney(String pro_name);
 	List<JoaAdminPayProductDTO> revenueProductDetail(String paypro_pro_name);
+	int pagingProductCount(String paypro_pro_name);
+	List<JoaAdminPayProductDTO> pagingProductSelect(String paypro_pro_name,int ls, int cp);
 }
