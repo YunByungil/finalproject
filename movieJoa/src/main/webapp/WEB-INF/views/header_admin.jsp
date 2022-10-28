@@ -15,6 +15,10 @@
     
     .menu_space{
     	height:150px;
+	}
+   	.login_area{
+	width:1200px;
+	text-align: right
     }
 </style>
 <script>
@@ -24,12 +28,13 @@ function openLogin(){
 </script>
 </head>
 <header>
+	<div class="login_area">${adminInfo.admin_area } ${adminInfo.admin_shop }지점 관리자</div>
 	<div class="nav">
 		<div class="logo">
 			<a href="adminLogout.do"><h1>MJOA manage</h1></a>
 		</div>
 		<div class="nav_menu">
-			<a href="adminLogout.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
+			<a href="index.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
 		</div>	
 	</div>
 	<hr size="1px" color="#c0c0c0">

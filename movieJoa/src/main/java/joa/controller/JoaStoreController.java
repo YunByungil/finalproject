@@ -2,6 +2,8 @@ package joa.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,11 +87,13 @@ public class JoaStoreController {
 	}
 	
 	@RequestMapping("/joaStoreCartDelete.do")
-	public ModelAndView joaStoreCartDelete(JoaStoreDTO dto) {
-		System.out.println(dto.getCar_mem_id());
-		System.out.println(dto.getCar_pro_idx());
-		int result = joaStoreService.storeCartDelete(dto);		
+	public ModelAndView joaStoreCartDelete(String car_idx,HttpSession session) {
+		System.out.println(car_idx);
+		int result = joaStoreService.storeCartDelete(car_idx);		
 		ModelAndView mav=new ModelAndView();
+		
+		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(car_mem_id);
+		mav.addObject("storeCartList",storeCartList);
 		mav.setViewName("joaStore/joaStore_cart");
 		return mav;
 	}

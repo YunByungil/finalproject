@@ -52,14 +52,10 @@
 		   and   car_pro_idx = pro_idx
 		order by car_joindate desc         
      </select>
-  	<delete id="storeCartDelete" parameterType="joa.store.model.JoaStoreDTO">
+  	<delete id="storeCartDelete" parameterType="String">
 		delete from joa_store_cart
-		where car_idx=(
-			select car_idx from joa_store_cart, joa_product
-			where  car_mem_id   = #{car_mem_id}
-			   and car_pro_idx = pro_idx 
-			   and car_pro_idx = #{car_pro_idx}
-			   )
+		where 
+			car_idx=#{car_idx}
 	</delete>
 	<update id="storeCartUpdateCount" parameterType="joa.store.model.JoaStoreCartDTO">
 		update joa_store_cart 
