@@ -38,6 +38,7 @@ public class JoaBookController {
 		List<JoaBookDTO> list = joaBookService.seatList(dto);
 		System.out.println("listSize : " +list.size());
 		String seats_s = list.get(0).getSch_seat();
+		//List<PayMovieDTO> plist=joaBookService.seatBook(dto);
 		System.out.println("seat_s : " +seats_s);
 		System.out.println("seat_s.length : " + seats_s.length());
 		int start=0;
@@ -74,6 +75,7 @@ public class JoaBookController {
 	    mav.addObject("sch_start_hour", list.get(0).getSch_start_hour());
 	    mav.addObject("sch_start_min", list.get(0).getSch_start_min());
 	    mav.addObject("rows",rows);
+	    //mav.addObject("seatList",plist);
 	    /////////////
 		mav.setViewName("joaBook/joaBook_seat");
 		return mav;
