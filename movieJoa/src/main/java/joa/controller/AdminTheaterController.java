@@ -89,7 +89,7 @@ public class AdminTheaterController {
 	}
 	
 	@RequestMapping("/theaterAddSubmit.do")
-	public ModelAndView theaterAddSubmit(String seats_s,TheaterDTO dto) {
+	public ModelAndView theaterAddSubmit(String seats_s,TheaterDTO dto,HttpSession session) {
 		String[] rows = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		int start=0;
 		int le=0;
@@ -150,7 +150,9 @@ public class AdminTheaterController {
 		String msg="";
 		String gt=dto.getThe_theater();
 		ModelAndView mav=new ModelAndView();
-		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch("admin_test");
+		JoaAdminMemberDTO adto=(JoaAdminMemberDTO)session.getAttribute("adminInfo");
+		String sid=adto.getAdmin_id();
+		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch(sid);
 		Map timap=new HashMap();
 		timap.put("gt",gt);
 		timap.put("city",jdto.getAdmin_area());
@@ -172,11 +174,13 @@ public class AdminTheaterController {
 	}
 	
 	@RequestMapping("/scheduleAddForm.do")
-	public String scheduleAddForm(Map map,Map ad) {
+	public String scheduleAddForm(Map map,Map ad,HttpSession session) {
 		Date now = new Date();	
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String nDate=format.format(now);
-		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch("admin_test");
+		JoaAdminMemberDTO adto=(JoaAdminMemberDTO)session.getAttribute("adminInfo");
+		String sid=adto.getAdmin_id();
+		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch(sid);
 		ad.put("city",jdto.getAdmin_area());
 		ad.put("branch",jdto.getAdmin_shop());
 		List<String> list=scheduleDao.theaterChoice(ad);
@@ -195,7 +199,8 @@ public class AdminTheaterController {
 		int hour2=hour+(min2/60);
 		min2=min2%60;
 		Map seatInfo=new HashMap();
-		String sid="admin_test";
+		JoaAdminMemberDTO adto=(JoaAdminMemberDTO)session.getAttribute("adminInfo");
+		String sid=adto.getAdmin_id();
 		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch(sid);
 		map.put("hour", hour);
 		map.put("hour2", hour2);
@@ -277,12 +282,14 @@ public class AdminTheaterController {
 	}
 	
 	@RequestMapping("/scheduleListView.do")
-	public ModelAndView scheduleListView(String day,@RequestParam(value="cp",defaultValue = "1") int cp) {
-		int totalCnt=scheduleDao.scheduleCount(day);
+	public ModelAndView scheduleListView(String day,@RequestParam(value="cp",defaultValue = "1") int cp,HttpSession session) {
+		JoaAdminMemberDTO adto=(JoaAdminMemberDTO)session.getAttribute("adminInfo");
+		String sid=adto.getAdmin_id();
+		int totalCnt=scheduleDao.scheduleCount(day,adto.getAdmin_area(),adto.getAdmin_shop());
 		int listSize=10;
 		int pageSize=10;
 		String pageStr=joa.page.SchedulePageModule.makePage("scheduleListView.do", totalCnt, listSize, pageSize, cp,day);
-		List<ScheduleDTO> list=scheduleDao.scheduleList(cp,listSize,day);
+		List<ScheduleDTO> list=scheduleDao.scheduleList(cp,listSize,day,adto.getAdmin_area(),adto.getAdmin_shop());
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("list",list);
 		mav.addObject("pageStr",pageStr);
@@ -292,8 +299,9 @@ public class AdminTheaterController {
 	}
 	
 	@RequestMapping("/theaterList.do")
-	public ModelAndView theaterList(Map map) {
-		String sid="admin_test";
+	public ModelAndView theaterList(Map map,HttpSession session) {
+		JoaAdminMemberDTO adto=(JoaAdminMemberDTO)session.getAttribute("adminInfo");
+		String sid=adto.getAdmin_id();
 		JoaAdminMemberDTO jdto=theaterDao.adminIdSearch(sid);
 		map.put("city", jdto.getAdmin_area());
 		map.put("branch", jdto.getAdmin_shop());

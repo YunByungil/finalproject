@@ -51,7 +51,7 @@ function getApply(){
 
 <div class="tbl-viw-nav">
     <div class="dir-prev">
-        <a href="/movieJoa/joaEventMain.do"">목록</a>
+        <a href="/movieJoa/joaEventMain.do" class="fl r">목록</a>
     </div>
 </div>
 	</div>

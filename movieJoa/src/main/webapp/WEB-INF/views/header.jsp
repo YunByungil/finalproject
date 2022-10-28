@@ -12,6 +12,11 @@
     ul.myMenu > li:hover ul.submenu { display:block; }
     ul.myMenu > li ul.submenu > li { display:inline-block; width:120px; padding:5px 10px; background:white; border:1px solid #eee; text-align:center; }
     ul.myMenu > li ul.submenu > li:hover { background:#fff; }
+
+	.login_area{
+		width:1200px;
+		text-align: right
+	}	
 </style>
 <script>
 function openLogin(){
@@ -21,22 +26,39 @@ function openLogin(){
 
 </head>
 <header>
+	<div class="login_area">
+		<c:choose>
+			<c:when test="${userInfo.mem_id!=null }">${userInfo.mem_name }님</c:when>
+			<c:when test="${adminInfo.admin_id!=null }">${adminInfo.admin_area } ${adminInfo.admin_shop }지점 관리자</c:when>
+		</c:choose>
+	</div>
 	<div class="nav">
 		<div class="logo">
 			<a href="index.do"><h1>MJOA</h1></a>
 		</div>
 		<div class="nav_menu">
 
-			<c:if test="${userInfo.mem_id==null }">
-			<a href="memberLogin.do"><span class="material-symbols-outlined">person</span>로그인</a>
-			</c:if>
-			<c:if test="${userInfo.mem_id!=null }">
-			<a href="memberLogout.do"><span class="material-symbols-outlined">person</span>로그아웃</a>
-			</c:if>
+
+			<c:choose>
+				<c:when test="${userInfo.mem_id==null&&adminInfo.admin_id==null }">
+					<a href="memberLogin.do"><span
+						class="material-symbols-outlined">person</span>로그인</a>
+				</c:when>
+				<c:when test="${userInfo.mem_id!=null }">
+					<a href="memberLogout.do"><span
+						class="material-symbols-outlined">person</span>로그아웃</a>
+				</c:when>
+				<c:when test="${adminInfo.admin_id!=null }">
+					<a href="adminLogout.do"><span
+						class="material-symbols-outlined">person</span>로그아웃</a>
+				</c:when>
+			</c:choose>
+
 			<a href="memberJoin.do"><span class="material-symbols-outlined">person_add</span>회원가입</a>
 			<a href="myPage.do?sid=test"><span class="material-symbols-outlined">account_circle</span>마이페이지</a>
 			<a href="helpDest.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>
-			<a href="adminStore.do">관리자페이지</a>
+			<c:if test="${adminInfo.admin_id!=null }">
+			<a href="adminStore.do">관리자페이지</a></c:if>
 		</div>		
 	</div>
 	<hr size="1px" color="#dcdcdc">
@@ -82,7 +104,7 @@ function openLogin(){
 					    <li href="/movieJoa/joaEventEnded.do">종료된 이벤트</li>
 				    </ul>
 				</li>
-				<li class="menu5"><a href="myPage.do?sid=test">마이페이지</a>
+				<li class="menu5"><a href="myPage.do">마이페이지</a>
 					<ul class="menu5_s submenu">			    
 					    <li>내정보</li>
 					    <li>이벤트참여내역</li>

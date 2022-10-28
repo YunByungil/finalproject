@@ -55,14 +55,14 @@ public class JoaStoreDAOImple implements JoaStoreDAO {
 	}
 	
 	@Override
-	public int storeCartDelete(JoaStoreDTO dto) {
-		int result=sqlMap.delete("storeCartDelete", dto);
+	public int storeCartDelete(String delete_car_idx) {
+		int result=sqlMap.delete("storeCartDelete", delete_car_idx);
 		return result;
 	}
 	
 	@Override
-	public int storeCartUpdateCount(String car_idx) {
-		int result=sqlMap.update("storeCartUpdateCount",car_idx);
+	public int storeCartUpdateCount(Map map) {
+		int result=sqlMap.update("storeCartUpdateCount",map);
 		return result;
 	}
 

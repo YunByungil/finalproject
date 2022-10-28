@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="admin.pay">
+	<select id="adminPayTotalCnt" resultType="int">
+			select count(*) from joa_paymovie
+			<include refid="searchCondition"/>
+	</select>
+	<select id="listAdminPay" parameterType="Map" resultType="joa.pay.model.JoaPayMovDTO">
+			select * from 
+			(select rownum as rnum,a.* from 
+			(select * from joa_paymovie
+			<include refid="searchCondition"/>
+			order by paymov_idx desc)a)b 
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+		<delete id="deleteAdminPay" parameterType="Integer">
+			delete from
+			joa_paymovie
+			where paymov_idx=
+			#{here}
+	</delete>
+	<select id="detailAdminPay" parameterType="Integer" resultType="joa.pay.model.JoaPayMovDTO">
+ 			select 
+ 			* 
+ 			from 
+ 			joa_paymovie
+ 			where paymov_idx=#{here}
+</select>
+
+    <sql id="searchCondition">
+	  	<if test="s_k != '--'">
+			<if test='s_k.equals("payMov_merchant_uid")'>
+					 where paymov_merchant_uid like '%' || #{s_v} || '%'
+			 </if>
+			 <if test='s_k.equals("payMov_mem_id")'>
+					 where paymov_mem_id like '%' || #{s_v} || '%'
+			 </if>		
+			 <if test='s_k.equals("payMov_the_city")'>
+					 where paymov_the_city like '%' || #{s_v} || '%'
+			 </if>	
+			 <if test='s_k.equals("payMov_mov_title")'>
+					 where paymov_mov_title like '%' || #{s_v} || '%'
+			 </if>		
+			 <if test='s_k.equals("all")'>
+				  where paymov_merchant_uid LIKE '%' || #{s_v} || '%'
+				   or paymov_mem_id LIKE '%' || #{s_v} || '%'
+				   or paymov_the_city LIKE '%' || #{s_v} || '%'
+				   or paymov_mov_title LIKE '%' || #{s_v} || '%'
+			 </if>
+		</if>
+    </sql>
+  </mapper>

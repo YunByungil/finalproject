@@ -15,21 +15,21 @@
     
     .menu_space{
     	height:150px;
+	}
+   	.login_area{
+	width:1200px;
+	text-align: right
     }
 </style>
-<script>
-function openLogin(){
-	window.open('/shoeStore/member/sign.jsp','login','width=450,height=850');
-}
-</script>
 </head>
 <header>
+	<div class="login_area">${adminInfo.admin_area } ${adminInfo.admin_shop }지점 관리자</div>
 	<div class="nav">
 		<div class="logo">
 			<a href="adminLogout.do"><h1>MJOA manage</h1></a>
 		</div>
 		<div class="nav_menu">
-			<a href="adminLogout.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
+			<a href="index.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
 		</div>	
 	</div>
 	<hr size="1px" color="#c0c0c0">
@@ -48,12 +48,12 @@ function openLogin(){
 					    <li><a href="scheduleList.do">상영 스케줄</a></li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">예매현황</a>
+				<li class="menu2"><a href="/movieJoa/listAdminPay.do">예매현황</a>
 					<ul class="menu2_s submenu">
 					    <li>예매현황</li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">평점관리</a>
+				<li class="menu2"><a href="/movieJoa/listReview.do">평점관리</a>
 					<ul class="menu2_s submenu">
 					    <li>평점 목록</li>
 					</ul>

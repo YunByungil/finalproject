@@ -56,7 +56,7 @@ function deleteEvent(didx){
 <input type="button" value="이벤트 삭제" class="button_main" onclick="javascript:deleteEvent(${dto.eve_idx });">
 <input type="button" value="이벤트 수정" class="button_main" onclick="location.href='${uLink}'"></div>
 <div class="eve_bottom_div">
-<a href="#" class="fl_r"> 목록으로 </a>
+<a href="/movieJoa/listEvent.do" class="fl_r"> 목록으로 </a>
 </div>
 </div>
 <c:import url="../../footer.jsp"></c:import>

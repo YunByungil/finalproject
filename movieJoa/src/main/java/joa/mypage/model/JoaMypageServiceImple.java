@@ -1,6 +1,8 @@
 package joa.mypage.model;
 
-
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JoaMypageServiceImple implements JoaMypageService {
 	
@@ -16,12 +18,100 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	}
 	
 	@Override
+	public List<JoaMypageRivewDTO> memberReview(String sid) {
+		List<JoaMypageRivewDTO> list = JoaMypageDao.memberReview(sid);
+		return list;
+	}
+	
+	@Override
 	public JoaMypageMemberDTO memberInpo(String sid) {
 		
 		JoaMypageMemberDTO dto = JoaMypageDao.memberInpo(sid);
 		
 		return dto;
 	}
+	
+	@Override
+	public List<JoaMypageOwnCouDTO> memberCoupon(String sid) {
+		List<JoaMypageOwnCouDTO> list = JoaMypageDao.memberCoupon(sid);
+		return list;
+	}
+	@Override
+	public List<JoaMypageOwnCouDTO> memberCouponDate(String sid) {
+		List<JoaMypageOwnCouDTO> list = JoaMypageDao.memberCouponDate(sid);
+		return list;
+	}
+	
+	@Override
+	public int memberCouponCnt(String sid) {
+		int count = JoaMypageDao.memberCouponCnt(sid);
+		return count;
+	}
+	
+	@Override
+	public int deleteMovie(String sid, int idx) {
+		Map map = new HashMap();
+		map.put("sid", sid);
+		map.put("idx", idx);
+		int result = JoaMypageDao.deleteMovie(map);
+		return result;
+	}
+	
+	@Override
+	public List<JoaMypageOwnCouDTO> memberUsedCoupon(String sid) {
+		List<JoaMypageOwnCouDTO> list = JoaMypageDao.memberUsedCoupon(sid);
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypageServiceDTO> memberService(String sid) {
+		List<JoaMypageServiceDTO> list = JoaMypageDao.memberService(sid);
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypageEventDTO> memberEventList(String sid) {
+		List<JoaMypageEventDTO> list = JoaMypageDao.memberEventList(sid);
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypageEventDTO> endEventList() {
+		List<JoaMypageEventDTO> list = JoaMypageDao.endEventList();
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypagePayProDTO> memberStore(String sid) {
+		List<JoaMypagePayProDTO> list = JoaMypageDao.memberStore(sid);
+		return list;
+	}
+	
+	@Override
+	public int memberDelete(String sid) {
+		int result = JoaMypageDao.memberDelete(sid);
+		return result;
+	}
+	
+	@Override
+	public List<JoaMypagePayProDTO> memberPrice(String sid) {
+		List<JoaMypagePayProDTO> list = JoaMypageDao.memberPrice(sid);
+		return list;
+	}
+	
+	@Override
+	public int memberProfile(JoaMypageProfileDTO dto) {
+		int result = JoaMypageDao.memberProfile(dto);
+		return result;
+	}
+	
+	
+	@Override
+	public List<JoaMyPagePayMovieDTO> memberPayMovie(String sid) {
+		List<JoaMyPagePayMovieDTO> list = JoaMypageDao.memberPayMovie(sid);
+		return list;
+	}
+	
 	
 	
 	@Override

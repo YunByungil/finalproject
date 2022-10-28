@@ -55,4 +55,12 @@
 	and sch_start_hour = #{sch_start_hour}
 	and sch_start_min = #{sch_start_min}
 	</select>
+	<select id="seatBook" parameterType="joa.book.model.JoaBookDTO" resultType="joa.pay.model.JoaPayMovDTO">
+		select * from joa_payMovie where payMov_sch_theater=#{sch_theater} and
+		payMov_sch_day=#{sch_day} and
+		payMov_sch_start_hour=#{sch_start_hour} and
+		payMov_sch_start_min=#{sch_start_min} and
+		payMov_the_branch=#{sch_branch}
+	</select>
+	
 </mapper>

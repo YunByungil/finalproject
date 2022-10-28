@@ -87,11 +87,6 @@ function cartSubmit(index) {
 	 document.joaStoreCart.submit();	
 }
 
-function deleteItem(vs){
-	
-	
-}
-
 function count(type,vs)  {
 	  // 결과를 표시할 element
 	  const countElement = document.getElementById(vs);
@@ -117,14 +112,28 @@ function count(type,vs)  {
 	  countElement.innerText = number;
 	}
 	
-function updateItem(car_idx){
+function updateItem(car_idx,vs){
 	
+	var countElement = document.getElementById(vs);
+	var itemCount=countElement.lastChild.nodeValue;
+
+	document.joaStoreCart.update_car_count.value=itemCount;
 	document.joaStoreCart.update_car_idx.value=car_idx;
-	document.joaStoreCart.action='joaStoreCartUpdate.do';		
+	document.joaStoreCart.action='joaStoreCartUpdateCount.do';		
 	document.joaStoreCart.submit();
 	
 }
 
+function deleteItem(car_pro_idx,car_idx){
+	var deleteTr=document.getElementById(car_pro_idx);
+	var cartTbody = document.getElementById('cartTbody');
+	cartTbody.removeChild(deleteTr);
+	
+	document.joaStoreCart.delete_car_idx.value=car_idx;
+	document.joaStoreCart.action='joaStoreCartDelete.do';		
+ 	document.joaStoreCart.submit();
+	
+}
 </script>
 </head>
 <body>
@@ -137,6 +146,8 @@ function updateItem(car_idx){
 			<form name="joaStoreCart">
 				<input type="hidden" name="idxsJson">
 				<input type="hidden" name="update_car_idx">
+				<input type="hidden" name="update_car_count">
+				<input type="hidden" name="delete_car_idx">
 					<table class="store_cart_table">
 						<thead>
 							<th><input type='checkbox' name="select" onclick="selectAll(this);"></th>
@@ -146,7 +157,7 @@ function updateItem(car_idx){
 							<th>구매금액</th>
 							<th>삭제<th>
 						</thead>
-						<tbody>
+						<tbody id="cartTbody">
 						<c:if test="${empty storeCartList }">
 							<tr>
 								<td colspan="5" align="center">
@@ -163,15 +174,14 @@ function updateItem(car_idx){
 								<td><input type='button' onclick='count("minus",${vs.count})' value='-'/>
 								<span id="${vs.count }">${dto.car_count }</span>
 								<input type='button' onclick='count("plus",${vs.count})' value='+'/>
-								<input type="button" value="변경" onclick="updateItem(${dto.car_idx},${dto.car_pro_idx })"></td>								
+								<input type="button" value="변경" onclick="updateItem(${dto.car_idx},${vs.count })"></td>								
 								<td><fmt:formatNumber value="${dto.pro_price*dto.car_count}" pattern="#,###"/></td>
 								<input type="hidden" name="pro_filename" value="${dto.pro_filename}">
 								<input type="hidden" name="pro_name" value="${dto.pro_name }">
 								<input type="hidden" name="pro_price" value="${dto.pro_price }">
 								<input type="hidden" name="car_count" value="${dto.car_count }">
 								<input type="hidden" name="pro_priceSum" value="${dto.pro_price*dto.car_count }">
-								<input type="hidden" name="car_pro_idx" value="${dto.car_pro_idx }">
-								<td><input type="button" value="삭제" onclick="deleteItem(${dto.car_idx})"></td>
+								<td><input type="button" value="삭제" onclick="deleteItem(${dto.car_pro_idx},${dto.car_idx})"></td>
 							</tr>
 						</c:forEach>
 						<input type="hidden" name="mem_name" value="구매자 이름">

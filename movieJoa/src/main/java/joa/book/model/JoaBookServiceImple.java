@@ -1,6 +1,7 @@
 package joa.book.model;
 import java.util.*;
 
+import joa.pay.model.JoaPayMovDTO;
 import joa.theater.model.TheaterTimeDTO;
 public class JoaBookServiceImple implements JoaBookService {
 	
@@ -81,6 +82,12 @@ public class JoaBookServiceImple implements JoaBookService {
 		map.put("sch_dayd", sch_dayd);
 		map.put("sch_branch", sch_branch);
 		List<JoaBookDTO> list = joaBookDao.realTimeList(map);
+		return list;
+	}
+	
+	@Override
+	public List<JoaPayMovDTO> seatBook(JoaBookDTO dto) {
+		List<JoaPayMovDTO> list=joaBookDao.seatBook(dto);
 		return list;
 	}
 }
