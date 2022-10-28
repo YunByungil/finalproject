@@ -1036,45 +1036,25 @@ public class JoaMypageController {
 		}
 		
 	}
-	
-	@RequestMapping("/addProfile.do")
-	public ModelAndView addProduct(JoaMypageProfileDTO dto,@RequestParam("img")MultipartFile img, HttpServletRequest req, HttpSession session) {
-		
+	@RequestMapping("/insertProfile.do")
+	public ModelAndView insertProfile(@RequestParam("pro_nickname")String pro_nickname,@RequestParam("img")MultipartFile img, HttpServletRequest req, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
-		if(login_dto==null||login_dto.equals("")) {
-			String msg="마이페이지는 로그인 후 이용 가능합니다.";
-			boolean link_tf=false;
-			String link = "memberLogin.do";
-			mav.addObject("msg",msg);
-			mav.addObject("link", link);
-			mav.addObject("link_tf", link_tf);
-			mav.setViewName("joaMyPage/joa_Mypage_msg");
-			return mav;
-		}else {
-		
+		String pro_id=login_dto.getMem_id();
 		String path=req.getRealPath("img/joaPofiel_img/");
 		String filename=img.getOriginalFilename();
 		File f=new File(path+filename);	
 		copyInto(f, img);
-		dto.setPro_image(filename);
-		dto.setPro_id(login_dto.getMem_id());
 		
-		System.out.println(dto.getPro_id());
-		System.out.println(dto.getPro_image());
-		System.out.println(dto.getPro_nickname());
-		
-		int result= JoaMypageService.memberProfile(dto);
+		int result = JoaMypageService.insertProfile(pro_id, pro_nickname, filename);
 		String msg=result>0?"프로필 등록 성공":"프로필 등록 실패";
-		
 		boolean link_tf=true;
-		mav.addObject("msg",msg);
+		mav.addObject("msg", msg);
 		mav.addObject("link_tf", link_tf);
-		mav.setViewName("joaMypage/joa_Mypage_msg");
+		mav.setViewName("joaMyPage/joa_Mypage_msg");
 		return mav;
-		}
 	}
-	
+
 	@RequestMapping("/self_ATNTCN.do")
 	public ModelAndView self_ATNTCN() {
 		ModelAndView mav = new ModelAndView();

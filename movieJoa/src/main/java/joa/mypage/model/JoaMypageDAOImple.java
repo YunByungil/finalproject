@@ -23,6 +23,12 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 	}
 	
 	@Override
+	public int insertProfile(Map map) {
+		int result = sqlMap.insert("insertProfile", map);
+		return result;
+	}
+	
+	@Override
 	public JoaMypageProfileDTO getProfile(String sid) {
 		JoaMypageProfileDTO dto = sqlMap.selectOne("getprofile",sid);
 		return dto;
@@ -104,16 +110,6 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 	public List<JoaMypagePayProDTO> memberPrice(String sid) {
 		List<JoaMypagePayProDTO> list = sqlMap.selectList("mypagePrice", sid);
 		return list;
-	}
-	
-	@Override
-	public int memberProfile(JoaMypageProfileDTO dto) {
-		System.out.println(dto.getPro_id());
-		System.out.println(dto.getPro_image());
-		System.out.println(dto.getPro_nickname());
-		
-		int result = sqlMap.selectOne("insertProfile", dto);
-		return result;
 	}
 	
 	@Override

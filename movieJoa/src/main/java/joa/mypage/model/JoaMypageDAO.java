@@ -37,12 +37,12 @@ public interface JoaMypageDAO {
 	
 	public int memberDelete(String sid);
 	
-	public int memberProfile(JoaMypageProfileDTO dto);
-	
 	public List<JoaMypageRivewDTO> memberReview(String sid);
 
 	public List<JoaMyPagePayMovieDTO> memberPayMovie(String sid);
 	
 	public JoaMypageProfileDTO getProfile(String sid);
+	
+	public int insertProfile(Map map);
 	
 }

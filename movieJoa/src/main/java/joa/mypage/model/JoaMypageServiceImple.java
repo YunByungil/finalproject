@@ -20,6 +20,17 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	}
 	
 	@Override
+	public int insertProfile(String pro_id, String pro_nickname, String pro_image) {
+		Map map = new HashMap();
+		map.put("pro_id",pro_id);
+		map.put("pro_nickname",pro_nickname);
+		map.put("pro_image",pro_image);
+		
+		int result = JoaMypageDao.insertProfile(map);
+		return result;
+	}
+	
+	@Override
 	public JoaMypageProfileDTO getProfile(String sid) {
 		JoaMypageProfileDTO pdto = JoaMypageDao.getProfile(sid);
 		return pdto;
@@ -111,16 +122,6 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	public List<JoaMypagePayProDTO> memberPrice(String sid) {
 		List<JoaMypagePayProDTO> list = JoaMypageDao.memberPrice(sid);
 		return list;
-	}
-	
-	@Override
-	public int memberProfile(JoaMypageProfileDTO dto) {
-		System.out.println(dto.getPro_id());
-		System.out.println(dto.getPro_image());
-		System.out.println(dto.getPro_nickname());
-		
-		int result = JoaMypageDao.memberProfile(dto);
-		return result;
 	}
 	
 	

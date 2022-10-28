@@ -37,11 +37,11 @@ public interface JoaMypageService {
 	
 	public int memberDelete(String sid);
 	
-	public int memberProfile(JoaMypageProfileDTO dto);
-	
 	public List<JoaMypageRivewDTO> memberReview(String sid);
 	
 	public List<JoaMyPagePayMovieDTO> memberPayMovie(String sid);
 	
 	public JoaMypageProfileDTO getProfile(String sid);
+	
+	public int insertProfile(String pro_id, String pro_nickname, String pro_image);
 }

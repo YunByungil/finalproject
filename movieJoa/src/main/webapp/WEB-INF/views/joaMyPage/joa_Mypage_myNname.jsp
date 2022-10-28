@@ -115,7 +115,7 @@
 		</form>
 		</c:if>
 		<c:if test="${empty pro_nickname }">
-		<form name="add_pro_FM" action="addProfile.do" method="post" enctype="multipart/form-data">
+		<form name="add_pro_FM" action="insertProfile.do" method="post" enctype="multipart/form-data">
 			<div class="joaMypage_ti">
 			<div class="tiket_subject">프로필 등록</div>
 			<br>
