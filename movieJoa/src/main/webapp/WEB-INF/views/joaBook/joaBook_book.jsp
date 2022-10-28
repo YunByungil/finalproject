@@ -143,6 +143,7 @@ th {
 
 <div style="width: 25%; height: 25%; float: left;">
 <span id="s" style="color: white;">좌석선택</span><br>
+<span id="s2" style="color: white;"></span><br>
 <span id="money" style="color: white;"></span>
 </div>
 

@@ -43,11 +43,6 @@ public class JoaBookController {
 		System.out.println("listSize : " +list.size());
 		String seats_s = list.get(0).getSch_seat();
 		List<JoaPayMovDTO> plist=joaBookService.seatBook(dto);
-		System.out.println(dto.getSch_start_min());
-		System.out.println(dto.getSch_start_hour());
-		System.out.println(dto.getSch_day());
-		System.out.println(dto.getSch_city());
-		System.out.println(dto.getSch_branch());
 		int start=0;
 	      int le=0;
 	      int ri=0;
@@ -68,6 +63,18 @@ public class JoaBookController {
 	               ri=0;
 	            }
 	         }
+	    }
+	      
+	    for(int i=0;i<seats.length;i++) {
+	    	for(int j=0;j<seats[i].length;j++) {
+	    		for(int x=0;x<plist.size();x++) {
+	    			String sc=plist.get(x).getPayMov_sch_seat();
+	    			if(seats[i][j].equals(sc)) {
+	    				seats[i][j]+="B";
+	    				System.out.println(seats[i][j]);
+	    			}
+	    		}
+	    	}
 	    }
 	    mav.addObject("width",list.get(0).getSch_width());
 	    mav.addObject("height",list.get(0).getSch_height());
