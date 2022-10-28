@@ -1,9 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
-Built-By: user
-=======
 Built-By: Galmae
->>>>>>> 4181b872bb3addaf1bbd37d6aa579095baa8d44c
 Build-Jdk: 11.0.16.1
 Created-By: Maven Integration for Eclipse
 

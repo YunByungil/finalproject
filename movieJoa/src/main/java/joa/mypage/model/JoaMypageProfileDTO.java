@@ -1,6 +1,6 @@
 package joa.mypage.model;
 
-import oracle.sql.DATE;
+import java.util.*;
 
 public class JoaMypageProfileDTO {
 	public JoaMypageProfileDTO() {
@@ -10,7 +10,7 @@ public class JoaMypageProfileDTO {
 	private String pro_id; 
 	private String pro_nickname; 
     private String pro_image; 
-    private DATE pro_createdate;
+    private Date pro_createdate;
 	public int getPro_idx() {
 		return pro_idx;
 	}
@@ -35,13 +35,13 @@ public class JoaMypageProfileDTO {
 	public void setPro_image(String pro_image) {
 		this.pro_image = pro_image;
 	}
-	public DATE getPro_createdate() {
+	public Date getPro_createdate() {
 		return pro_createdate;
 	}
-	public void setPro_createdate(DATE pro_createdate) {
+	public void setPro_createdate(Date pro_createdate) {
 		this.pro_createdate = pro_createdate;
 	}
-	public JoaMypageProfileDTO(int pro_idx, String pro_id, String pro_nickname, String pro_image, DATE pro_createdate) {
+	public JoaMypageProfileDTO(int pro_idx, String pro_id, String pro_nickname, String pro_image, Date pro_createdate) {
 		super();
 		this.pro_idx = pro_idx;
 		this.pro_id = pro_id;
