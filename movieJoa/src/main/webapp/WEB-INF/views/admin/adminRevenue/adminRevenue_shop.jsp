@@ -59,8 +59,6 @@
 	<div class="sidebarmenu"><a href="adminRevenueShop.do"><br>지점별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueMovie.do"><br>영화별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueProduct.do"><br>상품별매출</a></div>
-	<div class="sidebarmenu"><a href="adminRevenueGender.do"><br>성별매출</a></div>
-	<div class="sidebarmenu"><a href="adminRevenueAge.do"><br>나이대별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueSpectator.do"><br>관람객 수</a></div>
 </div>
 <div class="container">
@@ -69,7 +67,7 @@
 		 <div class="item">
    			 <div class="header">${dto.admin_area} ${dto.admin_shop}지점<hr></div>
     			<div class="content"><br>${map.get(dto.admin_shop)}원</div>
-   		 <div class="footer"><hr><a href="#">확인하기</a></div>
+   		 <div class="footer"><hr><a href="adminRevenueShopDetail.do?paymov_the_branch=${dto.admin_shop }">확인하기</a></div>
   		</div>
 	</c:forEach>
 </c:if>

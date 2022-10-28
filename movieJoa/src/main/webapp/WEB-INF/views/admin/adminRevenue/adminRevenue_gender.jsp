@@ -40,7 +40,7 @@
 	<div class="sidebarmenu"><a href="adminRevenueAge.do"><br>나이대별매출</a></div>
 	<div class="sidebarmenu"><a href="adminRevenueSpectator.do"><br>관람객 수</a></div>
 </div>
-gender
+${login_dto.mem_id }
 </div>
 </body>
 </html>

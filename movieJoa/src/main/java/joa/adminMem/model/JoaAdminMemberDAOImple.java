@@ -141,8 +141,14 @@ public class JoaAdminMemberDAOImple implements JoaAdminMemberDAO {
 		return result;
 	}
 	@Override
-	public List<JoaMemberDTO> memberGenderSelect(String mem_gender) {
-		List<JoaMemberDTO> list=sqlMap.selectList("memberGenderSelectQuery",mem_gender);
+	public List<JoaMemberDTO> memberGenderSelect(String mem_gender,int ls,int cp) {
+		int start=(cp-1)*ls+1;
+		int end=cp*ls;
+		Map<String, Object> map=new HashMap<>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("mem_gender", mem_gender);
+		List<JoaMemberDTO> list=sqlMap.selectList("memberGenderSelectQuery",map);
 		return list;
 	}
 	@Override
@@ -165,4 +171,10 @@ public class JoaAdminMemberDAOImple implements JoaAdminMemberDAO {
 		int result=sqlMap.selectOne("memberGradeVvipQuery");
 		return result;
 	}
+	@Override
+	public int pagingGenderCount(String mem_gender) {
+		int result=sqlMap.selectOne("pagingGenderCountQuery", mem_gender);
+		return result;
+	}
+	
 }

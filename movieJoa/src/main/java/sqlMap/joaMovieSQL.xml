@@ -113,7 +113,7 @@
   		from 
   			joa_payMovie, joa_member 
   		where 
-  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 <![CDATA[<]]> 19
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age <![CDATA[<]]> 19
   	</select>
   	<select id="twoBookCnt" parameterType="String" resultType="Integer">
   		select 
@@ -121,7 +121,7 @@
   		from 
   			joa_payMovie, joa_member 
   		where 
-  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 20 and 29
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age between 20 and 29
   	</select>
   	<select id="threeBookCnt" parameterType="String" resultType="Integer">
   		select 
@@ -129,7 +129,7 @@
   		from 
   			joa_payMovie, joa_member 
   		where 
-  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 30 and 39
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age between 30 and 39
   	</select>
   	<select id="fourBookCnt" parameterType="String" resultType="Integer">
   		select 
@@ -137,7 +137,7 @@
   		from 
   			joa_payMovie, joa_member 
   		where 
-  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 40 and 49
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age between 40 and 49
   	</select>
   	<select id="fiveBookCnt" parameterType="String" resultType="Integer">
   		select 
@@ -145,7 +145,7 @@
   		from 
   			joa_payMovie, joa_member 
   		where 
-  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 <![CDATA[>]]> 49
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age <![CDATA[>]]> 49
   	</select>
   	<update id="updateAgePer" parameterType="Map">
   		update

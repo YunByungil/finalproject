@@ -28,9 +28,10 @@ public interface JoaAdminMemberDAO {
 	public int memberGenderCount();
 	public int[] memberAgeCount();
 	public int memberGradeCount();
-	public List<JoaMemberDTO> memberGenderSelect(String mem_gender);
+	public List<JoaMemberDTO> memberGenderSelect(String mem_gender,int ls,int cp);
 	public int memberGradeGeneral();
 	public int memberGradeVip();
 	public int memberGradeSvip();
 	public int memberGradeVvip();
+	public int pagingGenderCount(String mem_gender);
 }
