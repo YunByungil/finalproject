@@ -98,7 +98,7 @@
 </tr>
 </table>
 </div>
-	<div class="btn_wrap"><input type="button" value="돌아가기" class="button_sub"><input type="submit" value="영화 수정" class="button_main"></div>
+	<div class="btn_wrap"><input type="button" value="돌아가기" class="button_sub" ><input type="submit" value="영화 수정" class="button_main"></div>
 </form:form>
 </div>
 <c:import url="../../footer.jsp"></c:import>

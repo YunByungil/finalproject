@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
+
+import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.book.model.*;
 import joa.pay.model.*;
 
@@ -38,8 +42,7 @@ public class JoaBookController {
 		List<JoaBookDTO> list = joaBookService.seatList(dto);
 		System.out.println("listSize : " +list.size());
 		String seats_s = list.get(0).getSch_seat();
-		System.out.println("seat_s : " +seats_s);
-		System.out.println("seat_s.length : " + seats_s.length());
+		List<JoaPayMovDTO> plist=joaBookService.seatBook(dto);
 		int start=0;
 	      int le=0;
 	      int ri=0;
@@ -61,6 +64,18 @@ public class JoaBookController {
 	            }
 	         }
 	    }
+	      
+	    for(int i=0;i<seats.length;i++) {
+	    	for(int j=0;j<seats[i].length;j++) {
+	    		for(int x=0;x<plist.size();x++) {
+	    			String sc=plist.get(x).getPayMov_sch_seat();
+	    			if(seats[i][j].equals(sc)) {
+	    				seats[i][j]+="B";
+	    				System.out.println(seats[i][j]);
+	    			}
+	    		}
+	    	}
+	    }
 	    mav.addObject("width",list.get(0).getSch_width());
 	    mav.addObject("height",list.get(0).getSch_height());
 	    mav.addObject("seats", seats);
@@ -74,6 +89,8 @@ public class JoaBookController {
 	    mav.addObject("sch_start_hour", list.get(0).getSch_start_hour());
 	    mav.addObject("sch_start_min", list.get(0).getSch_start_min());
 	    mav.addObject("rows",rows);
+	    mav.addObject("seatList",plist);
+	    
 	    /////////////
 		mav.setViewName("joaBook/joaBook_seat");
 		return mav;

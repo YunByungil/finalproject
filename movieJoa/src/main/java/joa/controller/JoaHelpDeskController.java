@@ -4,6 +4,7 @@ package joa.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import joa.helpdesk.model.JoaMHService;
 import joa.helpdesk.model.JoaManyHelpDTO;
 import joa.helpdesk.model.JoaNTService;
 import joa.helpdesk.model.JoaNoticeDTO;
+import joa.member.model.JoaMemberDTO;
 
 @Controller
 public class JoaHelpDeskController {
@@ -535,7 +537,13 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/emailHelpWrite.do")
-	public ModelAndView emailHelpWrite(JoaHelpQuestionDTO dto) {
+	public ModelAndView emailHelpWrite(JoaHelpQuestionDTO dto, HttpSession session) {
+		
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		
+		dto.setHqt_id(sid);
+		
 		ModelAndView mav = new ModelAndView();
 		String msg = null;
 		String link =null;
@@ -706,7 +714,11 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/answerEmailHelp.do")
-	public ModelAndView answerEmailHelp(JoaHelpQuestionDTO dto) {
+	public ModelAndView answerEmailHelp(JoaHelpQuestionDTO dto, HttpSession session) {
+		
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		dto.setHqt_answerwrite(sid);
 		dto.setHqt_state("답변완료");
 		ModelAndView mav = new ModelAndView();
 		int result = joaHQService.answerQuestion(dto);
@@ -728,8 +740,13 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/oneByOneHelpWrite.do")
-	public ModelAndView oneByOneHelpWrite(JoaHelpQuestionDTO dto) {
-		ModelAndView mav = new ModelAndView();
+	public ModelAndView oneByOneHelpWrite(JoaHelpQuestionDTO dto, HttpSession session) {
+				
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		dto.setHqt_id(sid);
+		
+				ModelAndView mav = new ModelAndView();
 				String msg = null;
 				String link =null;
 				boolean link_tf = false;
@@ -898,7 +915,11 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/answerMemberHelp.do")
-	public ModelAndView answerMemberHelp(JoaHelpQuestionDTO dto) {
+	public ModelAndView answerMemberHelp(JoaHelpQuestionDTO dto, HttpSession session) {
+		
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		dto.setHqt_answerwrite(sid);
 		dto.setHqt_state("답변완료");
 		ModelAndView mav = new ModelAndView();
 		int result = joaHQService.answerQuestion(dto);
@@ -911,7 +932,10 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/reAnswerMemberHelp.do")
-	public ModelAndView reAnswerMemberHelp(JoaHelpQuestionDTO dto) {
+	public ModelAndView reAnswerMemberHelp(JoaHelpQuestionDTO dto,HttpSession session) {
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		String sid = login_dto.getMem_id();
+		dto.setHqt_answerwrite(sid);
 		dto.setHqt_state("답변완료");
 		ModelAndView mav = new ModelAndView();
 		int result = joaHQService.reanswerQuestion(dto);
