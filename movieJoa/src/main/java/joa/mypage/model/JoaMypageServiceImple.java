@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import joa.helpdesk.model.JoaHelpQuestionDTO;
+
 public class JoaMypageServiceImple implements JoaMypageService {
 	
 	private JoaMypageDAO JoaMypageDao;
@@ -15,6 +17,29 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	
 	public JoaMypageServiceImple() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public int insertProfile(String pro_id, String pro_nickname, String pro_image) {
+		Map map = new HashMap();
+		map.put("pro_id",pro_id);
+		map.put("pro_nickname",pro_nickname);
+		map.put("pro_image",pro_image);
+		
+		int result = JoaMypageDao.insertProfile(map);
+		return result;
+	}
+	
+	@Override
+	public JoaMypageProfileDTO getProfile(String sid) {
+		JoaMypageProfileDTO pdto = JoaMypageDao.getProfile(sid);
+		return pdto;
+	}
+	
+	@Override
+	public JoaHelpQuestionDTO questionBorder(int idx) {
+		JoaHelpQuestionDTO dto = JoaMypageDao.questionBorder(idx);
+		return dto;
 	}
 	
 	@Override
@@ -97,12 +122,6 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	public List<JoaMypagePayProDTO> memberPrice(String sid) {
 		List<JoaMypagePayProDTO> list = JoaMypageDao.memberPrice(sid);
 		return list;
-	}
-	
-	@Override
-	public int memberProfile(JoaMypageProfileDTO dto) {
-		int result = JoaMypageDao.memberProfile(dto);
-		return result;
 	}
 	
 	

@@ -111,6 +111,7 @@ function paymentCreditCard(){
 <input type="hidden" name="payMov_sch_start_hour" value="${hour }">
 <input type="hidden" name="payMov_sch_start_min" value="${min }">
 <input type="hidden" name="payMov_sch_seat" value="${seat }">
+<input type="hidden" name="payMov_sch_seat2" value="${seat2 }">
 <input type="hidden" name="payMov_the_city" value="${city }">
 <input type="hidden" name="payMov_the_branch" value="${branch }">
 <input type="hidden" name="payMov_price" value="${price }">
@@ -141,7 +142,7 @@ function paymentCreditCard(){
 <span id="to" style="color: white;">${theater }관/${hour }:${min }</span>
 </div>
 <div style="width: 25%; height: 25%; float: left;">
-<span id="s" style="color: white;">좌석명 : ${seat }</span><br>
+<span id="s" style="color: white;">좌석명 : ${seat } ${seat2 } </span><br>
 <span id="money" style="color: white;">가격 : ${price }</span>
 </div>
 

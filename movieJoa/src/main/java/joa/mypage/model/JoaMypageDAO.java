@@ -3,8 +3,11 @@ package joa.mypage.model;
 import java.util.List;
 import java.util.Map;
 
+import joa.helpdesk.model.JoaHelpQuestionDTO;
+
 public interface JoaMypageDAO {
 	
+	public JoaHelpQuestionDTO questionBorder(int idx);
 	
 	public JoaMypageMemberDTO memberInpo(String sid);
 	
@@ -34,10 +37,12 @@ public interface JoaMypageDAO {
 	
 	public int memberDelete(String sid);
 	
-	public int memberProfile(JoaMypageProfileDTO dto);
-	
 	public List<JoaMypageRivewDTO> memberReview(String sid);
 
 	public List<JoaMyPagePayMovieDTO> memberPayMovie(String sid);
+	
+	public JoaMypageProfileDTO getProfile(String sid);
+	
+	public int insertProfile(Map map);
 	
 }

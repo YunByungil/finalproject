@@ -92,7 +92,7 @@ function jbSubmit() {
 					<input type="hidden" id="pw1" value="${dto.mem_pwd  }">
 							<hr>
 							<div class="checkBox_content">${content }</div>
-							<div class="checkBox_input_div"><input type="text" class="checkBox_input" id="pw2"></div>
+							<div class="checkBox_input_div"><input type="password" class="checkBox_input" id="pw2"></div>
 							<div class="checkBox_button_div"><input type="submit" value="확인" class="checkBox_button"></div>
 							<hr class="c_hr">
 					</div>	

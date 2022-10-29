@@ -54,12 +54,22 @@
 	float:left;
     text-align:center;
 }
+.memberhelpDesk_main_m{
+	position: relative;
+	width: 1100px;
+   	margin: 0px auto;
+  	height:auto;
+   	overflow:auto;
+   
+}
+
 .memberhelpDesk_main{
 	position: relative;
 	width: 1100px;
    	margin: 0px auto;
   	height:auto;
    	overflow:auto;
+   	bottom:150px;
 }
 .memberHelpMain{
 	text-align:left;

@@ -14,7 +14,7 @@
 <c:import url="../../header.jsp"></c:import>
 <br>
 <section>
-<div class="helpDesk_main">
+<div class="helpDesk_main_m">
 <div class="manyHelpMain">
 	<h4 class="manyHelpSubject">공지게시판</h4> 
 	<div class="manyHelpIntroduce">공지게시판 본문 글입니다.<br>

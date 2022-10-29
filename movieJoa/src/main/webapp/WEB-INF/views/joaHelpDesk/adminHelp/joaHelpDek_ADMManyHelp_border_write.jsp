@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=10">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css?ver=10">
 <link rel="stylesheet" type="text/css" href="css/joaHelpDesk.css?ver=10">
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -14,7 +14,7 @@
 <c:import url="../../header.jsp"></c:import>
 <br>
 <section>
-<form name="lfq_WriteFM" action="manyBorderWrite.do">
+<c:import url="../../header_admin.jsp"></c:import>
 <div class="helpDesk_main">
 <div class="manyHelpMain">
 	<h4 class="manyHelpSubject">자주찾는 질문 - 게시글 작성</h4> <div align="right"><input type="submit" value="게시글 작성" class="writebutton" ></div>
@@ -71,7 +71,9 @@
 		<a href="adminNotice.do" class="HM_bar_a"><li class="HM_bar">공지게시판</li></a>
 		<a href="adminEmailHelp.do" class="HM_bar_a"><li class="HM_bar">이메일문의</li></a>
 		<a href="memberHelp.do" class="HM_bar_a"><li class="HM_bar">1:1문의</li></a>
-		<a href="topAdmin.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		<c:if test="${sid eq 'admin_master' }">
+		<a href="topAdmin_answer.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		</c:if>
 	</ul>
 </div>
 </section>

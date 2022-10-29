@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=11">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css?ver=11">
 <link rel="stylesheet" type="text/css" href="css/joaHelpDesk.css?ver=11">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <br>
 <section>
 <div class="helpDesk_main">
@@ -20,14 +20,14 @@
 	<div class="manyHelpIntroduce">회원님들께서 가장 자주하시는 질문을 모았습니다.<br>
 	관리자들을 문제 발견 시 최고 관리자에게 보고바랍니다.</div>
 	<br>
-	
+	<c:if test="${sid eq 'admin_master' }">
 	<div class="manyHelpbutton">
 	<input type="button" value="수정" class="updatebutton" onclick="location.href='manyBorderReWriteMove.do?idx=${dto.lfq_idx}'">
 	</div>
 	<div class="manyHelpbutton">
 	<input type="button" value="삭제" class="deletebutton" onclick="location.href='manyBorderDelete.do?idx=${dto.lfq_idx}'">
 	</div>
-	
+	</c:if>
 	<br>
 	<div class="box">
 
@@ -62,14 +62,16 @@
 			<td><br></td>
 			</tr>
 		</table>
-		
+	
 	</div>
 	<ul class="helpMenu">
 		<a href="adminHelpDesk.do" class="HM_bar_a"><li class="HM_bar">자주찾는 질문</li></a>
 		<a href="adminNotice.do" class="HM_bar_a"><li class="HM_bar">공지게시판</li></a>
 		<a href="adminEmailHelp.do" class="HM_bar_a"><li class="HM_bar">이메일문의</li></a>
 		<a href="memberHelp.do" class="HM_bar_a"><li class="HM_bar">1:1문의</li></a>
-		<a href="topAdmin.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		<c:if test="${sid eq 'admin_master' }">
+		<a href="topAdmin_answer.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		</c:if>
 	</ul>
 </div>
 </section>

@@ -3,6 +3,7 @@ package joa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
@@ -87,9 +88,15 @@ public class JoaPayController {
 	}
 	
 	@RequestMapping("/joaBookPay.do")
-	public ModelAndView joaBookPay(JoaPayMovDTO dto) {
-		
-		int result = joaPayService.joaBookPayAdd(dto);		
+	public ModelAndView joaBookPay(JoaPayMovDTO dto,
+			@RequestParam(value = "payMov_sch_seat2", required = false)String payMov_sch_seat2) {
+		if (payMov_sch_seat2 == null || payMov_sch_seat2.equals("")) {
+			int result = joaPayService.joaBookPayAdd(dto);		
+		}else {
+			int result = joaPayService.joaBookPayAdd(dto);
+			dto.setPayMov_sch_seat(payMov_sch_seat2);
+			int result2 = joaPayService.joaBookPayAdd(dto);
+		}
 		//junsung writed
 		List<JoaMovieDTO> aml=joaPayService.allMovieList();
 		double allMovCnt=joaPayService.allMovCnt();

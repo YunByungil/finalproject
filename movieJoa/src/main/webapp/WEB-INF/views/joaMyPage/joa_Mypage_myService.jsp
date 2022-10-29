@@ -74,7 +74,7 @@
 		
 		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">영화관람권 사용 내역</div>
+			<div class="tiket_subject">나의 문의 내역</div>
 			<br>
 			<div class="serchBar_usedCoupon_p">
 				<div class="serchBar_sub_p">제목검색</div>
@@ -95,16 +95,27 @@
 		
 			<tbody>
 			<c:if test="${empty list }">
-				<tr><td colspan="4"><br></td></tr>
+				<tr><td colspan="5"><br></td></tr>
 				<tr>
-					<td colspan="4">고객님의 문의 내역이 존재하지 않습니다.</td>
+					<td colspan="5">고객님의 문의 내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
-				<c:forEach var="dto" items="${list }">
+				<c:forEach var="S_dto" items="${list }">
+				<c:url var="borderUrl" value="onebyOneBorder.do">
+					<c:param name="idx">
+					${S_dto.hqt_idx }
+					</c:param>
+				</c:url>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${S_dto.hqt_type }</td>
+						<c:if test="${S_dto.hqt_state eq '재답변' }">
+						<td>${S_dto.hqt_subject }</td>
+						</c:if>
+						<c:if test="${S_dto.hqt_state eq '답변완료' }">
+						<td><a href="${borderUrl }">${S_dto.hqt_subject }</a></td>
+						</c:if>
+						<td>${S_dto.hqt_state }</td>
+						<td>${S_dto.hqt_answerdate }</td>
 					</tr>
 				</c:forEach>
 			</tbody>

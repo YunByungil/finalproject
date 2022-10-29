@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=2">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css?ver=2">
 <link rel="stylesheet" type="text/css" href="css/joaHelpMember.css?ver=2">
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -13,12 +13,13 @@
 <script>
 
 	function categoryChange(e) {
-	  var seoul = ['영화관선택','강남점', '역삼점' '삼성점', '신사점', '청담점', '압구정점','잠실점', '강동점',
-	          '을지로점', '명동점', '서울역점', '이태원점', '종로점', '인사동점','홍대점', '영등포점', '구로점'];
-	  var incheon = ['영화관선택','송도점', '소래포점', '인천점', '강화점'];
-	  var gyeonggi = ['영화관선택','가평점', '청평점', '양평점', '수원점', '화성점', '파주점', '김포점', '의정부점'];
-	  var gangwon = ['영화관선택','속초점', '양양점', '고성점', '춘천점', '강릉점', '평창점'];
-	  var select = ['영화관선택','영화관선택'];
+		 var seoul = ['영화관선택','강남/역삼/삼성', '신사/청담/압구정', '서초/교대/사당', '잠실/송파/강동',
+	          '을지로/명동/중구', '서울역/이태원/용산', '종로/인사동','홍대/합정/마포/서대문',
+	          '영등포역', '구로/신도림/금천'];
+		  var incheon = ['영화관선택','송도/소래포구', '인천국제공항/강화/을왕리/영종'];
+		  var gyeonggi = ['영화관선택','가평/청평/양평', '수원/화성', '고양/파주/김포', '의정부/포천/동두천'];
+		  var gangwon = ['영화관선택','속초/양양/고성', '춘천/인제/철원', '강릉', '평창/정선/영월'];
+		  var select = ['영화관선택','영화관선택'];
 	  var target = document.getElementById("cinema");
 	 
 	  if(e.value == "서울") var d = seoul;
@@ -42,7 +43,7 @@
 </script>
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <br>
 <section>
 <div class="memberhelpDesk_main">
@@ -140,7 +141,9 @@
 		<a href="adminNotice.do" class="HM_bar_a"><li class="HM_bar">공지게시판</li></a>
 		<a href="adminEmailHelp.do" class="HM_bar_a"><li class="HM_bar">이메일문의</li></a>
 		<a href="memberHelp.do" class="HM_bar_a"><li class="HM_bar">1:1문의</li></a>
-		<a href="topAdmin.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		<c:if test="${sid eq 'admin_master' }">
+		<a href="topAdmin_answer.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		</c:if>
 	</ul>
 </div>
 </section>

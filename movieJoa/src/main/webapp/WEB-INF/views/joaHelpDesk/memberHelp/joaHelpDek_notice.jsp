@@ -13,7 +13,7 @@
 <c:import url="../../header.jsp"></c:import>
 <br>
 <section>
-<div class="helpDesk_main">
+<div class="helpDesk_main_m">
 <div class="manyHelpMain">
 	<h4 class="NoticeMainSubject">공지사항</h4>
 	<div class="manyHelpIntroduce">주요한 이슈 및 여러가지 소식들을<br>
@@ -54,6 +54,9 @@
 			<c:url var="noticeUrlCL" value="noticeBorder.do">
 					<c:param name="idx">
 					${dto.ntc_idx }
+					</c:param>
+					<c:param name="readnum">
+					${dto.ntc_readnum }
 					</c:param>
 			</c:url>
 			

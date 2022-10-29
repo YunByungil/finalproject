@@ -10,6 +10,12 @@ public class JoaNTServiceImple implements JoaNTService {
 		super();
 		JoaNoticeDao = joaNoticeDao;
 	}
+	
+	@Override
+	public void upDateReadNum(int idx) {
+	
+		JoaNoticeDao.upDateReadNum(idx);
+	}
 
 	@Override
 	public int addNotice(JoaNoticeDTO dto) {

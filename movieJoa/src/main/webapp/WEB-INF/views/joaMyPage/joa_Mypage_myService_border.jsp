@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=3">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=3">
 <title>Insert title here</title>
 </head>
 <body>
@@ -15,18 +15,14 @@
 <div class="mypage_main">
 	<div class="myInformation">
 		<div class="myproF">
-		<c:if test="${empty pdto.pro_image }">
-			<img height="90" width="100" src="/movieJoa/img/joaPofiel_img/noimage.PNG">
-		</c:if>
-		<c:if test="${!empty pdto.pro_image }">
-		<img height="90" width="90" src="/movieJoa/img/joaPofiel_img/${pdto.pro_image }">
-		</c:if>
+		<img height="90" width="90" src="${pro_image }">
+		
 		</div>
 		<div class="mynickname">
 			<ul class="ul_p">
 				<li class="li_o"><l>${dto.mem_name } 님</l> 환영합니다.</li>
 				<li class="li_p"><l1>회원 아이디</l1> | ${dto.mem_id }</li>
-				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> | ${pdto.pro_nickname}</li>
+				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> | ${pro_nickname}</li>
 			</ul>
 		</div>
 		<hr class="hr">
@@ -76,32 +72,51 @@
 			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
 		
-		<div class="joaMypage_home1">
-			<div class="mythreelink">
-					<div class="myfavoritesmovie">
-						<div><img src="/movieJoa/img/joa_Mypage_img/movie_imo.PNG" class="img"></div>
-						<div class="myfavoritesmovie_subject">기대되는 영화</div></a>
-						<div>보고싶은 영화를 미리</div>
-						<div>담고싶다면?</div>
-					</div>
-					
-					<div class="mywatchingmovie">
-						<a href="myPage_SawMovie.do"><div ><img src="/movieJoa/img/joa_Mypage_img/movie_imo2.PNG" class="img"></div>
-						<div class="mywatchingmovie_subject">내가 본 영화</div></a>
-						<div>관람한 영화들을 한번에</div>
-						<div>모아보고싶다면?</div>
-					</div>
-					
-					<div class="mywrite">
-						<a href="myPageReview.do"><div ><img src="/movieJoa/img/joa_Mypage_img/movie_imo3.PNG" class="img"></div>
-						<div class="mywrite_subject">내가 쓴 평점</div></a>
-						<div>관람한 내 감상평을 적어</div>
-						<div>추억하고싶다면?</div>
-					</div>
-				</div>
-					<br>		
+		<form name="reAnswerFM" action="reAnswerSetc.do">
+				<input type="hidden" name="hqt_idx" value="${sdto.hqt_idx }">
+				<input type="hidden" name="hqt_answerwrite" value="${sdto.hqt_answerwrite }">
+				<input type="hidden" name="hqt_answerrank" value="${sdto.hqt_answerrank }">
+		<div class="joaMypage_ti">
+			<div class="tiket_subject">나의 문의 내역</div>
+			<br>
+			<div class="manyHelpbutton">
+			<input type="submit" value="재답변 요청" class="deletebutton">
 			</div>
+		<table class="manyHelpBorderW">
+			<tr>
+			<td class="bordertype">지역 : ${sdto.hqt_region }</td>
+			<td class="bordersubject">영화관 : ${sdto.hqt_cinema }</td>
+			<td class="readnumW">등록일 : ${sdto.hqt_writedate }</td>
+			</tr>
+			<tr class="borderhead">
+				<td class="bordertype">${sdto.hqt_type }</td>
+				<td class="bordersubject">${sdto.hqt_subject }</td>
+				<td class="readnum">${sdto.hqt_email }</td>
+			</tr>
+			<tr>
+				<td colspan="3"><br></td>
+			</tr>
+			<tr>
+				<td colspan="3" class="bordercontent">${sdto.hqt_content }</td>
+			</tr>
+			<tr>
+				<td colspan="4"><hr></td>
+			</tr>
+			<tr class="borderhead">
+				<td class="sid">관리자 ID : ${sdto.hqt_answerwrite }</td>
+				<td class="rank">직책 : ${sdto.hqt_answerrank}</td>
+				<td class="sdate">답변일 : ${sdto.hqt_answerdate }
+				<br>재답변일 : ${sdto.hqt_reanswerdate }</td>
+			</tr>
+			<tr>
+				<td colspan="3"><hr></td>
+			</tr>
+			<tr>
+				<td colspan="3" class="bordercontent">${sdto.hqt_answercontent }</td>
+			</tr>
+		</table>
 		</div>
+		</form>
 </div>
 </section>
 <c:import url="../footer.jsp"></c:import>

@@ -39,14 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 
 	function categoryChange(e) {
-	  var seoul = ['영화관선택','강남점', '역삼점' '삼성점', '신사점', '청담점', '압구정점','잠실점', '강동점',
-          '을지로점', '명동점', '서울역점', '이태원점', '종로점', '인사동점','홍대점', '영등포점', '구로점'];
-	  var incheon = ['영화관선택','송도점', '소래포점', '인천점', '강화점'];
-	  var gyeonggi = ['영화관선택','가평점', '청평점', '양평점', '수원점', '화성점', '파주점', '김포점', '의정부점'];
-	  var gangwon = ['영화관선택','속초점', '양양점', '고성점', '춘천점', '강릉점', '평창점'];
-	  var select = ['영화관선택','영화관선택'];
+		 var seoul = ['영화관선택','강남/역삼/삼성', '신사/청담/압구정', '서초/교대/사당', '잠실/송파/강동',
+	          '을지로/명동/중구', '서울역/이태원/용산', '종로/인사동','홍대/합정/마포/서대문',
+	          '영등포역', '구로/신도림/금천'];
+		  var incheon = ['영화관선택','송도/소래포구', '인천국제공항/강화/을왕리/영종'];
+		  var gyeonggi = ['영화관선택','가평/청평/양평', '수원/화성', '고양/파주/김포', '의정부/포천/동두천'];
+		  var gangwon = ['영화관선택','속초/양양/고성', '춘천/인제/철원', '강릉', '평창/정선/영월'];
+		  var select = ['영화관선택','영화관선택'];
 	  var target = document.getElementById("cinema");
-	 
+		 
 	  if(e.value == "서울") var d = seoul;
 	  else if(e.value == "인천") var d = incheon;
 	  else if(e.value == "경기") var d = gyeonggi;
@@ -65,27 +66,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </script>
 
-<script>
-function checkIt(){
-	if (!document.getElementsByName("hqt_type").value){	                    
-		alert("문의 유형을 선택해주세요.");
-		document.oneByOneFM.focus();
-		return false;
-	}
-</script>
-
 </head>
 <body>
 <c:import url="../../header.jsp"></c:import>
 <section>
-<div class="helpDesk_main">
+<div class="helpDesk_main_m">
 <div class="manyHelpMain">
 	<h4 class="manyHelpSubject">1:1문의</h4>
 	<div class="manyHelpIntroduce">문의 내용을 남겨주시면 저희가 성심 성의껏 답변을 해드립니다.<br>
 	답변은 마이페이지에서 받아 보실 수 있습니다.</div>
 	<br>
 	<br>
-	<form name="oneByOneFM" action="oneByOneHelpWrite.do"  onsubmit="return checkIt()">
+	<form name="oneByOneFM" action="oneByOneHelpWrite.do">
 	<br>
 	<div><label>문의유형 </label>
 		&nbsp;
