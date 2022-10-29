@@ -118,7 +118,7 @@ body, input, button, select, textarea {
 	                		${fn:substring(list.mov_title,0,17) }...
 	                	</c:if>
 	                	<c:if test="${fn:length(list.mov_title)<=20 }">
-	                		${fn:substring(list.mov_title,0,17) }
+	                		${list.mov_title}
 	                	</c:if>
 	                </strong>
 	            </a>

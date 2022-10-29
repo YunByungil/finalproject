@@ -6,8 +6,14 @@ function counter(){
 	document.getElementById("counting").innerHTML = document.getElementById("reviewContents").value.length; 
 }
 function submitCom(){
+	if(document.getElementById('score').value==""){
+		window.alert('이 영화에 대한 별점을 선택해주세요.');
+	}else if(document.getElementById("reviewContents").value==""){
+		window.alert('내용을 입력하지 않았습니다.');
+	}else{
 		document.getElementById('myform').submit();
 		closePop();
+	}
 }
 </script>
 <c:forEach var="list" items="${list }">
