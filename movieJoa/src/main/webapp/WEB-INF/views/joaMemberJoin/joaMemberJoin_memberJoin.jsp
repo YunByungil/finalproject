@@ -26,14 +26,14 @@ body {
   padding: 30px, 20px;
   background-color:#FFFFFF;
   text-align:center;
-  top:40%;
+  top:50%;
   left:50%;
   transform: translate(-50%,-50%);
   border-radius: 15px;
 }
 .textForm {
   border-bottom: 2px solid #adadad;
-  margin: 30px;
+  margin: 15px;
   padding: 10px 10px;
 }
 .id {
@@ -204,15 +204,50 @@ function validate(){
 	}
 }
 </script>
+<script>
+var XHR=null;
+function getXHR(){
+	if(window.ActiveXObject){
+		return new ActiveXObject('Msxml2.XMLHTTP');
+	}else if(window.XMLHttpRequest){
+		return new XMLHttpRequest();
+	}else{
+		return null;
+	}
+}
+function show(){
+	var mem_id=document.memberJoinForm.mem_id.value;
+	var param='mem_id='+mem_id;
+	XHR=getXHR();
+	XHR.onreadystatechange=showResult;
+	XHR.open('GET','memberIdCheck.do?'+param,true);
+	XHR.send(null);
+}
+function showResult(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data=XHR.responseText;
+			if(data==1){
+				document.getElementById('confirmId').innerHTML='사용불가능';
+				document.getElementById('confirmId').style.color='red';
+			}else{
+				document.getElementById('confirmId').innerHTML='사용가능';
+				document.getElementById('confirmId').style.color='green';
+			}
+		}	
+	}
+}
+</script>
 </head>
 <body>
 <c:import url="../header.jsp"></c:import>
 <form name="memberJoinForm" method="post" action="memberJoinFormSubmit.do" onsubmit="return validate();" class="joinForm">  
-<font id=confirmId size="2"></font>
+
 <h2>회원가입</h2>                                                                                           
       <div class="textForm">
-        <input name="mem_id" id="idCheck1" type="text" class="id" placeholder="아이디" ></input>
+        <input name="mem_id" id="idCheck1" type="text" class="id" placeholder="아이디" onblur="show()"></input>
       </div>
+      <font id=confirmId size="2"></font>
       <div class="textForm">
         <input name="mem_name" id="name" type="text" class="name" placeholder="이름" >
       </div>
@@ -251,28 +286,4 @@ function validate(){
       <input type="reset" class="btn" value="다시작성">
     </form>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-<script type ="text/javascript">
-
-	$('#idCheck1').blur(function(){
-		var mem_id = $('#idCheck1').val();
-		$.ajax({
-			url : '/movieJoa/memberIdCheck.do?mem_id='+mem_id,
-			type : "get",
-			success : function(result){
-				if(result == 1){
-					$('#confirmId').html('이미 사용중인 아이디입니다.');
-					$('#confirmId').attr('color','#dc3545');
-				} else{
-					$('#confirmId').html('사용할 수 있는 아이디입니다.');
-					$('#confirmId').attr('color','#2fb380');
-				} 
-			},
-			error : function(){
-				alert("서버요청실패");
-			}
-		})
-			 
-	})
-</script>
 </html>

@@ -45,8 +45,11 @@ public class JoaMemberJoinController {
 		return mav;
 	}
 	@RequestMapping(value="/memberIdCheck.do")
-	public @ResponseBody int memberIdCheck(String mem_id) {
+	public ModelAndView memberIdCheck(String mem_id) {
 		int result=joaMemberDao.memberIdCheck(mem_id);
-		return result;
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("joaMemberJoin/joaMemberJoin_idCheck");
+		return mav;
 	}
 }
