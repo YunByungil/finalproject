@@ -8,7 +8,9 @@ function openPop(){
 	if(${checkId}==1){
 		window.alert('이미 관람평 작성을 완료하셨습니다.');
 	}else if(${sid==""}){
-		window.alert("로그인이 필요한 서비스입니다.")
+		window.alert("로그인이 필요한 서비스입니다.");
+	}else if(${checkView<1}){
+		window.alert('실관람객에 한하여 관람평 작성이 가능합니다.');
 	}else{
 		document.getElementById('popup_layer').style.display = 'block';
 	}
@@ -169,7 +171,7 @@ function delResult(){
 		    <div class="egg_point">
 		        <div class="rating">
 		            <div class="box box_golden">
-		                <span class="desc"><strong>관람평</strong></span>
+		                <span class="desc"><b>관람평</b></span>
 		                <span class="percent"><b>
 		                <c:if test="${list.mov_score!=0.0 }">
 			               	 ${list.mov_score }
@@ -181,9 +183,9 @@ function delResult(){
 		            </div>
 				</div>
 			</div>
-		</div>
+		</div><br>
 		<div class="real-rating">
-		    <span><strong>${totalCnt } 명의 실관람객이 평가해주셨습니다.</strong></span>
+		    <span><b>${totalCnt }</b> 명의 실관람객이 평가해주셨습니다.</span>
 		    <div class="wrap_btn" style="float: right;">
 		        <a class="link-gradewrite" href="javascript:openPop();"><span><b>평점작성</b></span></a>
 		        <div class="popup_layer" id="popup_layer" style="display: none;">
@@ -214,6 +216,7 @@ function delResult(){
 <div id="likes" style="display:none;"><c:forEach var="list2" items="${list2}">${list2.lik_writer_id},</c:forEach></div>
 <c:if test="${empty commentList}">
 	<div style="text-align: center;">작성된 리뷰가 없습니다.</div>
+	<hr>
 </c:if>
 <c:forEach var="list" items="${commentList }">
 	<strong>${list.rev_id }</strong><br>
@@ -232,8 +235,8 @@ function delResult(){
 		<div class="popup_box">
 			<c:import url="/commentUpdateForm.do?rev_id=${sid }"/>
 		</div>
-	</div>	
-<div class="paging">
+	</div>
+<div class="paging" style="text-align: center;">
 	<ul id="paging_point">
 		<li>${pageStr }</li>
 	</ul>

@@ -24,6 +24,16 @@ public class JoaMovieDAOImple implements JoaMovieDAO {
 		return list;
 	}
 	@Override
+	public List<JoaMovieDTO> indexList0() {
+		List<JoaMovieDTO> list=sqlMap.selectList("indexList0");
+		return list;
+	}
+	@Override
+	public List<JoaMovieDTO> indexList1() {
+		List<JoaMovieDTO> list=sqlMap.selectList("indexList1");
+		return list;
+	}
+	@Override
 	public List<JoaMovieDTO> preMovieDate() {
 		List<JoaMovieDTO> date=sqlMap.selectList("preMovieDate");
 		return date;
@@ -37,76 +47,5 @@ public class JoaMovieDAOImple implements JoaMovieDAO {
 	public List<JoaMovieDTO> detailView(int mov_idx) {
 		List<JoaMovieDTO> list=sqlMap.selectList("detailView", mov_idx);
 		return list;
-	}
-	//junsung writed
-	@Override
-	public double allMovCnt() {
-		int result=sqlMap.selectOne("allMovCnt");
-		return result;
-	}
-	@Override
-	public double selMovCnt(String payMov_mov_title) {
-		int result=sqlMap.selectOne("selMovCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public int updateBookPer(Map map) {
-		int result=sqlMap.update("updateBookPer", map);
-		return result;
-	}
-	@Override
-	public double allBookCnt(String payMov_mov_title) {
-		int result=sqlMap.selectOne("allBookCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public double manBookCnt(String payMov_mov_title) {
-		int result=sqlMap.selectOne("manBookCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public double womanBookCnt(String payMov_mov_title) {
-		int result=sqlMap.selectOne("womanBookCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public int updateGenderPer(Map map) {
-		int result=sqlMap.update("updateGenderPer", map);
-		return result;
-	}
-	@Override
-	public double oneBookPer(String payMov_mov_title) {
-		int result=sqlMap.selectOne("oneBookCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public double twoBookPer(String payMov_mov_title) {
-		int result=sqlMap.selectOne("twoBookCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public double threeBookPer(String payMov_mov_title) {
-		int result=sqlMap.selectOne("threeBookCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public double fourBookPer(String payMov_mov_title) {
-		int result=sqlMap.selectOne("fourBookCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public double fiveBookPer(String payMov_mov_title) {
-		int result=sqlMap.selectOne("fiveBookCnt", payMov_mov_title);
-		return result;
-	}
-	@Override
-	public int updateAgePer(Map map) {
-		int result=sqlMap.update("updateAgePer", map);
-		return result;
-	}
-	@Override
-	public List<JoaMovieDTO> allMovieList() {
-		List<JoaMovieDTO> aml=sqlMap.selectList("allMovieList");
-		return aml;
 	}
 }

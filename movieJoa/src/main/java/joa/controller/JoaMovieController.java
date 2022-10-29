@@ -77,7 +77,7 @@ public class JoaMovieController {
 		}else{
 			mav.addObject("sw", "off");
 		}
-
+		mav.addObject("replaceChar", "\n");
 		mav.setViewName("joaMovie/joaMovie_info");
 		return mav;
 	}
