@@ -195,6 +195,8 @@ public class JoaMypageController {
 		
 		List<JoaMypageOwnCouDTO> list = JoaMypageService.memberCoupon(sid);
 		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		
 		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
 		String m_grade = "일반";
 		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
@@ -207,7 +209,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 		
-		
+		mav.addObject("pdto", pdto);
 		mav.addObject("backA_color", backA_color);
 		mav.addObject("swm_list", swm_list);
 		mav.addObject("m_grade", m_grade);
