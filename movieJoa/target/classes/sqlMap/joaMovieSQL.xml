@@ -4,16 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.movie">
   	<select id="movieList0" resultType="joa.movie.model.JoaMovieDTO">
-  		select rownum as runm,a.* from 
+  		select rownum as rnum,a.* from 
   		(select * from joa_movie where mov_end_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a
   	</select>
   	<select id="movieList1" resultType="joa.movie.model.JoaMovieDTO">
-  		select rownum as runm,a.* from 
+  		select rownum as rnum,a.* from 
   		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate and mov_end_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a
   	</select>
   	<select id="movieList2" resultType="joa.movie.model.JoaMovieDTO">
-  		select rownum as runm,a.* from 
+  		select rownum as rnum,a.* from 
   		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate and mov_end_date<![CDATA[>]]>sysdate order by mov_score desc)a
+  	</select>
+  	<select id="indexList0" resultType="joa.movie.model.JoaMovieDTO">
+  		select * from
+  		(select rownum as rnum,a.* from 
+  		(select * from joa_movie where mov_end_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a)b
+  		where rnum <![CDATA[<=]]> 5
+  	</select>
+  	<select id="indexList1" resultType="joa.movie.model.JoaMovieDTO">
+  		select * from
+  		(select rownum as rnum,a.* from 
+  		(select * from joa_movie where mov_start_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a)b
+  		where rnum <![CDATA[<=]]> 5
   	</select>
   	<select id="preMovieDate" resultType="joa.movie.model.JoaMovieDTO">
   		select 

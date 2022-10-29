@@ -9,6 +9,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+function show(){
+	var ot=document.getElementById('ot').value;
+	location.href='/movieJoa/joaMovie.do?ot='+ot;
+}
+function show2(){
+	var ot=document.getElementById('now').checked;
+	if(ot){
+		location.href='/movieJoa/joaMovie.do?ot=1';
+	}else{
+		location.href='/movieJoa/joaMovie.do?ot=0';
+	}
+}
+</script>
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <style>
 body{
@@ -40,20 +54,6 @@ body, input, button, select, textarea {
 }
 </style>
 </head>
-<script>
-function show(){
-	var ot=document.getElementById('ot').value;
-	location.href='/movieJoa/joaMovie.do?ot='+ot;
-}
-function show2(){
-	var ot=document.getElementById('now').checked;
-	if(ot){
-		location.href='/movieJoa/joaMovie.do?ot=1';
-	}else{
-		location.href='/movieJoa/joaMovie.do?ot=0';
-	}
-}
-</script>
 <body>
 <c:import url="../header.jsp"></c:import>
 <h2 style="float:left;">무비차트</h2>
