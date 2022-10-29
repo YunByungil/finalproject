@@ -68,7 +68,7 @@
 			(select * from joa_event 
 			<include refid="searchEventCondition"/>
 			order by eve_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end} and eve_idx <![CDATA[>=]]> 1000
 </select>
 <select id="adminEventTotalCnt" parameterType="Map" resultType="int">
 			select count(*) from joa_event

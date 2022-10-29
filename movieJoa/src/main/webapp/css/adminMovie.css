@@ -143,7 +143,7 @@ textarea {
 }
 
 /*button*/
-button > * {position:relative;} /* 클릭할떄 문자 흔들림 방지용!! */
+button > * {position:relative;} /* 클릭할떄 문자 흔들림 방지용임!!!! */
 button{
 	border:1px solid #DDD;
 	cursor:pointer;

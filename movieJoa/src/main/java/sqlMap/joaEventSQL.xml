@@ -41,8 +41,7 @@
 			#{member_id},
 			#{discount},
 			TO_DATE(#{issue_date}, 'YYYY-MM-DD'),
-			TO_DATE(#{limit_date}, 'YYYY-MM-DD'),
-			'미사용'
+			TO_DATE(#{limit_date}, 'YYYY-MM-DD')
 			) 	
 </insert>
   <insert id="addUserApply" parameterType="Map">

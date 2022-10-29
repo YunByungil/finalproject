@@ -12,7 +12,7 @@
 function deleteAdminPay(didx){
 	   var delQue = window.confirm('삭제한 예매 정보는 복구할 수 없습니다. 정말 삭제하시겠습니까?');
 	   	if(!delQue){return;} 
-	   window.location.href = 'deleteAdminPay.do?paymov_idx='+didx;
+	   window.location.href = 'deleteAdminPay.do?payMov_idx='+didx;
 	}
 </script>
 </head>
@@ -22,7 +22,7 @@ function deleteAdminPay(didx){
 <div class="div_title"><h2 class="title">|  예매 현황 관리 / 예매 현황</h2></div>
 <div class="table_wrap_list">
 <fieldset class="search_wrap">
-	<form action="/searchAdminPay.do">
+	<form action="/movieJoa/searchAdminPay.do">
 		<select name="s_k">
 			<option value="all" <c:if test="${s_k eq 'all'}">selected</c:if>>전체</option>
 			<option value="payMov_merchant_uid" <c:if test="${s_k eq 'payMov_merchant_uid'}">selected</c:if>>예매번호</option>

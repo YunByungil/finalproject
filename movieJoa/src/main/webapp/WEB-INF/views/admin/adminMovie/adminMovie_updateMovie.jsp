@@ -52,7 +52,7 @@
 <tr>
 	<th class="th_basic">국가</th>
 	<td class="td_basic">
-		<form:input type="text" path="mov_country" class="input_text_basic" placeholder="개봉 국가명" value="${dto.mov_country }"/>
+		<form:input type="text" path="mov_country" class="input_text_basic" placeholder="제작 국가" value="${dto.mov_country }"/>
 		<br><form:errors path="mov_country" class="error_span"/>
 	</td>
 </tr>
@@ -66,7 +66,7 @@
 <tr>
 	<th class="th_basic">상영 시간</th>
 	<td class="td_basic"><div class="time_div">
-		<form:input type="text" path="mov_running_time" id="mrt" class="input_text_basic" placeholder="총 상영시간" value="${dto.mov_running_time }" onkeyup="updateMovieNumberCheck();"/> 분 <span id="ersp" class="error_span_general"></span> <span class="caution fl_r">분 단위로 입력해주세요.</span></div>
+		<input type="text" name="mov_running_time" id="mrt" class="input_text_basic" placeholder="총 상영시간" value="${dto.mov_running_time }" onkeyup="updateMovieNumberCheck();"/> 분 <span class="caution fl_r">분 단위로 입력해주세요.</span></div>
 	</td>
 </tr>
 <tr>

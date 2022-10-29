@@ -35,14 +35,13 @@ function deleteOwncou(didx){
 </fieldset>
 <table class="main_table_list">
 <colgroup>
-	<col style="width:10%">
-	<col style="wldth:20%">
-	<col style="width:10%">
-	<col style="width:10%">
-	<col style="width:15%">
-	<col style="wldth:15%">
-	<col style="width:10%">
-	<col style="width:10%">
+	<col style="width:13%">
+	<col style="wldth:23%">
+	<col style="width:13%">
+	<col style="width:13%">
+	<col style="width:13%">
+	<col style="wldth:13%">
+	<col style="width:12%">
 </colgroup>
 <thead>
 <tr>
@@ -52,7 +51,6 @@ function deleteOwncou(didx){
 	<th scope="col" class="text_c">할인금액</th>
 	<th scope="col" class="text_c">발급일</th>
 	<th scope="col" class="text_c">유효기간</th>
-	<th scope="col" class="text_c">사용여부</th>
 	<th scope="col" class="text_c">관리</th>
 </tr>
 </thead>
@@ -65,7 +63,6 @@ function deleteOwncou(didx){
 	<td class="text_c">${dto.own_discount } 원</td>
 	<td class="text_c">${dto.own_issue_date }</td>
 	<td class="text_c">${dto.own_limit_date }</td>
-	<td class="text_c">${dto.own_status }</td>
 	<td class="text_c">
 	<input type="button" value="삭제" onclick="javascript:deleteOwncou(${dto.own_idx });" class="list_s_btn"></td>
 	

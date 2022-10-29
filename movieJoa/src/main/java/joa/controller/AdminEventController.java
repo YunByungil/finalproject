@@ -40,19 +40,19 @@ public class AdminEventController {
 		return new AdminEventDTO();
 	} 
 	
-	public void copyInto(File f,MultipartFile upload) {
-		
-		try {
-			byte bytes[]=upload.getBytes();
-			FileOutputStream fos = new FileOutputStream(f);
-			fos.write(bytes);;
-			fos.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();			
-		}
-		
-	}
+    private void insertImg(HttpServletRequest req, MultipartFile mov_poster) {
+        try {
+          String path=req.getRealPath("/img/joaEvent_img/");
+           byte realPosterFile[] = mov_poster.getBytes();
+           File poster = new File(path + mov_poster.getOriginalFilename());
+     
+           FileOutputStream stream = new FileOutputStream(poster); 
+           stream.write(realPosterFile); 
+           stream.close(); 
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
+     }
 		
 	   
 	@RequestMapping(value="/addEventForm.do", method=RequestMethod.GET)
@@ -75,15 +75,8 @@ public class AdminEventController {
 		int result=0;
 	    String msg="";
 	    
-	    String path=req.getRealPath("/img/joaEvent_img");
-	    
-	    String filename1=event_main_img.getOriginalFilename();
-	    File f=new File(path+filename1);		
-		copyInto(f, event_main_img);
-		
-		 String filename2=event_thumb_img.getOriginalFilename();
-		    File f2=new File(path+filename2);		
-			copyInto(f2, event_thumb_img);
+	    insertImg(req, event_main_img);
+	    insertImg(req, event_thumb_img);
 		 
 		 String eve_main_img=event_main_img.getOriginalFilename();
 		 dto.setEve_main_img(eve_main_img);
@@ -134,15 +127,10 @@ public class AdminEventController {
 			@RequestParam("event_thumb_img")MultipartFile event_thumb_img) {
 		
 		ModelAndView mav=new ModelAndView();
-		String path=req.getRealPath("/img/joaEvent_img");
-	    
-	    String filename1=event_main_img.getOriginalFilename();
-	    File f=new File(path+filename1);		
-		copyInto(f, event_main_img);
 		
-		 String filename2=event_thumb_img.getOriginalFilename();
-		    File f2=new File(path+filename2);		
-			copyInto(f2, event_thumb_img);
+		 insertImg(req, event_main_img);
+		    insertImg(req, event_thumb_img);
+			 
 		 
 		 String eve_main_img=event_main_img.getOriginalFilename();
 		 dto.setEve_main_img(eve_main_img);

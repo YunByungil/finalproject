@@ -47,7 +47,7 @@
 <tr>
 	<th class="th_basic">국가</th>
 	<td class="td_basic">
-		<form:input type="text" path="mov_country" class="input_text_basic" placeholder="개봉 국가명"/>
+		<form:input type="text" path="mov_country" class="input_text_basic" placeholder="제작 국가"/>
 		<br><form:errors path="mov_country" class="error_span"/>
 	</td>
 </tr>

@@ -36,20 +36,19 @@ public class AdminMovieController {
 		return new AdminMovieDTO();
 	} 
 
-	   private void insertPosterImg(MultipartFile mov_poster) {
-		      try {
-		         byte realPosterFile[] = mov_poster.getBytes();
-		         File poster = new File("C:/work_space/galmaedummy/movieJoa/src/main/webapp/img/movie_poster/" + mov_poster.getOriginalFilename());
-		         System.out.println("절대경로:"+poster.getAbsolutePath());
-		         System.out.println("상대경로:"+poster.getCanonicalPath());
-		   
-		         FileOutputStream stream = new FileOutputStream(poster); 
-		         stream.write(realPosterFile); 
-		         stream.close(); 
-		      } catch (IOException e) {
-		         e.printStackTrace();
-		      }
-		   }
+    private void insertPosterImg(HttpServletRequest req, MultipartFile mov_poster) {
+        try {
+          String path=req.getRealPath("/img/movie_poster/");
+           byte realPosterFile[] = mov_poster.getBytes();
+           File poster = new File(path + mov_poster.getOriginalFilename());
+     
+           FileOutputStream stream = new FileOutputStream(poster); 
+           stream.write(realPosterFile); 
+           stream.close(); 
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
+     }
 
 		
 	@RequestMapping(value="/addMovieForm.do", method=RequestMethod.GET)
@@ -67,14 +66,14 @@ public class AdminMovieController {
 	
    @RequestMapping(value="/addMovie.do" ,method=RequestMethod.POST)
 	public ModelAndView addMovie(@Valid @ModelAttribute("vo") AdminMovieDTO dto, BindingResult errorResult,
-			MultipartHttpServletRequest req) {
+			HttpServletRequest req, MultipartHttpServletRequest mreq) {
 
 		ModelAndView mav=new ModelAndView();
 		int result=0;
 	    String msg="";
 	   
-	    MultipartFile poster = req.getFile("poster");
-		 insertPosterImg(poster);
+	    MultipartFile poster = mreq.getFile("poster");
+		 insertPosterImg(req, poster);
 		 
 		 String mov_poster=poster.getOriginalFilename();
 		 dto.setMov_poster(mov_poster);
@@ -122,13 +121,13 @@ public class AdminMovieController {
 	
 	@RequestMapping(value="/updateMovie.do" ,method=RequestMethod.POST)
 	public ModelAndView updateMovie(@Valid @ModelAttribute("vo") AdminMovieDTO dto, BindingResult errorResult,
-			MultipartHttpServletRequest mreq, HttpServletRequest req) {
+			HttpServletRequest req, MultipartHttpServletRequest mreq) {
 		ModelAndView mav=new ModelAndView();
 		int result=0;
 		String msg="";
 		
 		 MultipartFile poster = mreq.getFile("poster");
-		 insertPosterImg(poster);
+		 insertPosterImg(req, poster);
 		 
 		 
 		 String mov_poster=poster.getOriginalFilename();

@@ -114,7 +114,7 @@ public class JoaEventController {
 				}
 			}else if(applyCheck>0){// 이벤트 참여기록이 존재하는 경우
 				msg="이미 참여한 계정입니다.";
-				nextPage="/movieJoa/1111.do";
+				nextPage="/movieJoa/111.do";
 			}
 		}else{
 			msg="로그인 시 이용 가능합니다.";

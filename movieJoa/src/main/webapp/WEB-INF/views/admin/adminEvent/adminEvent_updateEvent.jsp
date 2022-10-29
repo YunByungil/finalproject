@@ -50,7 +50,7 @@
 </tr>
 <tr>
 	<th class="th_basic">이벤트 기간</th>
-	<td class="td_basic"><input type="date" name="eve_start_date" class="input_date_box" required> - <input type="date" name="eve_end_date" class="input_date_box" required></td>
+	<td class="td_basic"><input type="date" name="eve_start_date" class="input_date_box" value="${dto.eve_start_date }" required> - <input type="date" name="eve_end_date" value="${dto.eve_end_date }" class="input_date_box" required></td>
 </tr>
 </table>
 </div>
