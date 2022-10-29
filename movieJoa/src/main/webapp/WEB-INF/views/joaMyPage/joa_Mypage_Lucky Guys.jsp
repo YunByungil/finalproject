@@ -108,7 +108,7 @@
 					</c:param>
 					</c:url>
 					<tr>
-						<a href="${borderUrl }"><td>${e_b_dto.e_b_subject  }</td></a>
+						<td><a href="${borderUrl }">${e_b_dto.e_b_subject  }</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

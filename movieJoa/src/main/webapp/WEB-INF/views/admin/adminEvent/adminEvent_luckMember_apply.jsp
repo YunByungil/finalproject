@@ -20,9 +20,9 @@
 <form name="E_B_FM" action="E_B_insert.do">
 <div class="table_wrap">
 	<input type="hidden" name="e_b_members" value="${members }">
-	<input type="hidden" name="e_b_eventcode" value="${members }">
+	<input type="hidden" name="e_b_eventcode" value="${app_event_code }">
 	<div>제목 | <input type="text" name="e_b_subject"></div>
-	<div><textarea rows="50" cols="50" name="e_b_content"></textarea></div>
+	<div>이벤트 상세설명 | <textarea rows="50" cols="50" name="e_b_content"></textarea></div>
 
 </div>
 	<div class="btn_wrap"><input type="button" value="돌아가기" class="button_sub"><input type="submit" value="게시글 등록" class="button_main"></div>

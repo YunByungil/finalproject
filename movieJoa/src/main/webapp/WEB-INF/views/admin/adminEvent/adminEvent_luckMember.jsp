@@ -29,6 +29,7 @@
 <div class="table_wrap">
 	<div>이벤트 코드를 입력해주세요.</div>
 	<div><input type="text" name="app_event_code"></div>
+	<div>당첨 인원를 입력해주세요.</div>
 	<div><input type="text" name="member_count"></div>
 	<div><input type="submit" value="입력하기"></div>
 </div>

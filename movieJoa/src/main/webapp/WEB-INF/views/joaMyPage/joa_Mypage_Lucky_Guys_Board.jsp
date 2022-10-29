@@ -75,7 +75,6 @@
 			<a href="myPage_PW_Check_P.do" class="My_bar_a"><dt class="My_bar">프로필 관리</dt></a>
 			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
-		<div class="Lucky_Guys">${l_dto.e_b_members }</div>
 		<div class="joaMypage_ti">
 			<div class="tiket_subject">이벤트 당첨자 발표</div>
 			<br>
@@ -90,7 +89,7 @@
 				<td><br></td>
 			</tr>
 			<tr>
-				<td class="bordercontent">${l_dto.e_b_content }</td>
+				<td class="bordercontent">|당첨자 내역|<br>${l_dto.e_b_members }</td>
 			</tr>
 			<tr>
 				<td><br></td>

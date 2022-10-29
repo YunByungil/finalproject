@@ -68,13 +68,11 @@ public class AdminEventController {
     @RequestMapping("/luck_mem_extraction.do")
     public ModelAndView luck_mem_extraction(@RequestParam("app_event_code")int app_event_code,@RequestParam("member_count")int member_count,HttpSession session) {
     	ModelAndView mav = new ModelAndView();
-    	List list = adminEventService.listLuck_mem_extraction(app_event_code, member_count);
-    	String members=null;
-    	for(int i = 0; i<list.size();i++) {
-    		members+=(String) list.get(i)+",";
-    	}
+    	String members = adminEventService.listLuck_mem_extraction(app_event_code, member_count);
+    	
     	String msg=null;
-    	if(list==null) {
+    	System.out.println(members);
+    	if(members==null || members.equals("")) {
     		msg="추출에 실패했습니다.";
     	}else {
     		msg="추출에 성공했습니다.";

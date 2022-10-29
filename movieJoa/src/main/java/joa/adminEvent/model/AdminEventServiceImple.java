@@ -24,30 +24,52 @@ public class AdminEventServiceImple implements AdminEventService {
 	}
 	
 	@Override
-	public List listLuck_mem_extraction(int app_event_code, int member_count) {
-		List<AdminApplycantDTO>list = adminEventDao.listLuck_mem_extraction(app_event_code);
-		int min = 1111;
-		int max = 9999;
+	public String listLuck_mem_extraction(int app_event_code, int member_count) {
+		List<AdminApplycantDTO>list = (ArrayList<AdminApplycantDTO>) adminEventDao.listLuck_mem_extraction(app_event_code);
+		AdminApplycantDTO howhow_min;
+		AdminApplycantDTO howhow_max;
+		howhow_min = list.get(0);
+		howhow_max = list.get(list.size()- 1);
+		
+		int min = howhow_min.getApp_idx();
+		int max = howhow_max.getApp_idx();
 		int random = 0;
 		int count = 0;
-		List member = null;
+		String member = "";
+		int[] randomCH = new int[member_count];
 		AdminApplycantDTO howhow;
-		for(int i=0; i<list.size();i++) {
+		for(int i=0; i<=member_count;i++) {
 			random = 0;
+			howhow = null;
 			random = (int) ((Math.random() * (max - min)) + min);
 			howhow = list.get(i);
-			if(random==howhow.getApp_idx()) {
-				member.add(howhow.getApp_member_id());
-				count++;
-				if(count==member_count) {
-					return member;
+			System.out.println(random);
+			System.out.println(howhow.getApp_idx());
+			System.out.println(member);
+			System.out.println(member_count);
+			if(random==(int)howhow.getApp_idx()) {
+				
+				String e= (howhow.getApp_member_id()+",");
+				if(count!=member_count) {
+				for(int h=0; h<randomCH.length;h++) {
+					if(randomCH[h]!=random) {
+						member+=e;
+						count++;
+						randomCH[i]=random;
+						break;
+					}
 				}
-			}else if(i==list.size()) {
+				}
+				System.out.println(e);
+				System.out.println(member);
+				
+				
+			}
+			if(count!=member_count && i==(member_count-1)) {
 				i=-1;
 			}
-	
 		}
-		return null;
+		return member;
 	}
 	
 	@Override
