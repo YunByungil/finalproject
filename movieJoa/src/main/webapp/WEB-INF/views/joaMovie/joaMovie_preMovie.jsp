@@ -73,7 +73,12 @@ body, input, button, select, textarea {
 	        <div class="box-contents">
 	            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
 	                <strong class="title">
-	                	${fn:substring(list.mov_title,0,17) }
+	                	<c:if test="${fn:length(list.mov_title)>20 }">
+	                		${fn:substring(list.mov_title,0,17) }...
+	                	</c:if>
+	                	<c:if test="${fn:length(list.mov_title)<=20 }">
+	                		${list.mov_title}
+	                	</c:if>
 	                </strong>
 	            </a>
 	            <div class="score">
