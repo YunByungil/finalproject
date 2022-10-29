@@ -199,7 +199,7 @@ function deleteItem(car_pro_idx,car_idx){
 						<tr>
 							<th>총 상품 금액</th>
 							<th></th>
-							<th colspan="2">할인금액</th>
+							<th>할인금액</th>
 							<th></th>
 							<th>총 결제 금액</th>
 						</tr>
@@ -209,8 +209,7 @@ function deleteItem(car_pro_idx,car_idx){
 							<td>												
 							<input type="text" name="pay_price_sum" id="priceSum" size="20" readonly></td>						
 							<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>												
-							<td><input type="text" name="pay_discount" id="discount" size="20" readonly></td>
-							<td><a href=""><input type="button" value="쿠폰" onclick="showCoupon()"></a></td>												
+							<td><input type="text" name="pay_discount" id="discount" size="20" readonly></td>											
 							<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>												
 							<td><input type="text" name="pay_total_sum" id="totalSum" size="20" readonly></td>
 						</tr>
