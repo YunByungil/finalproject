@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import joa.adminEvent.model.AdminEventLuckBoardDTO;
 import joa.helpdesk.model.JoaHelpQuestionDTO;
 
 public class JoaMypageServiceImple implements JoaMypageService {
@@ -17,6 +18,24 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	
 	public JoaMypageServiceImple() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public AdminEventLuckBoardDTO imHappy(int idx) {
+		AdminEventLuckBoardDTO dto = JoaMypageDao.imfine(idx);
+		return dto;
+	}
+	
+	@Override
+	public List<AdminEventLuckBoardDTO> lucky_Guys() {
+		List<AdminEventLuckBoardDTO> list = JoaMypageDao.lucky_Guys();
+		return list;
+	}
+	
+	@Override
+	public int updateProfile(JoaMypageProfileDTO dto) {
+		int result = JoaMypageDao.updateProfile(dto);
+		return result;
 	}
 	
 	@Override

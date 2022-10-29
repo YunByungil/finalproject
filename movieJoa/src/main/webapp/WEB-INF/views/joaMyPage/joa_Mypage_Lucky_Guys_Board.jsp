@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=2">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=2">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=3">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=3">
 <title>Insert title here</title>
 </head>
 <body>
@@ -75,42 +75,30 @@
 			<a href="myPage_PW_Check_P.do" class="My_bar_a"><dt class="My_bar">프로필 관리</dt></a>
 			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
-		
+		<div class="Lucky_Guys">${l_dto.e_b_members }</div>
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">포인트 적립내역</div>
+			<div class="tiket_subject">이벤트 당첨자 발표</div>
 			<br>
-		<div class="my_ticet">
-			<hr class="ti_hr">
-			<br>
-			<table class="po_border">
-			
-			<thead>
-				<th class="po_type">구분</th>
-				<th class="po_content">포인트</th>
-			</thead>
-		
-			<tbody>
-				<tr>
-					<td>사용가능 포인트</td><td>${dto.mem_point }</td>
-				</tr>
-				<tr>	
-					<td>등급선정 포인트</td><td>${dto.mem_grade }</td>
-				</tr>
-				<tr>
-					<td>등급 선정 기준</td><td>10000점 = VIP<br>
-											25000점 = SVIP<br>
-											40000점 = VVIP
-										</td>
-				</tr>
-				<tr>	
-					<td>추가적립 포인트</td><td>${plusPoint }</td>
-				</tr>		
-			</tbody>
-			</table>
-			
-			<hr class="ti_hr">
-			</div>
-			<br>
+		<table class="manyHelpBorderW">
+			<tr>
+			<td class="bordersubject">이벤트명 : ${l_dto.e_b_subject }</td>
+			</tr>
+			<tr>
+				<td><hr></td>
+			</tr>
+			<tr>
+				<td><br></td>
+			</tr>
+			<tr>
+				<td class="bordercontent">${l_dto.e_b_content }</td>
+			</tr>
+			<tr>
+				<td><br></td>
+			</tr>
+			<tr>
+				<td><hr></td>
+			</tr>
+		</table>
 		</div>
 </div>
 </section>

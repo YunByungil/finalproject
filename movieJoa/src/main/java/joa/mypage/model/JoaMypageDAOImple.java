@@ -6,6 +6,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import joa.adminEvent.model.AdminEventLuckBoardDTO;
 import joa.helpdesk.model.JoaHelpQuestionDTO;
 
 public class JoaMypageDAOImple implements JoaMypageDAO {
@@ -20,6 +21,24 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 	
 	public JoaMypageDAOImple() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public AdminEventLuckBoardDTO imfine(int idx) {
+		AdminEventLuckBoardDTO dto = sqlMap.selectOne("lucky_board_content",idx);
+		return dto;
+	}
+	
+	@Override
+	public List<AdminEventLuckBoardDTO> lucky_Guys() {
+		List<AdminEventLuckBoardDTO> list = sqlMap.selectList("lucky_board");
+		return list;
+	}
+	
+	@Override
+	public int updateProfile(JoaMypageProfileDTO dto) {
+		int result = sqlMap.selectOne("updateProfile", dto);
+		return result;
 	}
 	
 	@Override

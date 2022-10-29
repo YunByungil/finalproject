@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import joa.adminEvent.model.AdminApplycantDTO;
 import joa.adminEvent.model.AdminEventDTO;
+import joa.adminEvent.model.AdminEventLuckBoardDTO;
 import joa.adminEvent.model.AdminEventService;
 import joa.adminEvent.model.EventValidator;
 import joa.adminMovie.model.AdminMovieDTO;
@@ -53,6 +55,43 @@ public class AdminEventController {
            e.printStackTrace();
         }
      }
+    @RequestMapping("E_B_insert.do")
+    public ModelAndView E_B_insert(AdminEventLuckBoardDTO dto) {
+    	ModelAndView mav =new ModelAndView();
+    	int result = adminEventService.e_b_table_insert(dto);
+    	String msg = result>0?"게시글 등록에 성공했습니다.":"게시글 등록에 실패했습니다.";
+    	mav.addObject("msg", msg);
+    	mav.setViewName("admin/adminEvent/adminEvent_luckMember_apply");
+    	return mav;
+    }
+    
+    @RequestMapping("/luck_mem_extraction.do")
+    public ModelAndView luck_mem_extraction(@RequestParam("app_event_code")int app_event_code,@RequestParam("member_count")int member_count,HttpSession session) {
+    	ModelAndView mav = new ModelAndView();
+    	List list = adminEventService.listLuck_mem_extraction(app_event_code, member_count);
+    	String members=null;
+    	for(int i = 0; i<list.size();i++) {
+    		members+=(String) list.get(i)+",";
+    	}
+    	String msg=null;
+    	if(list==null) {
+    		msg="추출에 실패했습니다.";
+    	}else {
+    		msg="추출에 성공했습니다.";
+    	}
+    	mav.addObject("app_event_code", app_event_code);
+    	mav.addObject("members", members);
+    	mav.addObject("msg", msg);
+    	mav.setViewName("admin/adminEvent/adminEvent_luckMember_apply");
+    	return mav;
+    }
+    
+    @RequestMapping("/luckMember.do")
+    public ModelAndView luckMember() {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("admin/adminEvent/adminEvent_luckMember");
+    	return mav;
+    }
 		
 	   
 	@RequestMapping(value="/addEventForm.do", method=RequestMethod.GET)

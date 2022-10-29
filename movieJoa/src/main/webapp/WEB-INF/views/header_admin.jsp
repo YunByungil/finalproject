@@ -65,6 +65,7 @@
 					    <li><a href="/movieJoa/listEvent.do">이벤트 목록</a></li>
 					    <li><a href="/movieJoa/addEvent.do">이벤트 등록</a></li>
 					    <li><a href="/movieJoa/listApplycant.do">이벤트 참여 현황</a></li>
+					    <li><a href="/movieJoa/luckMember.do">당첨자 추출하기</a></li>
 					</ul>
 				</li>
 				<li class="menu2"><a href="adminHelpDesk.do">고객센터</a>

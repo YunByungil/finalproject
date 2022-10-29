@@ -32,14 +32,18 @@
 <div class="mypage_main">
 	<div class="myInformation">
 		<div class="myproF">
-		<img height="90" width="90" src="${pro_image }">
-		
+		<c:if test="${empty pdto.pro_image }">
+			<img height="90" width="100" src="/movieJoa/img/joaPofiel_img/noimage.PNG">
+		</c:if>
+		<c:if test="${!empty pdto.pro_image }">
+		<img height="90" width="90" src="/movieJoa/img/joaPofiel_img/${pdto.pro_image }">
+		</c:if>
 		</div>
 		<div class="mynickname">
 			<ul class="ul_p">
 				<li class="li_o"><l>${dto.mem_name } 님</l> 환영합니다.</li>
 				<li class="li_p"><l1>회원 아이디</l1> | ${dto.mem_id }</li>
-				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> | ${pro_nickname}</li>
+				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> | ${pdto.pro_nickname}</li>
 			</ul>
 		</div>
 		<hr class="hr">
@@ -89,7 +93,7 @@
 			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
 		
-		<c:if test="${!empty pro_nickname }">
+		<c:if test="${!empty pdto.pro_nickname }">
 		<form name="update_pro_Fm" aciton="">
 		<div class="joaMypage_ti">
 			<div class="tiket_subject">프로필 변경</div>
@@ -105,7 +109,7 @@
 			프로필 이미지 종류를 선택해 주세요.
 			<hr class="ad_hr">
 			</div>
-			<div class="P_title" id="P_title1">프로필 이미지</div><div class="p_content2_2"><div class="fileimage"><img height="90" width="90" src="${pro_image }"></div><input type="file" name="pro_image" value="파일선택" class="file"></div>
+			<div class="P_title" id="P_title1">프로필 이미지</div><div class="p_content2_2"><div class="fileimage"><img height="90" width="90" src="/movieJoa/img/joaPofiel_img/${pdto.pro_image }"></div><input type="file" name="pro_image" value="파일선택" class="file"></div>
 			<hr class="ti_hr">
 			<div class="p_button2"><input type="button" value="변경완료" id="p_button2_b"></div>
 			<hr class="ti_hr">
@@ -114,7 +118,7 @@
 		</div>
 		</form>
 		</c:if>
-		<c:if test="${empty pro_nickname }">
+		<c:if test="${empty pdto.pro_nickname }">
 		<form name="add_pro_FM" action="insertProfile.do" method="post" enctype="multipart/form-data">
 			<div class="joaMypage_ti">
 			<div class="tiket_subject">프로필 등록</div>

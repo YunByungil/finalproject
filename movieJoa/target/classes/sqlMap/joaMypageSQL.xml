@@ -3,7 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.store">
-  
+  	<select id="lucky_board_content" parameterType="Integer" resultType="joa.adminEvent.model.AdminEventLuckBoardDTO">
+  		select * from
+  		e_b_board
+  		where e_b_idx=#{idx}
+  	</select>
+  	
+  	<select id="lucky_board" resultType="joa.adminEvent.model.AdminEventLuckBoardDTO">
+  		select * from
+  		e_b_board
+  	</select>
+  	
+  	<update id="updateProfile" parameterType="joa.mypage.model.JoaMypageProfileDTO">
+  		update joa_profiel set pro_id=#{pro_id}, pro_nickname=#{pro_nickname}, pro_image=#{pro_image}
+  	</update>
+  	
   	<insert id="insertProfile" parameterType="map">
   		insert into
   		joa_profiel

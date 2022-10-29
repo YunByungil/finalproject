@@ -3,6 +3,7 @@ package joa.mypage.model;
 import java.util.List;
 import java.util.Map;
 
+import joa.adminEvent.model.AdminEventLuckBoardDTO;
 import joa.helpdesk.model.JoaHelpQuestionDTO;
 
 public interface JoaMypageDAO {
@@ -44,5 +45,11 @@ public interface JoaMypageDAO {
 	public JoaMypageProfileDTO getProfile(String sid);
 	
 	public int insertProfile(Map map);
+	
+	public int updateProfile(JoaMypageProfileDTO dto);
+	
+	public List<AdminEventLuckBoardDTO> lucky_Guys();
+	
+	public AdminEventLuckBoardDTO imfine(int idx);
 	
 }

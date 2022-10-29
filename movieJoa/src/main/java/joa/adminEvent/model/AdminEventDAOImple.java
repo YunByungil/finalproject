@@ -13,6 +13,18 @@ public class AdminEventDAOImple implements AdminEventDAO {
 		super();
 		this.sqlMap = sqlMap;
 	}
+	
+	@Override
+	public int e_b_table_insert(AdminEventLuckBoardDTO dto) {
+		int result = sqlMap.insert("e_b_table_insert",dto);
+		return result;
+	}
+	
+	@Override
+	public List<AdminApplycantDTO> listLuck_mem_extraction(int app_event_code) {
+		List<AdminApplycantDTO>list = sqlMap.selectList("luck_mem_extraction",app_event_code);
+		return list;
+	}
 
 	@Override
 	public int addEvent(Map map) {

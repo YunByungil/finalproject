@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=2">
-<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=2">
+<link rel="stylesheet" type="text/css" href="css/main.css?ver=5">
+<link rel="stylesheet" type="text/css" href="css/joaMypage.css?ver=5">
 <title>Insert title here</title>
 </head>
 <body>
@@ -76,42 +76,47 @@
 			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
 		
+		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">포인트 적립내역</div>
+			<div class="tiket_subject">이벤트 참여 내역</div>
 			<br>
-		<div class="my_ticet">
+			<div class="box">
+			<ul class="EventSerchBarFeild">
+				<li class="menuli"><a style="${backA_color}"class="a" href="myPage_Event.do">응모 내역</a></li>
+				<li class="menuli"><a style="${backB_color}"class="a" href="myPage_Lucky_Guys.do">당첨자 발표</a></li>
+			</ul>
 			<hr class="ti_hr">
+		</div>
+		<div class="my_ticet">
 			<br>
-			<table class="po_border">
-			
+			<table class="ti_border">
 			<thead>
-				<th class="po_type">구분</th>
-				<th class="po_content">포인트</th>
+				<th>제목</th>
 			</thead>
 		
 			<tbody>
+			<c:if test="${empty list }">
+				<tr><td><br></td></tr>
 				<tr>
-					<td>사용가능 포인트</td><td>${dto.mem_point }</td>
+					<td>내역이 존재하지 않습니다.</td>
 				</tr>
-				<tr>	
-					<td>등급선정 포인트</td><td>${dto.mem_grade }</td>
-				</tr>
-				<tr>
-					<td>등급 선정 기준</td><td>10000점 = VIP<br>
-											25000점 = SVIP<br>
-											40000점 = VVIP
-										</td>
-				</tr>
-				<tr>	
-					<td>추가적립 포인트</td><td>${plusPoint }</td>
-				</tr>		
+			</c:if>
+				<c:forEach var="e_b_dto" items="${list }">
+					<c:url var="borderUrl" value="lucky_Guys_Move_Border.do" >
+					<c:param name="idx">
+					${e_b_dto.e_b_idx }
+					</c:param>
+					</c:url>
+					<tr>
+						<a href="${borderUrl }"><td>${e_b_dto.e_b_subject  }</td></a>
+					</tr>
+				</c:forEach>
 			</tbody>
 			</table>
 			
 			<hr class="ti_hr">
 			</div>
 			<br>
-		</div>
 </div>
 </section>
 <c:import url="../footer.jsp"></c:import>

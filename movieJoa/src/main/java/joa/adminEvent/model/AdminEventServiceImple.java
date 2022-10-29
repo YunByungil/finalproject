@@ -16,7 +16,40 @@ public class AdminEventServiceImple implements AdminEventService {
 	/*
 	 * Date end_date; Date today;
 	 */
-		
+	
+	@Override
+	public int e_b_table_insert(AdminEventLuckBoardDTO dto) {
+		int result = adminEventDao.e_b_table_insert(dto);
+		return result;
+	}
+	
+	@Override
+	public List listLuck_mem_extraction(int app_event_code, int member_count) {
+		List<AdminApplycantDTO>list = adminEventDao.listLuck_mem_extraction(app_event_code);
+		int min = 1111;
+		int max = 9999;
+		int random = 0;
+		int count = 0;
+		List member = null;
+		AdminApplycantDTO howhow;
+		for(int i=0; i<list.size();i++) {
+			random = 0;
+			random = (int) ((Math.random() * (max - min)) + min);
+			howhow = list.get(i);
+			if(random==howhow.getApp_idx()) {
+				member.add(howhow.getApp_member_id());
+				count++;
+				if(count==member_count) {
+					return member;
+				}
+			}else if(i==list.size()) {
+				i=-1;
+			}
+	
+		}
+		return null;
+	}
+	
 	@Override
 	public int addEvent(AdminEventDTO dto) {
 		// TODO Auto-generated method stub

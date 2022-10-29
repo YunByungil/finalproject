@@ -15,14 +15,18 @@
 <div class="mypage_main">
 	<div class="myInformation">
 		<div class="myproF">
-		<img height="90" width="90" src="${pro_image }">
-		
+		<c:if test="${empty pdto.pro_image }">
+			<img height="90" width="100" src="/movieJoa/img/joaPofiel_img/noimage.PNG">
+		</c:if>
+		<c:if test="${!empty pdto.pro_image }">
+		<img height="90" width="90" src="/movieJoa/img/joaPofiel_img/${pdto.pro_image }">
+		</c:if>
 		</div>
 		<div class="mynickname">
 			<ul class="ul_p">
 				<li class="li_o"><l>${dto.mem_name } 님</l> 환영합니다.</li>
 				<li class="li_p"><l1>회원 아이디</l1> | ${dto.mem_id }</li>
-				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> | ${pro_nickname}</li>
+				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> | ${pdto.pro_nickname}</li>
 			</ul>
 		</div>
 		<hr class="hr">

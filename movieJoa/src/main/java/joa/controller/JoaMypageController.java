@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import joa.mypage.model.JoaMypageService;
 import joa.mypage.model.JoaMypageServiceDTO;
+import joa.adminEvent.model.AdminEventLuckBoardDTO;
 import joa.adminStore.model.AdminStoreDTO;
 import joa.helpdesk.model.JoaHelpQuestionDTO;
 import joa.member.model.JoaMemberDTO;
@@ -33,6 +34,24 @@ public class JoaMypageController {
 	
 	@Autowired
 	private JoaMypageService JoaMypageService;
+	
+	@RequestMapping("/lucky_Guys_Move_Border.do")
+	public ModelAndView lucky_Guys_Move_Border(@RequestParam("idx")int idx) {
+		ModelAndView mav = new ModelAndView();
+		AdminEventLuckBoardDTO dto = JoaMypageService.imHappy(idx);
+		mav.addObject("l_dto", dto);
+		mav.setViewName("joaMyPage/joa_Mypage_Lucky_Guys_Board");
+		return mav;
+	}
+	
+	@RequestMapping("/myPage_Lucky_Guys.do")
+	public ModelAndView myPage_Lucky_Guys() {
+		ModelAndView mav = new ModelAndView();
+		List<AdminEventLuckBoardDTO>list = JoaMypageService.lucky_Guys();
+		mav.addObject("list", list);
+		mav.setViewName("joaMyPage/joa_Mypage_Lucky Guys");
+		return mav;
+	}
 	
 	@RequestMapping("/onebyOneBorder.do")
 	public ModelAndView onebyOneBorder(@RequestParam(value="idx",defaultValue = "1") int idx, HttpSession session) {
@@ -66,7 +85,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -111,7 +131,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		
 		mav.addObject("backB_color", backB_color);
 		mav.addObject("m_grade", m_grade);
@@ -150,6 +171,8 @@ public class JoaMypageController {
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
 		
 		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
 		String m_grade = "일반";
 		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
 			m_grade = "VIP";
@@ -161,7 +184,7 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 		
-		 
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -255,7 +278,8 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 		
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("swm_list", swm_list);
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("list", list);
@@ -300,7 +324,8 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -377,7 +402,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -426,7 +452,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -473,7 +500,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
@@ -524,7 +552,8 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 			plusPoint="10%";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("plusPoint", plusPoint);
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
@@ -569,7 +598,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -616,7 +646,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -665,7 +696,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -712,7 +744,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -758,7 +791,8 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -808,7 +842,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
@@ -859,7 +894,8 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 
-	
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -910,7 +946,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -956,7 +993,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -998,7 +1036,8 @@ public class JoaMypageController {
 		if(dto.getMem_grade()>=40000) {
 			m_grade = "VVIP";
 		}
-		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
@@ -1019,8 +1058,43 @@ public class JoaMypageController {
 	@RequestMapping("/myPage_Nname.do")
 	public ModelAndView myPage_Nname(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		String sid = login_dto.getMem_id();
+		
+		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		
+		int couponCount = JoaMypageService.memberCouponCnt(sid);
+		
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		String m_grade = "일반";
+		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
+			m_grade = "VIP";
+		}
+		if(dto.getMem_grade()>=25000 && dto.getMem_grade()<40000) {
+			m_grade = "SVIP";
+		}
+		if(dto.getMem_grade()>=40000) {
+			m_grade = "VVIP";
+		}
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		mav.addObject("pdto", pdto); 
+		mav.addObject("m_grade", m_grade);
+		mav.addObject("datelist", datelist);
+		mav.addObject("couponCount", couponCount);
+		mav.addObject("dto", dto);
 		mav.setViewName("joaMyPage/joa_Mypage_myNname");
 		return mav;
+		}
 	}
 	
 	public void copyInto(File f,MultipartFile upload) {
@@ -1051,6 +1125,7 @@ public class JoaMypageController {
 		int result = JoaMypageService.insertProfile(pro_id, pro_nickname, filename);
 		String msg=result>0?"프로필 등록 성공":"프로필 등록 실패";
 		boolean link_tf=true;
+		
 		mav.addObject("msg", msg);
 		mav.addObject("link_tf", link_tf);
 		mav.setViewName("joaMyPage/joa_Mypage_msg");
