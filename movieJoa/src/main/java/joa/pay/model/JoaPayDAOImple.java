@@ -34,6 +34,11 @@ public class JoaPayDAOImple implements JoaPayDAO {
 		int result=sqlMap.insert("joaBookPayAdd",dto);
 		return result;
 	}
+	
+	public int payProductResultList(JoaPayProResultDTO dto) {
+		int result=sqlMap.insert("payProductResultList",dto);
+		return result;		
+	};
 	//junsung writed
 		@Override
 		public double allMovCnt() {

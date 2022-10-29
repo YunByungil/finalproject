@@ -88,7 +88,7 @@
   		where
   			rev_idx=#{rev_idx}
   	</update>
-  	  	<update id="remLike" parameterType="Integer">
+  	<update id="remLike" parameterType="Integer">
   		update
   			joa_review
   		set
@@ -96,6 +96,14 @@
   		where
   			rev_idx=#{rev_idx}
   	</update>
+  	<select id="checkView" parameterType="Map" resultType="Integer">
+  		select
+  			count(*)
+  		from
+  			joa_paymovie, joa_movie
+  		where
+  			paymov_mov_title=mov_title and mov_idx=#{mov_idx} and paymov_mem_id=#{rev_id}
+  	</select>
   	<insert id="insertLike" parameterType="Map">
   		insert into
   			joa_like

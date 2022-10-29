@@ -10,6 +10,7 @@ public interface JoaPayService {
 	public JoaPayCartListDTO storePayCartList(int car_pro_idx, String mem_id);
 	public int payProductResultAdd(JoaPayProDTO dto);
 	public int joaBookPayAdd(JoaPayMovDTO dto);
+	public int payProductResultList(JoaPayProResultDTO dto);
 	//junsung writed
 	   public double allMovCnt();
 	   public double selMovCnt(String payMov_mov_title);

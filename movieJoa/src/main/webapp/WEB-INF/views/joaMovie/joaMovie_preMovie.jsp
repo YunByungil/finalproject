@@ -43,6 +43,9 @@ font{
 book{
 	background-color: red;
 }
+body, input, button, select, textarea {
+    font-family:'SUIT-Medium';
+}
 </style>
 </head>
 <body onload="show()">
@@ -70,11 +73,16 @@ book{
 	        <div class="box-contents">
 	            <a href="detailView.do?mov_idx=${list.mov_idx }&show=0">
 	                <strong class="title">
-	                	${fn:substring(list.mov_title,0,17) }
+	                	<c:if test="${fn:length(list.mov_title)>20 }">
+	                		${fn:substring(list.mov_title,0,17) }...
+	                	</c:if>
+	                	<c:if test="${fn:length(list.mov_title)<=20 }">
+	                		${list.mov_title}
+	                	</c:if>
 	                </strong>
 	            </a>
 	            <div class="score">
-	                <strong class="percent">예매율 
+	                예매율 
 	                <span>${list.mov_booking_percent }</span>
 	                <span class='egg great'>| 관람평</span>
 	                <span class='percent'>
@@ -84,20 +92,17 @@ book{
 		            <c:if test="${list.mov_score==0.0 }">
 		                ?
 		            </c:if></span>
-	                </strong>
 	            </div>
 	            <span class="txt-info">
-	                <strong>
 	                    <fmt:parseDate var="start" value="${list.mov_start_date }" pattern="yyyy-MM-dd"/>
 	                    <fmt:formatDate value="${start }" pattern="yyyy-MM-dd"/>
 	                    <fmt:parseNumber value="${now.time / (1000*60*60*24)}" integerOnly="true" var="nowTime"/>
 						<fmt:parseNumber value="${start.time / (1000*60*60*24)}" integerOnly="true" var="startTime"/>
 		                개봉 <font>D-${startTime - nowTime +1}</font>
-	                </strong>
 	            </span>
 	            <br>
 	            <span id="likes"> 
-	                <a id="book" href="book.do">예매하기</a>
+	                <button onclick="location.href='book.do'" style="background-color: red;border: none;color: white;border-radius: 15px;">&nbsp예매하기&nbsp</button>
 	            </span>
 	            <br>&nbsp
 	        </div>    

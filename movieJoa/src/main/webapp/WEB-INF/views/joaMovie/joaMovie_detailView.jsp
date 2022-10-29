@@ -8,6 +8,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/main.css">
+<script src="js/httpRequest.js"></script>
+<script>
+function show(num){
+	const urlParams = new URL(location.href).searchParams;
+	const mov_idx = urlParams.get('mov_idx');
+	if(num==0){
+		location.href='detailView.do?mov_idx='+mov_idx+'&show=0';
+	}else if(num==1){
+		location.href='detailView.do?mov_idx='+mov_idx+'&show=1';
+	}
+}
+function slow(){
+	setTimeout(function(){location.reload();},100);
+}
+</script>
 <style>
 body{
 	width: 1100px;
@@ -26,10 +41,6 @@ img{
 	float: left;
 	text-align: center;
 }
-dl{
-	
-	font-weight: bold;
-}
 dt{
 	float: left;
 }
@@ -43,22 +54,10 @@ a:visited, a{
 .bb{
 	border-bottom: 1px solid;"
 }
+body, input, button, select, textarea {
+    font-family:'SUIT-Medium';
+}
 </style>
-<script src="js/httpRequest.js"></script>
-<script>
-function show(num){
-	const urlParams = new URL(location.href).searchParams;
-	const mov_idx = urlParams.get('mov_idx');
-	if(num==0){
-		location.href='detailView.do?mov_idx='+mov_idx+'&show=0';
-	}else if(num==1){
-		location.href='detailView.do?mov_idx='+mov_idx+'&show=1';
-	}
-}
-function slow(){
-	setTimeout(function(){location.reload();},100);
-}
-</script>
 </head>
 <body onload="plz();counter2();document.querySelector(`.star2 span`).style.width = document.getElementById('range').value * 10+'%';document.getElementById('score2').value=document.getElementById('range').value;">
 <c:import url="../header.jsp"/>
@@ -76,17 +75,16 @@ function slow(){
         <div class="title"> 
             <strong>${list.mov_title }</strong>
         </div>
-        <div class="score"> 
-            <strong class="percent">예매율&nbsp;<span>${list.mov_booking_percent }</span></strong>
+        <div class="score"> 예매율&nbsp;<span>${list.mov_booking_percent }</span>
             <div class='egg-gage small'>
-	            <strong><span class='percent'>관람평&nbsp;
+	            <span class='percent'>관람평&nbsp;
 		            <c:if test="${list.mov_score!=0.0 }">
 						${list.mov_score }
 		            </c:if>
 		            <c:if test="${list.mov_score==0.0 }">
 						?
 		            </c:if>
-	            </span></strong>
+	            </span>
             </div>
         </div>
         <div class="spec">
@@ -107,7 +105,7 @@ function slow(){
         </div>
         <div>
 	        <span class="like">
-	            <a class="link-reservation" href="book.do">예매하기</a> 
+	            <button onclick="location.href='book.do'" style="background-color: red;border: none;color: white;border-radius: 15px;">&nbsp예매하기&nbsp</button>
 	        </span>
         </div>
     </div>

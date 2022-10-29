@@ -2,6 +2,18 @@ package joa.pay.model;
 
 public class JoaPayProDTO {
 	
+	private String  payPro_mem_id;	
+	private String  payPro_mem_name;
+	private String  payPro_mem_email;
+	private String 	payPro_mem_tel;
+	private String  payPro_pg;	
+	private String  payPro_method;
+	private String  payPro_pro_name;
+	private int 	payPro_price_sum;
+	private int 	payPro_discount;
+	private int 	payPro_total_price;
+	private String  payPro_merchant_uid;	
+	
 	
 	public JoaPayProDTO(String payPro_mem_id, String payPro_mem_name, String payPro_mem_email, String payPro_mem_tel,
 			String payPro_pg, String payPro_method, String payPro_pro_name, int payPro_price_sum, int payPro_discount,
@@ -19,18 +31,6 @@ public class JoaPayProDTO {
 		this.payPro_total_price = payPro_total_price;
 		this.payPro_merchant_uid = payPro_merchant_uid;
 	}
-
-	private String  payPro_mem_id;	
-	private String  payPro_mem_name;
-	private String  payPro_mem_email;
-	private String 	payPro_mem_tel;
-	private String  payPro_pg;	
-	private String  payPro_method;
-	private String  payPro_pro_name;
-	private int 	payPro_price_sum;
-	private int 	payPro_discount;
-	private int 	payPro_total_price;
-	private String  payPro_merchant_uid;	
 	
 	public JoaPayProDTO() {
 		// TODO Auto-generated constructor stub

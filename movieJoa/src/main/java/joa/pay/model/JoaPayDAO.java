@@ -12,6 +12,7 @@ public interface JoaPayDAO {
 	public JoaPayCartListDTO storePayCartList(Map map);
 	public int payProductResultAdd(JoaPayProDTO dto);
 	public int joaBookPayAdd(JoaPayMovDTO dto);
+	public int payProductResultList(JoaPayProResultDTO dto);
 	//junsung writed
 	   public double allMovCnt();
 	   public double selMovCnt(String payMov_mov_title);

@@ -4,177 +4,96 @@ import java.util.*;
 
 public class JoaPayProResultDTO {
 
-    int    payMov_idx;            
-    int    payMov_the_idx;        
-    String payMov_sch_theater;     
-    String payMov_mem_id;            
-    String payMov_sch_day;          
-    String payMov_sch_start_hour;      
-    String payMov_sch_start_min;         
-    String payMov_sch_seat;         
-    String payMov_the_city;             
-    String payMov_the_branch;           
-    int    payMov_price;        
-    String payMov_pg;         
-    String payMov_method;              
-    String payMov_mov_title;           
-    String payMov_merchant_uid;         
-    Date   payMov_date;
-    
+	private int prs_idx;
+	private String prs_order_idx;
+	private String prs_mem_id;
+	private String prs_pro_filename; 
+	private String prs_pro_name;       
+	private String prs_pro_price;        
+	private String prs_pro_count;       
+	private Date prs_date;
+	
     public JoaPayProResultDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public JoaPayProResultDTO(int payMov_idx, int payMov_the_idx, String payMov_sch_theater, String payMov_mem_id,
-			String payMov_sch_day, String payMov_sch_start_hour, String payMov_sch_start_min, String payMov_sch_seat,
-			String payMov_the_city, String payMov_the_branch, int payMov_price, String payMov_pg, String payMov_method,
-			String payMov_mov_title, String payMov_merchant_uid, Date payMov_date) {
+	public JoaPayProResultDTO(int prs_idx, String prs_order_idx, String prs_mem_id, String prs_pro_filename,
+			String prs_pro_name, String prs_pro_price, String prs_pro_count, Date prs_date) {
 		super();
-		this.payMov_idx = payMov_idx;
-		this.payMov_the_idx = payMov_the_idx;
-		this.payMov_sch_theater = payMov_sch_theater;
-		this.payMov_mem_id = payMov_mem_id;
-		this.payMov_sch_day = payMov_sch_day;
-		this.payMov_sch_start_hour = payMov_sch_start_hour;
-		this.payMov_sch_start_min = payMov_sch_start_min;
-		this.payMov_sch_seat = payMov_sch_seat;
-		this.payMov_the_city = payMov_the_city;
-		this.payMov_the_branch = payMov_the_branch;
-		this.payMov_price = payMov_price;
-		this.payMov_pg = payMov_pg;
-		this.payMov_method = payMov_method;
-		this.payMov_mov_title = payMov_mov_title;
-		this.payMov_merchant_uid = payMov_merchant_uid;
-		this.payMov_date = payMov_date;
+		this.prs_idx = prs_idx;
+		this.prs_order_idx = prs_order_idx;
+		this.prs_mem_id = prs_mem_id;
+		this.prs_pro_filename = prs_pro_filename;
+		this.prs_pro_name = prs_pro_name;
+		this.prs_pro_price = prs_pro_price;
+		this.prs_pro_count = prs_pro_count;
+		this.prs_date = prs_date;
 	}
 
-	public int getPayMov_idx() {
-		return payMov_idx;
+	public int getPrs_idx() {
+		return prs_idx;
 	}
 
-	public void setPayMov_idx(int payMov_idx) {
-		this.payMov_idx = payMov_idx;
+	public void setPrs_idx(int prs_idx) {
+		this.prs_idx = prs_idx;
 	}
 
-	public int getPayMov_the_idx() {
-		return payMov_the_idx;
+	public String getPrs_order_idx() {
+		return prs_order_idx;
 	}
 
-	public void setPayMov_the_idx(int payMov_the_idx) {
-		this.payMov_the_idx = payMov_the_idx;
+	public void setPrs_order_idx(String prs_order_idx) {
+		this.prs_order_idx = prs_order_idx;
 	}
 
-	public String getPayMov_sch_theater() {
-		return payMov_sch_theater;
+	public String getPrs_mem_id() {
+		return prs_mem_id;
 	}
 
-	public void setPayMov_sch_theater(String payMov_sch_theater) {
-		this.payMov_sch_theater = payMov_sch_theater;
+	public void setPrs_mem_id(String prs_mem_id) {
+		this.prs_mem_id = prs_mem_id;
 	}
 
-	public String getPayMov_mem_id() {
-		return payMov_mem_id;
+	public String getPrs_pro_filename() {
+		return prs_pro_filename;
 	}
 
-	public void setPayMov_mem_id(String payMov_mem_id) {
-		this.payMov_mem_id = payMov_mem_id;
+	public void setPrs_pro_filename(String prs_pro_filename) {
+		this.prs_pro_filename = prs_pro_filename;
 	}
 
-	public String getPayMov_sch_day() {
-		return payMov_sch_day;
+	public String getPrs_pro_name() {
+		return prs_pro_name;
 	}
 
-	public void setPayMov_sch_day(String payMov_sch_day) {
-		this.payMov_sch_day = payMov_sch_day;
+	public void setPrs_pro_name(String prs_pro_name) {
+		this.prs_pro_name = prs_pro_name;
 	}
 
-	public String getPayMov_sch_start_hour() {
-		return payMov_sch_start_hour;
+	public String getPrs_pro_price() {
+		return prs_pro_price;
 	}
 
-	public void setPayMov_sch_start_hour(String payMov_sch_start_hour) {
-		this.payMov_sch_start_hour = payMov_sch_start_hour;
+	public void setPrs_pro_price(String prs_pro_price) {
+		this.prs_pro_price = prs_pro_price;
 	}
 
-	public String getPayMov_sch_start_min() {
-		return payMov_sch_start_min;
+	public String getPrs_pro_count() {
+		return prs_pro_count;
 	}
 
-	public void setPayMov_sch_start_min(String payMov_sch_start_min) {
-		this.payMov_sch_start_min = payMov_sch_start_min;
+	public void setPrs_pro_count(String prs_pro_count) {
+		this.prs_pro_count = prs_pro_count;
 	}
 
-	public String getPayMov_sch_seat() {
-		return payMov_sch_seat;
+	public Date getPrs_date() {
+		return prs_date;
 	}
 
-	public void setPayMov_sch_seat(String payMov_sch_seat) {
-		this.payMov_sch_seat = payMov_sch_seat;
+	public void setPrs_date(Date prs_date) {
+		this.prs_date = prs_date;
 	}
-
-	public String getPayMov_the_city() {
-		return payMov_the_city;
-	}
-
-	public void setPayMov_the_city(String payMov_the_city) {
-		this.payMov_the_city = payMov_the_city;
-	}
-
-	public String getPayMov_the_branch() {
-		return payMov_the_branch;
-	}
-
-	public void setPayMov_the_branch(String payMov_the_branch) {
-		this.payMov_the_branch = payMov_the_branch;
-	}
-
-	public int getPayMov_price() {
-		return payMov_price;
-	}
-
-	public void setPayMov_price(int payMov_price) {
-		this.payMov_price = payMov_price;
-	}
-
-	public String getPayMov_pg() {
-		return payMov_pg;
-	}
-
-	public void setPayMov_pg(String payMov_pg) {
-		this.payMov_pg = payMov_pg;
-	}
-
-	public String getPayMov_method() {
-		return payMov_method;
-	}
-
-	public void setPayMov_method(String payMov_method) {
-		this.payMov_method = payMov_method;
-	}
-
-	public String getPayMov_mov_title() {
-		return payMov_mov_title;
-	}
-
-	public void setPayMov_mov_title(String payMov_mov_title) {
-		this.payMov_mov_title = payMov_mov_title;
-	}
-
-	public String getPayMov_merchant_uid() {
-		return payMov_merchant_uid;
-	}
-
-	public void setPayMov_merchant_uid(String payMov_merchant_uid) {
-		this.payMov_merchant_uid = payMov_merchant_uid;
-	}
-
-	public Date getPayMov_date() {
-		return payMov_date;
-	}
-
-	public void setPayMov_date(Date payMov_date) {
-		this.payMov_date = payMov_date;
-	}
+    
     
     
 }

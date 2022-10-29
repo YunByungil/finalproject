@@ -5,6 +5,14 @@
 function counter2(){
 	document.getElementById("counting2").innerHTML = document.getElementById("reviewContents2").value.length; 
 }
+function submitCom2(){
+	if(document.getElementById("reviewContents2").value==""){
+		window.alert('내용을 입력하지 않았습니다.');
+	}else{
+		document.getElementById('myform2').submit();
+		closeUpdate();
+	}
+}
 </script>
 <h2 style="padding: 10px;">평점수정</h2>
 <hr>
@@ -36,7 +44,7 @@ function counter2(){
         	닫기
     	</span>
 	</div>					
-	<div style="background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; width: 50%; float: right;" onClick="document.getElementById('myform2').submit();closeUpdate();">
+	<div style="background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; width: 50%; float: right;" onClick="submitCom2();">
 		<span class="pop_bt" style="font-size: 13pt;">
 			확인
 	    </span>

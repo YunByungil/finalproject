@@ -82,4 +82,9 @@ public class JoaReviewDAOImple implements JoaReviewDAO {
 		int result=sqlMap.selectOne("checkId", map);
 		return result;
 	}
+	@Override
+	public int checkView(Map map) {
+		int result=sqlMap.selectOne("checkView", map);
+		return result;
+	}
 }

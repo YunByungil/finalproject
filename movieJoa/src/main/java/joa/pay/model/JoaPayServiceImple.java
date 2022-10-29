@@ -5,7 +5,6 @@ import java.util.*;
 import joa.adminStore.model.AdminStoreDAO;
 import joa.movie.model.JoaMovieDTO;
 import joa.pay.model.*;
-import joa.pay.model.JoaPayMovDTO;
 
 public class JoaPayServiceImple implements JoaPayService {
 	
@@ -36,6 +35,11 @@ public class JoaPayServiceImple implements JoaPayService {
 	public int joaBookPayAdd(JoaPayMovDTO dto) {
 		int result=joaPayDao.joaBookPayAdd(dto);
 		return result;
+	}
+	
+	public int payProductResultList(JoaPayProResultDTO dto) {
+		int result=joaPayDao.payProductResultList(dto);
+		return result;		
 	}
 	   //junsung writed
 	   @Override

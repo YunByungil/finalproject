@@ -54,11 +54,13 @@ public class JoaReviewController {
 		List<JoaReviewDTO> list=rdao.commentList(ot, map);
 		List<JoaLikeDTO> list2=rdao.likes(map);
 		int checkId=rdao.checkId(map);
+		int checkView=rdao.checkView(map);
 		mav.addObject("commentList", list);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("totalCnt", totalCnt);
 		mav.addObject("list2", list2);
 		mav.addObject("checkId", checkId);
+		mav.addObject("checkView", checkView);
 		mav.setViewName("joaMovie/joaMovie_commentReg");
 		return mav;
 	}
@@ -90,7 +92,7 @@ public class JoaReviewController {
 		map.put("lik_writer_id", rev_id);
 		map.put("lik_movie_title", rev_movie_title);
 		rdao.commentDelete(map);
-		mav.setViewName("joaMovie/historyBack");
+		mav.setViewName("joaMovie/joaMovie_deleteMsg");
 		return mav;
 	}
 	@RequestMapping("/like.do")
