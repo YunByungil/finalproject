@@ -31,17 +31,18 @@
 		    sysdate  
 		    )
   	</insert>
-	<insert id="payProductResult" parameterType="joa.pay.model.JoaPayProDTO">
+  	<insert id="payProductResultList" parameterType="joa.pay.model.JoaPayProResultDTO">
 	    insert into
 	    	joa_product_result
 	    values
 		    (joa_payProduct_payPro_idx.nextval,
 		    #{prs_order_idx},
+		    #{prs_mem_id },
 		    #{prs_pro_filename },
 		    #{prs_pro_name },
 		    #{prs_pro_price },
 		    #{prs_pro_count },
 		    sysdate  
 		    )
-  	</insert>     	
+  	</insert>   
   </mapper>

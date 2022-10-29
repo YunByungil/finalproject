@@ -64,17 +64,39 @@ public class JoaPayController {
 	}
 	
 	@RequestMapping("/joaStoreKakaoPay.do")
-	public ModelAndView joaStoreKakaoPay(JoaPayProDTO jppDto,
-			String payPro_mem_id, String payPro_mem_name,
-			HttpSession session) {
+	public ModelAndView joaStoreKakaoPay(
+			String payPro_mem_id, String payPro_mem_name, String payPro_mem_email, String payPro_mem_tel, 
+			String payPro_pg, String payPro_method, String payPro_pro_name,String payPro_price_sum,
+			String payPro_discount, String payPro_total_price, String[] prs_mem_id,String[] prs_pro_filename,
+			String[] prs_pro_name,String[] prs_pro_price,String[] prs_car_count) {
 		String payPro_merchant_uid = merchantUid();
-		jppDto.setPayPro_merchant_uid(payPro_merchant_uid);
+		JoaPayProDTO jppDto = new JoaPayProDTO();
 		
-
+		for(int i=0;i<prs_mem_id.length;i++) {
+			JoaPayProResultDTO dto = new JoaPayProResultDTO();
+			dto.setPrs_mem_id(prs_mem_id[i]);
+			dto.setPrs_pro_filename(prs_pro_filename[i]);
+			dto.setPrs_pro_name(prs_pro_name[i]);
+			dto.setPrs_pro_price(prs_pro_price[i]);
+			dto.setPrs_pro_count(prs_car_count[i]);
+			dto.setPrs_order_idx(payPro_merchant_uid);
+			joaPayService.payProductResultList(dto);
+		}
+		
+		jppDto.setPayPro_mem_id(payPro_mem_id);
+		jppDto.setPayPro_mem_name(payPro_mem_name);
+		jppDto.setPayPro_mem_email(payPro_mem_email);
+		jppDto.setPayPro_mem_tel(payPro_mem_tel);
+		jppDto.setPayPro_pg(payPro_pg);
+		jppDto.setPayPro_method(payPro_method);
+		jppDto.setPayPro_pro_name(payPro_pro_name);
+		jppDto.setPayPro_price_sum(Integer.parseInt(payPro_discount));
+		jppDto.setPayPro_discount(Integer.parseInt(payPro_discount));
+		jppDto.setPayPro_total_price(Integer.parseInt(payPro_total_price));
+		jppDto.setPayPro_merchant_uid(payPro_merchant_uid);
+		joaPayService.payProductResultAdd(jppDto);
 		System.out.println("payPro_merchant_uid: "+payPro_merchant_uid);		
-//		for(int i=0;i<dto.length;i++) {
-//			System.out.println(i);
-//		}
+
 //		joaPayService.payProductResultAdd(dto);
 		ModelAndView mav=new ModelAndView();
 //		mav.addObject("payList",dto);

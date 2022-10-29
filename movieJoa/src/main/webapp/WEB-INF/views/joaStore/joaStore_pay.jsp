@@ -129,7 +129,7 @@ function paymentCreditCard(){
 					<td><fmt:formatNumber value="${dto.pro_price * dto.car_count }" pattern="#,###"/>원</td>
 				</tr>
 			</tbody>
-				<c:set var="priceSum" value="${priceSum+(dto.pro_price * dto.car_count) }"/>	
+ 				<c:set var="priceSum" value="${priceSum+(dto.pro_price * dto.car_count) }"/>	
 					<input type="hidden" name="prs_mem_id" value="${userInfo.mem_id }">			
 					<input type="hidden" name="prs_pro_filename" value="${dto.pro_filename }">
 					<input type="hidden" name="prs_pro_name" value="${dto.pro_name }">			
@@ -176,11 +176,11 @@ function paymentCreditCard(){
 				<input type="hidden" name="payPro_mem_name" value="${userInfo.mem_name }">	
 				<input type="hidden" name="payPro_mem_email" value="${userInfo.mem_email }">	
 				<input type="hidden" name="payPro_mem_tel" value="${userInfo.mem_tel }">
+				<input type="hidden" name="payPro_pro_name" value="galmae">
 				<input type="hidden" name="payPro_pg" id="payPro_pg">
-				<input type="hidden" name="payPro_method" id="payPro_method">
-				<input type="hidden" name="payPro_pro_name" value="상품">			
+				<input type="hidden" name="payPro_method" id="payPro_method">			
 				<input type="hidden" name="payPro_price_sum" value="${pay_price_sum }">
-				<input type="hidden" name="payPro_discount" value="${pay_discount }">
+				<input type="hidden" name="payPro_discount" value="1">
 				<input type="hidden" name="payPro_total_price" value="${pay_total_sum }">	
 				<h2>결제수단</h2>
 				<div class="store_pay_payments_system">
