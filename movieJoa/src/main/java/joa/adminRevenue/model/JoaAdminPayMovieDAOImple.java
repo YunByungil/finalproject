@@ -1,5 +1,6 @@
 package joa.adminRevenue.model;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.adminMovie.model.AdminMovieDTO;
+import joa.member.model.JoaMemberDTO;
 
 public class JoaAdminPayMovieDAOImple implements JoaAdminPayMovieDAO {
 
@@ -94,5 +96,37 @@ public class JoaAdminPayMovieDAOImple implements JoaAdminPayMovieDAO {
 	public int movieSpectatorCount(String mov_title) {
 		int result=sqlMap.selectOne("movieSpectatorCountQuery", mov_title);
 		return result;
+	}
+	@Override
+	public int pagingShopCount(String paymov_the_branch) {
+		int result=sqlMap.selectOne("pagingShopCountQuery",paymov_the_branch);
+		return result;
+	}
+	@Override
+	public List<JoaAdminPayMovieDTO> pagingShopSelect(String paymov_the_branch, int ls, int cp) {
+		int start=(cp-1)*ls+1;
+		int end=cp*ls;
+		Map<String, Object> map=new HashMap<>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("paymov_the_branch", paymov_the_branch);
+		List<JoaAdminPayMovieDTO> list=sqlMap.selectList("pagingShopSelectQuery",map);
+		return list;
+	}
+	@Override
+	public int pagingMovieCount(String paymov_mov_title) {
+		int result=sqlMap.selectOne("pagingMovieCountQuery",paymov_mov_title);
+		return result;
+	}
+	@Override
+	public List<JoaAdminPayMovieDTO> pagingMovieSelect(String paymov_mov_title, int ls, int cp) {
+		int start=(cp-1)*ls+1;
+		int end=cp*ls;
+		Map<String, Object> map=new HashMap<>();
+		map.put("start",start);
+		map.put("end",end);
+		map.put("paymov_mov_title", paymov_mov_title);
+		List<JoaAdminPayMovieDTO> list=sqlMap.selectList("pagingMovieSelectQuery",map);
+		return list;
 	}
 }

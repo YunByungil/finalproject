@@ -113,6 +113,11 @@ tr:last-child td:last-child {
 		</tr>
 		</c:forEach>
 	</tbody>
+	<tfoot>
+		<tr>
+			<td colspan="6" align="center">${pageStr }</td>
+		</tr>
+	</tfoot>
 </table>
 </c:if>
 </body>

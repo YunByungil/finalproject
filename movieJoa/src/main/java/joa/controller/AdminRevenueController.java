@@ -8,6 +8,7 @@ import org.apache.commons.collections.map.HashedMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import joa.adminMem.model.JoaAdminMemberDTO;
@@ -126,26 +127,41 @@ public class AdminRevenueController {
 		return mav;
 	}
 	@RequestMapping("adminRevenueShopDetail.do")
-	public ModelAndView adminRevenueShopDetailGo(String paymov_the_branch){
+	public ModelAndView adminRevenueShopDetailGo(String paymov_the_branch,@RequestParam(value="cp",defaultValue = "1")int cp){
 		ModelAndView mav=new ModelAndView();
-		List<JoaAdminPayMovieDTO> list=joaAdminPayMovieDao.revenueShopDetail(paymov_the_branch);
+		int listSize=10;
+		int pageSize=5;
+		int totalCnt=joaAdminPayMovieDao.pagingShopCount(paymov_the_branch);
+		String pageStr=joa.page.PageModuleModify.makePage("adminRevenueShopDetail.do?paymov_the_branch="+paymov_the_branch+"&", totalCnt, listSize, pageSize, cp);
+		List<JoaAdminPayMovieDTO> list=joaAdminPayMovieDao.pagingShopSelect(paymov_the_branch, totalCnt, cp);
 		mav.addObject("list", list);
+		mav.addObject("pageStr", pageStr);
 		mav.setViewName("admin/adminRevenue/adminRevenue_shop_detail");
 		return mav;
 	}
 	@RequestMapping("adminRevenueMovieDetail.do")
-	public ModelAndView adminRevenueMovieDetailGo(String paymov_mov_title) {
+	public ModelAndView adminRevenueMovieDetailGo(String paymov_mov_title,@RequestParam(value="cp",defaultValue = "1")int cp) {
 		ModelAndView mav=new ModelAndView();
-		List<JoaAdminPayMovieDTO> list=joaAdminPayMovieDao.revenunMovieDetail(paymov_mov_title);
+		int listSize=10;
+		int pageSize=5;
+		int totalCnt=joaAdminPayMovieDao.pagingMovieCount(paymov_mov_title);
+		String pageStr=joa.page.PageModuleModify.makePage("adminRevenueMovieDetail.do?paymov_mov_title="+paymov_mov_title+"&", totalCnt, listSize, pageSize, cp);
+		List<JoaAdminPayMovieDTO> list=joaAdminPayMovieDao.pagingMovieSelect(paymov_mov_title, totalCnt, cp);
 		mav.addObject("list", list);
+		mav.addObject("pageStr", pageStr);
 		mav.setViewName("admin/adminRevenue/adminRevenue_movie_detail");
 		return mav;
 	}
 	@RequestMapping("adminRevenueProductDetail.do")
-	public ModelAndView adminRevenueProductDetailGo(String paypro_pro_name) {
+	public ModelAndView adminRevenueProductDetailGo(String paypro_pro_name,@RequestParam(value="cp",defaultValue = "1")int cp) {
 		ModelAndView mav=new ModelAndView();
-		List<JoaAdminPayProductDTO> list=joaAdminPayProductDao.revenueProductDetail(paypro_pro_name);
+		int listSize=10;
+		int pageSize=5;
+		int totalCnt=joaAdminPayProductDao.pagingProductCount(paypro_pro_name);
+		String pageStr=joa.page.PageModuleModify.makePage("adminRevenueProductDetail.do?paypro_pro_name="+paypro_pro_name+"&", totalCnt, listSize, pageSize, cp);
+		List<JoaAdminPayProductDTO> list=joaAdminPayProductDao.pagingProductSelect(paypro_pro_name, totalCnt, cp);
 		mav.addObject("list", list);
+		mav.addObject("pageStr", pageStr);
 		mav.setViewName("admin/adminRevenue/adminRevenue_product_detail");
 		return mav;
 	}
