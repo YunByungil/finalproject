@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.adminRevenue">
   <select id="nowMonthMovieRevenueQuery" resultType="Integer">
-  select sum(payMov_total_price) 
+  select sum(payMov_price) 
 	from joa_payMovie where payMov_date between 
 	(select trunc(sysdate,'mm') from dual) and
 	(select last_day(sysdate) from dual)
@@ -92,12 +92,46 @@
 	(select trunc(sysdate,'mm') from dual) and
 	(select last_day(sysdate) from dual)
   </select>
-  <select id="revenueShopQuery" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="Map">
+  <select id="revenueShopQuery" resultType="joa.adminMem.model.JoaAdminMemberDTO" parameterType="Map">
   	select * from joa_admin order by admin_idx desc
   </select>
  <select id="revenueShopMoneyQuery" resultType="Integer" parameterType="String">
- 	select paymov_merchant_uid,nvl(sum(paymov_total_price),0) from joa_paymovie 
-	where paymov_merchant_uid=#{paymov_merchant_uid } and paymov_merchant_uid is not null
-	group by paymov_merchant_uid 
+ 	select nvl(sum(paymov_price),0) from
+	(select admin_shop,paymov_price from joa_admin 
+	paymov_the_branch left outer join joa_paymovie on admin_shop=paymov_the_branch) where admin_shop=#{admin_shop} 
+	group by admin_shop
+ </select>
+ <select id="revenueStoreQuery" resultType="joa.adminStore.model.AdminStoreDTO">
+ 	select * from joa_product
+ </select>
+ <select id="revenueStoreMoneyQuery" resultType="Integer" parameterType="String">
+ 	select nvl(sum(paypro_total_price),0) from 
+	(select pro_name,paypro_total_price from joa_product
+	paypro_pro_name left outer join joa_payproduct on paypro_pro_name=pro_name) where pro_name=#{pro_name} 
+	group by pro_name
+ </select>
+ <select id="revenueMovieQuery" resultType="joa.adminMovie.model.AdminMovieDTO">
+ 	select * from joa_movie
+ </select>
+ <select id="revenueMovieMoneyQuery" resultType="Integer" parameterType="String">
+ 	select nvl(sum(paymov_price),0) from
+	(select mov_title,paymov_price from joa_movie
+	paymov_mov_title left outer join joa_paymovie on mov_title=paymov_mov_title) where mov_title=#{mov_title}
+	group by mov_title
+ </select>
+ <select id="revenueShopDetailQuery" resultType="joa.adminRevenue.model.JoaAdminPayMovieDTO" parameterType="String">
+ 	select * from joa_paymovie where paymov_the_branch=#{paymov_the_branch}
+ </select>
+ <select id="revenueMovieDetailQuery" resultType="joa.adminRevenue.model.JoaAdminPayMovieDTO" parameterType="String">
+ 	select * from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
+ </select>
+ <select id="revenueProductDetailQuery" resultType="joa.adminRevenue.model.JoaAdminPayProductDTO" parameterType="String">
+ 	select * from joa_payproduct where paypro_pro_name=#{paypro_pro}
+ </select>
+ <select id="movieSpectatorCountQuery" resultType="Integer" parameterType="String">
+ 	select nvl(count(paymov_price),0) from
+	(select mov_title,paymov_price from joa_movie
+	paymov_mov_title left outer join joa_paymovie on mov_title=paymov_mov_title) where mov_title=#{mov_title}
+	group by mov_title
  </select>
   </mapper>

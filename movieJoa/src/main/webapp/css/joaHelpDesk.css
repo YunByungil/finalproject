@@ -47,8 +47,16 @@
    	margin: 0px auto;
   	height:auto;
    	overflow:auto;
+   	bottom:150px;
 }
-
+.helpDesk_main_m{
+	position: relative;
+	width: 1100px;
+   	margin: 0px auto;
+  	height:auto;
+   	overflow:auto;
+   	
+}
 
 .helpMenu{
 	position: absolute;
@@ -226,7 +234,7 @@
 	text-align:left;
 }
 .readnum{
-	width:110px;
+	width:170px;
 }
 .readnumW{
 	width:150px;
@@ -236,8 +244,8 @@
 	background-color :#EEEEEE;
 }
 .manyHelpBorderW{
- border-collapse: collapse;	
- height:auto;
+ 	border-collapse: collapse;	
+	height:auto;
 	width: 700px;
 	align:center;
 }

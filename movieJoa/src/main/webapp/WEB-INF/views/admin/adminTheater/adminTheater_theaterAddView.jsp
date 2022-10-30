@@ -9,8 +9,19 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/main_admin.css">
+<style>
+table {
+	margin:0px auto;
+}
+#bt{
+	position:relative;
+	top:20px;
+	left:670px;
+}
+</style>
 </head>
 <body>
+<h3 align="center">* 사용할 좌석을 클릭해주세요.</h3>
 <table border="1" cellspacing="0">
 	<thead>
 		<tr>
@@ -46,7 +57,7 @@
 	</c:if>
 	</tbody>
 </table>
-<input type="button" value="상영관 등록" onclick="theaterAddSubmit();">
+<input type="button" value="상영관 등록" onclick="theaterAddSubmit();" class="button_sub" id="bt">
 </body>
 <script>
 function movieSeat(seat) {

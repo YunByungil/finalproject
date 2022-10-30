@@ -11,15 +11,12 @@ public class AdminMovieDTO {
 	private int mov_idx;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=1,max=20)
 	private String mov_title;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=1,max=10,message="길이가 부적합합니다." )
 	private String mov_director;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_cast;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
@@ -29,16 +26,11 @@ public class AdminMovieDTO {
 	private String mov_end_date;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_country;
 	
 	@NotBlank(message="공백 또는 null일수 없습니다.")
-	@Size(min=2,max=20,message="길이가 부적합합니다." )
 	private String mov_genre;
-	
-	@Pattern(regexp = "^[0-9]*$")
-	@Range(min = 1, max = 999)
-	@NotBlank(message="공백 또는 null일수 없습니다.")
+
 	private int mov_running_time;
 
 	@NotBlank(message="공백 또는 null일수 없습니다.")
@@ -48,14 +40,13 @@ public class AdminMovieDTO {
 	@Size(max=2000,message="길이가 부적합합니다." )
 	private String mov_info;
 	
-	@NotBlank(message="공백 또는 null일수 없습니다.")
 	@Size(max=2000,message="길이가 부적합합니다." )
 	private String mov_poster;
 	
-	private int mov_booking_percent;
-	private int mov_gender_percent;
-	private int mov_age_percent;
-	private int mov_score;
+	private float mov_booking_percent;
+	private String mov_gender_percent;
+	private String mov_age_percent;
+	private float mov_score;
 	
 	public AdminMovieDTO() {
 		super();
@@ -64,8 +55,8 @@ public class AdminMovieDTO {
 
 	public AdminMovieDTO(int mov_idx, String mov_title, String mov_director, String mov_cast, String mov_start_date,
 			String mov_end_date, String mov_country, String mov_genre, int mov_running_time, String mov_rate,
-			String mov_info, String mov_poster, int mov_booking_percent, int mov_gender_percent, int mov_age_percent,
-			int mov_score) {
+			String mov_info, String mov_poster, float mov_booking_percent, String mov_gender_percent, String mov_age_percent,
+			float mov_score) {
 		super();
 		this.mov_idx = mov_idx;
 		this.mov_title = mov_title;
@@ -74,7 +65,7 @@ public class AdminMovieDTO {
 		if(mov_start_date==null || mov_start_date =="") {
 			this.mov_start_date=mov_start_date;
 		}else {
-			this.mov_start_date = mov_start_date.substring(0,9);
+			this.mov_start_date = mov_start_date.substring(0,10);
 		}
 		if(mov_end_date==null || mov_end_date =="") {
 			this.mov_end_date=mov_end_date;
@@ -208,35 +199,35 @@ public class AdminMovieDTO {
 		this.mov_poster = mov_poster;
 	}
 
-	public int getMov_booking_percent() {
+	public float getMov_booking_percent() {
 		return mov_booking_percent;
 	}
 
-	public void setMov_booking_percent(int mov_booking_percent) {
+	public void setMov_booking_percent(float mov_booking_percent) {
 		this.mov_booking_percent = mov_booking_percent;
 	}
 
-	public int getMov_gender_percent() {
+	public String getMov_gender_percent() {
 		return mov_gender_percent;
 	}
 
-	public void setMov_gender_percent(int mov_gender_percent) {
+	public void setMov_gender_percent(String mov_gender_percent) {
 		this.mov_gender_percent = mov_gender_percent;
 	}
 
-	public int getMov_age_percent() {
+	public String getMov_age_percent() {
 		return mov_age_percent;
 	}
 
-	public void setMov_age_percent(int mov_age_percent) {
+	public void setMov_age_percent(String mov_age_percent) {
 		this.mov_age_percent = mov_age_percent;
 	}
 
-	public int getMov_score() {
+	public float getMov_score() {
 		return mov_score;
 	}
 
-	public void setMov_score(int mov_score) {
+	public void setMov_score(float mov_score) {
 		this.mov_score = mov_score;
 	}
 

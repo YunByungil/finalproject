@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=13">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css?ver=13">
 <link rel="stylesheet" type="text/css" href="css/joaHelpDesk.css?ver=13">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <br>
 <section>
 <form name="ntc_WriteFM" action="noticeWrite.do">
@@ -72,7 +72,9 @@
 		<a href="adminNotice.do" class="HM_bar_a"><li class="HM_bar">공지게시판</li></a>
 		<a href="adminEmailHelp.do" class="HM_bar_a"><li class="HM_bar">이메일문의</li></a>
 		<a href="memberHelp.do" class="HM_bar_a"><li class="HM_bar">1:1문의</li></a>
-		<a href="topAdmin.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		<c:if test="${sid eq 'admin_master' }">
+		<a href="topAdmin_answer.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		</c:if>
 	</ul>
 </div>
 </section>

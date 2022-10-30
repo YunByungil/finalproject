@@ -31,8 +31,8 @@
 	where a.sch_branch = #{sch_branch}
 	and to_char(sch_dayd,'yyyy-mm-dd') = #{sch_dayd}
 	and a.sch_mov_title = b.mov_title
-	and to_char(sysdate,'hh24') <![CDATA[<=]]> sch_start_hour
-	and to_char(sysdate,'mi') <![CDATA[<=]]> sch_start_min
+	<!-- and to_char(sysdate,'hh24') <![CDATA[<=]]> sch_start_hour
+	and to_char(sysdate,'mi') <![CDATA[<=]]> sch_start_min -->
 	</select>
 	
 	
@@ -45,8 +45,8 @@
 	from joa_schedule
 	where sch_branch = #{sch_branch}
 	and to_char(sch_dayd,'yyyy-mm-dd') = #{sch_dayd}
-	and sch_start_hour <![CDATA[>]]> to_char(sysdate,'hh24')
-	and sch_start_min <![CDATA[>]]> to_char(sysdate,'mi')
+	<!-- and sch_start_hour <![CDATA[>]]> to_char(sysdate,'hh24')
+	and sch_start_min <![CDATA[>]]> to_char(sysdate,'mi')-->
 	order by sch_start_hour asc
 	</select>
 	

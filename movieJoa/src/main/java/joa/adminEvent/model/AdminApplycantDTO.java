@@ -62,6 +62,8 @@ public class AdminApplycantDTO {
 	public void setApp_apply_date(String app_apply_date) {
 		this.app_apply_date = app_apply_date;
 	}
+
+	
 	 
 	 
 

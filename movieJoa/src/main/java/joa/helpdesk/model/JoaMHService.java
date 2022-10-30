@@ -23,4 +23,6 @@ public interface JoaMHService {
 	public int manyHelpTypeTotalCnt(String type);
 	
 	public int serchManyHelpListTotalCnt(String keyword);
+	
+	public void upDateReadNum(int idx);
 }

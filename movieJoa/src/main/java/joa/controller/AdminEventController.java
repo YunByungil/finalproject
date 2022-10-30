@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import joa.adminEvent.model.AdminApplycantDTO;
 import joa.adminEvent.model.AdminEventDTO;
+import joa.adminEvent.model.AdminEventLuckBoardDTO;
 import joa.adminEvent.model.AdminEventService;
 import joa.adminEvent.model.EventValidator;
 import joa.adminMovie.model.AdminMovieDTO;
@@ -40,19 +42,54 @@ public class AdminEventController {
 		return new AdminEventDTO();
 	} 
 	
-	public void copyInto(File f,MultipartFile upload) {
-		
-		try {
-			byte bytes[]=upload.getBytes();
-			FileOutputStream fos = new FileOutputStream(f);
-			fos.write(bytes);;
-			fos.close();
-			
-		} catch (IOException e) {
-			e.printStackTrace();			
-		}
-		
-	}
+    private void insertImg(HttpServletRequest req, MultipartFile mov_poster) {
+        try {
+          String path=req.getRealPath("/img/joaEvent_img/");
+           byte realPosterFile[] = mov_poster.getBytes();
+           File poster = new File(path + mov_poster.getOriginalFilename());
+     
+           FileOutputStream stream = new FileOutputStream(poster); 
+           stream.write(realPosterFile); 
+           stream.close(); 
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
+     }
+    @RequestMapping("E_B_insert.do")
+    public ModelAndView E_B_insert(AdminEventLuckBoardDTO dto) {
+    	ModelAndView mav =new ModelAndView();
+    	int result = adminEventService.e_b_table_insert(dto);
+    	String msg = result>0?"게시글 등록에 성공했습니다.":"게시글 등록에 실패했습니다.";
+    	mav.addObject("msg", msg);
+    	mav.setViewName("admin/adminEvent/adminEvent_luckMember_apply");
+    	return mav;
+    }
+    
+    @RequestMapping("/luck_mem_extraction.do")
+    public ModelAndView luck_mem_extraction(@RequestParam("app_event_code")int app_event_code,@RequestParam("member_count")int member_count,HttpSession session) {
+    	ModelAndView mav = new ModelAndView();
+    	String members = adminEventService.listLuck_mem_extraction(app_event_code, member_count);
+    	
+    	String msg=null;
+    	System.out.println(members);
+    	if(members==null || members.equals("")) {
+    		msg="추출에 실패했습니다.";
+    	}else {
+    		msg="추출에 성공했습니다.";
+    	}
+    	mav.addObject("app_event_code", app_event_code);
+    	mav.addObject("members", members);
+    	mav.addObject("msg", msg);
+    	mav.setViewName("admin/adminEvent/adminEvent_luckMember_apply");
+    	return mav;
+    }
+    
+    @RequestMapping("/luckMember.do")
+    public ModelAndView luckMember() {
+    	ModelAndView mav = new ModelAndView();
+    	mav.setViewName("admin/adminEvent/adminEvent_luckMember");
+    	return mav;
+    }
 		
 	   
 	@RequestMapping(value="/addEventForm.do", method=RequestMethod.GET)
@@ -75,15 +112,8 @@ public class AdminEventController {
 		int result=0;
 	    String msg="";
 	    
-	    String path=req.getRealPath("/img/joaEvent_img");
-	    
-	    String filename1=event_main_img.getOriginalFilename();
-	    File f=new File(path+filename1);		
-		copyInto(f, event_main_img);
-		
-		 String filename2=event_thumb_img.getOriginalFilename();
-		    File f2=new File(path+filename2);		
-			copyInto(f2, event_thumb_img);
+	    insertImg(req, event_main_img);
+	    insertImg(req, event_thumb_img);
 		 
 		 String eve_main_img=event_main_img.getOriginalFilename();
 		 dto.setEve_main_img(eve_main_img);
@@ -134,15 +164,10 @@ public class AdminEventController {
 			@RequestParam("event_thumb_img")MultipartFile event_thumb_img) {
 		
 		ModelAndView mav=new ModelAndView();
-		String path=req.getRealPath("/img/joaEvent_img");
-	    
-	    String filename1=event_main_img.getOriginalFilename();
-	    File f=new File(path+filename1);		
-		copyInto(f, event_main_img);
 		
-		 String filename2=event_thumb_img.getOriginalFilename();
-		    File f2=new File(path+filename2);		
-			copyInto(f2, event_thumb_img);
+		 insertImg(req, event_main_img);
+		    insertImg(req, event_thumb_img);
+			 
 		 
 		 String eve_main_img=event_main_img.getOriginalFilename();
 		 dto.setEve_main_img(eve_main_img);

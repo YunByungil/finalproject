@@ -66,11 +66,23 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 
 </script>
+<script>
+function checkIt(){
+	var obj = document.getElementsByNames("hqt_type");	
+	
+	for(var i =0;i<obj.legnth;i++){
+		if(obj[i].checked==true){
+			return false;
+		}
+	}
+	return false;
+}
+</script>
 </head>
 <body>
 <c:import url="../../header.jsp"></c:import>
 <section>
-<div class="helpDesk_main">
+<div class="helpDesk_main_m">
 <div class="manyHelpMain">
 	<h4 class="manyHelpSubject">이메일 문의</h4>
 	<div class="manyHelpIntroduce">자주찾는 질문에서 원하는 답변을 찾지 못하셨군요
@@ -78,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	불편사항이나 문의사항을 남겨주시면 최대한 신속하게 답변 드리겠습니다.</div>
 	<br>
 	<br>
-	<form name="emailFM" action="emailHelpWrite.do">
+	<form name="emailFM" action="emailHelpWrite.do" onsubmit="return checkIt()">
 	<div class="memberbox">
 		<div>ID</div><hr class="hr"><div>E-mail</div>
 		<input type="hidden" value="test" name="hqt_id">

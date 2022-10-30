@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="css/main.css?ver=16">
+<link rel="stylesheet" type="text/css" href="css/main_admin.css?ver=16">
 <link rel="stylesheet" type="text/css" href="css/joaHelpDesk.css?ver=16">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
 </head>
 <body>
-<c:import url="../../header.jsp"></c:import>
+<c:import url="../../header_admin.jsp"></c:import>
 <br>
 <section>
 <form name="reAnswerFM" action="reAnswerSet.do">
@@ -38,8 +38,8 @@
 			<tr>
 				<td colspan="3"><hr>
 				<input type="hidden" name="hqt_idx" value="${dto.hqt_idx }">
-				<input type="hidden" name="hqt_answerwrite" value="testAdmin">
-				<input type="hidden" name="hqt_answerrank" value="testAdminRank">
+				<input type="hidden" name="hqt_answerwrite" value="${dto.hqt_answerwrite }">
+				<input type="hidden" name="hqt_answerrank" value="${dto.hqt_answerrank }">
 				</td>
 			</tr>
 			<tr>
@@ -85,7 +85,9 @@
 		<a href="adminNotice.do" class="HM_bar_a"><li class="HM_bar">공지게시판</li></a>
 		<a href="adminEmailHelp.do" class="HM_bar_a"><li class="HM_bar">이메일문의</li></a>
 		<a href="memberHelp.do" class="HM_bar_a"><li class="HM_bar">1:1문의</li></a>
-		<a href="topAdmin.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		<c:if test='${sid }.isEquas("admin_master")'>
+		<a href="topAdmin_answer.do" class="HM_bar_a"><li class="HM_bar">지점관리자 답변내역</li></a>
+		</c:if>
 	</ul>
 </div>
 </form>

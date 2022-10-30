@@ -23,4 +23,6 @@ public interface JoaManyHelpDAO {
 	public int serchManyHelpListTotalCnt(Map map);
 	
 	public int manyHelpTypeTotalCnt(Map map);
+	
+	public void upDateReadNum(int idx);
 }

@@ -43,7 +43,12 @@ function productSubmit(index) {
 	finalCount.value = productCount;
 	
 	  if (index == 1) {
-	    document.joaStoreCategory.action='joaStoreCart.do';
+		  
+		  if(${userInfo.mem_id==null}){
+			window.alert('로그인 후 이용해주세요')
+		  }else{
+			document.joaStoreCategory.action='joaStoreCart.do';			  
+		  }
 	  }
 	  if (index == 2) {
 	    document.joaStoreCategory.action='joaStorePay.do';

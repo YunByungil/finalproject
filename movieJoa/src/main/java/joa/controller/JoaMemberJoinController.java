@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import joa.member.model.JoaMemberDAO;
@@ -20,6 +21,7 @@ public class JoaMemberJoinController {
 	public String memberJoin() {
 		return "joaMemberJoin/joaMemberJoin_memberJoin";
 	}
+
 	@RequestMapping("/memberJoinFormSubmit.do")
 	public ModelAndView memberJoinSubmit(@ModelAttribute("dto") JoaMemberDTO dto) {
 
@@ -45,13 +47,10 @@ public class JoaMemberJoinController {
 		return mav;
 	}
 	@RequestMapping("/memberIdCheck.do")
-	public ModelAndView memberIdCheck(String id) {
+	@ResponseBody
+	public int memberIdCheck(String id) {
 		int result=joaMemberDao.memberIdCheck(id);
-		String msg=result>0?"사용 가능 ID":"중복된 ID";
-		ModelAndView mav=new ModelAndView();
-		mav.addObject("msg",msg);
-		mav.setViewName("joaMemberJoin/joaMemberJoin_idCheck");
-		return mav;
+		return result;
 	}
 
 }

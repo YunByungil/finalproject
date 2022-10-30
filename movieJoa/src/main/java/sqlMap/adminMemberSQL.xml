@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="joa.admimember">
+  <mapper namespace="joa.admimMem">
 <select id="adminMemberName" resultType="joa.member.model.JoaMemberDTO" parameterType="Map"> 
 select * from joa_member where mem_name=#{mem_name} 
 </select>
@@ -13,15 +13,15 @@ select * from joa_member where mem_id=#{mem_id}
 select * from joa_member where mem_id=#{mem_id} 
 </select>
 <update id="adminMemberUpdateQuery" parameterType="joa.member.model.JoaMemberDTO"> 
-update joa_member set mem_name=#{mem_name}, mem_age=#{mem_age}, mem_tel=#{mem_tel},mem_email=#{mem_email} where mem_id=#{mem_id} 
+update joa_member set mem_name=#{mem_name}, mem_age=#{mem_age}, mem_tel=#{mem_tel},mem_pwd=#{mem_pwd} where mem_id=#{mem_id} 
 </update>
 <delete id="adminMemberDeleteQuery" parameterType="String"> 
 delete from joa_member where mem_id=#{mem_id} 
 </delete>
-<insert id="adminRegisterInsertQuery" parameterType="joa.adminMember.model.JoaAdminMemberDTO">
+<insert id="adminRegisterInsertQuery" parameterType="joa.adminMem.model.JoaAdminMemberDTO">
  insert into joa_admin values(admin_idx.nextval,#{admin_id},#{admin_pwd},#{admin_name},#{admin_area},#{admin_shop},'관리자')
   </insert>
-<select id="adminMemberLoginQuery" resultType="joa.adminMember.model.JoaAdminMemberDTO"> 
+<select id="adminMemberLoginQuery" resultType="joa.adminMem.model.JoaAdminMemberDTO"> 
 select * from joa_admin where admin_id=#{admin_id} and admin_pwd=#{admin_pwd} 
 </select>
 <select id="adminMemberAll" resultType="joa.member.model.JoaMemberDTO" parameterType="Map"> 
@@ -37,7 +37,7 @@ ${end}
 <select id="adminMemberTotalCnt" resultType="Integer"> 
 select count(*) from joa_member 
 </select>
-<select id="adminListQuery" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="HashMap">
+<select id="adminListQuery" resultType="joa.adminMem.model.JoaAdminMemberDTO" parameterType="HashMap">
 select * from (select rownum as rnum,a.* from (select * from joa_admin order by admin_idx desc)a)b where rnum
 <![CDATA[ >= ]]>
 ${start} and rnum
@@ -47,16 +47,16 @@ ${end}
 <select id="adminTotalCnt" resultType="Integer"> 
 select count(*) from joa_admin
  </select>
-<select id="adminName" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="Map">
+<select id="adminName" resultType="joa.adminMem.model.JoaAdminMemberDTO" parameterType="Map">
  select * from joa_admin where admin_name=#{admin_name}
   </select>
-<select id="adminId" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="Map"> 
+<select id="adminId" resultType="joa.adminMem.model.JoaAdminMemberDTO" parameterType="Map"> 
 select * from joa_admin where admin_id=#{admin_id}
  </select>
-<select id="adminId2" resultType="joa.adminMember.model.JoaAdminMemberDTO" parameterType="String">
+<select id="adminId2" resultType="joa.adminMem.model.JoaAdminMemberDTO" parameterType="String">
  select * from joa_admin where admin_id=#{admin_id} 
  </select>
-<update id="adminUpdateQuery" parameterType="joa.adminMember.model.JoaAdminMemberDTO">
+<update id="adminUpdateQuery" parameterType="joa.adminMem.model.JoaAdminMemberDTO">
  update joa_admin set admin_id=#{admin_id}, admin_pwd=#{admin_pwd}, admin_name=#{admin_name}, admin_area=#{admin_area}, admin_shop=#{admin_shop} where admin_id=#{admin_id}
   </update>
 <delete id="adminDeleteQuery" parameterType="String">
@@ -110,8 +110,17 @@ select count(*) from joa_member where mem_age
 <select id="memberGradeCountQuery" resultType="Integer">
 select count(*) from joa_member where mem_grade<![CDATA[ >= ]]>40000
 </select>
-<select id="memberGenderSelectQuery" resultType="joa.member.model.JoaMemberDTO" parameterType="String">
-select * from joa_member where mem_gender=#{mem_gender}
+<select id="memberGenderSelectQuery" resultType="joa.member.model.JoaMemberDTO" parameterType="HashMap">
+select * from (select rownum as rnum,a.* from (select * from joa_member where mem_gender=#{mem_gender}
+order by mem_idx desc)a)b where rnum
+<![CDATA[ >= ]]>
+${start} and rnum
+<![CDATA[ <= ]]>
+${end}
+
+</select>
+<select id="pagingGenderCountQuery" resultType="Integer" parameterType="String">
+select count(*) from joa_member where mem_gender=#{mem_gender}
 </select>
 <select id="memberGradeGeneralQuery" resultType="Integer">
 select count(*) from joa_member where mem_grade<![CDATA[ < ]]>10000

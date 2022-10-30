@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="joa.pay">
+  <mapper namespace="joa.payStore">
    	<select id="storePayCartList" parameterType="Map" resultType="joa.pay.model.JoaPayCartListDTO">
 		select   pro_filename, pro_name, pro_price, car_count, car_mem_id, mem_name, mem_tel
 		   from  joa_member, joa_store_cart, joa_product
@@ -30,5 +30,19 @@
 		    #{payPro_merchant_uid},
 		    sysdate  
 		    )
-  	</insert>     	
+  	</insert>
+  	<insert id="payProductResultList" parameterType="joa.pay.model.JoaPayProResultDTO">
+	    insert into
+	    	joa_product_result
+	    values
+		    (joa_payProduct_payPro_idx.nextval,
+		    #{prs_order_idx},
+		    #{prs_mem_id },
+		    #{prs_pro_filename },
+		    #{prs_pro_name },
+		    #{prs_pro_price },
+		    #{prs_pro_count },
+		    sysdate  
+		    )
+  	</insert>   
   </mapper>

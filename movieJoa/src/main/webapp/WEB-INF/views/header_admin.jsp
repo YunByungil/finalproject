@@ -12,17 +12,23 @@
     ul.myMenu > li:hover ul.submenu { display:block; }
     ul.myMenu > li ul.submenu > li { display:inline-block; width:120px; padding:5px 10px; background:white; border:1px solid #eee; text-align:center; }
     ul.myMenu > li ul.submenu > li:hover { background:#fff; }
+    
+    .menu_space{
+
+    	height:150px;
+	}
+   	.login_area{
+	width:1200px;
+	text-align: right
+    }
 </style>
-<script>
-function openLogin(){
-	window.open('/shoeStore/member/sign.jsp','login','width=450,height=850');
-}
-</script>
 </head>
 <header>
+
+	<div class="login_area">${adminInfo.admin_area } ${adminInfo.admin_shop }지점 관리자</div>
 	<div class="nav">
 		<div class="logo">
-			<a href="index.do"><h1>MJOA manage</h1></a>
+			<a href="adminLogout.do"><h1>MJOA manage</h1></a>
 		</div>
 		<div class="nav_menu">
 			<a href="index.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
@@ -40,16 +46,16 @@ function openLogin(){
 				</li>
 				<li class="menu2"><a href="#">극장관리</a>
 					<ul class="menu2_s submenu">
-					    <li><a href="theaterAddForm.do">상영관 좌석</a></li>
-					    <li>상영 스케줄</li>
+					    <li><a href="theaterList.do">상영관 좌석</a></li>
+					    <li><a href="scheduleList.do">상영 스케줄</a></li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">예매현황</a>
+				<li class="menu2"><a href="/movieJoa/listAdminPay.do">예매현황</a>
 					<ul class="menu2_s submenu">
 					    <li>예매현황</li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">평점관리</a>
+				<li class="menu2"><a href="/movieJoa/listReview.do">평점관리</a>
 					<ul class="menu2_s submenu">
 					    <li>평점 목록</li>
 					</ul>
@@ -59,15 +65,15 @@ function openLogin(){
 					    <li><a href="/movieJoa/listEvent.do">이벤트 목록</a></li>
 					    <li><a href="/movieJoa/addEvent.do">이벤트 등록</a></li>
 					    <li><a href="/movieJoa/listApplycant.do">이벤트 참여 현황</a></li>
+					    <li><a href="/movieJoa/luckMember.do">당첨자 추출하기</a></li>
 					</ul>
 				</li>
-				<li class="menu2"><a href="#">고객센터</a>
+				<li class="menu2"><a href="adminHelpDesk.do">고객센터</a>
 					<ul class="menu2_s submenu">
-					    <li>공지게시판</li>
-					    <li>자주 찾는 질문</li>
-					    <li>지점 관리자 답변 내역</li>
-					    <li>고객 문의내역</li>
-					    <li>이메일 문의</li>
+					    <a href="adminNotice.do"><li>공지게시판</li></a>
+					    <a href="adminHelpDesk.do"><li>자주 찾는 질문</li></a>			    
+					    <a href="memberHelp.do"><li>고객 문의내역</li></a>
+					    <a href="adminEmailHelp.do"><li>이메일 문의</li></a>
 					</ul>
 				</li>
 				<li class="menu2"><a href="/movieJoa/listCoupon.do">쿠폰관리</a>
@@ -103,6 +109,7 @@ function openLogin(){
 		</div>
 	</div>
 	<hr size="2px" color="#808080">
+	<div class="menu_space"></div>
 </header>
 </body>
 </html>

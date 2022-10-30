@@ -4,16 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.movie">
   	<select id="movieList0" resultType="joa.movie.model.JoaMovieDTO">
-  		select rownum as runm,a.* from 
-  		(select * from joa_movie order by mov_booking_percent desc)a
+  		select rownum as rnum,a.* from 
+  		(select * from joa_movie where mov_end_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a
   	</select>
   	<select id="movieList1" resultType="joa.movie.model.JoaMovieDTO">
-  		select rownum as runm,a.* from 
-  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate order by mov_booking_percent desc)a
+  		select rownum as rnum,a.* from 
+  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate and mov_end_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a
   	</select>
   	<select id="movieList2" resultType="joa.movie.model.JoaMovieDTO">
-  		select rownum as runm,a.* from 
-  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate order by mov_score desc)a
+  		select rownum as rnum,a.* from 
+  		(select * from joa_movie where mov_start_date<![CDATA[<=]]>sysdate and mov_end_date<![CDATA[>]]>sysdate order by mov_score desc)a
+  	</select>
+  	<select id="indexList0" resultType="joa.movie.model.JoaMovieDTO">
+  		select * from
+  		(select rownum as rnum,a.* from 
+  		(select * from joa_movie where mov_end_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a)b
+  		where rnum <![CDATA[<=]]> 5
+  	</select>
+  	<select id="indexList1" resultType="joa.movie.model.JoaMovieDTO">
+  		select * from
+  		(select rownum as rnum,a.* from 
+  		(select * from joa_movie where mov_start_date<![CDATA[>]]>sysdate order by mov_booking_percent desc)a)b
+  		where rnum <![CDATA[<=]]> 5
   	</select>
   	<select id="preMovieDate" resultType="joa.movie.model.JoaMovieDTO">
   		select 
@@ -47,15 +59,17 @@
   		select
   			count(*)
   		from
-  			joa_buy
+  			joa_payMovie, joa_movie
+  		where
+  			payMov_mov_title=mov_title and mov_end_date<![CDATA[>]]>sysdate
   	</select>
   	<select id="selMovCnt" parameterType="String" resultType="Integer">
   		select
   			count(*)
   		from
-  			joa_buy
+  			joa_payMovie, joa_movie
   		where
-  			buy_title=#{buy_title}
+  			payMov_mov_title=mov_title and payMov_mov_title=#{payMov_mov_title} and mov_end_date<![CDATA[>]]>sysdate
   	</select>
   	<update id="updateBookPer" parameterType="Map">
   		update
@@ -63,27 +77,27 @@
   		set
   			mov_booking_percent=#{mov_booking_percent}
   		where
-  			mov_title=#{buy_title}
+  			mov_title=#{mov_title}
   	</update>
   	<select id="allBookCnt" parameterType="String" resultType="Integer">
   		select
   			count(*)
   		from
-  			joa_buy, joa_member
+  			joa_payMovie, joa_member
   		where
-  			buy_id=mem_id
+  			payMov_mem_id=mem_id
   		and
-  			buy_title=#{buy_title}
+  			payMov_mov_title=#{payMov_mov_title}
   	</select>
   	<select id="manBookCnt" parameterType="String" resultType="Integer">
   		select
   			count(*)
   		from
-  			joa_buy, joa_member
+  			joa_payMovie, joa_member
   		where
-  			buy_id=mem_id
+  			payMov_mem_id=mem_id
   		and
-  			buy_title=#{buy_title}
+  			payMov_mov_title=#{payMov_mov_title}
   		and
   			mem_gender='남'
   	</select>
@@ -91,11 +105,11 @@
   		select
   			count(*)
   		from
-  			joa_buy, joa_member
+  			joa_payMovie, joa_member
   		where
-  			buy_id=mem_id
+  			payMov_mem_id=mem_id
   		and
-  			buy_title=#{buy_title}
+  			payMov_mov_title=#{payMov_mov_title}
   		and
   			mem_gender='여'
   	</select>
@@ -105,47 +119,47 @@
   		set
   			mov_gender_percent=#{mov_gender_percent}
   		where
-  			mov_title=#{buy_title}
+  			mov_title=#{payMov_mov_title}
   	</update>
 	<select id="oneBookCnt" parameterType="String" resultType="Integer">
   		select 
   			count(*) 
   		from 
-  			joa_buy, joa_member 
+  			joa_payMovie, joa_member 
   		where 
-  			buy_id=mem_id and buy_title=#{buy_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 <![CDATA[<]]> 19
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age <![CDATA[<]]> 19
   	</select>
   	<select id="twoBookCnt" parameterType="String" resultType="Integer">
   		select 
   			count(*) 
   		from 
-  			joa_buy, joa_member 
+  			joa_payMovie, joa_member 
   		where 
-  			buy_id=mem_id and buy_title=#{buy_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 20 and 29
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age between 20 and 29
   	</select>
   	<select id="threeBookCnt" parameterType="String" resultType="Integer">
   		select 
   			count(*) 
   		from 
-  			joa_buy, joa_member 
+  			joa_payMovie, joa_member 
   		where 
-  			buy_id=mem_id and buy_title=#{buy_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 30 and 39
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age between 30 and 39
   	</select>
   	<select id="fourBookCnt" parameterType="String" resultType="Integer">
   		select 
   			count(*) 
   		from 
-  			joa_buy, joa_member 
+  			joa_payMovie, joa_member 
   		where 
-  			buy_id=mem_id and buy_title=#{buy_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 between 40 and 49
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age between 40 and 49
   	</select>
   	<select id="fiveBookCnt" parameterType="String" resultType="Integer">
   		select 
   			count(*) 
   		from 
-  			joa_buy, joa_member 
+  			joa_payMovie, joa_member 
   		where 
-  			buy_id=mem_id and buy_title=#{buy_title} and (sysdate-to_date(mem_age,'yy-mm-dd'))/365 <![CDATA[>]]> 49
+  			payMov_mem_id=mem_id and payMov_mov_title=#{payMov_mov_title} and mem_age <![CDATA[>]]> 49
   	</select>
   	<update id="updateAgePer" parameterType="Map">
   		update
@@ -153,6 +167,12 @@
   		set
   			mov_age_percent=#{mov_age_percent}
   		where
-  			mov_title=#{buy_title}
+  			mov_title=#{payMov_mov_title}
   	</update>
+  	<select id="allMovieList" resultType="joa.movie.model.JoaMovieDTO">
+  		select
+  			*
+  		from
+  			joa_movie
+  	</select>
   </mapper>

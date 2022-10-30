@@ -63,6 +63,7 @@
    <bean id="adminStoreController"     class="joa.controller.AdminStoreController"></bean>
    <bean id="joaReviewController" 	   class="joa.controller.JoaReviewController"></bean>
    <bean id="adminOwncouController"    class="joa.controller.AdminOwncouController"></bean>
+   <bean id="adminPayController"    class="joa.controller.AdminPayController"></bean>
    
    <!-- daos -->
    <bean id="adminStoreDao"   class="joa.adminStore.model.AdminStoreDAOImple">
@@ -129,19 +130,30 @@
    		<constructor-arg>
    			<ref bean="sqlSessionTemplate"/>
    		</constructor-arg>
-   </bean>
-   
-   <bean id="joaAdminMemberDao" class="joa.adminMember.model.JoaAdminMemberDAOImple">
-         <constructor-arg>
-            <ref bean="sqlSessionTemplate"/>
-         </constructor-arg>
-      </bean>
+   	</bean>
+   	 <bean id="joaAdminMemberDao" class="joa.adminMem.model.JoaAdminMemberDAOImple">
+   		<constructor-arg>
+   			<ref bean="sqlSessionTemplate"/>
+   		</constructor-arg>
+   	</bean>
    	<bean id="joaAdminPayMovieDao" class="joa.adminRevenue.model.JoaAdminPayMovieDAOImple">
    		<constructor-arg>
          	<ref bean="sqlSessionTemplate"/>
      	 </constructor-arg>
    	</bean>
    	<bean id="joaAdminPayProductDao" class="joa.adminRevenue.model.JoaAdminPayProductDAOImple">
+   		<constructor-arg>
+         	<ref bean="sqlSessionTemplate"/>
+     	 </constructor-arg>
+   	</bean>
+   	
+   	   	<bean id="adminReviewDao" class="joa.adminReview.model.AdminReviewDAOImple">
+   		<constructor-arg>
+         	<ref bean="sqlSessionTemplate"/>
+     	 </constructor-arg>
+   	</bean>
+   	
+   	<bean id="adminPayDao" class="joa.adminPay.model.AdminPayDAOImple">
    		<constructor-arg>
          	<ref bean="sqlSessionTemplate"/>
      	 </constructor-arg>
@@ -188,6 +200,19 @@
 			<ref bean="joaPayDao"/>
 		</constructor-arg>
    </bean>   
+   
+   
+   	<bean id="adminReviewService" class="joa.adminReview.model.AdminReviewServiceImple">
+   		<constructor-arg>
+         <ref bean="adminReviewDao"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="adminPayService" class="joa.adminPay.model.AdminPayServiceImple">
+   		<constructor-arg>
+         <ref bean="adminPayDao"/>
+		</constructor-arg>
+	</bean>
    
    
    <bean id="JoaHelpQuestionDao" class="joa.helpdesk.model.JoaHelpQuestionDAOImple">

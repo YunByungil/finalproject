@@ -56,8 +56,17 @@ public class JoaStoreServiceImple implements JoaStoreService{
 	}
 	
 	@Override
-	public int storeCartDelete(JoaStoreDTO dto) {
-		int result=joaStoreDao.storeCartDelete(dto);
+	public int storeCartDelete(String delete_car_idx) {
+		int result=joaStoreDao.storeCartDelete(delete_car_idx);
+		return result;
+	}
+	
+	@Override
+	public int storeCartUpdateCount(String car_idx, String car_count) {
+		Map map=new HashMap();
+		map.put("car_idx",car_idx);
+		map.put("car_count",car_count);
+		int result=joaStoreDao.storeCartUpdateCount(map);
 		return result;
 	}
 

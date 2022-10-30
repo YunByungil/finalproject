@@ -15,8 +15,8 @@ public class JoaMovieDTO {
 	private String mov_info;
 	private String mov_poster;
 	private float mov_booking_percent;
-	private float mov_gender_percent;
-	private float mov_age_percent;
+	private String mov_gender_percent;
+	private String mov_age_percent;
 	private float mov_score;
 	
 	public JoaMovieDTO() {
@@ -25,8 +25,8 @@ public class JoaMovieDTO {
 
 	public JoaMovieDTO(int mov_idx, String mov_title, String mov_director, String mov_cast, String mov_start_date,
 			String mov_end_date, String mov_country, String mov_genre, int mov_running_time, String mov_rate,
-			String mov_info, String mov_poster, float mov_booking_percent, float mov_gender_percent,
-			float mov_age_percent, float mov_score) {
+			String mov_info, String mov_poster, float mov_booking_percent, String mov_gender_percent,
+			String mov_age_percent, float mov_score) {
 		super();
 		this.mov_idx = mov_idx;
 		this.mov_title = mov_title;
@@ -150,19 +150,19 @@ public class JoaMovieDTO {
 		this.mov_booking_percent = mov_booking_percent;
 	}
 
-	public float getMov_gender_percent() {
+	public String getMov_gender_percent() {
 		return mov_gender_percent;
 	}
 
-	public void setMov_gender_percent(float mov_gender_percent) {
+	public void setMov_gender_percent(String mov_gender_percent) {
 		this.mov_gender_percent = mov_gender_percent;
 	}
 
-	public float getMov_age_percent() {
+	public String getMov_age_percent() {
 		return mov_age_percent;
 	}
 
-	public void setMov_age_percent(float mov_age_percent) {
+	public void setMov_age_percent(String mov_age_percent) {
 		this.mov_age_percent = mov_age_percent;
 	}
 
@@ -173,6 +173,5 @@ public class JoaMovieDTO {
 	public void setMov_score(float mov_score) {
 		this.mov_score = mov_score;
 	}
-
 	
 }

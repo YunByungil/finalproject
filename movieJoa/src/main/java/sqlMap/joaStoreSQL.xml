@@ -31,7 +31,7 @@
 	    insert into
 	    	joa_store_cart
 	    values
-		    (joa_store_cart_idx.nextval,
+		    (joa_store_cart_car_idx.nextval,
 		    #{car_mem_id},
 		    #{car_pro_idx},
 		    #{car_count},
@@ -45,21 +45,21 @@
 		   and car_mem_id = #{car_mem_id}
 	</update>
 	<select id="storeCartList" parameterType="String" resultType="joa.store.model.JoaStoreDTO">
-		select  pro_name,pro_price,car_count,car_mem_id,car_pro_idx,pro_filename,mem_name,mem_tel
-	  	  from  joa_member m, joa_store_cart c, joa_product p
-		where    m.mem_id      = c.car_mem_id 
-		   and   m.mem_id      = #{car_mem_id}
-		   and   c.car_pro_idx = p.pro_idx
+		select  pro_name,pro_price,car_count,car_mem_id,car_pro_idx,pro_filename,mem_name,mem_tel,car_idx
+	  	  from  joa_member, joa_store_cart, joa_product
+		where    mem_id      = car_mem_id 
+		   and   mem_id      = #{car_mem_id}
+		   and   car_pro_idx = pro_idx
 		order by car_joindate desc         
      </select>
-  	<delete id="storeCartDelete" parameterType="joa.store.model.JoaStoreDTO">
+  	<delete id="storeCartDelete" parameterType="String">
 		delete from joa_store_cart
-		where car_idx=(
-			select car_idx from joa_store_cart, joa_product
-			where  car_mem_id   = #{car_mem_id}
-			   and car_pro_idx = pro_idx 
-			   and car_pro_idx = #{car_pro_idx}
-			   )
-	</delete>     
-  	
+		where 
+			car_idx=#{car_idx}
+	</delete>
+	<update id="storeCartUpdateCount" parameterType="Map">
+		update joa_store_cart 
+		   set car_count  = #{car_count}
+		where car_idx = #{car_idx} 
+	</update>      	
   </mapper>

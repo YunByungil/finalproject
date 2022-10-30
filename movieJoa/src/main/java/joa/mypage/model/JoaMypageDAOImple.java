@@ -1,7 +1,13 @@
 package joa.mypage.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import joa.adminEvent.model.AdminEventLuckBoardDTO;
+import joa.helpdesk.model.JoaHelpQuestionDTO;
 
 public class JoaMypageDAOImple implements JoaMypageDAO {
 	
@@ -18,6 +24,42 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 	}
 	
 	@Override
+	public AdminEventLuckBoardDTO imfine(int idx) {
+		AdminEventLuckBoardDTO dto = sqlMap.selectOne("lucky_board_content",idx);
+		return dto;
+	}
+	
+	@Override
+	public List<AdminEventLuckBoardDTO> lucky_Guys() {
+		List<AdminEventLuckBoardDTO> list = sqlMap.selectList("lucky_board");
+		return list;
+	}
+	
+	@Override
+	public int updateProfile(JoaMypageProfileDTO dto) {
+		int result = sqlMap.selectOne("updateProfile", dto);
+		return result;
+	}
+	
+	@Override
+	public int insertProfile(Map map) {
+		int result = sqlMap.insert("insertProfile", map);
+		return result;
+	}
+	
+	@Override
+	public JoaMypageProfileDTO getProfile(String sid) {
+		JoaMypageProfileDTO dto = sqlMap.selectOne("getprofile",sid);
+		return dto;
+	}
+	
+	@Override
+	public JoaHelpQuestionDTO questionBorder(int idx) {
+		JoaHelpQuestionDTO dto = sqlMap.selectOne("questionBorder_s", idx);
+		return dto;
+	}
+	
+	@Override
 	public JoaMypageMemberDTO memberInpo(String sid) {
 		
 		JoaMypageMemberDTO dto = sqlMap.selectOne("mypageInpo",sid);
@@ -25,7 +67,83 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 		return dto;
 	}
 	
+	@Override
+	public int memberCouponCnt(String sid) {
+		int count = sqlMap.selectOne("mypageCouponCnt",sid); 
+		return count;
+	}
 	
+	@Override
+	public List<JoaMypageOwnCouDTO> memberCouponDate(String sid) {
+		List<JoaMypageOwnCouDTO> list = sqlMap.selectList("mypageCouponDate",sid);
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypageOwnCouDTO> memberCoupon(String sid) {
+		List<JoaMypageOwnCouDTO> list = sqlMap.selectList("mypageCoupon",sid);
+		return list;
+
+	}
+	@Override
+	public int deleteMovie(Map map) {
+		int result = sqlMap.selectOne("MovieDelete",map);
+		return result;
+	}
+	@Override
+	public List<JoaMypageOwnCouDTO> memberUsedCoupon(String sid) {
+		List<JoaMypageOwnCouDTO> list = sqlMap.selectList("mypageUsedCoupon",sid);
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypageServiceDTO> memberService(String sid) {
+		List<JoaMypageServiceDTO> list = sqlMap.selectList("mypageService",sid);
+		return list;
+	}
+	@Override
+	public List<JoaMypageEventDTO> memberEventList(String sid) {
+		List<JoaMypageEventDTO> list = sqlMap.selectList("mypageEvent",sid);
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypageEventDTO> endEventList() {
+		List<JoaMypageEventDTO> list = sqlMap.selectList("mypageEndEvent");
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypagePayProDTO> memberStore(String sid) {
+		List<JoaMypagePayProDTO> list = sqlMap.selectList("mypageStore", sid);
+		return list;
+	}
+	
+	@Override
+	public int memberDelete(String sid) {
+		int result = sqlMap.selectOne("memberDelete", sid);
+		return result;
+	}
+	
+	@Override
+	public List<JoaMypagePayProDTO> memberPrice(String sid) {
+		List<JoaMypagePayProDTO> list = sqlMap.selectList("mypagePrice", sid);
+		return list;
+	}
+	
+	@Override
+	public List<JoaMypageRivewDTO> memberReview(String sid) {
+		List<JoaMypageRivewDTO> list = sqlMap.selectList("memberReview", sid);
+		return list;
+	}
+	
+
+	@Override
+	public List<JoaMyPagePayMovieDTO> memberPayMovie(String sid) {
+		List<JoaMyPagePayMovieDTO> list = sqlMap.selectList("myPayMovie",sid);
+		return list;
+
+	}
 
 	@Override
 	public int salePrice(int price, int grade) {
@@ -60,4 +178,6 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 			}
 		return grade;
 	}
+	
+
 }

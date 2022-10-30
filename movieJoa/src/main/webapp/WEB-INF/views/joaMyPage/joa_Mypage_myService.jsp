@@ -15,58 +15,70 @@
 <div class="mypage_main">
 	<div class="myInformation">
 		<div class="myproF">
-		프로필사진
+		<c:if test="${empty pdto.pro_image }">
+			<img height="90" width="100" src="/movieJoa/img/joaPofiel_img/noimage.PNG">
+		</c:if>
+		<c:if test="${!empty pdto.pro_image }">
+		<img height="90" width="90" src="/movieJoa/img/joaPofiel_img/${pdto.pro_image }">
+		</c:if>
 		</div>
 		<div class="mynickname">
 			<ul class="ul_p">
-				<li class="li_o">이름</li>
-				<li class="li_p">아이디</li>
-				<li class="li_p">닉네임</li>
-				<li class="li_p"><input type="button" value="닉네임 변경" class="nickbutton"></li>
+				<li class="li_o"><l>${dto.mem_name } 님</l> 환영합니다.</li>
+				<li class="li_p"><l1>회원 아이디</l1> | ${dto.mem_id }</li>
+				<li class="li_p" id="li_p"><l1>프로필 닉네임</l1> | ${pdto.pro_nickname}</li>
 			</ul>
 		</div>
 		<hr class="hr">
 		<div class="mygrade">
-			<li class="li_o">등급</li>
+			<li class="li_o">등급 ${m_grade }</li>
 			<li class="li_i"><input type="button" value="지난등급 이력 조회" class="gradebutton"></li>
 		</div>
 		<div class="mycoupon">
 			<li class="my_c_p">My Coupon</li>
 			<li><br></li>
-			<li>보유 관람권</li>
+			<li>보유 관람권 | ${couponCount } 개</li>
 			<li><br></li>
-			<li>관람권 사용내역</li>
+			<li>최근 관람권 사용내역</li>
+			<li><br></li>
+			<c:if test="${empty datelist }">
+			<li>최근 사용하신 관람권이 없습니다.</li>
+			</c:if>
+			<c:forEach var="date" items="${datelist }">
+				<li>${date.own_use_date }</li>
+			</c:forEach>
 		</div>
 		<div class="mypoint">
 			<li class="my_c_p">My Point</li>
 			<li><br></li>
-			<li>보유 포인트</li>
-			<li><br></li>
-			<li>포인트 사용내역</li>
+			<li>보유 포인트 ${dto.mem_point }</li>
+			<li><br></li>			
 		</div>
 	</div>
 	<br>
 	<div class="mypagecontaniner">
-		<a href="myPage_tiket.do"><dt>나의 예매내역</dt></a>
-				<a href="myPage_cancle_Coupon.do"><dd>예매취소</dd></a>
-			<a href="myPage_coupon.do"><dt>관람권 관리</dt></a>
-			<a href="myPage_coupon.do"><dd>MovieJoa 영화관람권</dd></a>
-			<a href="myPage_GuidePoint.do"><dt>포인트 관리</dt></a>
-				<a href="myPage_GuidePoint.do"><dd>포인트 적립/사용안내</dd></a>
-				<a href="myPage_Point.do"><dd>포인트 적립/사용내역</dd></a>
-			<a href="myPage_Event.do"><dt>이벤트 참여내역</dt></a>
-			<a href="myPage_Store.do"><dt>스토어</dt></a>
-				<a href="myPage_Store.do"><dd>내 스토어</dd></a>
-				<a href="myPage_Store_Payment.do"><dd>결제내역</dd></a>
-			<a href="myPage_PW_Check_M.do"><dt>회원정보</dt></a>
-				<a href="myPage_PW_Check_M.do"><dd>회원정보 관리</dd></a>
-				<a href="myPage_PW_Check_E.do"><dd>회원탈퇴</dd></a>
-			<a href="myPage_PW_Check_P.do"><dt>프로필 관리</dt></a>
-			<a href="myPage_myService.do"><dt>나의 문의내역</dt></a>
+		<dl class="mymenubar">
+			<a href="myPage_tiket.do" class="My_bar_a"><dt class="My_bar">나의 예매내역</dt></a>
+				<a href="myPage_cancle_Movie_Move.do" class="My_bar_a"><dd>예매취소</dd></a>
+			<a href="myPage_coupon.do" class="My_bar_a"><dt class="My_bar">관람권 관리</dt></a>
+			<a href="myPage_coupon.do" class="My_bar_a"><dd>MovieJoa 영화관람권</dd></a>
+			<a href="myPage_GuidePoint.do" class="My_bar_a"><dt class="My_bar">포인트 관리</dt></a>
+				<a href="myPage_GuidePoint.do" class="My_bar_a"><dd>포인트 적립/사용안내</dd></a>
+				<a href="myPage_Point.do" class="My_bar_a"><dd>포인트 적립/사용내역</dd></a>
+			<a href="myPage_Event.do" class="My_bar_a"><dt class="My_bar">이벤트 참여내역</dt></a>
+			<a href="myPage_Store.do" class="My_bar_a"><dt class="My_bar">스토어</dt></a>
+				<a href="myPage_Store.do" class="My_bar_a"><dd>내 스토어</dd></a>
+				<a href="myPage_Store_Payment.do" class="My_bar_a"><dd>결제내역</dd></a>
+			<a href="myPage_PW_Check_M.do" class="My_bar_a"><dt class="My_bar">회원정보</dt></a>
+				<a href="myPage_PW_Check_M.do" class="My_bar_a"><dd>회원정보 관리</dd></a>
+				<a href="myPage_PW_Check_E.do" class="My_bar_a"><dd>회원탈퇴</dd></a>
+			<a href="myPage_PW_Check_P.do" class="My_bar_a"><dt class="My_bar">프로필 관리</dt></a>
+			<a href="myPage_myService.do" class="My_bar_a"><dt class="My_bar">나의 문의내역</dt></a>
 		</dl>
 		
+		
 		<div class="joaMypage_ti">
-			<div class="tiket_subject">영화관람권 사용 내역</div>
+			<div class="tiket_subject">나의 문의 내역</div>
 			<br>
 			<div class="serchBar_usedCoupon_p">
 				<div class="serchBar_sub_p">제목검색</div>
@@ -79,24 +91,35 @@
 			<table class="ti_border">
 			<thead>
 			<br>
-				<th>관람권(번호)</th>
 				<th>분류</th>
-				<th>유효기간</th>
-				<th>사용일자</th>
+				<th>제목</th>
+				<th>상태</th>
+				<th>답변일</th>
 			</thead>
 		
 			<tbody>
 			<c:if test="${empty list }">
-				<tr><td colspan="4"><br></td></tr>
+				<tr><td colspan="5"><br></td></tr>
 				<tr>
-					<td colspan="4">고객님의 문의 내역이 존재하지 않습니다.</td>
+					<td colspan="5">고객님의 문의 내역이 존재하지 않습니다.</td>
 				</tr>
 			</c:if>
-				<c:forEach var="dto" items="${list }">
+				<c:forEach var="S_dto" items="${list }">
+				<c:url var="borderUrl" value="onebyOneBorder.do">
+					<c:param name="idx">
+					${S_dto.hqt_idx }
+					</c:param>
+				</c:url>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>${S_dto.hqt_type }</td>
+						<c:if test="${S_dto.hqt_state eq '재답변' }">
+						<td>${S_dto.hqt_subject }</td>
+						</c:if>
+						<c:if test="${S_dto.hqt_state eq '답변완료' }">
+						<td><a href="${borderUrl }">${S_dto.hqt_subject }</a></td>
+						</c:if>
+						<td>${S_dto.hqt_state }</td>
+						<td>${S_dto.hqt_answerdate }</td>
 					</tr>
 				</c:forEach>
 			</tbody>

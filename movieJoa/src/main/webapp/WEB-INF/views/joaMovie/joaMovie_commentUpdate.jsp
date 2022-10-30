@@ -5,6 +5,14 @@
 function counter2(){
 	document.getElementById("counting2").innerHTML = document.getElementById("reviewContents2").value.length; 
 }
+function submitCom2(){
+	if(document.getElementById("reviewContents2").value==""){
+		window.alert('내용을 입력하지 않았습니다.');
+	}else{
+		document.getElementById('myform2').submit();
+		closeUpdate();
+	}
+}
 </script>
 <h2 style="padding: 10px;">평점수정</h2>
 <hr>
@@ -14,7 +22,7 @@ function counter2(){
 	<span class="star2">
  	  ★★★★★
   	<span>★★★★★</span>
-		<input type="range" oninput="drawStar2(this)" value="${list.rev_score }" step="1" min="0" max="10" id="range">
+		<input type="range" oninput="drawStar2(this)" value="${list.rev_score }" step="1" min="1" max="10" id="range">
 	</span>
 </div>
 <b id="val2" style="font-size: 4rem;">${list.rev_score }</b>			
@@ -36,7 +44,7 @@ function counter2(){
         	닫기
     	</span>
 	</div>					
-	<div style="background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; width: 50%; float: right;" onClick="document.getElementById('myform2').submit();closeUpdate();">
+	<div style="background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px; width: 50%; float: right;" onClick="submitCom2();">
 		<span class="pop_bt" style="font-size: 13pt;">
 			확인
 	    </span>

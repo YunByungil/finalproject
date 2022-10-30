@@ -16,4 +16,5 @@ public interface JoaReviewDAO {
 	public int addLike(int rev_idx, Map map);
 	public List<JoaLikeDTO> likes(Map map);
 	public int checkId(Map map);
+	public int checkView(Map map);
 }

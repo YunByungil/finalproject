@@ -8,15 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import joa.adminMember.model.JoaAdminMemberDTO;
+import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.member.model.JoaMemberDAO;
 import joa.member.model.JoaMemberDTO;
+import joa.mypage.model.JoaMypageProfileDTO;
+import joa.mypage.model.JoaMypageService;
 
 @Controller
 public class JoaLoginController {
 
 	@Autowired
 	private JoaMemberDAO joaMemberDao;
+	
+	@Autowired
+	private JoaMypageService JoaMypageService;
 	
 	@RequestMapping("/memberLogin.do")
 	public String memberLogin() {

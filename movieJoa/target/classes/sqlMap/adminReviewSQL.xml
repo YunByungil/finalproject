@@ -2,5 +2,49 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="joa.store">
+  <mapper namespace="admin.review">
+    	<select id="listReview" parameterType="Map" resultType="joa.review.model.JoaReviewDTO">
+			select * from
+			(select rownum as rnum,a.* from
+			(select * from joa_review
+			<include refid="searchCondition"/>
+			order by rev_idx desc)a)b
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+	</select>
+	<delete id="deleteReview" parameterType="Integer">
+			delete from
+			joa_review
+			where rev_idx=
+			#{here}
+	</delete>
+	<select id="adminReviewTotalCnt" resultType="int" parameterType="Map">
+			select count(*) from joa_review
+			<include refid="searchCondition"/>
+	</select>
+	<select id="detailReview" parameterType="Integer" resultType="joa.review.model.JoaReviewDTO">
+ 			select 
+ 			* 
+ 			from 
+ 			joa_review
+ 			where 
+ 			rev_idx=#{here}
+</select>
+	  	<sql id="searchCondition">
+	  	<if test="s_k != '--'">
+				<if test='s_k.equals("rev_idx")'>
+						 where rev_idx like '%' || #{s_v} || '%'
+				 </if>
+				 <if test='s_k.equals("rev_movie_title")'>
+						 where rev_movie_title like '%' || #{s_v} || '%'
+				 </if>		
+				 <if test='s_k.equals("rev_id")'>
+						 where rev_id like '%' || #{s_v} || '%'
+				 </if>		
+				 <if test='s_k.equals("all")'>
+					  where rev_idx LIKE '%' || #{s_v} || '%'
+					   or rev_movie_title LIKE '%' || #{s_v} || '%'
+					   or rev_id LIKE '%' || #{s_v} || '%'
+				 </if>
+		</if>
+  	</sql>
   </mapper>

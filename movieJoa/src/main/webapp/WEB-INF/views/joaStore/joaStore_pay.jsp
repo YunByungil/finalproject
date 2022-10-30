@@ -11,7 +11,22 @@
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+<style>
+.kakao_button{
+	background: url( "img/joaStore_img/payment_icon_yellow_medium.png" ) no-repeat;
+	border: none;
+	width: 121px;
+	height: 50px;
+	cursor: pointer;
+}
+.nicepay_button{
+	background: url( "img/joaStore_img/payment_icon_nicepay_logo.png" ) no-repeat;
+	border: none;
+	width: 217px;
+	height: 60px;
+	cursor: pointer;
+}
+</style>
 <script>
 $(document).ready(function(){ 
 	
@@ -25,25 +40,24 @@ $(document).ready(function(){
 })
 
 function paymentKakaoPay(){
-	
+
     IMP.init('imp80406606');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
         pg: "kakaopay", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
-        merchant_uid: 'merchant_' + new Date().getTime(), //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name: "MJOA", //결제창에 노출될 상품명
-        amount: "${pay_total_sum}",
-        buyer_email : "${mem_email}", 
-        buyer_name : "${mem_name}",
-        buyer_tel : "${mem_tel}"
+        merchant_uid: 'merchant_'+new Date().getTime(), //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
+        name: "용상민", //결제창에 노출될 상품명
+        amount: ${pay_total_sum},
+        buyer_email : "${userInfo.mem_email}", 
+        buyer_name : "${userInfo.mem_name}",
+        buyer_tel : "${userInfo.mem_tel}"
         
-    , function (rsp) { // callback
+    }, function (rsp) { // callback
     	
         if (rsp.success) {
             alert("결제가 완료되었습니다");
             document.getElementById("payPro_pg").value="kakaopay";
             document.getElementById("payPro_method").value="card";
-            document.getElementById("payPro_merchant_uid").value='merchant_'+new Date().getTime();
     		document.joaStorePay.action='joaStoreKakaoPay.do';		
 			document.joaStorePay.submit();
             
@@ -51,30 +65,29 @@ function paymentKakaoPay(){
         	
             alert("결제실패");
         }
-    }
     });
 }
 
+
 function paymentCreditCard(){
-	
+	var merchant = 'merchant_'+new Date().getTime();
     IMP.init('imp80406606');//아임포트 관리자 콘솔에서 확인한 '가맹점 식별코드' 입력
     IMP.request_pay({// param
         pg: "nice", //pg사명 or pg사명.CID (잘못 입력할 경우, 기본 PG사가 띄워짐)
         pay_method: "card", //지불 방법
         merchant_uid: 'merchant_'+new Date().getTime(), //가맹점 주문번호 (아임포트를 사용하는 가맹점에서 중복되지 않은 임의의 문자열을 입력)
-        name: "MJOA", //결제창에 노출될 상품명
-        amount: ${pay_total_sum },
-        buyer_email : "${mem_email}", 
-        buyer_name : "${mem_name}",
-        buyer_tel : "${mem_tel}"
+        name: "용상민", //결제창에 노출될 상품명
+        amount: ${pay_total_sum} ,
+        buyer_email : "${userInfo.mem_email}", 
+        buyer_name : "${userInfo.mem_name}",
+        buyer_tel : "${userInfo.mem_tel}"
         
-    , function (rsp) { // callback
+    }, function (rsp) { // callback
     	
         if (rsp.success) {
             alert("결제가 완료되었습니다");
             document.getElementById("payPro_pg").value="CreditCard";
             document.getElementById("payPro_method").value="card";
-            document.getElementById("payPro_merchant_uid").value='merchant_'+new Date().getTime();
     		document.joaStorePay.action='joaStoreKakaoPay.do';		
 			document.joaStorePay.submit();
             
@@ -82,9 +95,10 @@ function paymentCreditCard(){
         	
             alert("결제실패");
         }
-    }
     });
+
 }
+
 </script>
 
 </head>
@@ -104,6 +118,7 @@ function paymentCreditCard(){
 				<th>수량</th>
 				<th>구매금액</th>
 			</thead>
+			<c:set var="priceSum" value="0"></c:set> 
 			<c:forEach var="dto" items="${jpcList }">
 			<tbody>
 				<tr>
@@ -114,6 +129,12 @@ function paymentCreditCard(){
 					<td><fmt:formatNumber value="${dto.pro_price * dto.car_count }" pattern="#,###"/>원</td>
 				</tr>
 			</tbody>
+ 				<c:set var="priceSum" value="${priceSum+(dto.pro_price * dto.car_count) }"/>	
+					<input type="hidden" name="prs_mem_id" value="${userInfo.mem_id }">			
+					<input type="hidden" name="prs_pro_filename" value="${dto.pro_filename }">
+					<input type="hidden" name="prs_pro_name" value="${dto.pro_name }">			
+					<input type="hidden" name="prs_pro_price" value="${dto.pro_price}">			
+					<input type="hidden" name="prs_car_count" value="${dto.car_count}">				
 			</c:forEach>
 		</table>
 		<div class="store_cart_total_payment">
@@ -130,42 +151,43 @@ function paymentCreditCard(){
 					</thead>
 					<tbody>
 						<tr>
-							<td><fmt:parseNumber var="price_sum" type="number" value="${pay_price_sum }" /><fmt:formatNumber value="${price_sum }" pattern="#,###"/>원</td>
+							<td><fmt:parseNumber var="price_sum" type="number" value="${priceSum }" /><fmt:formatNumber value="${price_sum }" pattern="#,###"/>원</td>
 							<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>
 							<td><fmt:parseNumber var="discount" type="number" value="${pay_discount }" /><fmt:formatNumber value="${discount  }" pattern="#,###"/>원</td>
 							<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>
-							<td><fmt:parseNumber var="total_sum" type="number" value="${pay_total_sum }" /><fmt:formatNumber value="${total_sum }" pattern="#,###"/>원</td>
+							<td><fmt:parseNumber var="total_sum" type="number" value="${priceSum }" /><fmt:formatNumber value="${total_sum }" pattern="#,###"/>원</td>
+
 						</tr>
 					</tbody>
+					
 				</table>
 				<h2>주문자 정보 확인</h2>
 				<div class="store_pay_customer_info">
 					<table class="store_pay_customer_info_table">
 						<tr>
 							<td>이름</td>
-							<td><input type="text" value="${mem_name }"></td>
+							<td><input type="text" value="${userInfo.mem_name }"></td>
 							<td>휴대전화 번호</td>
-							<td><input type="text" value="${mem_tel }"></td>
+							<td><input type="text" value="${userInfo.mem_tel }"></td>
 						</tr>
 					</table>			
 				</div>
-				<input type="hidden" name="payPro_mem_id" value="${mem_id }">	
-				<input type="hidden" name="payPro_mem_name" value="${mem_name }">	
-				<input type="hidden" name="payPro_mem_email" value="${mem_email }">	
-				<input type="hidden" name="payPro_mem_tel" value="${mem_tel }">
+				<input type="hidden" name="payPro_mem_id" value="${userInfo.mem_id }">	
+				<input type="hidden" name="payPro_mem_name" value="${userInfo.mem_name }">	
+				<input type="hidden" name="payPro_mem_email" value="${userInfo.mem_email }">	
+				<input type="hidden" name="payPro_mem_tel" value="${userInfo.mem_tel }">
+				<input type="hidden" name="payPro_pro_name" value="galmae">
 				<input type="hidden" name="payPro_pg" id="payPro_pg">
-				<input type="hidden" name="payPro_method" id="payPro_method">
-				<input type="hidden" name="payPro_pro_name" value="상품">			
+				<input type="hidden" name="payPro_method" id="payPro_method">			
 				<input type="hidden" name="payPro_price_sum" value="${pay_price_sum }">
-				<input type="hidden" name="payPro_discount" value="${pay_discount }">
-				<input type="hidden" name="payPro_total_price" value="${pay_total_sum }">
-				<input type="hidden" name="payPro_merchant_uid" Id="payPro_merchant_uid">	
+				<input type="hidden" name="payPro_discount" value="1">
+				<input type="hidden" name="payPro_total_price" value="${pay_total_sum }">	
 				<h2>결제수단</h2>
 				<div class="store_pay_payments_system">
 					<table class="store_pay_payments_system_table">
 						<tr>
-							<td><input id="creditCard" type="button" value="신용카드"></td>
-							<td><input id="kakaoPay" type="button" value="카카오페이"></td>	
+							<td><input id="creditCard" class="nicepay_button" type="button"></td>
+							<td><input id="kakaoPay" class="kakao_button" type="button"></td>	
 						</tr>
 					</table>			
 				</div>

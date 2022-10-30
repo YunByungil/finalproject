@@ -1,6 +1,7 @@
 package joa.book.model;
 import java.util.*;
 
+import joa.pay.model.*;
 import joa.theater.model.TheaterTimeDTO;
 public interface JoaBookDAO {
 	
@@ -17,4 +18,6 @@ public interface JoaBookDAO {
 	
 	/////////////////realtime
 	public List<JoaBookDTO> realTimeList(HashMap map);
+	
+	public List<JoaPayMovDTO> seatBook(JoaBookDTO dto);
 }

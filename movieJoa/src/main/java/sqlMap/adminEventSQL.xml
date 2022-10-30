@@ -3,6 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="admin.event">
+  	<insert id="e_b_table_insert" parameterType="joa.adminEvent.model.AdminEventLuckBoardDTO">
+  		insert into
+  		e_b_board
+  		values(e_b_board_e_b_idx.nextval, #{e_b_subject}, #{e_b_content}, #{e_b_members}, #{e_b_eventcode} )
+  	</insert>
+  
+  	<select id="luck_mem_extraction" parameterType="Integer" resultType="joa.adminEvent.model.AdminApplycantDTO">
+  		select * from
+  		joa_applycant
+  		where app_event_code=#{app_event_code}
+  	</select>
+  
    <insert id="addEvent" parameterType="Map">
 			insert into
 			joa_event
@@ -68,7 +80,7 @@
 			(select * from joa_event 
 			<include refid="searchEventCondition"/>
 			order by eve_idx desc)a)b
-			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end}
+			where rnum<![CDATA[>=]]>#{start} and rnum<![CDATA[<=]]>#{end} and eve_idx <![CDATA[>=]]> 1000
 </select>
 <select id="adminEventTotalCnt" parameterType="Map" resultType="int">
 			select count(*) from joa_event

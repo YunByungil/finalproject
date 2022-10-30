@@ -67,13 +67,13 @@
 		 <div class="col-aside">
     	<div class="ad-event">
             <div class="ad-partner01">
-                <img src="/movieJoa/img/joaEvent_img/apply_thumb.jpg" width="160" height="300" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="M_Rectangle" id="M_Rectangle"></iframe>
+                <img src="/movieJoa/img/joaEvent_img/add1.jpg" width="160" height="300" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="M_Rectangle" id="M_Rectangle"></iframe>
             </div>
             <div class="ad-partner01">
-                <img src="/movieJoa/img/joaEvent_img/coupon_thumb.jpg" width="160" height="300" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="C_Rectangle" id="C_Rectangle"></iframe>
+                <img src="/movieJoa/img/joaEvent_img/add2.jpg" width="160" height="300" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="C_Rectangle" id="C_Rectangle"></iframe>
             </div>
             <div class="ad-partner02">
-                <img src="/movieJoa/img/joaEvent_img/join_thumb.png" width="160" height="35" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Image_text" id="Image_text"></iframe>
+                <img src="/movieJoa/img/joaEvent_img/add3.jpg" width="160" height="35" title="" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Image_text" id="Image_text"></iframe>
             </div>
         </div>
     </div>

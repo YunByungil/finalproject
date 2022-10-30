@@ -18,6 +18,8 @@ public interface AdminEventDAO {
 	public int adminApplycantTotalCnt(Map map);
 	public List<AdminApplycantDTO> listApplycant(Map map);
 	public int deleteApplycant(int app_idx);
+	public List<AdminApplycantDTO> listLuck_mem_extraction(int app_event_code);
+	public int e_b_table_insert(AdminEventLuckBoardDTO dto);
 	
 
 }

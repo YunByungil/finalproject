@@ -4,6 +4,7 @@ package joa.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.helpdesk.model.JoaHQService;
 import joa.helpdesk.model.JoaHelpQuestionDTO;
 import joa.helpdesk.model.JoaMHService;
 import joa.helpdesk.model.JoaManyHelpDTO;
 import joa.helpdesk.model.JoaNTService;
 import joa.helpdesk.model.JoaNoticeDTO;
+import joa.member.model.JoaMemberDTO;
 
 @Controller
 public class JoaHelpDeskController {
@@ -138,7 +141,9 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/manyHelpBorder.do")
-	public ModelAndView ManyHelpBorder(@RequestParam(value="idx")int idx) {
+	public ModelAndView ManyHelpBorder(@RequestParam(value="idx", defaultValue="1")int idx) {
+		
+		joaMHService.upDateReadNum(idx);
 		JoaManyHelpDTO dto = joaMHService.ManyHelpBorder(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto",dto);
@@ -149,7 +154,7 @@ public class JoaHelpDeskController {
 	//관리자 자주찾는 질문
 	
 	@RequestMapping("/adminHelpDesk.do")
-	public ModelAndView adminHelpDesk(@RequestParam(value =  "cp", defaultValue = "1")int cp) {
+	public ModelAndView adminHelpDesk(@RequestParam(value =  "cp", defaultValue = "1")int cp, HttpSession session) {
 		String backA_color = "background-color: #F05650";
 		int totalCnt=joaMHService.manyHelpListTotalCnt();
 		int listSize=5;
@@ -159,6 +164,9 @@ public class JoaHelpDeskController {
 		
 		List<JoaManyHelpDTO> list = joaMHService.ManyHelpList(cp, listSize);
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("backA_color",backA_color);
 		mav.addObject("list",list);
@@ -167,7 +175,7 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/adminManyHelp.do")
-	public ModelAndView adminManyHelp(HttpServletRequest request,@RequestParam(value =  "cp", defaultValue = "1")int cp) {
+	public ModelAndView adminManyHelp(HttpServletRequest request,@RequestParam(value =  "cp", defaultValue = "1")int cp, HttpSession session) {
 		String type = request.getParameter("type");
 		
 		int totalCnt=joaMHService.manyHelpTypeTotalCnt(type);
@@ -196,6 +204,9 @@ public class JoaHelpDeskController {
 			String backG_color = "background-color: #F05650";
 			mav.addObject("backG_color", backG_color);
 		}
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("list",list);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_ADMManyHelp");
@@ -203,9 +214,12 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/adminSerchManyHelp.do")
-	public ModelAndView adminSerchManyHelp(@RequestParam(value="keyword")String keyword, @RequestParam(value =  "cp", defaultValue = "1")int cp) {
+	public ModelAndView adminSerchManyHelp(@RequestParam(value="keyword")String keyword, @RequestParam(value =  "cp", defaultValue = "1")int cp, HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		String msg = null;
 		String link =null;
 		boolean link_tf = false;
@@ -224,7 +238,7 @@ public class JoaHelpDeskController {
 		int totalCnt=joaMHService.serchManyHelpListTotalCnt(keyword);
 		int listSize=5;
 		int pageSize=5;
-		String pageStr=joa.page.PageModule.makePage("adminSerchManyHelp.do?keword="+keyword, totalCnt, listSize, pageSize, cp);
+		String pageStr=joa.page.Sub_PageModule.makePage("adminSerchManyHelp.do?keyword="+keyword, totalCnt, listSize, pageSize, cp);
 	
 		List<JoaManyHelpDTO> list = joaMHService.serchManyHelpList(keyword, cp, listSize);
 		mav.addObject("pageStr", pageStr);
@@ -236,9 +250,12 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/adminManyHelpBorder.do")
-	public ModelAndView adminManyHelpBorder(@RequestParam(value="idx")int idx) {
+	public ModelAndView adminManyHelpBorder(@RequestParam(value="idx")int idx, HttpSession session) {
 		JoaManyHelpDTO dto = joaMHService.ManyHelpBorder(idx);
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		mav.addObject("dto",dto);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_ADMManyHelp_border");
 		return mav;
@@ -376,6 +393,7 @@ public class JoaHelpDeskController {
 	
 	@RequestMapping("/noticeBorder.do")
 	public ModelAndView noticeBorder(@RequestParam(value="idx", defaultValue = "1")int idx) {
+		joaNTService.upDateReadNum(idx);
 		JoaNoticeDTO dto = joaNTService.noticeBorder(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
@@ -386,7 +404,7 @@ public class JoaHelpDeskController {
 	// 공지게시판 관리자
 	
 	@RequestMapping("/adminNotice.do")
-	public ModelAndView adminNotice(@RequestParam(value =  "cp", defaultValue = "1")int cp) {
+	public ModelAndView adminNotice(@RequestParam(value =  "cp", defaultValue = "1")int cp, HttpSession session) {
 		String backA_color = "background-color: #F05650";
 		int totalCnt=joaNTService.noticeTotalCnt();
 		int listSize=5;
@@ -395,6 +413,9 @@ public class JoaHelpDeskController {
 		
 		List<JoaNoticeDTO> list = joaNTService.NoticeList(cp, listSize);
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		mav.addObject("backA_color", backA_color);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("list", list);
@@ -403,7 +424,7 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/noticeAdminType.do")
-	public ModelAndView noticeAdminType(HttpServletRequest request,@RequestParam(value =  "cp", defaultValue = "1")int cp) {
+	public ModelAndView noticeAdminType(HttpServletRequest request,@RequestParam(value =  "cp", defaultValue = "1")int cp, HttpSession session) {
 		String type = request.getParameter("type");
 		ModelAndView mav = new ModelAndView();
 		if(type.equals("예매/매표")) {
@@ -423,7 +444,9 @@ public class JoaHelpDeskController {
 		String pageStr=joa.page.Sub_PageModule.makePage("noticeAdminType.do?type="+type, totalCnt, listSize, pageSize, cp);
 		
 		List<JoaNoticeDTO> list = joaNTService.noticeType(type, cp, pageSize);
-		
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		mav.addObject("pageStr", pageStr);
 		mav.addObject("list",list);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_ADMNotice");
@@ -432,9 +455,12 @@ public class JoaHelpDeskController {
 
 	
 	@RequestMapping("/serchAdminNotice.do")
-	public ModelAndView serchAdminNotice(@RequestParam(value="keyword", required = false)String keyword, @RequestParam(value =  "cp", defaultValue = "1")int cp) {
+	public ModelAndView serchAdminNotice(@RequestParam(value="keyword", required = false)String keyword, @RequestParam(value =  "cp", defaultValue = "1")int cp, HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		String msg = null;
 		String link =null;
 		boolean link_tf = false;
@@ -466,9 +492,12 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/adminNoticeBorder.do")
-	public ModelAndView adminNoticeBorder(@RequestParam(value="idx", defaultValue = "1")int idx) {
+	public ModelAndView adminNoticeBorder(@RequestParam(value="idx", defaultValue = "1")int idx, HttpSession session) {
 		JoaNoticeDTO dto = joaNTService.noticeBorder(idx);
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		mav.addObject("dto", dto);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_ADMNotice_border");
 		return mav;
@@ -535,8 +564,26 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/emailHelpWrite.do")
-	public ModelAndView emailHelpWrite(JoaHelpQuestionDTO dto) {
+	public ModelAndView emailHelpWrite(JoaHelpQuestionDTO dto, HttpSession session) {
+		
 		ModelAndView mav = new ModelAndView();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		
+		
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="이메일 문의는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+		
+		String sid = login_dto.getMem_id();
+		
+		dto.setHqt_id(sid);
 		String msg = null;
 		String link =null;
 		boolean link_tf = false;
@@ -547,7 +594,14 @@ public class JoaHelpDeskController {
 		if(dto.getHqt_region()==null) {
 			dto.setHqt_region("온라인");
 		}
-		if(dto.getHqt_subject()==null || dto.getHqt_subject().equals("")) {
+		if(dto.getHqt_type()==null || dto.getHqt_type().equals("")) {
+			msg="문의 유형을 입력해주세요.";
+			link_tf = false;
+			link = "oneByOneHelp.do";
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.addObject("msg", msg);
+		}else if(dto.getHqt_subject()==null || dto.getHqt_subject().equals("")) {
 			msg="제목을 입력해주세요.";
 			link_tf = false;
 			link = "emailHelp.do";
@@ -570,16 +624,19 @@ public class JoaHelpDeskController {
 		}
 		mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_msg");
 		return mav;
-	
+		}
 	}
 	
 	//관리자 이메일 문의
 	
 	@RequestMapping("/adminEmailHelp.do")
-	public ModelAndView adminEmailHelp(@RequestParam(value =  "cp", defaultValue = "1")int cp) {
+	public ModelAndView adminEmailHelp(@RequestParam(value =  "cp", defaultValue = "1")int cp, HttpSession session) {
 		String backA_color = "background-color: #F05650";
 		String state = "미답변";
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		int totalCnt=joaHQService.emailTotalCnt(state);
 		int listSize=5;
 		int pageSize=5;
@@ -594,10 +651,12 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/adminEmailType.do")
-	public ModelAndView adminEmailType(@RequestParam(value =  "cp", defaultValue = "1")int cp,@RequestParam(value="hqt_type", required = false)String hqt_type) {
+	public ModelAndView adminEmailType(@RequestParam(value =  "cp", defaultValue = "1")int cp,@RequestParam(value="hqt_type", required = false)String hqt_type, HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
-		
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		if(hqt_type.equals("편의")) {
 			String backB_color = "background-color: #F05650";
 			mav.addObject("backB_color", backB_color);
@@ -629,9 +688,12 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/adminEmailSerch.do")
-	public ModelAndView adminEmailSerch(@RequestParam(value =  "cp", defaultValue = "1")int cp, @RequestParam(value="hqt_type", required = false)String hqt_type, @RequestParam(value="hqt_region", required = false)String hqt_region, @RequestParam(value="hqt_cinema", required = false)String hqt_cinema) {
+	public ModelAndView adminEmailSerch(@RequestParam(value =  "cp", defaultValue = "1")int cp, @RequestParam(value="hqt_type", required = false)String hqt_type, @RequestParam(value="hqt_region", required = false)String hqt_region, @RequestParam(value="hqt_cinema", required = false)String hqt_cinema, HttpSession session) {
 		String state ="미답변";
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		String pagename=null;
 		if(hqt_type==null||hqt_type.equals("")) {
 			
@@ -697,8 +759,11 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/adminEmailBorder.do")
-	public ModelAndView adminEmailBorder(@RequestParam(value="idx",defaultValue = "1")int idx) {
+	public ModelAndView adminEmailBorder(@RequestParam(value="idx",defaultValue = "1")int idx, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		JoaHelpQuestionDTO dto = joaHQService.questionBorder(idx);
 		mav.addObject("dto", dto);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_ADMEmailHelp_border");
@@ -706,16 +771,35 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/answerEmailHelp.do")
-	public ModelAndView answerEmailHelp(JoaHelpQuestionDTO dto) {
-		dto.setHqt_state("답변완료");
+	public ModelAndView answerEmailHelp(JoaHelpQuestionDTO dto, HttpSession session) {
+		
+		
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="이메일 답변은 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {	
+		String sid = login_dto.getAdmin_id();
+		dto.setHqt_answerwrite(sid);
+		dto.setHqt_state("답변완료");
+		
 		int result = joaHQService.answerQuestion(dto);
 		String msg = result>0?"이메일 답변완료 설정이 등록되었습니다":"이메일 답변완료 설정 등록에 실패했습니다";
 		boolean link_tf=true;
+		mav.addObject("sid", sid);
 		mav.addObject("link_tf", link_tf);
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
+		}
 	}
 	
 	//1:1문의
@@ -728,8 +812,24 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/oneByOneHelpWrite.do")
-	public ModelAndView oneByOneHelpWrite(JoaHelpQuestionDTO dto) {
+	public ModelAndView oneByOneHelpWrite(JoaHelpQuestionDTO dto, HttpSession session) {
+				
 		ModelAndView mav = new ModelAndView();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="1:1 문의는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else{	
+		
+		String sid = login_dto.getMem_id();
+		
+		dto.setHqt_id(sid);
 				String msg = null;
 				String link =null;
 				boolean link_tf = false;
@@ -740,7 +840,14 @@ public class JoaHelpDeskController {
 				if(dto.getHqt_region()==null) {
 					dto.setHqt_region("온라인");
 				}
-				if(dto.getHqt_subject()==null || dto.getHqt_subject().equals("")) {
+				if(dto.getHqt_type()==null || dto.getHqt_type().equals("")) {
+					msg="문의 유형을 입력해주세요.";
+					link_tf = false;
+					link = "oneByOneHelp.do";
+					mav.addObject("link", link);
+					mav.addObject("link_tf", link_tf);
+					mav.addObject("msg", msg);
+				}else if(dto.getHqt_subject()==null || dto.getHqt_subject().equals("")) {
 					msg="제목을 입력해주세요.";
 					link_tf = false;
 					link = "oneByOneHelp.do";
@@ -763,16 +870,20 @@ public class JoaHelpDeskController {
 				}
 				mav.setViewName("joaHelpDesk/memberHelp/joaHelpDek_msg");
 				return mav;
-	}
+		}
+}
 	
 	//1:1 문의 관리자 페이지
 	
 	@RequestMapping("/memberHelp.do")
-	public ModelAndView serchMemberHelp(@RequestParam(value="cp",defaultValue = "1") int cp) {
+	public ModelAndView serchMemberHelp(@RequestParam(value="cp",defaultValue = "1") int cp,HttpSession session) {
 		
 		String backA_color = "background-color: #F05650";
 		String state = "답변완료";
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		int totalCnt=joaHQService.questionTotalCnt(state);
 		int listSize=5;
 		int pageSize=5;
@@ -786,9 +897,12 @@ public class JoaHelpDeskController {
 		return mav;
 	}
 		@RequestMapping("/adminQuestionType.do")
-		public ModelAndView adminQuestionType(@RequestParam(value =  "cp", defaultValue = "1")int cp,@RequestParam(value="hqt_type", required = false)String hqt_type) {
+		public ModelAndView adminQuestionType(@RequestParam(value =  "cp", defaultValue = "1")int cp,@RequestParam(value="hqt_type", required = false)String hqt_type, HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		
 		if(hqt_type.equals("편의")) {
 			String backB_color = "background-color: #F05650";
@@ -821,9 +935,12 @@ public class JoaHelpDeskController {
 	}
 		
 		@RequestMapping("/adminSerchList.do")
-		public ModelAndView adminSerchList(@RequestParam(value =  "cp", defaultValue = "1")int cp, @RequestParam(value="hqt_type", required = false)String hqt_type, @RequestParam(value="hqt_region", required = false)String hqt_region, @RequestParam(value="hqt_cinema", required = false)String hqt_cinema) {
+		public ModelAndView adminSerchList(@RequestParam(value =  "cp", defaultValue = "1")int cp, @RequestParam(value="hqt_type", required = false)String hqt_type, @RequestParam(value="hqt_region", required = false)String hqt_region, @RequestParam(value="hqt_cinema", required = false)String hqt_cinema, HttpSession session) {
 			String state ="답변완료";
 			ModelAndView mav = new ModelAndView();
+			JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+			String sid = login_dto.getAdmin_id();
+			mav.addObject("sid", sid);
 			String pagename=null;
 			if(hqt_type==null||hqt_type.equals("")) {
 				
@@ -889,8 +1006,11 @@ public class JoaHelpDeskController {
 		}	
 		
 	@RequestMapping("/memberHelpBorder.do")
-	public ModelAndView memberHelpBorder(@RequestParam(value="idx",defaultValue = "1") int idx) {
+	public ModelAndView memberHelpBorder(@RequestParam(value="idx",defaultValue = "1") int idx, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		String sid = login_dto.getAdmin_id();
+		mav.addObject("sid", sid);
 		JoaHelpQuestionDTO dto = joaHQService.questionBorder(idx);
 		mav.addObject("dto", dto);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_ADMMemberHelp_border");
@@ -898,9 +1018,26 @@ public class JoaHelpDeskController {
 	}
 	
 	@RequestMapping("/answerMemberHelp.do")
-	public ModelAndView answerMemberHelp(JoaHelpQuestionDTO dto) {
-		dto.setHqt_state("답변완료");
+	public ModelAndView answerMemberHelp(JoaHelpQuestionDTO dto, HttpSession session) {
+		
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="1:1문의 답변은 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {	
+		String sid = login_dto.getAdmin_id();
+		
+		dto.setHqt_answerwrite(sid);
+		dto.setHqt_state("답변완료");
+		if(sid.contains("admin_")) {
 		int result = joaHQService.answerQuestion(dto);
 		String msg = result>0?"1:1문의 답변이 정상적으로 등록됬습니다.":"1:1문의 답변 등록에 실패했습니다. 관리자에게 문의바랍니다.";
 		boolean link_tf=true;
@@ -908,12 +1045,34 @@ public class JoaHelpDeskController {
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
+		}else {
+			mav.setViewName("joaMyPage/joaMyPage_myPage");
+			return mav;
+		}
+		}
 	}
 	
 	@RequestMapping("/reAnswerMemberHelp.do")
-	public ModelAndView reAnswerMemberHelp(JoaHelpQuestionDTO dto) {
-		dto.setHqt_state("답변완료");
+	public ModelAndView reAnswerMemberHelp(JoaHelpQuestionDTO dto,HttpSession session) {
+		
 		ModelAndView mav = new ModelAndView();
+		JoaAdminMemberDTO login_dto=(JoaAdminMemberDTO) session.getAttribute("adminInfo");
+		
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="재답변은 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {	
+		String sid = login_dto.getAdmin_id();
+	
+		dto.setHqt_answerwrite(sid);
+		dto.setHqt_state("답변완료");
+		if(sid.contains("admin_")) {
 		int result = joaHQService.reanswerQuestion(dto);
 		String msg = result>0?"1:1문의 답변이 정상적으로 등록됬습니다.":"1:1문의 답변 등록에 실패했습니다. 관리자에게 문의바랍니다.";
 		boolean link_tf=true;
@@ -921,11 +1080,16 @@ public class JoaHelpDeskController {
 		mav.addObject("msg", msg);
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
+		}else {
+			mav.setViewName("joaMyPage/joaMyPage_myPage");
+			return mav;
+		}
+		}
 	}
 	
 	//지점관리자 답변열람 페이지
 	
-	@RequestMapping("/topAdmin.do")
+	@RequestMapping("/topAdmin_answer.do")
 	public ModelAndView topAdmin(@RequestParam(value =  "cp", defaultValue = "1")int cp) {
 		String backA_color = "background-color: #F05650";
 		
@@ -1049,7 +1213,6 @@ public class JoaHelpDeskController {
 		return mav;
 	}	
 	
-	
 	@RequestMapping("/topAdminBorder.do")
 	public ModelAndView topAdminBorder(@RequestParam(value="idx",defaultValue = "1") int idx) {
 		ModelAndView mav = new ModelAndView();
@@ -1071,4 +1234,19 @@ public class JoaHelpDeskController {
 		mav.setViewName("joaHelpDesk/adminHelp/joaHelpDek_MSG");
 		return mav;
 	}
+	
+	@RequestMapping("/reAnswerSetc.do")
+	public ModelAndView reAnswerSetc(JoaHelpQuestionDTO dto) {
+		dto.setHqt_state("재답변");
+		ModelAndView mav = new ModelAndView();
+		int result = joaHQService.reanswerQuestion(dto);
+		String msg = result>0?"재답변 설정이 완료되었습니다.":"재답변 설정이 실패했습니다.";
+		boolean link_tf=true;
+		mav.addObject("link_tf", link_tf);
+		mav.addObject("msg", msg);
+		mav.setViewName("joaMyPage/joa_Mypage_msg");
+		return mav;
+	}
+	
+	
 }

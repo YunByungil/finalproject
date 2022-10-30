@@ -16,6 +16,11 @@ public class JoaManyHelpDAOImple implements JoaManyHelpDAO {
 	}
 	
 	@Override
+	public void upDateReadNum(int idx) {
+		sqlMap.insert("updateReadnum", idx);
+	}
+	
+	@Override
 	public int addManyHelp(JoaManyHelpDTO dto) {
 		int result = sqlMap.insert("ManyHelpInsert", dto);
 		return result;

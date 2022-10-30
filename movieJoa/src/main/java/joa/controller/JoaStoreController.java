@@ -2,6 +2,8 @@ package joa.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import joa.store.model.*;
+import joa.adminMem.model.JoaAdminMemberDTO;
 import joa.adminStore.model.*;
+import joa.member.model.*;
 
 @Controller
 public class JoaStoreController {
@@ -85,11 +89,14 @@ public class JoaStoreController {
 	}
 	
 	@RequestMapping("/joaStoreCartDelete.do")
-	public ModelAndView joaStoreCartDelete(JoaStoreDTO dto) {
-		System.out.println(dto.getCar_mem_id());
-		System.out.println(dto.getCar_pro_idx());
-		int result = joaStoreService.storeCartDelete(dto);		
+	public ModelAndView joaStoreCartDelete(String delete_car_idx,HttpSession session) {
+		JoaMemberDTO udto=(JoaMemberDTO)session.getAttribute("userInfo");
+		String sid=udto.getMem_id();
+		int result = joaStoreService.storeCartDelete(delete_car_idx);		
 		ModelAndView mav=new ModelAndView();
+		
+		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(sid);
+		mav.addObject("storeCartList",storeCartList);
 		mav.setViewName("joaStore/joaStore_cart");
 		return mav;
 	}
@@ -97,6 +104,20 @@ public class JoaStoreController {
 	@RequestMapping("/selectCoupon.do")
 	public String selectCoupon() {
 		return "joaStore/joaStore_selectCoupon";
+	}
+	
+	@RequestMapping("/joaStoreCartUpdateCount.do")
+	public ModelAndView joaStoreCartUpdate(String update_car_idx, String update_car_count,HttpSession session) {
+		JoaMemberDTO udto=(JoaMemberDTO)session.getAttribute("userInfo");
+		String sid=udto.getMem_id();
+		joaStoreService.storeCartUpdateCount(update_car_idx, update_car_count);
+		
+		ModelAndView mav=new ModelAndView();
+		
+		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(sid);
+		mav.addObject("storeCartList",storeCartList);
+		mav.setViewName("joaStore/joaStore_cart");
+		return mav;
 	}
 
 }

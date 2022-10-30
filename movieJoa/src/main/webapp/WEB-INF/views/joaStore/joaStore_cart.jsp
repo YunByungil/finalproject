@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css">
 <link rel="stylesheet" type="text/css" href="css/joaStore.css">
 <script>
+
 function selectAll(selectAll)  {
 	
 	var checkBoxes  = document.getElementsByName('chx');
@@ -62,6 +63,7 @@ function cartSubmit(index) {
 	
 	 if (index == 1) {
 		document.joaStoreCart.action='joaStoreCartDelete.do';
+		
 	 }else if (index == 2) {
 
 		var checkBoxes  = document.getElementsByName('chx');
@@ -85,8 +87,52 @@ function cartSubmit(index) {
 	 document.joaStoreCart.submit();	
 }
 
-function showCoupon(){
-	window.open('selectCoupon.do','coupon','width=400,height=300');
+function count(type,vs)  {
+	  // 결과를 표시할 element
+	  const countElement = document.getElementById(vs);
+	  
+	  // 현재 화면에 표시된 값
+	  let number = countElement.innerText;
+	  
+	  // 더하기/빼기
+	  if(type == 'plus') {
+		  if(number < 10){
+	    number = parseInt(number) + 1;
+		  }else if(number = 10){
+			  window.alert('최대 10까지만 가능합니다.');
+		  }
+		  
+	  }else if(type == 'minus')  {
+		  if(number > 1){
+	    number = parseInt(number) - 1;
+		  }
+	  }
+	  
+	  // 결과 출력
+	  countElement.innerText = number;
+	}
+	
+function updateItem(car_idx,vs){
+	
+	var countElement = document.getElementById(vs);
+	var itemCount=countElement.lastChild.nodeValue;
+
+	document.joaStoreCart.update_car_count.value=itemCount;
+	document.joaStoreCart.update_car_idx.value=car_idx;
+	document.joaStoreCart.action='joaStoreCartUpdateCount.do';		
+	document.joaStoreCart.submit();
+	
+}
+
+function deleteItem(car_pro_idx,car_idx){
+	var deleteTr=document.getElementById(car_pro_idx);
+	var cartTbody = document.getElementById('cartTbody');
+	cartTbody.removeChild(deleteTr);
+	
+	document.joaStoreCart.delete_car_idx.value=car_idx;
+	document.joaStoreCart.action='joaStoreCartDelete.do';		
+ 	document.joaStoreCart.submit();
+	
 }
 </script>
 </head>
@@ -99,6 +145,9 @@ function showCoupon(){
 		<div class="store_spaceMaker"></div>
 			<form name="joaStoreCart">
 				<input type="hidden" name="idxsJson">
+				<input type="hidden" name="update_car_idx">
+				<input type="hidden" name="update_car_count">
+				<input type="hidden" name="delete_car_idx">
 					<table class="store_cart_table">
 						<thead>
 							<th><input type='checkbox' name="select" onclick="selectAll(this);"></th>
@@ -108,7 +157,7 @@ function showCoupon(){
 							<th>구매금액</th>
 							<th>삭제<th>
 						</thead>
-						<tbody>
+						<tbody id="cartTbody">
 						<c:if test="${empty storeCartList }">
 							<tr>
 								<td colspan="5" align="center">
@@ -116,21 +165,23 @@ function showCoupon(){
 								</td>
 							</tr>
 						</c:if>
-						<c:forEach var="dto" items="${storeCartList }">
-							<tr>
+						<c:forEach var="dto" items="${storeCartList }" varStatus="vs">
+							<tr id="${dto.car_pro_idx }">
 								<td><input type="checkbox" name="chx" id="${dto.car_pro_idx }" value="${dto.pro_price*dto.car_count }" onclick="itemCheck()"></td>
 								<td><img src="/movieJoa/img/joaStore_img/${dto.pro_filename }" width="100" height="100"></td>
 								<td>${dto.pro_name}</td>
 								<td><fmt:formatNumber value="${dto.pro_price }" pattern="#,###"/></td>
-								<td>${dto.car_count }</td>
+								<td><input type='button' onclick='count("minus",${vs.count})' value='-'/>
+								<span id="${vs.count }">${dto.car_count }</span>
+								<input type='button' onclick='count("plus",${vs.count})' value='+'/>
+								<input type="button" value="변경" onclick="updateItem(${dto.car_idx},${vs.count })"></td>								
 								<td><fmt:formatNumber value="${dto.pro_price*dto.car_count}" pattern="#,###"/></td>
 								<input type="hidden" name="pro_filename" value="${dto.pro_filename}">
 								<input type="hidden" name="pro_name" value="${dto.pro_name }">
 								<input type="hidden" name="pro_price" value="${dto.pro_price }">
 								<input type="hidden" name="car_count" value="${dto.car_count }">
 								<input type="hidden" name="pro_priceSum" value="${dto.pro_price*dto.car_count }">
-								<input type="hidden" name="car_pro_idx" value="${dto.car_pro_idx }">
-								<td><input type="button" value="삭제" onclick="cartSubmit(1)"></td>
+								<td><input type="button" value="삭제" onclick="deleteItem(${dto.car_pro_idx},${dto.car_idx})"></td>
 							</tr>
 						</c:forEach>
 						<input type="hidden" name="mem_name" value="구매자 이름">
@@ -148,7 +199,7 @@ function showCoupon(){
 						<tr>
 							<th>총 상품 금액</th>
 							<th></th>
-							<th colspan="2">할인금액</th>
+							<th>할인금액</th>
 							<th></th>
 							<th>총 결제 금액</th>
 						</tr>
@@ -158,8 +209,7 @@ function showCoupon(){
 							<td>												
 							<input type="text" name="pay_price_sum" id="priceSum" size="20" readonly></td>						
 							<td><img src="/movieJoa/img/joaStore_img/store_total_pay_minus.jpg"></td>												
-							<td><input type="text" name="pay_discount" id="discount" size="20" readonly></td>
-							<td><a href=""><input type="button" value="쿠폰" onclick="showCoupon()"></a></td>												
+							<td><input type="text" name="pay_discount" id="discount" size="20" readonly></td>											
 							<td><img src="/movieJoa/img/joaStore_img/store_total_pay_same.jpg"></td>												
 							<td><input type="text" name="pay_total_sum" id="totalSum" size="20" readonly></td>
 						</tr>

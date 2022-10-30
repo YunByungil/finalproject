@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="joa.payMovie">
+	<insert id="joaBookPayAdd" parameterType="joa.pay.model.JoaPayMovDTO">
+	    insert into
+	    	joa_payMovie
+	    values
+		    (joa_payMovie_payMov_idx.nextval,
+		    #{payMov_the_idx},
+		    #{payMov_sch_theater},
+		    #{payMov_mem_id},
+		    #{payMov_sch_day},
+		    #{payMov_sch_start_hour},
+		    #{payMov_sch_start_min},
+		    #{payMov_sch_seat},
+		    #{payMov_the_city},
+		    #{payMov_the_branch},
+		    #{payMov_price},
+		    #{payMov_pg},
+		    #{payMov_method},
+		    #{payMov_mov_title},
+		    #{payMov_merchant_uid},
+		    sysdate  
+		    )
+  	</insert>
+  </mapper>
