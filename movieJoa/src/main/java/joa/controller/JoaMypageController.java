@@ -38,8 +38,9 @@ public class JoaMypageController {
 	private JoaMypageService JoaMypageService;
 	
 	@RequestMapping("/serchProduct.do")
-	public ModelAndView serchProduct(HttpSession session,@DateTimeFormat(pattern="yyyy-MM-dd")Date prs_date_start,@DateTimeFormat(pattern="yyyy-MM-dd")Date prs_date_end)
+	public ModelAndView serchProduct(HttpSession session,@DateTimeFormat(pattern="yyyy-MM-dd")String prs_date_start,@DateTimeFormat(pattern="yyyy-MM-dd")String prs_date_end)
 	{	
+		
 		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
 		if(login_dto==null||login_dto.equals("")) {

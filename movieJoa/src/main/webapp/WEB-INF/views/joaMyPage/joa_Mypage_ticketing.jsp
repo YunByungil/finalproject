@@ -110,7 +110,7 @@
 					<tr>
 						<td>${swm_dto.payMov_mov_title }</td>
 						<td>${swm_dto.payMov_the_branch }</td>
-						<td>${swm_dto.payMov_sch_day } / ${ payMov_sch_start_hour } / ${ payMov_sch_start_min }</td>
+						<td>${swm_dto. payMov_sch_day}/${payMov_sch_start_hour }/${payMov_sch_start_min }  </td>
 						<td>${swm_dto.payMov_sch_seat }</td>
 						<td>${swm_dto.payMov_merchant_uid }</td>
 						<td>${swm_dto.payMov_price }</td>
@@ -121,39 +121,7 @@
 			
 			<hr class="ti_hr">
 			</div>
-			<br>
-			<div class="ti_cancl_sub">MY취소내역<br>
-			<div class="sub_ob">상영일 기준 지난 <d>7일</d>동안의 취소내역입니다.</div>
-			</div>
-			<div class="ti_cl_div">
-				<hr class="ti_hr">
-				
-				<br>
-					<table class="ti_cl_border">
-					<thead>
-						<th>관람영화</th>
-						<th>관람영화관</th>
-						<th>취소일</th>
-						<th>결제취소금액</th>
-					</thead>
-					<tbody>
-						<c:if test="${empty list_cancel }">
-						<tr><td colspan="4"><br></td></tr>
-						<tr>
-							<td colspan="4">고객님의 최근 예매내역이 존재하지 않습니다.</td>
-						</tr>
-						</c:if>
-						<c:forEach var="dto" items="${list_cancel }">
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+			
 		</div>
 </div>
 </section>

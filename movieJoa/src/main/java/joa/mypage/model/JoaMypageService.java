@@ -9,7 +9,7 @@ import joa.helpdesk.model.JoaHelpQuestionDTO;
 
 public interface JoaMypageService {
 	
-	public List<JoaMypageStoreDTO> serchStore(String sid, Date prs_date_start, Date prs_date_end);
+	public List<JoaMypageStoreDTO> serchStore(String sid, String prs_date_start, String prs_date_end);
 	
 	public JoaHelpQuestionDTO questionBorder(int idx);
 	

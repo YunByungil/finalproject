@@ -22,7 +22,7 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	}
 	
 	@Override
-	public List<JoaMypageStoreDTO> serchStore(String sid, Date prs_date_start, Date prs_date_end) {
+	public List<JoaMypageStoreDTO> serchStore(String sid, String prs_date_start, String prs_date_end) {
 		Map map = new HashMap();
 		map.put("sid", sid);
 		map.put("prs_date_start", prs_date_start);

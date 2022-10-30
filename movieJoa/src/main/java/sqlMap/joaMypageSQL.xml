@@ -3,10 +3,17 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.store">
+  	  	
+  	<select id="myPayMovie" parameterType="String" resultType="joa.mypage.model.JoaMyPagePayMovieDTO">
+  		select * from
+  		joa_payMovie
+  		where payMOV_MEM_ID=#{sid} 
+  	</select>
+  
   	<select id="serchStore" parameterType="map" resultType="joa.mypage.model.JoaMypagePayProDTO">
   		select * from
   		joa_product_result 
-  		where prs_mem_id=#{sid} and prs_date between TO_DATE(#{prs_date_start} || '000000', 'YYYYMMDDHH24MISS') and TO_DATE(#{prs_date_end} || '000000', 'YYYYMMDDHH24MISS')
+  		where prs_mem_id=#{sid} and prs_date between TO_DATE(#{prs_date_start}, 'YYYY-MM-DD') and TO_DATE(#{prs_date_end}, 'YYYY-MM-DD')+0.99999
   	</select>
   	
   	<select id="lucky_board_content" parameterType="Integer" resultType="joa.adminEvent.model.AdminEventLuckBoardDTO">
@@ -65,12 +72,6 @@
   		select count(*) from
   		joa_owncou
   		where own_member_id=#{sid} and own_use_date is null
-  	</select>
-  	
-  	<select id="myPayMovie" parameterType="String" resultType="joa.mypage.model.JoaMyPagePayMovieDTO">
-  		select * from
-  		joa_payMovie
-  		where payMov_mem_id=#{sid} 
   	</select>
   	
   	<select id="mypageCoupon" parameterType="String" resultType="joa.mypage.model.JoaMypageOwnCouDTO">
