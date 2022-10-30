@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,8 +37,8 @@ public class JoaMypageController {
 	@Autowired
 	private JoaMypageService JoaMypageService;
 	
-	@RequestMapping("/serchProduct")
-	public ModelAndView serchProduct(HttpSession session,@RequestParam("prs_date_start")Date prs_date_start,@RequestParam("prs_date_end")Date prs_date_end)
+	@RequestMapping("/serchProduct.do")
+	public ModelAndView serchProduct(HttpSession session,@DateTimeFormat(pattern="yyyy-MM-dd")Date prs_date_start,@DateTimeFormat(pattern="yyyy-MM-dd")Date prs_date_end)
 	{	
 		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");

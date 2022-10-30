@@ -1,6 +1,9 @@
 @charset "UTF-8";
-.Lucky_Guys{
-	
+.td_image{
+	width:180px;
+}
+.td_date{
+	width:120px;
 }
 #pwd2{
 	position: relative;
@@ -402,7 +405,7 @@ input[type="radio"]:checked + label {
 }
 .serchBar_sub1{
 	position: absolute;
-	top:93px;
+	top:38px;
 	left:23px;
 	font-size:18px;
 	font-weight : bold;
@@ -499,14 +502,14 @@ input[type="radio"]:checked + label {
 .serchBar_date{
 	position: absolute;
 	left:120px;
-	top:85px;
+	top:30px;
 }
 .serchBar_usedCoupon{
 	position: relative;
 	display: block;
 	border: 1px solid black;
 	width : 600px;
-	height: 150px;
+	height: 100px;
 	left: 65px;
 }
 

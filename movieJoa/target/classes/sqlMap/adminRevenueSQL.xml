@@ -125,7 +125,7 @@
  <select id="revenueMovieDetailQuery" resultType="joa.adminRevenue.model.JoaAdminPayMovieDTO" parameterType="String">
  	select * from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
  </select>
- <select id="revenueProductDetailQuery" resultType="joa.adminRevenue.model.JoaPayProductResultDTO" parameterType="String">
+ <select id="revenueProductDetailQuery" resultType="joa.adminRevenue.model.JoaPayProResultDTO" parameterType="String">
  	select * from joa_product_result where prs_pro_name=#{paypro_pro}
  </select>
  <select id="movieSpectatorCountQuery" resultType="Integer" parameterType="String">
@@ -159,7 +159,7 @@
  <select id="pagingProductCountQuery" resultType="Integer" parameterType="String">
  	select count(*) from joa_product_result where prs_pro_name=#{prs_pro_name}
  </select>
- <select id="pagingProductSelectQuery" resultType="joa.adminRevenue.model.JoaPayProductResultDTO" parameterType="String">
+ <select id="pagingProductSelectQuery" resultType="joa.adminRevenue.model.JoaPayProResultDTO" parameterType="String">
  select * from (select rownum as rnum,a.* from (select * from joa_product_result where prs_pro_name=#{prs_pro_name}
 	order by prs_idx desc)a)b where rnum
 	<![CDATA[ >= ]]>

@@ -50,7 +50,7 @@
 
          <a href="memberJoin.do"><span class="material-symbols-outlined">person_add</span>회원가입</a>
          <a href="myPage.do?sid=test"><span class="material-symbols-outlined">account_circle</span>마이페이지</a>
-         <a href="helpDest.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>
+         <a href="helpDesk.do"><span class="material-symbols-outlined">support_agent</span>고객센터</a>
          <c:if test="${adminInfo.admin_id!=null }">
          <a href="adminStore.do">관리자페이지</a></c:if>
       </div>      

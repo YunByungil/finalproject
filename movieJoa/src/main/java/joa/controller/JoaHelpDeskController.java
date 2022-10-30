@@ -1096,7 +1096,7 @@ public class JoaHelpDeskController {
 		int totalCnt=joaHQService.topQuestionTotalCnt();
 		int listSize=5;	
 		int pageSize=5;
-		String pageStr=joa.page.PageModule.makePage("topAdmin.do", totalCnt, listSize, pageSize, cp);
+		String pageStr=joa.page.PageModule.makePage("topAdmin_answer.do", totalCnt, listSize, pageSize, cp);
 		
 		ModelAndView mav = new ModelAndView();
 		List<JoaHelpQuestionDTO>list = joaHQService.topQuestionList(cp, listSize); 
@@ -1168,7 +1168,6 @@ public class JoaHelpDeskController {
 				String backF_color = "background-color: #F05650";
 				mav.addObject("backF_color", backF_color);
 			}
-			
 			pagename="topAdminSerchList.do?hqt_type="+hqt_type;
 			hqt_type="hqt_type='"+hqt_type+"'";
 		}
@@ -1191,7 +1190,10 @@ public class JoaHelpDeskController {
 		}
 		if(hqt_state==null||hqt_state.equals("")) {
 			hqt_state="hqt_state is not null";
-		}else {
+		}else if(hqt_type.equals("hqt_type is not null") && hqt_region.equals("hqt_region is not null")) {
+			pagename="topAdminSerchList.do?hqt_state="+hqt_state;
+			hqt_state="hqt_state='"+hqt_state+"'";
+		}else{
 			pagename+="&hqt_state="+hqt_state;
 			hqt_state="hqt_state='"+hqt_state+"'";
 		}

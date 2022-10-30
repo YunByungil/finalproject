@@ -18,8 +18,9 @@
 <div class="helpDesk_main">
 <div class="manyHelpMain">
 	<h4 class="manyHelpSubject">1:1문의 - 문의답변</h4> 
-	<div class="manyHelpIntroduce">1:1 문의사항 글입니다.<br>
-	관리자들을 성심 성의껏 고객님의 문의답변 작성 후 답변완료 버튼을 눌러주시길 바랍니다.</div>
+	<div class="manyHelpIntroduce">1:1 문의사항 본문내용입니다.<br>
+	회원님들께서 작성해주신 문의 사항입니다.<br>
+	최고관리자께서는 문의내용과 답변내용을 확인 가능합니다.</div>
 	<br>
 	
 	<div class="manyHelpbutton">

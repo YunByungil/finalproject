@@ -26,10 +26,13 @@
 	<br>
 	<div class="box">
 		<ul class="manyHelpSerchBarFeild">
-			<li class="menuli"><a style="${backA_color}"class="a" href="adminNotice.do">전체</a></li>
-			<li class="menuli"><a style="${backB_color}"class="a" href="noticeAdminType.do?type=시스템점검">시스템점검</a></li>
-			<li class="menuli"><a style="${backC_color}"class="a" href="noticeAdminType.do?type=극장">극장</a></li>
-			<li class="menuli"><a style="${backD_color}"class="a" href="noticeAdminType.do?type=기타">기타</a></li>
+		<li class="menuli"><a style="${backA_color}"class="a" href="adminNotice.do">전체</a></li>
+			<li class="menuli"><a style="${backB_color}"class="a" href="noticeAdminType.do?type=예매/매표">예매/매표</a></li>
+			<li class="menuli"><a style="${backC_color}"class="a" href="noticeAdminType.do?type=결제수단">결제수단</a></li>
+			<li class="menuli"><a style="${backD_color}"class="a" href="noticeAdminType.do?type=포인트/쿠폰">포인트/쿠폰</a></li>
+			<li class="menuli"><a style="${backE_color}"class="a" href="noticeAdminType.do?type=할인혜택">할인혜택</a></li>
+			<li class="menuli"><a style="${backF_color}"class="a" href="noticeAdminType.do?type=스토어샵">스토어샵</a></li>
+			<li class="menuli"><a style="${backG_color}"class="a" href="noticeAdminType.do?type=홈페이지">홈페이지</a></li>
 		</ul>
 	</div>
 	<br>

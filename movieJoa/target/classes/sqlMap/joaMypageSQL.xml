@@ -5,8 +5,8 @@
   <mapper namespace="joa.store">
   	<select id="serchStore" parameterType="map" resultType="joa.mypage.model.JoaMypagePayProDTO">
   		select * from
-  		joa_product_result
-  		where prs_mem_id=#{sid} and prs_date between date(#{prs_date_start}) and date(#{prs_date_end})
+  		joa_product_result 
+  		where prs_mem_id=#{sid} and prs_date between TO_DATE(#{prs_date_start} || '000000', 'YYYYMMDDHH24MISS') and TO_DATE(#{prs_date_end} || '000000', 'YYYYMMDDHH24MISS')
   	</select>
   	
   	<select id="lucky_board_content" parameterType="Integer" resultType="joa.adminEvent.model.AdminEventLuckBoardDTO">

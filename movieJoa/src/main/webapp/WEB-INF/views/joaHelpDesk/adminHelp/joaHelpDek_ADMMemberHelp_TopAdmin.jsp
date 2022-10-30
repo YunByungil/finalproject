@@ -13,12 +13,13 @@
 <script>
 
 	function categoryChange(e) {
-		 var seoul = ['영화관선택','강남점', '역삼점' '삼성점', '신사점', '청담점', '압구정점','잠실점', '강동점',
-	          '을지로점', '명동점', '서울역점', '이태원점', '종로점', '인사동점','홍대점', '영등포점', '구로점'];
-		  var incheon = ['영화관선택','송도점', '소래포점', '인천점', '강화점'];
-		  var gyeonggi = ['영화관선택','가평점', '청평점', '양평점', '수원점', '화성점', '파주점', '김포점', '의정부점'];
-		  var gangwon = ['영화관선택','속초점', '양양점', '고성점', '춘천점', '강릉점', '평창점'];
-	  var select = ['영화관선택','영화관선택'];
+		var seoul = ['영화관선택','강남/역삼/삼성', '신사/청담/압구정', '서초/교대/사당', '잠실/송파/강동',
+	          '을지로/명동/중구', '서울역/이태원/용산', '종로/인사동','홍대/합정/마포/서대문',
+	          '영등포역', '구로/신도림/금천'];
+		  var incheon = ['영화관선택','송도/소래포구', '인천국제공항/강화/을왕리/영종'];
+		  var gyeonggi = ['영화관선택','가평/청평/양평', '수원/화성', '고양/파주/김포', '의정부/포천/동두천'];
+		  var gangwon = ['영화관선택','속초/양양/고성', '춘천/인제/철원', '강릉', '평창/정선/영월'];
+		  var select = ['영화관선택','영화관선택'];
 	  var target = document.getElementById("cinema");
 	 
 	  if(e.value == "서울") var d = seoul;
@@ -48,9 +49,9 @@
 <section>
 <div class="memberhelpDesk_main">
 <div class="memberHelpMain">
-	<h4 class="memberHelpSubject">1:1 문의</h4>
+	<h4 class="memberHelpSubject">지점 관리자 답변문의</h4>
 	<div class="memberHelpIntroduce">회원님들께서 작성해주신 문의 사항입니다.<br>
-	관리자들을 최대한 신속하게 답변바랍니다.</div>
+	최고관리자께서는 문의내용과 답변내용을 확인 가능합니다.</div>
 	<br>
 	<form name="memberSerchFM" action="topAdminSerchList.do">
 	<div class="memberHelpSerch">
@@ -86,7 +87,7 @@
 	<br>
 	<div class="box">
 		<ul class="memberHelpSerchBarFeild">
-			<li class="menuli"><a style="${backA_color}"class="a" href="topAdmin.do">전체</a></li>
+			<li class="menuli"><a style="${backA_color}"class="a" href="topAdmin_answer.do">전체</a></li>
 			<li class="menuli"><a style="${backB_color}"class="a" href="topAdminQuestionType.do?hqt_type=편의" >편의</a></li>
 			<li class="menuli"><a style="${backC_color}"class="a" href="topAdminQuestionType.do?hqt_type=결제"  >결제</a></li>
 			<li class="menuli"><a style="${backD_color}"class="a" href="topAdminQuestionType.do?hqt_type=이벤트" >이벤트</a></li>

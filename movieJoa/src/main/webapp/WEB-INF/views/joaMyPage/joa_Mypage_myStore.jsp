@@ -83,12 +83,13 @@
 		
 		
 		<div class="joaMypage_ti">
+		<form name="dateFM" action="serchProduct.do">
 			<div class="tiket_subject">내 스토어샵</div>
 			<br>
 			<div class="serchBar_usedCoupon">
 				<div class="serchBar_sub1">조회기간</div>
-				<div class="serchBar_date"><input type="date" name="prs_date_start" class="serchBar_input">&nbsp;~&nbsp;<input type="date" name="prs_date_end" class="serchBar_input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="조회하기" class="serchBar_i_button">
-					
+				<div class="serchBar_date"><input type="date" name="prs_date_start" class="serchBar_input">&nbsp;~&nbsp;<input type="date" name="prs_date_end" class="serchBar_input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="조회하기" class="serchBar_i_button">
+		</form>			
 				</div>
 			</div>
 		<div class="my_ticet">
@@ -113,10 +114,10 @@
 				<c:forEach var="p_dto" items="${list }">
 					<tr>
 						<td>${p_dto.prs_idx }</td>
-						<td>${p_dto.prs_pro_filename }</td>
+						<td class="td_image">${p_dto.prs_pro_filename }</td>
 						<td>${p_dto.prs_pro_name }</td>
 						<td>${p_dto.prs_pro_count }</td>
-						<td>${p_dto.prs_date }</td>
+						<td class="td_date">${p_dto.prs_date }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
