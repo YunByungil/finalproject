@@ -1,5 +1,6 @@
 package joa.mypage.model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -7,6 +8,8 @@ import joa.adminEvent.model.AdminEventLuckBoardDTO;
 import joa.helpdesk.model.JoaHelpQuestionDTO;
 
 public interface JoaMypageService {
+	
+	public List<JoaMypageStoreDTO> serchStore(String sid, Date prs_date_start, Date prs_date_end);
 	
 	public JoaHelpQuestionDTO questionBorder(int idx);
 	

@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="joa.store">
+  	<select id="serchStore" parameterType="map" resultType="joa.mypage.model.JoaMypagePayProDTO">
+  		select * from
+  		joa_product_result
+  		where prs_mem_id=#{sid} and prs_date between date(#{prs_date_start}) and date(#{prs_date_end})
+  	</select>
+  	
   	<select id="lucky_board_content" parameterType="Integer" resultType="joa.adminEvent.model.AdminEventLuckBoardDTO">
   		select * from
   		e_b_board
@@ -116,20 +122,7 @@
 			*
 		from
 		joa_product_result
-		where prs_order_idx=#{sid} 
-	</select>
-	
-	<select id="mypagePrice" parameterType="String" resultType="joa.mypage.model.JoaMypagePayProDTO">
-		select a.prs_idx,
-		a. prs_order_idx,
-		a. prs_pro_filename,
-		a. prs_pro_name,
-		a. prs_pro_count,
-		a. prs_date,
-		b. payPro_price_sum 
-		from joa_product_result a,
-		joa_payProduct b
-		where b.payPro_mem_id = #{sid}
+		where  prs_mem_id=#{sid} 
 	</select>
 	
 	<delete id="memberDelete" parameterType="String">

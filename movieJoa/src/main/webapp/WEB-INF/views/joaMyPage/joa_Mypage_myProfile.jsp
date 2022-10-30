@@ -144,7 +144,7 @@ function validate(){
 			<a href="myPage_Event.do" class="My_bar_a"><dt class="My_bar">이벤트 참여내역</dt></a>
 			<a href="myPage_Store.do" class="My_bar_a"><dt class="My_bar">스토어</dt></a>
 				<a href="myPage_Store.do" class="My_bar_a"><dd>내 스토어</dd></a>
-				<a href="myPage_Store_Payment.do" class="My_bar_a"><dd>결제내역</dd></a>
+				
 			<a href="myPage_PW_Check_M.do" class="My_bar_a"><dt class="My_bar">회원정보</dt></a>
 				<a href="myPage_PW_Check_M.do" class="My_bar_a"><dd>회원정보 관리</dd></a>
 				<a href="myPage_PW_Check_E.do" class="My_bar_a"><dd>회원탈퇴</dd></a>

@@ -73,7 +73,7 @@
 			<a href="myPage_Event.do" class="My_bar_a"><dt class="My_bar">이벤트 참여내역</dt></a>
 			<a href="myPage_Store.do" class="My_bar_a"><dt class="My_bar">스토어</dt></a>
 				<a href="myPage_Store.do" class="My_bar_a"><dd>내 스토어</dd></a>
-				<a href="myPage_Store_Payment.do" class="My_bar_a"><dd>결제내역</dd></a>
+				
 			<a href="myPage_PW_Check_M.do" class="My_bar_a"><dt class="My_bar">회원정보</dt></a>
 				<a href="myPage_PW_Check_M.do" class="My_bar_a"><dd>회원정보 관리</dd></a>
 				<a href="myPage_PW_Check_E.do" class="My_bar_a"><dd>회원탈퇴</dd></a>
@@ -86,18 +86,7 @@
 			<div class="tiket_subject">내 스토어샵</div>
 			<br>
 			<div class="serchBar_usedCoupon">
-				<div class="serchBar_sub2">조회유형</div>
 				<div class="serchBar_sub1">조회기간</div>
-				<div class="serchBar_type">
-				<input type="radio" id="radio1" name="type" value="사용가능" class="serchBar_button_1">
-				<label for="radio1">사용가능</label>
-				&nbsp;<input type="radio" id="radio2" name="type" value="사용완료" class="serchBar_button_1">
-				<label for="radio2">사용완료</label>
-				&nbsp;<input type="radio" id="radio3" name="type" value="기간만료" class="serchBar_button_1">
-				<label for="radio3">기간만료</label>
-				&nbsp;<input type="radio" id="radio4" name="type" value="취소/환불" class="serchBar_button_1">
-				<label for="radio4">취소/환불</label>
-				</div>
 				<div class="serchBar_date"><input type="date" class="serchBar_input">&nbsp;~&nbsp;<input type="date" class="serchBar_input">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="조회하기" class="serchBar_i_button"></div>
 			</div>
 		<div class="my_ticet">

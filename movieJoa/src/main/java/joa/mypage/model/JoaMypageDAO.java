@@ -48,6 +48,8 @@ public interface JoaMypageDAO {
 	
 	public int updateProfile(JoaMypageProfileDTO dto);
 	
+	public List<JoaMypageStoreDTO> serchStore(Map map);
+	
 	public List<AdminEventLuckBoardDTO> lucky_Guys();
 	
 	public AdminEventLuckBoardDTO imfine(int idx);

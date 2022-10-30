@@ -24,6 +24,12 @@ public class JoaMypageDAOImple implements JoaMypageDAO {
 	}
 	
 	@Override
+	public List<JoaMypageStoreDTO> serchStore(Map map) {
+		List<JoaMypageStoreDTO>list = sqlMap.selectList("serchStore", map);
+		return list;
+	}
+	
+	@Override
 	public AdminEventLuckBoardDTO imfine(int idx) {
 		AdminEventLuckBoardDTO dto = sqlMap.selectOne("lucky_board_content",idx);
 		return dto;

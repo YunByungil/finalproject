@@ -1,5 +1,6 @@
 package joa.mypage.model;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,16 @@ public class JoaMypageServiceImple implements JoaMypageService {
 	
 	public JoaMypageServiceImple() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public List<JoaMypageStoreDTO> serchStore(String sid, Date prs_date_start, Date prs_date_end) {
+		Map map = new HashMap();
+		map.put("sid", sid);
+		map.put("prs_date_start", prs_date_start);
+		map.put("prs_date_end", prs_date_end);
+		List<JoaMypageStoreDTO>list = JoaMypageDao.serchStore(map);
+		return list;
 	}
 	
 	@Override

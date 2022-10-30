@@ -3,6 +3,7 @@ package joa.controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,50 @@ public class JoaMypageController {
 	@Autowired
 	private JoaMypageService JoaMypageService;
 	
+	@RequestMapping("/serchProduct")
+	public ModelAndView serchProduct(HttpSession session,@RequestParam("prs_date_start")Date prs_date_start,@RequestParam("prs_date_end")prs_date_end)
+	{	
+		ModelAndView mav = new ModelAndView();
+		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
+		if(login_dto==null||login_dto.equals("")) {
+			String msg="마이페이지는 로그인 후 이용 가능합니다.";
+			boolean link_tf=false;
+			String link = "memberLogin.do";
+			mav.addObject("msg",msg);
+			mav.addObject("link", link);
+			mav.addObject("link_tf", link_tf);
+			mav.setViewName("joaMyPage/joa_Mypage_msg");
+			return mav;
+		}else {
+			String sid = login_dto.getMem_id();
+		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
+		List<JoaMypageStoreDTO>list = JoaMypageService.serchStore(sid, prs_date_start, prs_date_start);
+		int couponCount = JoaMypageService.memberCouponCnt(sid);
+		
+		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
+		
+		JoaMypageProfileDTO pdto = JoaMypageService.getProfile(sid);
+		String m_grade = "일반";
+		if(dto.getMem_grade()>=10000 && dto.getMem_grade()<25000) {
+			m_grade = "VIP";
+		}
+		if(dto.getMem_grade()>=25000 && dto.getMem_grade()<40000) {
+			m_grade = "SVIP";
+		}
+		if(dto.getMem_grade()>=40000) {
+			m_grade = "VVIP";
+		}
+		
+		mav.addObject("pdto", pdto); 
+		mav.addObject("m_grade", m_grade);
+		mav.addObject("datelist", datelist);
+		mav.addObject("couponCount", couponCount);
+		mav.addObject("dto", dto);
+		mav.setViewName("joaMyPage/joa_Mypage_myService");
+		return mav;
+		}
+		
+	}
 	@RequestMapping("/lucky_Guys_Move_Border.do")
 	public ModelAndView lucky_Guys_Move_Border(@RequestParam("idx")int idx) {
 		ModelAndView mav = new ModelAndView();
