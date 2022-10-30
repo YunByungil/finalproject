@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import joa.mypage.model.JoaMypageService;
 import joa.mypage.model.JoaMypageServiceDTO;
+import joa.mypage.model.JoaMypageStoreDTO;
 import joa.adminEvent.model.AdminEventLuckBoardDTO;
 import joa.adminStore.model.AdminStoreDTO;
 import joa.helpdesk.model.JoaHelpQuestionDTO;
@@ -37,7 +38,7 @@ public class JoaMypageController {
 	private JoaMypageService JoaMypageService;
 	
 	@RequestMapping("/serchProduct")
-	public ModelAndView serchProduct(HttpSession session,@RequestParam("prs_date_start")Date prs_date_start,@RequestParam("prs_date_end")prs_date_end)
+	public ModelAndView serchProduct(HttpSession session,@RequestParam("prs_date_start")Date prs_date_start,@RequestParam("prs_date_end")Date prs_date_end)
 	{	
 		ModelAndView mav = new ModelAndView();
 		JoaMemberDTO login_dto=(JoaMemberDTO) session.getAttribute("userInfo");
@@ -53,7 +54,7 @@ public class JoaMypageController {
 		}else {
 			String sid = login_dto.getMem_id();
 		List<JoaMypageOwnCouDTO> datelist = JoaMypageService.memberCouponDate(sid);
-		List<JoaMypageStoreDTO>list = JoaMypageService.serchStore(sid, prs_date_start, prs_date_start);
+		List<JoaMypageStoreDTO>list = JoaMypageService.serchStore(sid, prs_date_start, prs_date_end);
 		int couponCount = JoaMypageService.memberCouponCnt(sid);
 		
 		JoaMypageMemberDTO dto = JoaMypageService.memberInpo(sid);
@@ -70,12 +71,13 @@ public class JoaMypageController {
 			m_grade = "VVIP";
 		}
 		
+		mav.addObject("list", list);
 		mav.addObject("pdto", pdto); 
 		mav.addObject("m_grade", m_grade);
 		mav.addObject("datelist", datelist);
 		mav.addObject("couponCount", couponCount);
 		mav.addObject("dto", dto);
-		mav.setViewName("joaMyPage/joa_Mypage_myService");
+		mav.setViewName("joaMyPage/joa_Mypage_myStore");
 		return mav;
 		}
 		
