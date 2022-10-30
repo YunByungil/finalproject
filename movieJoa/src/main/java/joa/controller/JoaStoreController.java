@@ -79,9 +79,11 @@ public class JoaStoreController {
 	
 	
 	@RequestMapping("/joaStoreCartList.do")
-	public ModelAndView joaStoreCartList(String car_mem_id) {
+	public ModelAndView joaStoreCartList(String car_mem_id,HttpSession session) {
+			JoaMemberDTO udto=(JoaMemberDTO)session.getAttribute("userInfo");
+			String sid=udto.getMem_id();
 
-		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(car_mem_id);
+		List<JoaStoreDTO> storeCartList=joaStoreService.storeCartList(sid);
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("storeCartList",storeCartList);
 		mav.setViewName("joaStore/joaStore_cart");

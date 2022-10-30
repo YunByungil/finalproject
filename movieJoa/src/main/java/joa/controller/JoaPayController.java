@@ -38,8 +38,10 @@ public class JoaPayController {
 	  }
 	
 	@RequestMapping("/joaStorePay.do")
-	public ModelAndView joaStoreCartBuyNow(String idxsJson,String pay_discount,String pay_total_sum) {
-		
+	public ModelAndView joaStoreCartBuyNow(String idxsJson,String pay_discount,String pay_total_sum,HttpSession session) {
+
+		JoaMemberDTO udto=(JoaMemberDTO)session.getAttribute("userInfo");
+		String sid=udto.getMem_id();
 		JSONArray jsonArr = new JSONArray(idxsJson);
 		System.out.println(jsonArr.get(0));
 		
@@ -50,7 +52,7 @@ public class JoaPayController {
 		for(int i=0;i<jsonArr.length();i++) {
 			System.out.println("for:"+jsonArr.getString(i));
 			car_pro_idx=jsonArr.getString(i);
-			dto = joaPayService.storePayCartList(Integer.parseInt(car_pro_idx),"jtl3403");
+			dto = joaPayService.storePayCartList(Integer.parseInt(car_pro_idx),sid);
 			jpcList.add(dto);
 		}
 

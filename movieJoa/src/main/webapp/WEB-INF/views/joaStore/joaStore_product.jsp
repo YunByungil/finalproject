@@ -37,22 +37,19 @@ function count(type)  {
   countElement.innerText = number;
 }
 
-function productSubmit(index) {
+function productSubmit() {
 	var productCount=document.getElementById('count').innerText;
 	var finalCount = document.getElementById('car_count');
 	finalCount.value = productCount;
 	
-	  if (index == 1) {
 		  
 		  if(${userInfo.mem_id==null}){
 			window.alert('로그인 후 이용해주세요')
 		  }else{
 			document.joaStoreCategory.action='joaStoreCart.do';			  
 		  }
-	  }
-	  if (index == 2) {
-	    document.joaStoreCategory.action='joaStorePay.do';
-	  }
+
+
 	  document.joaStoreCategory.submit();
 	}
 
@@ -68,7 +65,7 @@ function productSubmit(index) {
 		<hr color="black" size="2px">
 		</div>
 		<form name="joaStoreCategory" method='post'>
-			<input type="hidden" name="car_mem_id" value="jtl3403">	
+			<input type="hidden" name="car_mem_id" value="${userInfo.mem_id }">	
 			<input type="hidden" name="car_pro_idx" value="${dto.pro_idx }">
 			<div class="product_space">
 				<div class="product_img">
@@ -95,8 +92,7 @@ function productSubmit(index) {
 					<hr>
 					<span>총 구매금액</span><span class="product_right_price"><fmt:formatNumber value="${dto.pro_price }" pattern="#,###"/></span>
 					<div>
-						<input type="button" value="장바구니" onclick='productSubmit(1)'>
-						<input type="button" value="구매하기" onclick='productSubmit(2)'>
+						<input type="button" value="장바구니" onclick='productSubmit()'>
 					</div>			
 				</div>
 			</div>

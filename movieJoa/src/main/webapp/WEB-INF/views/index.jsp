@@ -46,15 +46,6 @@ a:visited, a{
 </head>
 <body>
 <c:import url="header.jsp"></c:import>
-<section class="main">
-	<article>
-		<div class="movieChart"><a href="joaMovie.do">영화차트</a></div>
-		<div class="event">이벤트</div>
-		<div class="fnb">스토어상품</div>
-		<div class="notice">공지사항</div>
-		<div class="helpDesk"><a href="helpDesk.do">고객센터</a></div>
-	</article>
-</section>
 <div class="movieChartBeScreen_wrap">
 	<div class="contents">
 	    <div class="movieChartBeScreen_btn_wrap">

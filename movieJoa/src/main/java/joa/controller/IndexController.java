@@ -1,6 +1,8 @@
 package joa.controller;
 
 import java.util.List;
+import joa.adminEvent.model.*;
+import joa.event.model.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ public class IndexController {
 	
 	@Autowired
 	private JoaMovieDAO mdao;
+	private Joa_EventService joa_EventService;
 	
 	@RequestMapping("index.do")
 	public ModelAndView index() {
@@ -25,6 +28,8 @@ public class IndexController {
 		mav.addObject("list1", list1);
 		mav.setViewName("index");
 		return mav;
+		
+		
 	}
 
 }
