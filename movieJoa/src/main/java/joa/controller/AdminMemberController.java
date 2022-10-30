@@ -192,19 +192,9 @@ public class AdminMemberController {
 		ModelAndView mav=new ModelAndView();
 		int listSize=10;
 		int pageSize=5;
-		List<JoaMemberDTO> list=null;
-		String temp=null;
-		if(!mem_gender.equals("")||!mem_gender.equals(null)) {
-			temp=mem_gender;
-			int totalCnt=joaAdminMemberDao.pagingGenderCount(temp);
-			String pageStr=joa.page.PageModule.makePage("/movieJoa/adminGender.do", totalCnt, listSize, pageSize, cp);
-			list=joaAdminMemberDao.memberGenderSelect(temp,listSize,cp);
-		}else {
-			mem_gender=temp;
-		}
-		int totalCnt=joaAdminMemberDao.pagingGenderCount(temp);
-		String pageStr=joa.page.PageModule.makePage("/movieJoa/adminGender.do", totalCnt, listSize, pageSize, cp);
-		list=joaAdminMemberDao.memberGenderSelect(temp,listSize,cp);
+		int totalCnt=joaAdminMemberDao.pagingGenderCount(mem_gender);
+		String pageStr=joa.page.PageModuleModify.makePage("/movieJoa/adminGender.do?mem_gender="+mem_gender+"&", totalCnt, listSize, pageSize, cp);
+		List<JoaMemberDTO> list=joaAdminMemberDao.memberGenderSelect(mem_gender,listSize,cp);
 		mav.addObject("list", list);
 		mav.addObject("pageStr", pageStr);
 		mav.setViewName("admin/adminMember/adminMember_gender");

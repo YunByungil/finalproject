@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -46,11 +47,13 @@ public class JoaMemberJoinController {
 		mav.setViewName("joaMemberJoin/joaMemberJoin_msg");
 		return mav;
 	}
-	@RequestMapping("/memberIdCheck.do")
-	@ResponseBody
-	public int memberIdCheck(String id) {
-		int result=joaMemberDao.memberIdCheck(id);
-		return result;
+	@RequestMapping(value="/memberIdCheck.do")
+	public ModelAndView memberIdCheck(String mem_id) {
+		int result=joaMemberDao.memberIdCheck(mem_id);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName("joaMemberJoin/joaMemberJoin_idCheck");
+		return mav;
 	}
 
 }

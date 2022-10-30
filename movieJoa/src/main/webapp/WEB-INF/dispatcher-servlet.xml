@@ -201,7 +201,6 @@
 		</constructor-arg>
    </bean>   
    
-   
    	<bean id="adminReviewService" class="joa.adminReview.model.AdminReviewServiceImple">
    		<constructor-arg>
          <ref bean="adminReviewDao"/>
@@ -300,8 +299,7 @@
       </property>
       <property name="defaultEncoding" value="utf-8"></property>
    </bean>
-	
-   
+
    <!-- views -->
    <bean id="joaDown" class="joa.view.DownloadView"></bean>
    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver">

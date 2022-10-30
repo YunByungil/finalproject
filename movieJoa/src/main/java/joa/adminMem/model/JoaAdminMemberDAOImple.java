@@ -177,4 +177,5 @@ public class JoaAdminMemberDAOImple implements JoaAdminMemberDAO {
 		return result;
 	}
 	
+	
 }

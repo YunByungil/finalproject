@@ -32,6 +32,7 @@
 		</div>
 		<div class="nav_menu">
 			<a href="index.do"><span class="material-symbols-outlined">account_circle</span>사용자 페이지</a>
+			<br><h4>${adminInfo.admin_area } ${adminInfo.admin_shop }지점 ${adminInfo.admin_name }</h4>
 		</div>	
 	</div>
 	<hr size="1px" color="#c0c0c0">

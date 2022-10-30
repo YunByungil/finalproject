@@ -16,8 +16,8 @@
   select to_char(sysdate,'mm') from dual
   </select>
   <select id="nowMonthProductRevenueQuery" resultType="Integer">
-   select sum(payPro_total_price) 
-	from joa_payProduct where payPro_date between 
+   select sum(prs_pro_price*prs_pro_count) 
+	from joa_product_result where prs_date between 
 	(select trunc(sysdate,'mm') from dual) and
 	(select last_day(sysdate) from dual)
   </select>
@@ -87,8 +87,8 @@
 	(select last_day(sysdate) from dual)
   </select>
   <select id="nowMonthBestProductQuery" resultType="String">
-  	select max(paypro_pro_name) from joa_payproduct
-  	where paypro_date between 
+  	select max(prs_pro_name) from joa_product_result
+  	where prs_date between 
 	(select trunc(sysdate,'mm') from dual) and
 	(select last_day(sysdate) from dual)
   </select>
@@ -102,12 +102,12 @@
 	group by admin_shop
  </select>
  <select id="revenueStoreQuery" resultType="joa.adminStore.model.AdminStoreDTO">
- 	select * from joa_product
+ 	select * from joa_product_result
  </select>
  <select id="revenueStoreMoneyQuery" resultType="Integer" parameterType="String">
- 	select nvl(sum(paypro_total_price),0) from 
-	(select pro_name,paypro_total_price from joa_product
-	paypro_pro_name left outer join joa_payproduct on paypro_pro_name=pro_name) where pro_name=#{pro_name} 
+ 	select nvl(sum(prs_pro_price*prs_pro_count),0) from 
+	(select prs_pro_name,prs_pro_price*prs_pro_count from joa_product_result
+	prs_pro_name left outer join joa_product_result on prs_pro_name=pro_name) where pro_name=#{pro_name} 
 	group by pro_name
  </select>
  <select id="revenueMovieQuery" resultType="joa.adminMovie.model.AdminMovieDTO">
@@ -125,13 +125,49 @@
  <select id="revenueMovieDetailQuery" resultType="joa.adminRevenue.model.JoaAdminPayMovieDTO" parameterType="String">
  	select * from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
  </select>
- <select id="revenueProductDetailQuery" resultType="joa.adminRevenue.model.JoaAdminPayProductDTO" parameterType="String">
- 	select * from joa_payproduct where paypro_pro_name=#{paypro_pro}
+ <select id="revenueProductDetailQuery" resultType="joa.adminRevenue.model.JoaPayProductResultDTO" parameterType="String">
+ 	select * from joa_product_result where prs_pro_name=#{paypro_pro}
  </select>
  <select id="movieSpectatorCountQuery" resultType="Integer" parameterType="String">
  	select nvl(count(paymov_price),0) from
 	(select mov_title,paymov_price from joa_movie
 	paymov_mov_title left outer join joa_paymovie on mov_title=paymov_mov_title) where mov_title=#{mov_title}
 	group by mov_title
+ </select>
+ <select id="pagingShopCountQuery" resultType="Integer" parameterType="String">
+ 	select count(*) from joa_paymovie where paymov_the_branch=#{paymov_the_branch}
+ </select>
+ <select id="pagingShopSelectQuery" resultType="joa.adminRevenue.model.JoaAdminPayMovieDTO" parameterType="String">
+ select * from (select rownum as rnum,a.* from (select * from joa_paymovie where paymov_the_branch=#{paymov_the_branch}
+	order by paymov_idx desc)a)b where rnum
+	<![CDATA[ >= ]]>
+	${start} and rnum
+	<![CDATA[ <= ]]>
+	${end}
+ </select>
+ <select id="pagingMovieCountQuery" resultType="Integer" parameterType="String">
+ 	select count(*) from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
+ </select>
+ <select id="pagingMovieSelectQuery" resultType="joa.adminRevenue.model.JoaAdminPayMovieDTO" parameterType="String">
+ select * from (select rownum as rnum,a.* from (select * from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
+	order by paymov_idx desc)a)b where rnum
+	<![CDATA[ >= ]]>
+	${start} and rnum
+	<![CDATA[ <= ]]>
+	${end}
+ </select>
+ <select id="pagingProductCountQuery" resultType="Integer" parameterType="String">
+ 	select count(*) from joa_product_result where prs_pro_name=#{prs_pro_name}
+ </select>
+ <select id="pagingProductSelectQuery" resultType="joa.adminRevenue.model.JoaPayProductResultDTO" parameterType="String">
+ select * from (select rownum as rnum,a.* from (select * from joa_product_result where prs_pro_name=#{prs_pro_name}
+	order by prs_idx desc)a)b where rnum
+	<![CDATA[ >= ]]>
+	${start} and rnum
+	<![CDATA[ <= ]]>
+	${end}
+ </select>
+ <select id="pagingSpectatorCountQuery" resultType="Integer" parameterType="String">
+ 	select count(*) from joa_paymovie where paymov_mov_title=#{paymov_mov_title}
  </select>
   </mapper>

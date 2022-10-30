@@ -37,20 +37,6 @@
 		</div>
 		<hr color="#dcdcdc">
 		<div class="store_container">
-			<div class="left">
-				<div class="combo"><h1>콤보<a href="${comboUrl }"><span class="material-symbols-outlined">add_circle</span></a></h1></div>
-			</div>
-			<div class="right">
-				<div class="popcorn"><h1>팝콘<a href="${popcornUrl }"><span class="material-symbols-outlined">add_circle</span></a></h1></div>
-			</div>
-		</div>
-		<div class="store_container">
-			<div class="left">
-				<div class="snack"><h1>스낵<a href="${snackUrl }"><span class="material-symbols-outlined">add_circle</span></a></h1></div>
-			</div>
-			<div class="right">
-				<div class="drink"><h1>음료<a href="${drinkUrl }"><span class="material-symbols-outlined">add_circle</span></a></h1></div>
-			</div>
 		</div>
 	</section>
 <c:import url="../footer.jsp"></c:import>
