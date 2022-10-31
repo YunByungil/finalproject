@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="joa.book">
+	<select id="moviePoster" parameterType="String" resultType="joa.adminMovie.model.AdminMovieDTO">
+	select mov_poster
+	from joa_movie
+	where mov_title = #{String} 
+	</select>
+	
 	<select id="moviesSubjectList" resultType="joa.book.model.JoaBookDTO">
 	select distinct sch_mov_title
 	from joa_schedule

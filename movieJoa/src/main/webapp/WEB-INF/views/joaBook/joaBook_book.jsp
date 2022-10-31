@@ -158,7 +158,7 @@ th {
 
 
 </div>
-
+<!-- <img src="/movieJoa/img/movie_poster/제목 없음.png" width="200px" height="200px">-->
 <div>
 <c:import url="../footer.jsp"></c:import>
 </div>
@@ -184,10 +184,7 @@ function next(subject) {
 		window.location.reload();
 		return;
 	}
-	var subText2 = document.getElementById('sub');
-	var subText = document.getElementById('sub2');
-	subText.innerHTML = '<img src="/movieJoa/img/theater/'+subject+'.jpg" width="200px" height="200px">';
-	subText2.innerHTML = subject;
+	
 	
 	var form = {
 		sch_mov_title: $('#sch_mov_title').val()
@@ -199,8 +196,14 @@ function next(subject) {
 		contentType: "application/json; charset=utf-8;",
 		success: function(data) {
 			$('#ajaxBranch').html(data.reloadBranch);
+			$('#sub2').html(data.poster);
 		}
 	});
+	
+	var subText2 = document.getElementById('sub');
+	var subText = document.getElementById('sub2');
+	//subText.innerHTML = '<img src="/movieJoa/img/movie_poster/'+reloadBranch+'.png" width="200px" height="200px">';
+	subText2.innerHTML = subject;
 }
 
 function next2(branch) {

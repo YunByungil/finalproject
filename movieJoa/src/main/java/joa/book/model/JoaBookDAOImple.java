@@ -3,6 +3,7 @@ import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import joa.adminMovie.model.AdminMovieDTO;
 import joa.pay.model.*;
 import joa.theater.model.TheaterTimeDTO;
 public class JoaBookDAOImple implements JoaBookDAO {
@@ -12,6 +13,12 @@ public class JoaBookDAOImple implements JoaBookDAO {
 	public JoaBookDAOImple(SqlSessionTemplate sqlMap) {
 		super();
 		this.sqlMap = sqlMap;
+	}
+	
+	@Override
+	public AdminMovieDTO moivePoster(String sch_mov_title) {
+		AdminMovieDTO list = sqlMap.selectOne("moviePoster", sch_mov_title);
+		return list;
 	}
 	
 	@Override

@@ -1,9 +1,12 @@
 package joa.book.model;
 import java.util.*;
 
+import joa.adminMovie.model.AdminMovieDTO;
 import joa.pay.model.*;
 import joa.theater.model.TheaterTimeDTO;
 public interface JoaBookDAO {
+	
+	public AdminMovieDTO moivePoster(String sch_mov_title);
 	
 	public List<JoaBookDTO> moviesSubjectList();
 	public List<JoaBookDTO> moviesBranchList(String sch_mov_title);

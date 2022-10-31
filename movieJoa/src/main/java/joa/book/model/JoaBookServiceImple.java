@@ -1,6 +1,7 @@
 package joa.book.model;
 import java.util.*;
 
+import joa.adminMovie.model.AdminMovieDTO;
 import joa.pay.model.JoaPayMovDTO;
 import joa.theater.model.TheaterTimeDTO;
 public class JoaBookServiceImple implements JoaBookService {
@@ -10,6 +11,12 @@ public class JoaBookServiceImple implements JoaBookService {
 	public JoaBookServiceImple(JoaBookDAO joaBookDao) {
 		super();
 		this.joaBookDao = joaBookDao;
+	}
+	
+	@Override
+	public AdminMovieDTO moivePoster(String sch_mov_title) {
+		AdminMovieDTO list = joaBookDao.moivePoster(sch_mov_title);
+		return list;
 	}
 
 	@Override

@@ -14,6 +14,7 @@ import java.util.*;
 import javax.servlet.http.HttpSession;
 
 import joa.adminMem.model.JoaAdminMemberDTO;
+import joa.adminMovie.model.AdminMovieDTO;
 import joa.book.model.*;
 import joa.pay.model.*;
 
@@ -104,11 +105,17 @@ public class JoaBookController {
 		System.out.println("성공 : " +dto.getSch_mov_title());
 		List<JoaBookDTO> list = joaBookService.moviesBranchList(dto.getSch_mov_title());
 		String msg = "";
+		String msg2 = "";
+		AdminMovieDTO list2 = joaBookService.moivePoster(dto.getSch_mov_title());
+		msg2 = "<img src=/movieJoa/img/movie_poster/"+list2.getMov_poster()+" width=200px height=200px>";
 		msg += "<tr class=trtr><th>극장</th></tr>";
 		for (int i=0; i<list.size(); i++) {
 			msg += "<tr class=trtrtr><td id="+list.get(i).getSch_branch()+" ><a href=javascript:next2('"+list.get(i).getSch_branch()+"')>"+list.get(i).getSch_branch()+"</a></td></tr>";
 		}
 		map.put("reloadBranch", msg);
+		map.put("poster", msg2);
+		System.out.println("poster : "+list2.getMov_poster());
+		System.out.println("msg2 : "+msg2);
 		return map;
 	}
 	

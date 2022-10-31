@@ -132,7 +132,7 @@ function paymentCreditCard(){
 <div align="center" style="background-color: #392f31; width: 100%; height: 200px; ">
 
 <div style="width: 25%; height: 25%; float: left;">
-<span id="sub2" style="color: white;"><img src="/movieJoa/img/theater/${title }.jpg" width="200px" height="192px"></span>
+<span id="sub2" style="color: white;"><img src="/movieJoa/img/movie_poster/${poster }" width="200px" height="192px"></span>
 <span id="sub" style="color: white;">${title }</span>
 </div>
 

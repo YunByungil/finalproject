@@ -1,24 +1,33 @@
 package joa.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import joa.adminMovie.model.AdminMovieDTO;
+import joa.book.model.JoaBookService;
 import joa.paymovie.model.*;
 
 @Controller
 public class AdminBookController {
+	
+	@Autowired
+	public JoaBookService joaBookService;
 
 	@RequestMapping(value = "/theaterPay.do", method = RequestMethod.POST)
 	public ModelAndView theaterPayForm(PayMovieDTO dto,
 			@RequestParam(value = "payMov_sch_seat2", required = false)String payMov_sch_seat2) {
 		ModelAndView mav = new ModelAndView();
+		AdminMovieDTO list2 = joaBookService.moivePoster(dto.getPayMov_mov_title());
+		
 		if (payMov_sch_seat2 == null || payMov_sch_seat2.equals("")) {
 			System.out.println("가격 : "+dto.getPayMov_price());
 			mav.addObject("idx", dto.getPayMov_the_idx());
 			mav.addObject("title", dto.getPayMov_mov_title());
+			mav.addObject("poster", list2.getMov_poster());
 			mav.addObject("branch", dto.getPayMov_the_branch());
 			mav.addObject("city", dto.getPayMov_the_city());
 			mav.addObject("day", dto.getPayMov_sch_day());
@@ -31,6 +40,7 @@ public class AdminBookController {
 			System.out.println("가격 : "+dto.getPayMov_price());
 			mav.addObject("idx", dto.getPayMov_the_idx());
 			mav.addObject("title", dto.getPayMov_mov_title());
+			mav.addObject("poster", list2.getMov_poster());
 			mav.addObject("branch", dto.getPayMov_the_branch());
 			mav.addObject("city", dto.getPayMov_the_city());
 			mav.addObject("day", dto.getPayMov_sch_day());
