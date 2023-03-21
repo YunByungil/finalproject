@@ -30,4 +30,17 @@
 가독성, MVC패턴, 객체지향 활용, 커밋 메세지 컨벤션, 메서드 네이밍 컨벤션, 변수 네이밍 컨벤션 등 완전히 잘못 코딩을 하고 있었다.
 이번 프리코스를 통해서 확실히 깨닫고 클린 코드, MVC패턴 등 여러가지 학습을 했기 때문에 리팩토링을 진행할 것이다.
 
+![image](https://user-images.githubusercontent.com/109706328/226648968-985477cd-f823-4de2-ade6-873b4d1bc358.png)
+
+![image](https://user-images.githubusercontent.com/109706328/226649117-3fb98163-e6d2-4deb-a114-175e4949d379.png)
+
+![image](https://user-images.githubusercontent.com/109706328/226649172-737eb289-9b81-477a-a94a-0155be6084ab.png)
+
+![image](https://user-images.githubusercontent.com/109706328/226649228-b21fd658-4fbd-46ea-844c-167e41a5a392.png)
+
+![image](https://user-images.githubusercontent.com/109706328/226649325-c72c009a-4799-48e8-82ba-7a28f2fe72ec.png)
+
+
+
+
 
